@@ -4738,7 +4738,7 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
     const opened = rec.box && rec.box.opened;
     openSheet(`<div class="v7-top">${closeBtn}<span></span><span style="width:44px"></span></div>
       <div class="v7-full"><div class="rays"></div><span class="v7-sub" style="color:var(--v7-gold);font-weight:700">${rec.v >= 4 ? 'Blackout' : 'Full card'}</span><p class="v7-h" style="font-size:32px">Bingo!</p><span class="v7-bstat">+${rec.v >= 4 ? BINGO_TIERS.full : 10} ★ added</span>
-      <div class="v7-gift" id="v7Gift">${icon('gift-fill')}</div>
+      <div class="v7-gift ${window.__starcadeGiftArt ? 'is-art' : ''} ${opened ? 'open' : ''}" id="v7Gift">${window.__starcadeGiftArt ? window.__starcadeGiftArt() : icon('gift-fill')}</div>
       <p style="margin:6px 0 0;font-weight:650" id="v7BoxLine">${opened ? escapeHTML('Inside: ' + rec.box.item.name) : 'Your Bingo Mystery Box'}</p>
       ${opened ? '' : '<button class="v7-btn gold" id="v7BoxBtn" onclick="v7OpenBox()">Tap to open</button>'}
       <p class="v7-sub" style="max-width:260px">${opened ? 'Enjoy it. Bingo starts fresh on Monday.' : "Could be an outfit, an accessory, a seasonal collectible or bonus stars. You'll see when it opens."}</p></div>`, { full: true, label: 'Bingo full card' });
@@ -4750,7 +4750,7 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
     if (item.kind === 'costume' && typeof V9 !== 'undefined') { V9.v9Inventory = V9.v9Inventory || []; const key = 'costume:' + item.id; if (!V9.v9Inventory.includes(key)) V9.v9Inventory.push(key); }
     else awardStars(`bingo:${wkKey}:box`, item.amount, 'Bingo Mystery Box');
     rec.box = { opened: true, item, at: new Date().toISOString() }; save();
-    const g = $('#v7Gift'); if (g && !reduced()) g.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12) rotate(-6deg)' }, { transform: 'scale(1)' }], { duration: 600 });
+    const g = $('#v7Gift'); if (g) g.classList.add('open'); if (g && !reduced()) g.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12) rotate(-6deg)' }, { transform: 'scale(1)' }], { duration: 600 });
     setTimeout(() => { const l = $('#v7BoxLine'); if (l) l.textContent = 'Inside: ' + item.name + (item.kind === 'costume' ? ' · new outfit' : ''); $('#v7BoxBtn')?.remove(); dexReact('celebrate'); }, 550);
   };
 
@@ -7698,6 +7698,48 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
 /* a chosen chip is filled pink with dark ink (not a faint outline); a chosen segment is a garnet pill */
 .add-chip[aria-checked="true"]{background:var(--j-rose)!important;box-shadow:0 6px 14px -8px rgb(217 102 140 / .9)!important;color:var(--j-on-rose)!important;font-weight:650!important}
 .ds-seg button[aria-pressed="true"],.ds-seg button.on{background:linear-gradient(155deg,#7A2A50,#4A1530)!important;color:#FFF3F7!important;box-shadow:inset 0 0 0 1px rgb(242 155 182 / .45),0 6px 14px -8px rgb(217 102 140 / .7)!important}
+
+/* ---------- Pass 57 (Claude): Life area chips wear their area's color ---------- */
+.add-chip.area-chip{--ac:var(--j-rose);--ac-deep:var(--j-rose-deep);--ac-ink:var(--j-on-rose);display:inline-flex;align-items:center;gap:7px}
+.add-chip.area-chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ac);flex:none}
+.add-chip.ac-sage{--ac:var(--j-sage);--ac-ink:#10291B}.add-chip.ac-peach{--ac:var(--j-peach);--ac-ink:#45160F}.add-chip.ac-lav{--ac:var(--j-lav);--ac-ink:#241646}.add-chip.ac-gold{--ac:var(--j-gold);--ac-ink:var(--j-gold-ink)}
+.add-chip.area-chip[aria-checked="true"]{background:var(--ac)!important;color:var(--ac-ink)!important;box-shadow:none!important}
+.add-chip.area-chip[aria-checked="true"]::before{background:var(--ac-ink);opacity:.55}
+
+/* ---------- Pass 58 (Claude): the Mystery box is an illustrated object ---------- */
+.gift-svg{display:block;width:100%;height:100%;overflow:visible}
+.gift-svg .gf-lid{transform-box:fill-box;transform-origin:50% 100%;transition:transform .5s var(--ds-spring)}
+.gift-svg .gf-glow{opacity:.55;transition:opacity .5s}
+@media (prefers-reduced-motion:no-preference){.gift-svg .gf-spark{transform-box:fill-box;transform-origin:center;animation:gfTwinkle 2.4s ease-in-out infinite}}
+@keyframes gfTwinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+.v7-gift.is-art{width:190px!important;height:180px!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+.v7-gift.is-art svg{width:100%!important;height:100%!important}
+.v7-gift.open .gf-lid{transform:translateY(-22px) rotate(-9deg)}
+.v7-gift.open .gf-glow{opacity:1}
+#rewards .bq-mystery-art{width:64px!important;height:60px!important;border-radius:0!important;background:none!important;box-shadow:none!important;overflow:visible}
+.v7-full .v7-h{font-family:var(--sc-display)!important;font-weight:600!important;letter-spacing:-.01em}
+
+/* ---------- Pass 59 (Claude): Connect Four and Memory materials ---------- */
+/* Connect Four: glossy amethyst molded plastic, a gloss streak, and depth seen through the holes */
+.c4-grid{background:radial-gradient(circle at center,transparent calc(var(--cell) * .37),rgb(0 0 0 / .42) calc(var(--cell) * .37 + .5px),rgb(0 0 0 / 0) calc(var(--cell) * .41),rgb(255 255 255 / .14) calc(var(--cell) * .43),transparent calc(var(--cell) * .47)) 0 0 / var(--cell) var(--cell),
+  linear-gradient(180deg,rgb(255 255 255 / .14),transparent 28%,rgb(0 0 0 / .24)),linear-gradient(180deg,#9150BC,#6A3296 55%,#4A1F72)!important}
+.c4-grid::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(118deg,transparent 22%,rgb(255 255 255 / .16) 34%,rgb(255 255 255 / .04) 44%,transparent 52%)}
+.c4-wrap::before{background:radial-gradient(120% 90% at 50% 20%,#3B2756,#170D24 70%)!important}
+.c4-wrap::after{box-shadow:inset 0 1px 0 rgb(255 255 255 / .28),inset 0 -3px 0 rgb(0 0 0 / .3),0 0 0 3px #3F1C5E,0 22px 34px -14px rgb(0 0 0 / .9)!important}
+.c4-foot{background:linear-gradient(180deg,#5A2A86,#341650)!important}
+/* Memory: the same Starcade card back as Solitaire (plum-and-gold lattice, a cream border, a gold star medallion) */
+.mem-back{background:radial-gradient(circle at 50% 50%,var(--ds-plum-deep) 0 15%,transparent 15.5%),repeating-linear-gradient(45deg,rgb(var(--ds-gold-rgb) / .22) 0 1px,transparent 1px 7px),repeating-linear-gradient(-45deg,rgb(var(--ds-gold-rgb) / .22) 0 1px,transparent 1px 7px),linear-gradient(160deg,#4A2B52,var(--ds-plum-deep))!important;box-shadow:inset 0 0 0 calc(var(--mw) * .05) #F6EFE4,inset 0 0 0 calc(var(--mw) * .05 + 1px) rgb(var(--ds-gold-rgb) / .6),0 6px 14px -6px rgb(0 0 0 / .7)!important}
+.mem-back::after{content:"";width:calc(var(--mw) * .3);height:calc(var(--mw) * .3);background:var(--ds-gold);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.6l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.6l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* ---------- Pass 60 (Claude): Collections feel collectible ---------- */
+/* personal, so coral: Dexter's card is a coral jewel; the album is a sticker book with numbered spots waiting to be filled */
+.cl-dex{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 210 195 / .14),inset 0 0 0 1px rgb(238 136 120 / .32),0 16px 30px -18px rgb(180 70 70 / .6)!important}
+.cl-dex-tx small,.cl-dex-tx span{color:rgb(255 225 215 / .78)!important}
+.cl-album{counter-reset:stk;padding:14px!important;border-radius:20px;background:radial-gradient(120% 80% at 0% 0%,rgb(248 181 154 / .14),transparent 60%),linear-gradient(155deg,#3A1E2A,#26121B)!important;box-shadow:inset 0 0 0 1px rgb(238 136 120 / .2)}
+.cl-stk{counter-increment:stk;position:relative}
+.cl-stk:not(.on) i{background:rgb(248 181 154 / .07)!important;box-shadow:inset 0 0 0 1.5px rgb(238 136 120 / .4)!important}
+.cl-stk:not(.on)::after{content:counter(stk);position:absolute;left:0;right:0;top:0;aspect-ratio:1;max-width:68px;margin:0 auto;display:grid;place-items:center;font:600 15px var(--sc-display);color:rgb(248 181 154 / .38)}
+.cl-prog{background:rgb(248 181 154 / .14)!important}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -7753,6 +7795,42 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
    <path d="M32 94 L44 99" stroke="#F8EFE9" stroke-width="3.4" stroke-linecap="round"/><path d="M60 94 L48 99" stroke="#F8EFE9" stroke-width="3.4" stroke-linecap="round"/><circle cx="57" cy="72" r="3.2" fill="#E4E6EA"/><path d="M57 76 Q55 82 50 86" stroke="#fff" stroke-dasharray="1.5 2.5" fill="none" opacity=".5"/></svg>`;}
   function coverTtt(){const X=(x,y)=>`<path d="M${x-7} ${y-7} L${x+7} ${y+7} M${x+7} ${y-7} L${x-7} ${y+7}" stroke="#E8A5B6" stroke-width="4.5" stroke-linecap="round"/>`,O=(x,y)=>`<circle cx="${x}" cy="${y}" r="7.5" fill="none" stroke="#F0C96E" stroke-width="4.5"/>`;
    return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#221428"/><rect x="12" y="12" width="76" height="76" rx="10" fill="#2E1C36"/><path d="M38 20 V80 M62 20 V80 M20 38 H80 M20 62 H80" stroke="#5A3D66" stroke-width="3" stroke-linecap="round"/>${X(27,27)}${O(50,27)}${X(50,50)}${O(73,50)}${X(73,73)}<path d="M20 20 L80 80" stroke="#FFF1C2" stroke-width="2.4" stroke-linecap="round" opacity=".85"/></svg>`;}
+  /* Pass 58: the Starcade mystery box. Original art in the chest's style: a lacquered garnet box with a faint boutique dot
+     print, a gold satin ribbon and bow, a separate lid (.gf-lid) that can lift, an inner glow (.gf-glow) and sparkles
+     (.gf-spark). Replaces the UI gift icon wherever the Mystery box should feel special (DESIGN_PROFILE: never substitute
+     a UI icon for something meant to feel special). */
+  function giftArt(cls = '') {
+    uid++; const i = uid;
+    const spark = (x, y, s, d) => `<path class="gf-spark" style="animation-delay:${d}s" d="M${x} ${y - s}Q${x + s * .16} ${y - s * .16} ${x + s} ${y}Q${x + s * .16} ${y + s * .16} ${x} ${y + s}Q${x - s * .16} ${y + s * .16} ${x - s} ${y}Q${x - s * .16} ${y - s * .16} ${x} ${y - s}Z" fill="#FFF3CF"/>`;
+    const dots = []; for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) { const x = 52 + c * 20 + (r % 2) * 10, y = 104 + r * 18; if (x < 152 && Math.abs(x - 100) > 12) dots.push(`<circle cx="${x}" cy="${y}" r="2.2" fill="#FFD9E6" opacity=".18"/>`); }
+    return `<svg class="gift-svg ${cls}" viewBox="0 0 200 190" aria-hidden="true"><defs>
+      <linearGradient id="gfB${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A3263"/><stop offset=".55" stop-color="#651E45"/><stop offset="1" stop-color="#3E1029"/></linearGradient>
+      <linearGradient id="gfL${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B8457A"/><stop offset="1" stop-color="#7A2752"/></linearGradient>
+      <linearGradient id="gfR${i}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B98330"/><stop offset=".35" stop-color="#FFE7A6"/><stop offset=".6" stop-color="#F0C96E"/><stop offset="1" stop-color="#A9742A"/></linearGradient>
+      <linearGradient id="gfK${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFEBB2"/><stop offset=".5" stop-color="#F0C96E"/><stop offset="1" stop-color="#B78330"/></linearGradient>
+      <radialGradient id="gfG${i}" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF4C8"/><stop offset=".45" stop-color="#F7D27A" stop-opacity=".8"/><stop offset="1" stop-color="#F0C96E" stop-opacity="0"/></radialGradient>
+      <linearGradient id="gfS${i}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".22" stop-color="#fff" stop-opacity=".2"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+      <ellipse cx="100" cy="178" rx="70" ry="8" fill="#000" opacity=".45"/>
+      <ellipse class="gf-glow" cx="100" cy="92" rx="70" ry="38" fill="url(#gfG${i})"/>
+      <rect x="40" y="90" width="120" height="84" rx="9" fill="url(#gfB${i})"/>
+      ${dots.join('')}
+      <rect x="40" y="90" width="120" height="84" rx="9" fill="url(#gfS${i})"/>
+      <rect x="91" y="90" width="18" height="84" fill="url(#gfR${i})"/>
+      <rect x="40" y="90" width="120" height="8" fill="#2A0A1C" opacity=".35"/>
+      <g class="gf-lid">
+        <rect x="32" y="70" width="136" height="26" rx="7" fill="url(#gfL${i})"/>
+        <rect x="32" y="70" width="136" height="7" rx="4" fill="#fff" opacity=".14"/>
+        <rect x="90" y="70" width="20" height="26" fill="url(#gfR${i})"/>
+        <path d="M100 68 C82 46 56 50 62 64 C66 74 86 72 100 68Z" fill="url(#gfK${i})" stroke="#A9742A" stroke-width="1.2"/>
+        <path d="M100 68 C118 46 144 50 138 64 C134 74 114 72 100 68Z" fill="url(#gfK${i})" stroke="#A9742A" stroke-width="1.2"/>
+        <path d="M70 60 C78 56 88 60 96 66" stroke="#FFF4D6" stroke-width="2" fill="none" opacity=".6" stroke-linecap="round"/>
+        <path d="M98 70 L86 92 L94 90 L96 98Z M102 70 L114 92 L106 90 L104 98Z" fill="url(#gfR${i})"/>
+        <ellipse cx="100" cy="68" rx="9" ry="7.5" fill="url(#gfK${i})" stroke="#A9742A" stroke-width="1.2"/>
+      </g>
+      ${spark(40, 54, 7, 0)}${spark(162, 46, 9, .5)}${spark(172, 112, 5, 1)}${spark(28, 120, 5, 1.4)}
+    </svg>`;
+  }
+  window.__starcadeGiftArt = giftArt;
   /* Pass 11: the Starcade treasure chest. Original art: lacquered berry body, gold trim, rose-gem lock, separate lid
      (.ch-lid) so it can open, inner light (.ch-glow) and sparkles (.ch-spark) for the reveal. */
   function chestArt(cls = '') {
@@ -8606,7 +8684,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       root.style.setProperty('--mem-face', th.face); root.style.setProperty('--mem-edge', th.edge);
       root.dataset.theme = th.id;
       root.innerHTML = `<button type="button" class="mem-theme" aria-label="Card set: ${esc(th.name)}. Choose another set">${esc(th.name)}${ic('caret-down-bold')}</button>
-        <div class="mem-grid">${deck.map((s, i) => `<button type="button" class="mem-card" data-i="${i}" aria-label="Card ${i + 1}, face down"><span class="mem-in"><span class="mem-back" aria-hidden="true">${ic('sparkle-fill')}</span><span class="mem-face">${memArt(th, keys[s])}</span></span></button>`).join('')}</div>`;
+        <div class="mem-grid">${deck.map((s, i) => `<button type="button" class="mem-card" data-i="${i}" aria-label="Card ${i + 1}, face down"><span class="mem-in"><span class="mem-back" aria-hidden="true"></span><span class="mem-face">${memArt(th, keys[s])}</span></span></button>`).join('')}</div>`;
       root.querySelectorAll('.mem-card').forEach(el => el.addEventListener('click', () => flip(+el.dataset.i)));
       root.querySelector('.mem-theme').addEventListener('click', themes);
       hud();
@@ -10394,7 +10472,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       ${!ready.length && !saving.length ? `<div class="bq-grid">${addTile}</div>` : ''}
       ${state.rewards.some(r => r.retired && r.archivedAt) ? `<button type="button" class="lf-fold" onclick="bqArchivedOpen()">Archived <b>${state.rewards.filter(r => r.retired && r.archivedAt).length}</b>${ic('caret-right-bold')}</button>` : ''}
       <div class="ds-section"><span>Surprises and keepsakes</span></div>
-      <button type="button" class="bq-mystery ${bal >= 45 ? '' : 'off'}" onclick="${bal >= 45 ? 'redeemMystery()' : ''}" ${bal >= 45 ? '' : 'aria-disabled="true"'} aria-label="Mystery box, 45 stars. A surprise from your own rewards"><span class="bq-mystery-art" aria-hidden="true">${ic('gift-fill')}<i></i><i></i><i></i></span><span class="bq-mystery-tx"><b>Mystery box</b><small>A surprise from your own rewards</small></span><span class="bq-mystery-pr">${ic('star-fill')}45</span></button>
+      <button type="button" class="bq-mystery ${bal >= 45 ? '' : 'off'}" onclick="${bal >= 45 ? 'redeemMystery()' : ''}" ${bal >= 45 ? '' : 'aria-disabled="true"'} aria-label="Mystery box, 45 stars. A surprise from your own rewards"><span class="bq-mystery-art" aria-hidden="true">${window.__starcadeGiftArt ? window.__starcadeGiftArt() : ic('gift-fill')}</span><span class="bq-mystery-tx"><b>Mystery box</b><small>A surprise from your own rewards</small></span><span class="bq-mystery-pr">${ic('star-fill')}45</span></button>
       <div class="bq-links">
         <button type="button" class="bq-link" onclick="bqCollections()" aria-label="Collections: Dexter and your sticker album"><span class="ds-glyph ds-glyph-peach">${ic('paw-print-fill')}</span><b>Collections</b><small>Dexter, stickers</small></button>
         <button type="button" class="bq-link" onclick="bqHistory()" aria-label="History${reds.length ? `: ${reds.length} redeemed` : ''}"><span class="ds-glyph ds-glyph-quiet">${ic('clock-fill')}</span><b>History</b><small>${reds.length ? `${reds.length} redeemed` : 'None yet'}</small></button>
@@ -10879,7 +10957,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       ${!weeklyLegacy && !retired ? `<div class="hs-l">How often<div class="add-chips">${[['daily', 'Every day'], ['days', 'Some days'], ['week', 'Per week'], ['month', 'Per month']].map(([v, l]) => chip(e.sched.type === v, l, `stHE('type','${v}')`)).join('')}</div>
         ${e.sched.type === 'days' ? `<div class="add-chips hs-days">${[1, 2, 3, 4, 5, 6, 0].map(d => chip(e.sched.days.includes(d), DOW_LONG[d].slice(0, 3), `stHE('day',${d})`)).join('')}</div>` : ''}
         ${e.sched.type === 'week' || e.sched.type === 'month' ? `<div class="hs-step"><button type="button" class="ds-iconbtn" onclick="stHE('times',-1)" aria-label="Fewer">−</button><b>${e.sched.times}×</b><span>a ${e.sched.type === 'week' ? 'week' : 'month'}</span><button type="button" class="ds-iconbtn" onclick="stHE('times',1)" aria-label="More">+</button></div>` : ''}</div>` : weeklyLegacy ? `<p class="tb-note">Once a week, any day.</p>` : ''}
-      <div class="hs-l">Life area<div class="add-chips">${chip(!e.area, 'None', "stHE('area','')")}${SC2.areaList().map(a => chip(e.area === a.id, esc(a.name), `stHE('area','${a.id}')`)).join('')}</div></div>
+      <div class="hs-l">Life area<div class="add-chips">${chip(!e.area, 'None', "stHE('area','')")}${SC2.areaList().map(a => chip(e.area === a.id, esc(a.name), `stHE('area','${a.id}')`, 'area-chip ac-' + String(a.tone || 'rose').replace(/[^a-z]/g, ''))).join('')}</div></div>
       ${!retired ? `<div class="hs-l">Goal amount <small>(optional)</small><div class="hs-target"><input id="hsAmt" type="number" inputmode="decimal" min="0" max="9999" placeholder="e.g. 20" value="${esc(e.tAmt)}" oninput="stHE('tAmt',this.value)"><div class="add-chips">${UNITS.map(u => chip(e.tUnit === u, u, `stHE('tUnit','${u}')`)).join('')}</div></div></div>` : ''}
       <label class="hs-l">Note<textarea id="hsNote" rows="2" maxlength="300" placeholder="Anything that helps" oninput="stHE('note',this.value)">${esc(e.note)}</textarea></label>
       <button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="stHabitSave()">Save</button>
@@ -11033,7 +11111,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       <input id="newLifeTask" class="add-input" maxlength="120" required placeholder="What needs doing?" aria-label="Task" autocomplete="off" enterkeyhint="done">
       <div class="hs-l">When<div class="add-chips" id="lfDueChips">${[['', 'Anytime'], [today(), 'Today'], [plusDays(1), 'Tomorrow'], [plusDays(7), 'Next week']].map(([v, l], i) => chip(i === 0, l, `lfPick('due','${v}',this)`)).join('')}<input type="date" class="lf-date" aria-label="Pick a date" onchange="lfPick('due',this.value,null)"></div></div>
       <div class="hs-l">Priority<div class="add-chips">${chip(true, 'Normal', "lfPick('prio','',this)")}${chip(false, 'High', "lfPick('prio','high',this)")}</div></div>
-      <div class="hs-l">Life area<div class="add-chips">${chip(true, 'None', "lfPick('area','',this)")}${SC2.areaList().map(a => chip(false, esc(a.name), `lfPick('area','${a.id}',this)`)).join('')}</div></div>
+      <div class="hs-l">Life area<div class="add-chips">${chip(true, 'None', "lfPick('area','',this)")}${SC2.areaList().map(a => chip(false, esc(a.name), `lfPick('area','${a.id}',this)`, 'area-chip ac-' + String(a.tone || 'rose').replace(/[^a-z]/g, ''))).join('')}</div></div>
       <button class="ds-btn ds-btn-primary ds-btn-block add-go" type="submit">Add task</button></form>`, 'New task');
     setTimeout(() => document.getElementById('newLifeTask')?.focus({ preventScroll: true }), 300);
   };
@@ -11051,7 +11129,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       <label class="hs-l">Due<input type="date" value="${esc(e.due)}" onchange="tIn('due',this.value)"></label>
       <div class="hs-l">Priority<div class="add-chips">${chip(!e.priority, 'Normal', "tSet('priority','')")}${chip(e.priority === 'high', 'High', "tSet('priority','high')")}</div></div>
       <div class="hs-l">Repeats<div class="add-chips">${[['', 'No'], ['daily', 'Daily'], ['weekly', 'Weekly'], ['monthly', 'Monthly']].map(([v, l]) => chip(e.recur === v, l, `tSet('recur','${v}')`)).join('')}</div></div>
-      <div class="hs-l">Life area<div class="add-chips">${chip(!e.area, 'None', "tSet('area','')")}${SC2.areaList().map(a => chip(e.area === a.id, esc(a.name), `tSet('area','${a.id}')`)).join('')}</div></div>
+      <div class="hs-l">Life area<div class="add-chips">${chip(!e.area, 'None', "tSet('area','')")}${SC2.areaList().map(a => chip(e.area === a.id, esc(a.name), `tSet('area','${a.id}')`, 'area-chip ac-' + String(a.tone || 'rose').replace(/[^a-z]/g, ''))).join('')}</div></div>
       <div class="hs-l">Steps<div class="ds-list ts-subs">${e.subtasks.map((s, i) => `<div class="ds-row lf-task ${s.done ? 'done' : ''}"><button type="button" class="lf-check" onclick="tSub(${i})" aria-pressed="${!!s.done}" aria-label="Step: ${esc(s.name)}">${s.done ? ic('check-bold') : ''}</button><span class="ds-row-main"><span class="ds-row-title">${esc(s.name)}</span></span><button type="button" class="lf-x" onclick="tSubDel(${i})" aria-label="Remove step">${ic('x-bold')}</button></div>`).join('')}
         <form class="ts-add" onsubmit="event.preventDefault();tSubAdd()"><input id="tsNew" maxlength="80" placeholder="Add a step" autocomplete="off"><button type="submit" class="ds-btn ds-btn-secondary ds-btn-sm">Add</button></form></div></div>
       <label class="hs-l">Note<textarea rows="2" maxlength="400" oninput="tIn('note',this.value)">${esc(e.note)}</textarea></label>
@@ -11084,7 +11162,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   function drawGoal() {
     const e = gEdit, act = state.habits.filter(h => h.frequency !== 'retired' && !h.archived), p = { done: e.milestones.filter(m => m.doneAt).length, total: e.milestones.length };
     sheetBody('lgBody', `<label class="hs-l">Goal<input maxlength="80" placeholder="e.g. Run a 10K" value="${esc(e.title)}" oninput="gIn('title',this.value)"></label>
-      <div class="hs-l">Life area<div class="add-chips">${chip(!e.area, 'None', "gSet('area','')")}${SC2.areaList().map(a => chip(e.area === a.id, esc(a.name), `gSet('area','${a.id}')`)).join('')}</div></div>
+      <div class="hs-l">Life area<div class="add-chips">${chip(!e.area, 'None', "gSet('area','')")}${SC2.areaList().map(a => chip(e.area === a.id, esc(a.name), `gSet('area','${a.id}')`, 'area-chip ac-' + String(a.tone || 'rose').replace(/[^a-z]/g, ''))).join('')}</div></div>
       <div class="hs-l">Milestones ${p.total ? `<small>${p.done} of ${p.total}</small>` : ''}<div class="ds-list ts-subs">${e.milestones.map((m, i) => `<div class="ds-row lf-task ${m.doneAt ? 'done' : ''}"><button type="button" class="lf-check" onclick="gMs(${i})" aria-pressed="${!!m.doneAt}" aria-label="Milestone: ${esc(m.title)}">${m.doneAt ? ic('check-bold') : ''}</button><span class="ds-row-main"><span class="ds-row-title">${esc(m.title)}</span>${m.doneAt ? `<span class="ds-row-sub">Reached ${esc(fmtShort(m.doneAt.slice(0, 10)))}</span>` : ''}</span><button type="button" class="lf-x" onclick="gMsDel(${i})" aria-label="Remove milestone">${ic('x-bold')}</button></div>`).join('')}
         <form class="ts-add" onsubmit="event.preventDefault();gMsAdd()"><input id="lgNew" maxlength="80" placeholder="Add a milestone" autocomplete="off"><button type="submit" class="ds-btn ds-btn-secondary ds-btn-sm">Add</button></form></div></div>
       <div class="hs-l">Habits that build it <small>(optional)</small><div class="add-chips">${act.map(h => `<button type="button" role="checkbox" class="add-chip" aria-checked="${e.habitIds.includes(h.id)}" onclick="gHab('${esc(h.id)}')">${esc(h.name)}</button>`).join('')}</div></div>
