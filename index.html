@@ -4671,6 +4671,8 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
     let newFull = false; const msgs = [];
     // remember how the board stands, so past weeks can be shown as they ended
     const doneIdx = b.marks.map((m, i) => m.done ? i : -1).filter(i => i >= 0);
+    // pass 31: one gold square per 2.0 board, fixed for the week; finishing it adds XP (never stars)
+    if (rec.v >= 4 && typeof rec.gold !== 'number') { const i = Math.floor(rng(hash('gold|' + wkKey))() * 24); rec.gold = i >= 12 ? i + 1 : i; changed = true; }
     if (rec.count !== b.count || String(rec.doneIdx) !== String(doneIdx)) { rec.count = b.count; rec.doneIdx = doneIdx; changed = true; }
     if (rec.v >= 4) {
       newLines.forEach(i => { rec.lines.push(i); changed = true; });
@@ -4692,7 +4694,7 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
   window.v7BingoHistory = function () {
     const B = SC().bingoWeekly || {}, cur = weekKey(new Date());
     const weeks = Object.keys(B).filter(k => k < cur && B[k] && Array.isArray(B[k].board)).sort().reverse();
-    const mini = r => Array.isArray(r.doneIdx) ? '<span class="v7-mini">' + Array.from({ length: 25 }, (_, i) => '<i class="' + (i === 12 ? 'free' : r.doneIdx.includes(i) ? 'on' : '') + '"></i>').join('') + '</span>' : '<span class="v7-mini is-blank"></span>';
+    const mini = r => Array.isArray(r.doneIdx) ? '<span class="v7-mini">' + Array.from({ length: 25 }, (_, i) => '<i class="' + (i === 12 ? 'free' : r.doneIdx.includes(i) ? 'on' : '') + (i === r.gold ? ' gold' : '') + '"></i>').join('') + '</span>' : '<span class="v7-mini is-blank"></span>';
     openSheet('<div class="v7-top">' + closeBtn + '<p class="v7-h" style="margin:0">Past boards</p><span style="width:44px"></span></div>' + (weeks.length ? '<div class="v7-hist">' + weeks.map(k => { const r = B[k], d = new Date(k + 'T12:00:00'); return '<div class="v7-hrow">' + mini(r) + '<span><b>Week of ' + d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + '</b><small>' + (r.full ? 'Blackout' : (r.lines || []).length ? (r.lines.length + ' line' + (r.lines.length === 1 ? '' : 's')) : 'No lines') + (typeof r.count === 'number' ? ', ' + r.count + ' of 25 squares' : '') + '</small></span></div>'; }).join('') + '</div>' : '<p class="v7-sub">Your past boards will collect here, one per week.</p>'), { full: true, label: 'Past Bingo boards' });
   };
   function endsText() {
@@ -4709,15 +4711,20 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
   window.v7OpenBingo = function (sel) {
     const b = boardState(); const pickIdx = sel != null ? sel : b.marks.findIndex((m, i) => !m.done);
     const det = pickIdx >= 0 ? cellDetail(b.cells[pickIdx], b.marks[pickIdx]) : { t: 'Full card!', s: 'Every square done this week.', ic: 'star-fill', p: 1 };
-    const lineCells = new Set(b.lines.flatMap(i => LINES[i])), fresh = new Set(freshLines.flatMap(i => LINES[i]));
+    const lineCells = new Set(b.lines.flatMap(i => LINES[i])), fresh = new Set(freshLines.flatMap(i => LINES[i])), gold = b.rec.gold;
+    // each finished line gets a strike; a line finished since the board was last seen draws itself in and its squares pop in order
+    const cc = j => [(j % 5 + .5) * 20, (Math.floor(j / 5) + .5) * 20];
+    const strikes = b.lines.map(i => { const l = LINES[i], [x1, y1] = cc(l[0]), [x2, y2] = cc(l[4]), f = freshLines.includes(i); return `<line class="${f ? 'fresh' : ''}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" pathLength="1"/>`; }).join('');
+    const popAt = j => { const k = freshLines.map(i => LINES[i].indexOf(j)).filter(n => n >= 0); return k.length ? ` style="--d:${Math.min(...k) * 90}ms"` : ''; };
     const html = `<div class="v7-top">${closeBtn}<span></span><span style="width:44px"></span></div>
       <div class="v7-bhead"><div><p class="v7-h">Weekly Bingo</p><div class="v7-ends">${endsText()}</div></div><span class="v7-bstat">${b.count} of 25${b.lines.length ? `, ${b.lines.length} line${b.lines.length === 1 ? '' : 's'}` : ''}</span></div>
       <div class="v7-board" role="grid" aria-label="Weekly Bingo board">${b.cells.map((id, i) => { const m = b.marks[i], s = SQ[id]; const free = id === 'free';
-        return `<button type="button" class="v7-cell ${m.done && !free ? 'on' : ''} ${free ? 'free' : ''} ${lineCells.has(i) ? 'ln' : ''} ${fresh.has(i) ? 'fresh' : ''} ${i === pickIdx ? 'sel' : ''}" onclick="v7OpenBingo(${i})" aria-label="${free ? 'Free square' : escapeHTML(s ? s[1] : id)}${m.done ? ', done' : ''}">${icon(free ? 'star-fill' : s ? s[2] : 'star-fill')}${free ? '' : `<span>${escapeHTML(s ? s[1] : id)}</span>`}</button>`; }).join('')}</div>
-      <div class="v7-detail b"><span class="ic">${icon(det.ic)}</span><div><b>${escapeHTML(det.t)}</b><small>${escapeHTML(det.s)}</small>${det.p < 1 ? `<div class="v7-bar"><i style="width:${Math.round(det.p * 100)}%"></i></div>` : ''}</div></div>
+        return `<button type="button" class="v7-cell ${m.done && !free ? 'on' : ''} ${free ? 'free' : ''} ${lineCells.has(i) ? 'ln' : ''} ${fresh.has(i) ? 'fresh' : ''} ${i === pickIdx ? 'sel' : ''} ${i === gold ? 'gold' : ''}"${popAt(i)} onclick="v7OpenBingo(${i})" aria-label="${free ? 'Free square' : escapeHTML(s ? s[1] : id)}${i === gold ? ', gold square' : ''}${m.done ? ', done' : ''}">${icon(free ? 'star-fill' : s ? s[2] : 'star-fill')}${free ? '' : `<span>${escapeHTML(s ? s[1] : id)}</span>`}</button>`; }).join('')}${strikes ? `<svg class="v7-strikes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${strikes}</svg>` : ''}</div>
+      <div class="v7-detail b${pickIdx === gold ? ' gold' : ''}"><span class="ic">${icon(det.ic)}</span><div><b>${escapeHTML(det.t)}</b><small>${escapeHTML(det.s)}${pickIdx === gold ? (b.marks[gold].done ? ' Gold square: +20 XP earned.' : ' Gold square: worth +20 XP this week.') : ''}</small>${det.p < 1 ? `<div class="v7-bar"><i style="width:${Math.round(det.p * 100)}%"></i></div>` : ''}</div></div>
       ${b.rec.v >= 4 ? `<div class="v7-tiers">${[['1', '1 line', `+${BINGO_TIERS[1]} ★`], ['2', '2 lines', `+${BINGO_TIERS[2]} ★`], ['3', '3 lines', 'Mystery Box'], ['full', 'Blackout', `+${BINGO_TIERS.full} ★`]].map(([k, l, r]) => `<span class="${(b.rec.tiers || {})[k] ? 'got' : ''}"><small>${l}</small><b>${r}</b></span>`).join('')}</div>` : '<div class="v7-bfoot"><span>Each line <b>+3 ★</b></span><span>Full card <b>+10 ★</b> and a Bingo Mystery Box</span></div>'}
       <div class="v7-row" style="margin-top:10px"><button class="v7-btn ghost" onclick="v7BingoHistory()">Past boards</button></div>
       ${b.rec.box && !b.rec.box.opened ? '<div class="v7-row" style="margin-top:12px"><button class="v7-btn gold" onclick="v7OpenFullCard()">Open your Bingo Mystery Box</button></div>' : ''}`;
+    freshLines = []; // the line draws in once; tapping squares afterwards re-renders without replaying it
     const s = $('#v7Sheet');
     if (s && s.classList.contains('full') && s.dataset.kind === 'bingo') s.querySelector('.v7-panel').innerHTML = html;
     else { const sh = openSheet(html, { full: true, label: 'Weekly Bingo', onClose: () => { freshLines = []; if (typeof renderBoost === 'function') renderBoost(); } }); sh.dataset.kind = 'bingo'; }
@@ -6996,6 +7003,44 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
 .pg-bingohist{margin:12px 0 0}
 .add-more{margin-top:-4px}
 .td-side-swap .ds-ic{width:19px!important;height:19px!important;color:var(--ds-text-2)}
+/* Solitaire materials (pass 31): a deeper bottle-green felt, printed card faces with serif indices, framed court cards,
+   an ornate ace, a plum-and-gold lattice back with a star medallion, and ghost marks on empty slots. Layout and rules unchanged. */
+.gm-frame[data-game="solitaire"]{--ds-env-felt:#1C5E46;--ds-env-felt-2:#134634;--ds-env-felt-3:#0B2E22}
+.sol-face{background:linear-gradient(170deg,#FFFCF6,#F6EFE4)!important;box-shadow:inset 0 0 0 1px #E3D6C6,0 1px 1px rgb(0 0 0 / .3),0 3px 6px -3px rgb(0 0 0 / .45)!important}
+.sol-face::after{content:"";position:absolute;inset:calc(var(--cw) * .045);border-radius:calc(var(--cw) * .07);box-shadow:inset 0 0 0 .5px rgb(30 26 34 / .1);pointer-events:none}
+.sol-face .cn{font:600 calc(var(--cw) * .32)/1 var(--sc-display)!important;letter-spacing:-.03em}
+.sol-face .pip.ace{width:calc(var(--cw) * .5);height:calc(var(--cw) * .5);border-radius:50%;padding:calc(var(--cw) * .08);box-sizing:content-box;box-shadow:0 0 0 1px rgb(var(--ds-gold-rgb) / .9),0 0 0 calc(var(--cw) * .035) #FFFCF6,0 0 0 calc(var(--cw) * .045 + 1px) rgb(var(--ds-gold-rgb) / .55)}
+.sol-face .court{top:50%!important;width:44%;height:58%;justify-content:center;gap:1px;border-radius:calc(var(--cw) * .06);box-shadow:inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .85);background:linear-gradient(180deg,rgb(var(--ds-plum-rgb) / .08),rgb(var(--ds-plum-rgb) / .02))}
+.sol-card.red .sol-face .court{background:linear-gradient(180deg,rgb(var(--ds-rose-rgb) / .2),rgb(var(--ds-rose-rgb) / .05))}
+.sol-face .court b{font:600 calc(var(--cw) * .3)/1 var(--sc-display)}
+.sol-face .court i{width:calc(var(--cw) * .15)!important;height:calc(var(--cw) * .15)!important}
+.sol-face .court i.cr{width:calc(var(--cw) * .17)!important;height:calc(var(--cw) * .17)!important;color:#B98A36}
+.sol-back{background:radial-gradient(circle at 50% 50%,var(--ds-plum-deep) 0 15%,transparent 15.5%),repeating-linear-gradient(45deg,rgb(var(--ds-gold-rgb) / .2) 0 1px,transparent 1px 6px),repeating-linear-gradient(-45deg,rgb(var(--ds-gold-rgb) / .2) 0 1px,transparent 1px 6px),linear-gradient(160deg,#4A2B52,var(--ds-plum-deep))!important;box-shadow:inset 0 0 0 calc(var(--cw) * .05) #F6EFE4,inset 0 0 0 calc(var(--cw) * .05 + 1px) rgb(var(--ds-gold-rgb) / .6),0 1px 2px rgb(0 0 0 / .45)!important}
+.sol-back::after{content:"";position:absolute;left:50%;top:50%;width:calc(var(--cw) * .26);height:calc(var(--cw) * .26);transform:translate(-50%,-50%);background:var(--ds-gold);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.6l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.6l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z'/%3E%3C/svg%3E") center/contain no-repeat}
+.sol-slot{border-color:rgb(255 255 255 / .14)!important;background:rgb(0 0 0 / .08)}
+.sol-slot.found::before,.sol-slot.tab::before{position:absolute;inset:0;display:grid;place-items:center;font:600 calc(var(--cw) * .42)/1 var(--sc-display);color:rgb(255 255 255 / .16)}
+.sol-slot.found::before{content:"A"}.sol-slot.tab::before{content:"K"}
+/* Bingo (pass 31): finished lines are struck through in gold; a new line draws itself in and its squares pop in order.
+   One gold square a week, ringed in gold, worth XP. */
+.v7-board{position:relative}
+.v7-strikes{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;overflow:visible}
+.v7-strikes line{stroke:var(--ds-gold);stroke-width:1.1;stroke-linecap:round;opacity:.42;stroke-dasharray:1;stroke-dashoffset:0}
+.v7-strikes line.fresh{opacity:.9;filter:drop-shadow(0 0 4px rgb(var(--ds-gold-rgb) / .7))}
+@media (prefers-reduced-motion:no-preference){
+  .v7-strikes line.fresh{stroke-dashoffset:1;animation:v7strike .7s cubic-bezier(.6,0,.2,1) .55s forwards,v7strikeSettle .8s ease 2.4s forwards}
+  .v7-cell.fresh{animation:v7pop .42s cubic-bezier(.3,1.6,.5,1) var(--d,0ms) both,v7lineglow 2.2s ease-in-out var(--d,0ms) 1!important}
+}
+@keyframes v7strike{to{stroke-dashoffset:0}}
+@keyframes v7strikeSettle{to{opacity:.42;filter:none}}
+@keyframes v7pop{0%{transform:scale(1)}45%{transform:scale(1.1)}100%{transform:scale(1)}}
+.v7-cell.gold{box-shadow:inset 0 0 0 1.5px rgb(var(--ds-gold-rgb) / .75),0 0 14px -6px rgb(var(--ds-gold-rgb) / .6)!important;background:linear-gradient(160deg,rgb(var(--ds-gold-rgb) / .14),rgb(var(--ds-gold-rgb) / .03)),#1F1620!important}
+.v7-cell.gold svg{color:var(--ds-gold)!important;opacity:1}
+.v7-cell.gold span{color:#E9D3A4!important}
+.v7-cell.gold.on{background:linear-gradient(160deg,#C99B3E,#8E6A2A)!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .3),0 6px 14px -6px rgb(var(--ds-gold-rgb) / .7)!important}
+.v7-cell.gold.on svg,.v7-cell.gold.on span{color:#FFF6E0!important}
+.v7-cell.gold.on::after{background:#FFF6E0}
+.v7-detail.gold .ic{color:var(--ds-gold)!important;background:rgb(var(--ds-gold-rgb) / .14)!important}
+.v7-mini i.gold{box-shadow:0 0 0 1px var(--ds-gold)}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -7398,7 +7443,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
     }
     function cardEl(cd) {
       const el = document.createElement('div'); el.className = 'sol-card ' + (red(cd) ? 'red' : 'blk'); el.dataset.id = cd.id;
-      const face = cd.r > 10 ? `<span class="court">${RANK[cd.r]}<i>${ic(SUITS[cd.s].icon)}</i></span>` : `<span class="pip">${ic(SUITS[cd.s].icon)}</span>`;
+      const face = cd.r > 10 ? `<span class="court"><i class="cr">${ic('crown-simple-fill')}</i><b>${RANK[cd.r]}</b><i>${ic(SUITS[cd.s].icon)}</i></span>` : `<span class="pip${cd.r === 1 ? ' ace' : ''}">${ic(SUITS[cd.s].icon)}</span>`;
       el.innerHTML = `<div class="sol-face"><span class="cn">${RANK[cd.r]}<i>${ic(SUITS[cd.s].icon)}</i></span>${face}<span class="cn b">${RANK[cd.r]}<i>${ic(SUITS[cd.s].icon)}</i></span></div><div class="sol-back"></div>`;
       el.setAttribute('aria-label', `${RANK[cd.r]} of ${['spades', 'hearts', 'diamonds', 'clubs'][cd.s]}`);
       el.addEventListener('pointerdown', e => down(e, byId(cd.id))); root.appendChild(el); return el;
@@ -7428,7 +7473,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
       found.forEach((f, k) => f.forEach((cd, i) => place(els[cd.id], colX(3 + k), topY, 10 + i, true)));
       const avail = L.h - tabY - gap;
       tab.forEach((col, k) => {
-        let fd = ch * .2, fu = ch * .42; const need = col.reduce((s, cd, i) => s + (i === col.length - 1 ? ch : cd.up ? fu : fd), 0);
+        let fd = ch * .22, fu = ch * .46; const need = col.reduce((s, cd, i) => s + (i === col.length - 1 ? ch : cd.up ? fu : fd), 0);
         if (need > avail) { const extra = need - avail, down = col.filter(c => !c.up).length * fd, upn = Math.max(1, col.filter((c, i) => c.up && i < col.length - 1).length); const cutU = Math.min(extra, upn * (fu - ch * .3)); fu -= cutU / upn; const rest = extra - cutU; if (rest > 0) fd = Math.max(ch * .07, fd - rest / Math.max(1, col.filter(c => !c.up).length)); }
         let y = tabY; col.forEach((cd, i) => { place(els[cd.id], colX(k), y, 10 + i, cd.up); y += cd.up ? fu : fd; });
       });
@@ -7661,50 +7706,93 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
       draw();
     }
     const X = x => OX + x * K, Y = y => OY + y * K;
-    function line(g, s, w, col) { g.strokeStyle = col; g.lineWidth = w; g.beginPath(); g.moveTo(X(s.x1), Y(s.y1)); g.lineTo(X(s.x2), Y(s.y2)); g.stroke(); }
+    const SERIF = '"Starcade Serif", ui-serif, Georgia, serif';
+    const star = (g, cx, cy, ro, ri, rot = -Math.PI / 2) => { g.beginPath(); for (let i = 0; i < 10; i++) { const a = rot + i * Math.PI / 5, rr = i % 2 ? ri : ro; g.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr); } g.closePath(); };
+    const fieldPath = (g, inset = 0) => { g.beginPath(); g.moveTo(X(.04 + inset), Y(1.72)); g.lineTo(X(.04 + inset), Y(.36)); g.arc(X(.5), Y(.36), (.46 - inset) * K, Math.PI, 0); g.lineTo(X(.96 - inset), Y(1.72)); g.closePath(); };
+    // the printed playfield never changes, so it is painted once per size into an offscreen layer
+    let art = null, artKey = '';
+    function paintArt() {
+      const dpr = Math.min(3, window.devicePixelRatio || 1), key = `${S.w}x${S.h}@${dpr}`; if (art && artKey === key) return art;
+      art = document.createElement('canvas'); art.width = Math.round(S.w * dpr); art.height = Math.round(S.h * dpr); artKey = key;
+      const g = art.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.lineCap = 'round'; g.lineJoin = 'round';
+      // cabinet: one lacquered body behind the whole table, so no seams show above the arch
+      const cab = g.createLinearGradient(0, 0, 0, S.h); cab.addColorStop(0, '#1D1324'); cab.addColorStop(1, '#130C18'); g.fillStyle = cab; g.fillRect(0, 0, S.w, S.h);
+      const body = g.createLinearGradient(X(0), 0, X(1), 0); body.addColorStop(0, '#2E1C35'); body.addColorStop(.5, '#432A4B'); body.addColorStop(1, '#2E1C35');
+      g.fillStyle = body; g.beginPath(); g.moveTo(X(0) - 7, Y(TH + .1)); g.lineTo(X(0) - 7, Y(.36)); g.arc(X(.5), Y(.36), .5 * K + 7, Math.PI, 0); g.lineTo(X(1) + 7, Y(TH + .1)); g.closePath(); g.fill();
+      // playfield wood under a deep aubergine print
+      const pf = g.createLinearGradient(0, Y(0), 0, Y(1.72)); pf.addColorStop(0, '#2E1838'); pf.addColorStop(.55, '#221230'); pf.addColorStop(1, '#170C20');
+      g.fillStyle = pf; fieldPath(g); g.fill();
+      g.save(); fieldPath(g); g.clip();
+      // soft pools of light from the bumper cluster and the flipper zone
+      const glow = (x, y, r, col) => { const gr = g.createRadialGradient(X(x), Y(y), 0, X(x), Y(y), r * K); gr.addColorStop(0, col); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(X(0), Y(0), K, TH * K); };
+      glow(.455, .7, .42, 'rgba(233,161,181,.13)'); glow(.455, 1.42, .34, 'rgba(237,200,120,.06)');
+      // the centre medallion: a gold star inside two fine rings, sitting under the bumpers
+      const mx = X(.455), my = Y(.71);
+      g.strokeStyle = 'rgba(237,200,120,.22)'; g.lineWidth = 1; [.26, .235].forEach(r => { g.beginPath(); g.arc(mx, my, r * K, 0, 7); g.stroke(); });
+      for (let i = 0; i < 40; i++) { const a = i * Math.PI / 20; g.beginPath(); g.moveTo(mx + Math.cos(a) * .238 * K, my + Math.sin(a) * .238 * K); g.lineTo(mx + Math.cos(a) * .257 * K, my + Math.sin(a) * .257 * K); g.stroke(); }
+      star(g, mx, my, .2 * K, .085 * K); g.fillStyle = 'rgba(237,200,120,.07)'; g.fill(); g.strokeStyle = 'rgba(237,200,120,.28)'; g.lineWidth = 1.2; g.stroke();
+      // three arrow inserts pointing players back up the middle
+      for (let i = 0; i < 3; i++) { const y = Y(1.2 - i * .075), w = .045 * K, h = .04 * K; g.beginPath(); g.moveTo(mx, y - h); g.lineTo(mx + w, y + h * .4); g.lineTo(mx + w * .55, y + h * .4); g.lineTo(mx, y - h * .2); g.lineTo(mx - w * .55, y + h * .4); g.lineTo(mx - w, y + h * .4); g.closePath(); g.fillStyle = `rgba(233,161,181,${.16 + i * .07})`; g.fill(); }
+      // rollover lanes between the top posts: recessed channels with a star insert each
+      [.375, .525].forEach(x => { g.fillStyle = 'rgba(0,0,0,.22)'; g.beginPath(); g.roundRect(X(x) - .05 * K, Y(.425), .1 * K, .11 * K, .02 * K); g.fill(); star(g, X(x), Y(.48), .022 * K, .009 * K); g.fillStyle = 'rgba(237,200,120,.32)'; g.fill(); });
+      // a fine pinstripe border just inside the rails
+      g.strokeStyle = 'rgba(237,200,120,.16)'; g.lineWidth = 1; fieldPath(g, .022); g.stroke();
+      // plunger lane: a darker channel
+      g.fillStyle = 'rgba(0,0,0,.28)'; g.fillRect(X(.87), Y(.5), .09 * K, Y(1.72) - Y(.5));
+      // slingshot art: rose fill with a cream rim inset
+      [[.13, 1.08, .13, 1.27, .25, 1.35], [.78, 1.08, .78, 1.27, .66, 1.35]].forEach(([a, b, cc, d, e, f]) => { const gr = g.createLinearGradient(X(a), Y(b), X(e), Y(f)); gr.addColorStop(0, 'rgba(233,161,181,.34)'); gr.addColorStop(1, 'rgba(233,161,181,.12)'); g.fillStyle = gr; g.beginPath(); g.moveTo(X(a), Y(b)); g.lineTo(X(cc), Y(d)); g.lineTo(X(e), Y(f)); g.closePath(); g.fill(); });
+      g.restore();
+      // chrome side rails
+      const rail = x0 => { const gr = g.createLinearGradient(X(x0) - 7, 0, X(x0) + 7, 0); gr.addColorStop(0, '#4E4856'); gr.addColorStop(.45, '#E6E2EC'); gr.addColorStop(.7, '#9F98A8'); gr.addColorStop(1, '#5A5462'); g.fillStyle = gr; g.fillRect(X(x0) - 7, Y(.36), 14, Y(TH + .1) - Y(.36)); };
+      rail(0); rail(1);
+      // apron with the Starcade nameplate
+      const ay = Y(1.66), ap = g.createLinearGradient(0, ay, 0, Y(TH + .1)); ap.addColorStop(0, '#3E2647'); ap.addColorStop(1, '#1C1024');
+      g.fillStyle = ap; g.beginPath(); g.moveTo(X(0), ay - .02 * K); g.lineTo(X(.37), ay); g.lineTo(X(.41), Y(1.72)); g.lineTo(X(.5), Y(1.72)); g.lineTo(X(.54), ay); g.lineTo(X(.87), ay - .02 * K); g.lineTo(X(.87), Y(TH + .1)); g.lineTo(X(0), Y(TH + .1)); g.closePath(); g.fill();
+      g.strokeStyle = 'rgba(237,200,120,.6)'; g.lineWidth = 1.2; g.stroke();
+      g.fillStyle = 'rgba(237,200,120,.9)'; g.font = `600 ${Math.max(11, .042 * K)}px ${SERIF}`; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+      g.fillText('Starcade', X(.19), Y(1.77)); g.fillText('Starcade', X(.72), Y(1.77));
+      return art;
+    }
+    function metal(g, s, w) { g.strokeStyle = 'rgba(0,0,0,.45)'; g.lineWidth = w + 2; g.beginPath(); g.moveTo(X(s.x1) + 1, Y(s.y1) + 2); g.lineTo(X(s.x2) + 1, Y(s.y2) + 2); g.stroke(); g.strokeStyle = '#B9AFC2'; g.lineWidth = w; g.beginPath(); g.moveTo(X(s.x1), Y(s.y1)); g.lineTo(X(s.x2), Y(s.y2)); g.stroke(); g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = Math.max(1, w * .3); g.beginPath(); g.moveTo(X(s.x1) - .5, Y(s.y1) - .5); g.lineTo(X(s.x2) - .5, Y(s.y2) - .5); g.stroke(); }
+    function post(g, x, y) { const r = .013 * K; g.fillStyle = '#F4E9E2'; g.beginPath(); g.arc(X(x), Y(y), r * 1.35, 0, 7); g.fill(); const gr = g.createRadialGradient(X(x) - r * .4, Y(y) - r * .4, 0, X(x), Y(y), r); gr.addColorStop(0, '#FFFFFF'); gr.addColorStop(1, '#8D8796'); g.fillStyle = gr; g.beginPath(); g.arc(X(x), Y(y), r, 0, 7); g.fill(); }
     function draw() {
       const g = S.ctx; g.clearRect(0, 0, S.w, S.h); g.lineCap = 'round'; g.lineJoin = 'round';
-      // cabinet + playfield
-      const bb = g.createLinearGradient(0, Y(0), 0, Y(.4)); bb.addColorStop(0, '#22172B'); bb.addColorStop(1, '#170F1D'); g.fillStyle = bb; g.fillRect(X(0) - 7, Y(0) - OY, K + 14, Y(.4) - Y(0) + OY);
-      const lac = g.createLinearGradient(X(0), 0, X(1), 0); lac.addColorStop(0, '#3A2440'); lac.addColorStop(.5, '#4A2E52'); lac.addColorStop(1, '#3A2440'); g.fillStyle = lac; g.beginPath(); g.moveTo(X(0), Y(TH + .1)); g.lineTo(X(0), Y(.36)); g.arc(X(.5), Y(.36), .5 * K, Math.PI, 0); g.lineTo(X(1), Y(TH + .1)); g.fill();
-      const pf = g.createLinearGradient(0, Y(0), 0, Y(1.7)); pf.addColorStop(0, '#2B1638'); pf.addColorStop(.6, '#1E1030'); pf.addColorStop(1, '#140B1E');
-      g.fillStyle = pf; g.beginPath(); g.moveTo(X(.04), Y(1.72)); g.lineTo(X(.04), Y(.36)); g.arc(X(.5), Y(.36), .46 * K, Math.PI, 0); g.lineTo(X(.96), Y(1.72)); g.fill();
-      g.save(); g.globalAlpha = .07; g.strokeStyle = '#E8A5B6'; g.lineWidth = 1; for (let i = 0; i < 12; i++) { g.beginPath(); g.arc(X(.455), Y(1.0), (.08 + i * .06) * K, 0, 7); g.stroke(); } g.restore();
-      // top lane lights and arrows
-      [.375, .525].forEach(x => { g.fillStyle = 'rgba(240,201,110,.35)'; g.beginPath(); g.arc(X(x), Y(.47), .012 * K, 0, 7); g.fill(); });
-      // walls
-      for (const s of WALLS) line(g, s, s.kind === 'sling' ? 4 : 3.2, s.kind === 'sling' ? (flash[s.id] ? '#FFF1C2' : '#E8A5B6') : '#BFA9C8');
-      if (gateOn) line(g, GATE, 3, '#BFA9C8');
-      // slingshot bodies
-      [[.13, 1.08, .13, 1.27, .25, 1.35], [.78, 1.08, .78, 1.27, .66, 1.35]].forEach(([a, b, cc, d, e, f]) => { g.fillStyle = 'rgba(232,165,182,.16)'; g.beginPath(); g.moveTo(X(a), Y(b)); g.lineTo(X(cc), Y(d)); g.lineTo(X(e), Y(f)); g.closePath(); g.fill(); });
-      // targets
-      for (const t of TARGETS) line(g, t, 6, lit.has(t.id) ? '#F0C96E' : '#6A4E7A');
-      // bumpers
+      g.drawImage(paintArt(), 0, 0, S.w, S.h);
+      // target inserts: a lamp beside each drop target that lights with it
+      TARGETS.forEach(t => { const on = lit.has(t.id), x = X(.175), y = Y((t.y1 + t.y2) / 2), r = .016 * K; if (on) { const gl = g.createRadialGradient(x, y, 0, x, y, r * 3); gl.addColorStop(0, 'rgba(237,200,120,.45)'); gl.addColorStop(1, 'rgba(237,200,120,0)'); g.fillStyle = gl; g.beginPath(); g.arc(x, y, r * 3, 0, 7); g.fill(); } g.fillStyle = on ? '#F6D98E' : 'rgba(237,200,120,.16)'; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); });
+      // guide rails (metal) and slingshot rubbers (cream, flashing gold when they kick)
+      for (const s of WALLS) { if (s.kind === 'sling') { g.strokeStyle = 'rgba(0,0,0,.4)'; g.lineWidth = 6; g.beginPath(); g.moveTo(X(s.x1) + 1, Y(s.y1) + 2); g.lineTo(X(s.x2) + 1, Y(s.y2) + 2); g.stroke(); g.strokeStyle = flash[s.id] ? '#FFF1C2' : '#F4E9E2'; g.lineWidth = 5; g.beginPath(); g.moveTo(X(s.x1), Y(s.y1)); g.lineTo(X(s.x2), Y(s.y2)); g.stroke(); } else metal(g, s, 3); }
+      if (gateOn) metal(g, GATE, 2.5);
+      [[.30, .43], [.45, .43], [.60, .43], [.13, 1.08], [.78, 1.08], [.25, 1.35], [.66, 1.35]].forEach(([x, y]) => post(g, x, y));
+      // drop targets: cream faces that turn gold when hit
+      for (const t of TARGETS) { const on = lit.has(t.id), x = X(t.x1), y1 = Y(t.y1), y2 = Y(t.y2), w = .022 * K; g.fillStyle = 'rgba(0,0,0,.4)'; g.fillRect(x - w / 2 + 2, y1 + 2, w, y2 - y1); const gr = g.createLinearGradient(x - w / 2, 0, x + w / 2, 0); gr.addColorStop(0, on ? '#C99B3E' : '#C9B9C7'); gr.addColorStop(.5, on ? '#F6D98E' : '#F4E9E2'); gr.addColorStop(1, on ? '#B88A33' : '#A897A9'); g.fillStyle = gr; g.beginPath(); g.roundRect(x - w / 2, y1, w, y2 - y1, 2); g.fill(); }
+      // pop bumpers: a dark skirt, a rose body, a cream cap with a gold star
       for (const b of BUMPERS) {
-        const on = flash[b.id] > 0, r = b.r * K;
-        g.fillStyle = 'rgba(0,0,0,.4)'; g.beginPath(); g.arc(X(b.x) + 2, Y(b.y) + 3, r, 0, 7); g.fill();
-        const gr = g.createRadialGradient(X(b.x) - r * .3, Y(b.y) - r * .3, r * .1, X(b.x), Y(b.y), r); gr.addColorStop(0, on ? '#FFF6D8' : '#F6C1CF'); gr.addColorStop(1, on ? '#F0C96E' : '#B34F6E');
-        g.fillStyle = gr; g.beginPath(); g.arc(X(b.x), Y(b.y), r, 0, 7); g.fill();
-        g.strokeStyle = on ? '#FFF6D8' : '#2A1630'; g.lineWidth = 3; g.beginPath(); g.arc(X(b.x), Y(b.y), r * .62, 0, 7); g.stroke();
-        g.fillStyle = '#2A1630'; g.beginPath(); g.arc(X(b.x), Y(b.y), r * .32, 0, 7); g.fill();
+        const on = flash[b.id] > 0, x = X(b.x), y = Y(b.y), r = b.r * K;
+        if (on) { const gl = g.createRadialGradient(x, y, r * .6, x, y, r * 2); gl.addColorStop(0, 'rgba(246,217,142,.5)'); gl.addColorStop(1, 'rgba(246,217,142,0)'); g.fillStyle = gl; g.beginPath(); g.arc(x, y, r * 2, 0, 7); g.fill(); }
+        g.fillStyle = 'rgba(0,0,0,.45)'; g.beginPath(); g.arc(x + 2, y + 4, r * 1.04, 0, 7); g.fill();
+        g.fillStyle = '#1E1226'; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill();
+        const body = g.createLinearGradient(x, y - r, x, y + r); body.addColorStop(0, on ? '#F6D98E' : '#EBA9BC'); body.addColorStop(1, on ? '#C99B3E' : '#A8476A');
+        g.fillStyle = body; g.beginPath(); g.arc(x, y - r * .08, r * .86, 0, 7); g.fill();
+        const cap = g.createRadialGradient(x - r * .2, y - r * .35, r * .05, x, y - r * .15, r * .62); cap.addColorStop(0, '#FFFFFF'); cap.addColorStop(1, on ? '#FFF1C2' : '#F2E2DA');
+        g.fillStyle = cap; g.beginPath(); g.arc(x, y - r * .16, r * .62, 0, 7); g.fill();
+        star(g, x, y - r * .16, r * .34, r * .14); g.fillStyle = on ? '#E0A93E' : '#D9B25E'; g.fill();
       }
-      // flippers
-      FL.forEach(f => { const ex = f.px + Math.cos(f.a) * f.len * f.side, ey = f.py + Math.sin(f.a) * f.len; g.strokeStyle = 'rgba(0,0,0,.45)'; g.lineWidth = .036 * K; g.beginPath(); g.moveTo(X(f.px) + 2, Y(f.py) + 3); g.lineTo(X(ex) + 2, Y(ey) + 3); g.stroke(); g.strokeStyle = '#F8EFE9'; g.lineWidth = .032 * K; g.beginPath(); g.moveTo(X(f.px), Y(f.py)); g.lineTo(X(ex), Y(ey)); g.stroke(); g.strokeStyle = '#E8A5B6'; g.lineWidth = .012 * K; g.beginPath(); g.moveTo(X(f.px), Y(f.py)); g.lineTo(X(ex), Y(ey)); g.stroke(); g.fillStyle = '#F0C96E'; g.beginPath(); g.arc(X(f.px), Y(f.py), .011 * K, 0, 7); g.fill(); });
-      // plunger
-      g.fillStyle = '#3A2A40'; g.fillRect(X(.885), Y(1.63), .06 * K, .06 * K); if (launchReady) { g.fillStyle = 'rgba(240,201,110,.85)'; g.beginPath(); const ax = X(.915), ay = Y(1.5); g.moveTo(ax, ay - 12); g.lineTo(ax - 7, ay); g.lineTo(ax + 7, ay); g.fill(); }
-      // chrome side rails, apron and glass
-      const rail = (x0) => { const gr = g.createLinearGradient(X(x0) - 7, 0, X(x0) + 7, 0); gr.addColorStop(0, '#5E5866'); gr.addColorStop(.45, '#E9E6EE'); gr.addColorStop(1, '#6E6876'); g.fillStyle = gr; g.fillRect(X(x0) - 7, Y(.36), 14, Y(TH + .1) - Y(.36)); };
-      rail(0); rail(1);
-      const ay = Y(1.66), ap = g.createLinearGradient(0, ay, 0, Y(TH + .1)); ap.addColorStop(0, '#3A2448'); ap.addColorStop(1, '#1C1024');
-      g.fillStyle = ap; g.beginPath(); g.moveTo(X(0), ay - .02 * K); g.lineTo(X(.37), ay); g.lineTo(X(.41), Y(1.72)); g.lineTo(X(.5), Y(1.72)); g.lineTo(X(.54), ay); g.lineTo(X(.87), ay - .02 * K); g.lineTo(X(.87), Y(TH + .1)); g.lineTo(X(0), Y(TH + .1)); g.closePath(); g.fill();
-      g.strokeStyle = 'rgba(240,201,110,.55)'; g.lineWidth = 1.2; g.stroke();
-      g.fillStyle = 'rgba(240,201,110,.85)'; g.font = `700 ${Math.max(9, .028 * K)}px system-ui`; g.textAlign = 'center'; g.fillText('S T A R C A D E', X(.2), Y(1.765)); g.fillText('S T A R C A D E', X(.71), Y(1.765));
-      for (let i = 0; i < 3; i++) { g.fillStyle = i < balls ? '#F0C96E' : 'rgba(240,201,110,.18)'; g.beginPath(); g.arc(X(.39 + i * .065), Y(1.79), .011 * K, 0, 7); g.fill(); }
-      const glass = g.createLinearGradient(X(0), Y(.2), X(1), Y(1.4)); glass.addColorStop(0, 'rgba(255,255,255,0)'); glass.addColorStop(.48, 'rgba(255,255,255,.035)'); glass.addColorStop(.52, 'rgba(255,255,255,.07)'); glass.addColorStop(.56, 'rgba(255,255,255,0)');
-      g.fillStyle = glass; g.fillRect(X(0), Y(0), K, TH * K);
+      // flippers: cream bats with a rose rubber edge on a gold pivot
+      FL.forEach(f => { const ex = f.px + Math.cos(f.a) * f.len * f.side, ey = f.py + Math.sin(f.a) * f.len; g.strokeStyle = 'rgba(0,0,0,.45)'; g.lineWidth = .036 * K; g.beginPath(); g.moveTo(X(f.px) + 2, Y(f.py) + 3); g.lineTo(X(ex) + 2, Y(ey) + 3); g.stroke(); g.strokeStyle = '#E28CA6'; g.lineWidth = .034 * K; g.beginPath(); g.moveTo(X(f.px), Y(f.py)); g.lineTo(X(ex), Y(ey)); g.stroke(); g.strokeStyle = '#F8EFE9'; g.lineWidth = .024 * K; g.beginPath(); g.moveTo(X(f.px), Y(f.py)); g.lineTo(X(ex), Y(ey)); g.stroke(); g.fillStyle = '#EDC878'; g.beginPath(); g.arc(X(f.px), Y(f.py), .012 * K, 0, 7); g.fill(); g.fillStyle = '#9A7A3A'; g.beginPath(); g.arc(X(f.px), Y(f.py), .005 * K, 0, 7); g.fill(); });
+      // plunger: a chrome rod on a spring, with a gold chevron while a ball waits
+      { const px = X(.915), top = Y(1.6 + BR + .004), bot = Y(1.7), w = .03 * K; const rod = g.createLinearGradient(px - w / 2, 0, px + w / 2, 0); rod.addColorStop(0, '#6E6876'); rod.addColorStop(.5, '#EDE9F2'); rod.addColorStop(1, '#6E6876');
+        g.strokeStyle = '#8D8796'; g.lineWidth = 1.5; g.beginPath(); for (let i = 0; i <= 8; i++) { const y = top + .012 * K + (bot - top - .012 * K) * i / 8; g.lineTo(px + (i % 2 ? w * .55 : -w * .55), y); } g.stroke();
+        g.fillStyle = rod; g.fillRect(px - w / 2, top, w, .012 * K);
+        if (launchReady) { const a = .55 + .35 * Math.sin(performance.now() / 260); g.fillStyle = `rgba(237,200,120,${a})`; for (let i = 0; i < 2; i++) { const ay = Y(1.48 - i * .05); g.beginPath(); g.moveTo(px, ay - .022 * K); g.lineTo(px + .022 * K, ay); g.lineTo(px + .012 * K, ay); g.lineTo(px, ay - .011 * K); g.lineTo(px - .012 * K, ay); g.lineTo(px - .022 * K, ay); g.closePath(); g.fill(); } } }
+      // balls left: three lamps on the apron
+      for (let i = 0; i < 3; i++) { const on = i < balls; g.fillStyle = on ? '#F6D98E' : 'rgba(237,200,120,.16)'; g.beginPath(); g.arc(X(.39 + i * .065), Y(1.8), .011 * K, 0, 7); g.fill(); }
       // ball
       const bx = X(ball.x), by = Y(ball.y), r = BR * K; g.fillStyle = 'rgba(0,0,0,.4)'; g.beginPath(); g.arc(bx + 2, by + 3, r, 0, 7); g.fill();
       const bg = g.createRadialGradient(bx - r * .35, by - r * .4, r * .1, bx, by, r); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(.5, '#C9CCD3'); bg.addColorStop(1, '#6F737C'); g.fillStyle = bg; g.beginPath(); g.arc(bx, by, r, 0, 7); g.fill();
+      // glass: one soft diagonal sheen over everything
+      const glass = g.createLinearGradient(X(0), Y(.2), X(1), Y(1.4)); glass.addColorStop(0, 'rgba(255,255,255,0)'); glass.addColorStop(.48, 'rgba(255,255,255,.03)'); glass.addColorStop(.52, 'rgba(255,255,255,.06)'); glass.addColorStop(.56, 'rgba(255,255,255,0)');
+      g.save(); fieldPath(g); g.clip(); g.fillStyle = glass; g.fillRect(X(0), Y(0), K, TH * K); g.restore();
     }
     layout(); reset(); const loop = gmLoop(step);
     const ro = new ResizeObserver(() => layout()); ro.observe(api.stage);
@@ -8343,16 +8431,16 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
     }
 
     /* ---------- XP: permanent progression, derived from real-life history (never spent, never decreases by spending) ---------- */
-    const XP_RULES = { check: 10, goodDay: 25, task: 15, milestone: 40, goal: 100, bingoLine: 20, bingoFull: 80, dailyPlay: 5 };
+    const XP_RULES = { check: 10, goodDay: 25, task: 15, milestone: 40, goal: 100, bingoLine: 20, bingoFull: 80, bingoGold: 20, dailyPlay: 5 };
     function xp() {
       const ids = new Set(state.habits.map(h => h.id)); let checks = 0;
       for (const k in state.checks) if (state.checks[k] && ids.has(k.slice(0, k.lastIndexOf('|')))) checks++;
       const gd = goodDaysSince(firstAnyCheck());
       const tk = tasks().filter(t => t.done).length;
       const ms = goals().reduce((n, g) => n + (g.milestones || []).filter(m => m.doneAt).length, 0), gs = goals().filter(g => g.doneAt).length;
-      const B = S().bingoWeekly || {}, bl = Object.values(B).reduce((n, r) => n + ((r && r.lines) || []).length, 0), bf = Object.values(B).filter(r => r && r.full).length;
+      const B = S().bingoWeekly || {}, bl = Object.values(B).reduce((n, r) => n + ((r && r.lines) || []).length, 0), bf = Object.values(B).filter(r => r && r.full).length, bg = Object.values(B).filter(r => r && typeof r.gold === 'number' && Array.isArray(r.doneIdx) && r.doneIdx.includes(r.gold)).length;
       const dp = Object.keys(S().dailyPlay || {}).length;
-      const parts = { checks: checks * XP_RULES.check, goodDays: gd * XP_RULES.goodDay, tasks: tk * XP_RULES.task, milestones: ms * XP_RULES.milestone + gs * XP_RULES.goal, bingo: bl * XP_RULES.bingoLine + bf * XP_RULES.bingoFull, arcade: dp * XP_RULES.dailyPlay };
+      const parts = { checks: checks * XP_RULES.check, goodDays: gd * XP_RULES.goodDay, tasks: tk * XP_RULES.task, milestones: ms * XP_RULES.milestone + gs * XP_RULES.goal, bingo: bl * XP_RULES.bingoLine + bf * XP_RULES.bingoFull + bg * XP_RULES.bingoGold, arcade: dp * XP_RULES.dailyPlay };
       return { total: Object.values(parts).reduce((a, b) => a + b, 0), parts };
     }
     // Levels grow gently: level n needs 250·n·(n+1)/2 total XP (250, 750, 1500, 2500, …)
