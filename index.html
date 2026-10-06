@@ -6979,6 +6979,23 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
 .one-card small{font:500 13px var(--ds-font);color:var(--ds-text-3)}
 .one-ic .ds-ic{width:32px;height:32px;color:var(--ds-rose)}
 .pg-link{position:relative}.pg-link::after{content:"";position:absolute;inset:-14px -10px}
+
+/* ===================== Pass 30: side quest, focus, Bingo history, add-habit ===================== */
+.td-side{display:flex;align-items:center;gap:10px;margin:-8px 0 18px;padding:10px 10px 10px 12px;border-radius:var(--ds-r-md);background:rgb(var(--ds-sage-rgb) / .08);box-shadow:inset 0 0 0 1px rgb(var(--ds-sage-rgb) / .18)}
+.td-side-ic{flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--ds-sage-wash);color:var(--ds-sage)}
+.td-side-ic .ds-ic{width:17px;height:17px}
+.td-side-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.td-side-tx small{font:600 11.5px var(--ds-font);color:var(--ds-sage)}
+.td-side-tx b{font:550 14px/1.3 var(--ds-font);color:var(--ds-text)}
+.td-side-swap{width:36px;height:36px;background:none!important;box-shadow:none!important}
+.td-side.done{opacity:.75}
+.td-side.done .td-side-tx b{color:var(--ds-text-3)}
+.focus-ring{display:flex;flex-direction:column;align-items:center;gap:6px;margin:6px auto 4px;width:200px;height:200px;border-radius:50%;justify-content:center;background:radial-gradient(circle,var(--ds-surface) 62%,transparent 63%),conic-gradient(var(--ds-rose),var(--ds-lav),var(--ds-rose));box-shadow:0 0 30px -10px rgb(var(--ds-rose-rgb) / .5)}
+.focus-ring b{font:600 44px/1 var(--ds-num);color:var(--ds-text);font-variant-numeric:tabular-nums}
+.focus-ring small{max-width:150px;font:500 13px var(--ds-font);color:var(--ds-text-2);text-align:center}
+.pg-bingohist{margin:12px 0 0}
+.add-more{margin-top:-4px}
+.td-side-swap .ds-ic{width:19px!important;height:19px!important;color:var(--ds-text-2)}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -9127,7 +9144,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
   window.pgDreamNew = () => addSheet({ title: 'Someday', submit: 'pgDream(event)', input: { id: 'newDream', max: 110, ph: 'Something you’d love to do', label: 'Someday goal' }, cta: 'Add to Someday' });
   window.pgWinNew = () => addSheet({ title: 'New moment', submit: 'pgWin(event)', input: { id: 'winText', max: 170, ph: 'Something worth remembering', label: 'Moment' }, chips: { id: 'winType', value: 'life', label: 'Kind of moment', options: Object.entries(LIFE_KIND) }, cta: 'Save moment' });
   window.lfTaskNew = () => addSheet({ title: 'New task', submit: 'lfAdd(event)', input: { id: 'newLifeTask', max: 110, ph: 'What needs doing?', label: 'Task' }, cta: 'Add task' });
-  window.stHabitNew = () => addSheet({ title: 'New habit', submit: 'stAdd(event)', input: { id: 'habitName', max: 100, ph: 'Name it, e.g. Drink water', label: 'Habit name' }, chips: { id: 'habitPart', value: 'anytime', label: 'When', options: [['morning', 'Morning'], ['anytime', 'Anytime'], ['night', 'Night'], ['bonus', 'Bonus'], ['weekly', 'Weekly']] }, extra: '<input type="hidden" id="habitFrequency" value="daily"><p class="tb-note add-note">Bonus habits earn stars but never count toward a Good Day.</p>', cta: 'Add habit' });
+  window.stHabitNew = () => addSheet({ title: 'New habit', submit: 'stAdd(event)', input: { id: 'habitName', max: 100, ph: 'Name it, e.g. Drink water', label: 'Habit name' }, chips: { id: 'habitPart', value: 'anytime', label: 'When', options: [['morning', 'Morning'], ['anytime', 'Anytime'], ['night', 'Night'], ['bonus', 'Bonus'], ['weekly', 'Weekly']] }, extra: '<button type="button" class="ds-btn ds-btn-ghost ds-btn-block add-more" onclick="stHabitNewMore()">More options: schedule, area, goal</button><input type="hidden" id="habitFrequency" value="daily"><p class="tb-note add-note">Bonus habits earn stars but never count toward a Good Day.</p>', cta: 'Add habit' });
   window.lfAdd = e => { addLifeTask(e); tbClose(); renderLife(); };
   function pgSomeday() {
     const S = state.starcade || {}, dreams = S.vision || [];
@@ -9226,6 +9243,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
     const h = state.habits.length > n ? state.habits[state.habits.length - 1] : null;
     if (h && p !== 'weekly') { h.part = p; save(); }
     tbClose(); render(); renderSettings();
+    if (window.__stOpenAfterAdd && h) setTimeout(() => stHabit(h.id), 260); window.__stOpenAfterAdd = false;
   };
   window.stRemove = id => {
     const h = state.habits.find(x => x.id === id); if (!h || h.frequency === 'retired' || /^oura-/.test(h.id)) return;
@@ -9533,6 +9551,8 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
         tb.querySelector('.pg-tabs').insertAdjacentHTML('afterend', levelHTML());
         const anchor = tb.querySelector('.pg-next') || tb.querySelector('.pg-wk');
         anchor.insertAdjacentHTML('afterend', habitsHTML() + areasHTML() + '<div class="ds-section pg-histhead"><span>History</span></div>');
+        const run = [...tb.querySelectorAll('.ds-section')].find(s => s.textContent.trim().startsWith('Running'));
+        if (run) run.insertAdjacentHTML('beforebegin', `<div class="ds-list pg-bingohist"><button type="button" class="ds-row tb-row" onclick="v7BingoHistory()"><span class="ds-glyph ds-glyph-gold">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Past Bingo boards</span><span class="ds-row-sub">One board a week, as each one ended</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`);
         const act = [...tb.querySelectorAll('.ds-section')].find(s => s.textContent.trim() === 'Activity'); if (act) act.remove();
       } else if (pgTab === 'goals') {
         const first = tb.querySelector('.ds-section'); if (first) first.insertAdjacentHTML('beforebegin', lifeGoalsHTML());
@@ -10220,6 +10240,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
         <form class="ts-add" onsubmit="event.preventDefault();tSubAdd()"><input id="tsNew" maxlength="80" placeholder="Add a step" autocomplete="off"><button type="submit" class="ds-btn ds-btn-secondary ds-btn-sm">Add</button></form></div></div>
       <label class="hs-l">Note<textarea rows="2" maxlength="400" oninput="tIn('note',this.value)">${esc(e.note)}</textarea></label>
       <button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="tSave()">Save</button>
+      ${t.done ? '' : `<button type="button" class="ds-btn ds-btn-secondary ds-btn-block" onclick="tSave();setTimeout(()=>lfFocus('${esc(t.id)}'),240)">${ic('clock-fill')}Focus for 15 minutes</button>`}
       <div class="hs-more"><button type="button" class="ds-btn ds-btn-ghost" onclick="tSave(true)">${t.done ? 'Mark not done' : 'Mark done'}</button><button type="button" class="ds-btn ds-btn-ghost" onclick="tDelete()">Delete</button></div>
       ${t.done && t.doneAt ? `<p class="tb-note">Completed ${esc(fmtShort(t.doneAt.slice(0, 10)))}.</p>` : ''}`);
   }
@@ -10344,6 +10365,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
       ${tdNotice()}
       <section class="td-hero ${g.good ? 'is-good' : ''}" aria-label="Today’s progress">${ring(doneCore, g.need)}<div class="td-head"><h2>${g.good ? ic('sparkle-fill', 'gd') : ''}${esc(cheer)}</h2><p class="td-sub">${esc(subline)}</p><div class="td-ctx">${goodDayChips(g)}</div></div></section>
       ${questsHTML()}
+      ${(window.__starcadeSideQuestHTML || (() => ''))()}
       ${nowHTML}
       ${pillsHTML(now && now.current ? now.p : null)}
       ${tasksHTML()}
@@ -10421,6 +10443,58 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
       <div class="hs-more"><button type="button" class="ds-btn ds-btn-ghost" onclick="tdJustOne('${esc(pick.h.id)}')">Something else</button><button type="button" class="ds-btn ds-btn-ghost" onclick="tbClose()">Not now</button></div></div>`, 'Just one thing');
   };
   window.tdJustOneAgain = function () { if (!daily().some(h => !completed(h) && SC2.showToday(h))) return; tbSheet(`<div class="hs one"><div class="ar-tok-hero">${ic('star-fill')}<b>Nice</b><span>That counts.</span></div><button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="tdJustOne()">One more</button><button type="button" class="ds-btn ds-btn-ghost ds-btn-block" onclick="tbClose()">That’s enough for now</button></div>`, 'Just one thing'); };
+
+  /* ===================== PASS 30: small 2.0 features on the stable foundation =====================
+     Side quests, a focus timer for Life HQ tasks, Bingo in Progress, and progressive disclosure when adding a habit.
+     Nothing here pays stars: side quests give XP only (derived from starcade.sideQuests), so the economy can't inflate. */
+
+  /* ---------- Side quests: one optional real-world mini action a day (generic, never about body or money outcomes) ---------- */
+  const SIDE_QUESTS = [
+    ['outside', 'Step outside for five minutes', 'sun-horizon-fill'], ['tidy', 'Clear one small surface', 'basket-duotone'],
+    ['water', 'Drink a full glass of water', 'drop-fill'], ['message', 'Send a kind message to someone you care about', 'hand-heart-duotone'],
+    ['stretch', 'Stretch for two minutes', 'flower-lotus-fill'], ['read', 'Read five pages of anything', 'book-open-fill'],
+    ['breathe', 'Take ten slow breaths by a window', 'leaf-fill'], ['music', 'Listen to one song you love, doing nothing else', 'feather-fill'],
+    ['plan', 'Write down tomorrow’s first small step', 'pencil-simple-line-duotone'], ['declutter', 'Put five things back where they belong', 'stack-duotone'],
+  ];
+  const SIDE_XP = 10;
+  function sideQuest() {
+    const S = SC(), t = today(); S.sideQuests = S.sideQuests || {};
+    if (S.sideQuestsOff) return null;
+    let rec = S.sideQuests[t];
+    if (!rec) { const n = Math.floor(Date.parse(t + 'T12:00:00Z') / 864e5); rec = S.sideQuests[t] = { id: SIDE_QUESTS[(n * 7) % SIDE_QUESTS.length][0] }; save(); }
+    const q = SIDE_QUESTS.find(x => x[0] === rec.id) || SIDE_QUESTS[0];
+    return { id: q[0], title: q[1], icon: q[2], done: !!rec.doneAt };
+  }
+  window.tdSideDone = function () { const S = SC(), r = (S.sideQuests || {})[today()]; if (!r || r.doneAt) return; r.doneAt = new Date().toISOString(); save(); feedback('success'); render(); };
+  window.tdSideSwap = function () { const S = SC(), r = (S.sideQuests || {})[today()]; if (!r || r.doneAt) return; const i = SIDE_QUESTS.findIndex(x => x[0] === r.id); r.id = SIDE_QUESTS[(i + 1) % SIDE_QUESTS.length][0]; save(); render(); };
+  window.__starcadeSideQuestHTML = function () {
+    const q = sideQuest(); if (!q) return '';
+    return `<div class="td-side ${q.done ? 'done' : ''}"><span class="td-side-ic">${ic(q.done ? 'check-bold' : q.icon)}</span><span class="td-side-tx"><small>Side quest${q.done ? `, +${SIDE_XP} XP` : ', optional'}</small><b>${esc(q.title)}</b></span>${q.done ? '' : `<button type="button" class="ds-btn ds-btn-secondary ds-btn-sm" onclick="tdSideDone()">Done</button><button type="button" class="ds-iconbtn td-side-swap" onclick="tdSideSwap()" aria-label="Swap for another side quest">${ic('shuffle-bold')}</button>`}</div>`;
+  };
+  // side quests add XP (never stars): extend the derived XP total
+  (function () { const base = SC2.xp; SC2.xp = function () { const r = base(); const n = Object.values((SC().sideQuests) || {}).filter(x => x && x.doneAt).length; r.parts.sideQuests = n * SIDE_XP; r.total += n * SIDE_XP; return r; }; })();
+
+  /* ---------- Focus quest: a short timer attached to a real Life HQ task ---------- */
+  let focusT = 0;
+  window.lfFocus = function (id, mins = 15) {
+    const t = SC2.tasks().find(x => String(x.id) === String(id)); if (!t) return;
+    const end = Date.now() + mins * 60000; clearInterval(focusT);
+    tbSheet(`<div class="hs focus"><p class="tb-note">Just this, for ${mins} minutes.</p><div class="focus-ring"><b id="fcTime">${mins}:00</b><small>${esc(t.name)}</small></div>
+      <button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="clearInterval(window.__fcT);tbClose();lfToggle('${esc(t.id)}')">I finished it</button>
+      <button type="button" class="ds-btn ds-btn-ghost ds-btn-block" onclick="clearInterval(window.__fcT);tbClose()">Stop for now</button></div>`, 'Focus');
+    const tick = () => { const left = Math.max(0, end - Date.now()), el = document.getElementById('fcTime'); if (!el) { clearInterval(focusT); return; } el.textContent = `${Math.floor(left / 60000)}:${String(Math.floor(left % 60000 / 1000)).padStart(2, '0')}`; if (!left) { clearInterval(focusT); el.textContent = 'Time'; feedback('success'); } };
+    focusT = window.__fcT = setInterval(tick, 1000); tick();
+  };
+
+  /* ---------- Bingo in Progress: lines in the recaps, past boards from History ---------- */
+  (window.__starcadeRecapExtras = window.__starcadeRecapExtras || []).push(days => {
+    const B = SC().bingoWeekly || {}, ks = new Set(days.map(d => weekKey(d)));
+    const n = [...ks].reduce((t, k) => t + ((B[k] && B[k].lines) || []).length, 0);
+    return n ? { n, label: n === 1 ? 'Bingo line' : 'Bingo lines', tone: 'gold' } : null;
+  });
+
+  /* ---------- Adding a habit: name and time of day first, everything else one tap away ---------- */
+  window.stHabitNewMore = function () { window.__stOpenAfterAdd = true; const f = document.querySelector('#tbSheet form.add-sheet'); if (f) f.requestSubmit(); };
 
   /* ===================== K1 (pass 24): quiet the superseded legacy layers =====================
      The legacy layers from the base file still do invisible work on every render(). This file stops only that work:
