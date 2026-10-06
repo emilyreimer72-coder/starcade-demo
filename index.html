@@ -4879,13 +4879,13 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
   --ds-text-2:#CFB9C1;    --ds-text-2-rgb:207 185 193;
   --ds-text-3:#9C8492;    --ds-text-3-rgb:156 132 146;
   --ds-on-light:#2A1A22;  --ds-on-light-rgb:42 26 34;
-  --ds-rose:#E9A1B5;      --ds-rose-rgb:233 161 181;
-  --ds-gold:#EDC878;      --ds-gold-rgb:237 200 120;
+  --ds-rose:#F09CB5;      --ds-rose-rgb:240 156 181;
+  --ds-gold:#F2C976;      --ds-gold-rgb:242 201 118;
   --ds-ok:#9CCBA9;        --ds-ok-rgb:156 203 169;
   /* color roles (pass 13): rose = act now, gold = earned, cream = read, sage = wellness/progress, lavender = learning, peach = personal moments */
-  --ds-sage:#A7C4A0;      --ds-sage-rgb:167 196 160;
-  --ds-lav:#B9A7DD;       --ds-lav-rgb:185 167 221;
-  --ds-peach:#EDB49A;     --ds-peach-rgb:237 180 154;
+  --ds-sage:#A3D096;      --ds-sage-rgb:163 208 150;
+  --ds-lav:#C2ACF2;       --ds-lav-rgb:194 172 242;
+  --ds-peach:#F7B194;     --ds-peach-rgb:247 177 148;
   /* special surfaces: chest row, Daily Play, Word of the day, game boards */
   --ds-plum:#3B2342;      --ds-plum-rgb:59 35 66;
   --ds-plum-deep:#2A1A2B; --ds-plum-deep-rgb:42 26 43;
@@ -4911,6 +4911,14 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
   --ds-env-slate:#33404A; --ds-env-slate-2:#222C34;
   --ds-env-pong-wall:#6E5449;
   --ds-on-rose:#2A1520; --ds-on-gold:#2A1A10;
+  /* Jewel tones (pass 51). The room stays dark; each meaning owns a full jewel surface so color can carry a whole object,
+     not only an icon: garnet-rose = act now, emerald-sage = wellness, amethyst = Brain/Learn/rest, coral = personal,
+     champagne = earned (the one light surface, used rarely, with dark ink). Neutral content stays plum. */
+  --j-rose:#F29BB6; --j-rose-mid:#D9668C; --j-rose-deep:#5E1F3E; --j-rose-deep-2:#3D1329; --j-on-rose:#3E0F26;
+  --j-sage:#A6D49A; --j-sage-mid:#6FAE7A; --j-sage-deep:#1E4030; --j-sage-deep-2:#132B20;
+  --j-lav:#C7B1F6; --j-lav-mid:#9579DA; --j-lav-deep:#382A69; --j-lav-deep-2:#231946;
+  --j-peach:#F8B59A; --j-coral:#EE8878; --j-coral-deep:#5F2431; --j-coral-deep-2:#40161F;
+  --j-gold:#F3CB78; --j-gold-mid:#C9963E; --j-champ:#FBEBC6; --j-champ-2:#EECD8C; --j-gold-ink:#3A250E;
   --ds-rose-wash:rgb(var(--ds-rose-rgb) / .13); --ds-gold-wash:rgb(var(--ds-gold-rgb) / .13);
   --ds-sage-wash:rgb(var(--ds-sage-rgb) / .14); --ds-lav-wash:rgb(var(--ds-lav-rgb) / .14); --ds-peach-wash:rgb(var(--ds-peach-rgb) / .14);
   --ds-line:rgb(255 232 238 / .085); --ds-line-strong:rgb(255 232 238 / .16);
@@ -7458,6 +7466,238 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
 .hs-facts .hf-streak{background:linear-gradient(160deg,rgb(var(--ds-peach-rgb) / .16),transparent 70%),var(--ds-surface)}.hs-facts .hf-streak small{color:var(--ds-peach)}
 .hs-facts .hf-best{background:linear-gradient(160deg,rgb(var(--ds-gold-rgb) / .16),transparent 70%),var(--ds-surface)}.hs-facts .hf-best small{color:var(--ds-gold)}
 .hs-facts .hf-cons{background:linear-gradient(160deg,rgb(var(--ds-sage-rgb) / .16),transparent 70%),var(--ds-surface)}.hs-facts .hf-cons small{color:var(--ds-sage)}
+
+/* ===================== Pass 51 (Claude): the jewel box ===================== */
+/* Dark Boutique was reading as "everything plum, color only in icons". The room stays dark, and each meaning now owns a
+   full jewel surface: garnet-rose (act now), emerald-sage (wellness/progress), amethyst (Brain/Learn/rest), coral (personal),
+   and light champagne with dark ink (earned; used rarely so it stays special). Neutral things stay plum. */
+.jw-rose{background:linear-gradient(155deg,var(--j-rose-deep),var(--j-rose-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 200 220 / .14),inset 0 0 0 1px rgb(242 155 182 / .28),0 16px 32px -20px rgb(217 102 140 / .55)!important}
+.jw-sage{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 1px 0 rgb(200 240 190 / .12),inset 0 0 0 1px rgb(166 212 154 / .24),0 16px 32px -20px rgb(20 60 40 / .9)!important}
+.jw-lav{background:linear-gradient(155deg,var(--j-lav-deep),var(--j-lav-deep-2))!important;box-shadow:inset 0 1px 0 rgb(220 205 255 / .14),inset 0 0 0 1px rgb(199 177 246 / .26),0 16px 32px -20px rgb(80 50 160 / .6)!important}
+.jw-coral{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 210 195 / .12),inset 0 0 0 1px rgb(238 136 120 / .26),0 16px 32px -20px rgb(150 50 50 / .6)!important}
+.jw-champ{background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;color:var(--j-gold-ink)!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .6),0 18px 34px -20px rgb(227 176 79 / .7)!important}
+
+/* ---------- HOME ---------- */
+/* Good Day hero: an emerald stage Dexter stands on; the part bars carry each part's color; a Good Day turns it champagne */
+#today .td-hero{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 1px 0 rgb(200 240 190 / .12),inset 0 0 0 1px rgb(166 212 154 / .22),0 16px 32px -20px rgb(10 40 25 / .9)!important;padding:15px 14px 6px 12px!important;border-radius:20px!important;position:relative;z-index:1}
+#today .td-hero .td-ring{width:64px!important;height:64px!important} /* room at the top of the card for Dexter's feet, whatever his pose */
+#today .td-hero .td-ring .trk{stroke:rgb(166 212 154 / .16)!important}
+#today .td-hero .td-ring .arc{stroke:var(--j-sage)!important}
+#today .td-hero .td-head h2{color:#F3F8EE!important}
+#today .td-hero .td-sub{color:rgb(225 240 220 / .82)!important}
+#today .td-pt i{background:rgb(255 255 255 / .1)!important}
+#today .td-pt-morning i b{background:var(--j-peach)!important}#today .td-pt-anytime i b{background:var(--j-sage)!important}#today .td-pt-night i b{background:var(--j-lav)!important}
+#today .td-pt small{color:rgb(225 240 220 / .75)!important}
+#today .td-hero.is-good{background:linear-gradient(155deg,#3D3A22,#26241A)!important;box-shadow:inset 0 1px 0 rgb(255 235 180 / .2),inset 0 0 0 1.5px rgb(243 203 120 / .55),0 0 30px -8px rgb(243 203 120 / .45)!important}
+#today .td-hero.is-good .td-ring .arc{stroke:var(--j-gold)!important}
+#today .td-hero.is-good .td-pt i b{background:var(--j-gold)!important}
+/* Up next: the one garnet-rose block on Home; a solid pink check button you can't miss */
+#today .td-nowlist{background:linear-gradient(160deg,var(--j-rose-deep),var(--j-rose-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 200 220 / .14),inset 0 0 0 1px rgb(242 155 182 / .3),0 18px 34px -20px rgb(217 102 140 / .6)!important}
+#today .td-nowlist .td-row-next{background:linear-gradient(90deg,rgb(242 155 182 / .2),transparent 85%)!important;box-shadow:none!important}
+#today .td-next-ic{background:rgb(242 155 182 / .24)!important;color:#FFD6E2!important;box-shadow:none!important}
+#today .td-check{background:var(--j-rose)!important;box-shadow:0 6px 16px -6px rgb(217 102 140 / .9)!important;color:var(--j-on-rose)!important}
+#today .td-row-next.is-done .td-check{background:var(--j-gold)!important;color:var(--j-gold-ink)!important}
+#today .td-nowlist .td-row:not(.td-row-next) .ds-row-title{color:#F6E3EA!important}
+#today .td-nowlist .td-row:not(.td-row-next) .td-star{color:rgb(242 155 182 / .8)}
+#today .td-nowlist .td-row{border-color:rgb(242 155 182 / .14)!important}
+#today .td-nowlist .td-hicon{color:rgb(242 155 182 / .6)!important}
+#today .td-more{color:#F7C6D5!important;border-top-color:rgb(242 155 182 / .16)!important}
+#today .td-next-t em{color:var(--j-rose)!important}
+/* Routine strip: each part of the day is its own jewel; Weekly is champagne; the current one is lit */
+#today .td-routines button.td-pill{border:0!important}
+#today .td-routines .td-part-morning{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(248 181 154 / .28)!important}
+#today .td-routines .td-part-anytime{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(166 212 154 / .26)!important}
+#today .td-routines .td-part-night{background:linear-gradient(155deg,var(--j-lav-deep),var(--j-lav-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(199 177 246 / .28)!important}
+#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night){background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .55)!important}
+#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) :is(.td-pill-tx b,.td-pill-tx small,.td-pill-ic){color:var(--j-gold-ink)!important}
+#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) .td-pill-ic{background:rgb(58 37 14 / .1)!important}
+#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) .td-pill-bar{background:rgb(58 37 14 / .14)!important}
+#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) .td-pill-bar b{background:var(--j-gold-mid)!important}
+#today .td-routines .td-part-morning .td-pill-ic{background:rgb(248 181 154 / .2)!important;color:var(--j-peach)!important}
+#today .td-routines .td-part-anytime .td-pill-ic{background:rgb(166 212 154 / .2)!important;color:var(--j-sage)!important}
+#today .td-routines .td-part-night .td-pill-ic{background:rgb(199 177 246 / .2)!important;color:var(--j-lav)!important}
+#today .td-routines .td-part-morning .td-pill-bar b{background:var(--j-peach)!important}
+#today .td-routines .td-part-anytime .td-pill-bar b{background:var(--j-sage)!important}
+#today .td-routines .td-part-night .td-pill-bar b{background:var(--j-lav)!important}
+#today .td-routines .td-pill-bar{background:rgb(255 255 255 / .1)!important;height:5px!important}
+#today .td-routines .td-pill-tx small{color:rgb(255 255 255 / .7)!important}
+#today .td-routines button.td-pill.is-now{box-shadow:inset 0 0 0 2px var(--j-rose),0 0 0 3px rgb(242 155 182 / .18),0 10px 22px -12px rgb(217 102 140 / .7)!important}
+#today .td-routines button.td-pill.is-now .td-pill-tx small{color:#FFD3E0!important}
+#today .td-routines button.td-pill.is-done{opacity:.55!important}
+/* Daily quests: a champagne card with dark ink, the earned system at a glance */
+#today .td-quests{background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .6),0 18px 34px -20px rgb(227 176 79 / .75)!important}
+#today .td-quests .td-quests-h b{color:var(--j-gold-ink)!important}
+#today .td-quests .td-quest{color:var(--j-gold-ink)!important;border-top-color:rgb(58 37 14 / .12)!important}
+#today .td-quests .q-tx b{color:var(--j-gold-ink)!important}
+#today .td-quests .q-tx small{color:rgb(58 37 14 / .62)!important}
+#today .td-quests .q-box{background:rgb(255 255 255 / .45)!important;box-shadow:inset 0 0 0 1.5px var(--j-gold-mid)!important}
+#today .td-quests .td-quest.done .q-box{background:var(--j-gold-mid)!important;box-shadow:none!important;color:#FFF6E0!important}
+#today .td-quests .td-quest.done .q-tx b{color:rgb(58 37 14 / .45)!important;text-decoration-color:rgb(58 37 14 / .35)!important}
+#today .td-quests .q-pips i{box-shadow:inset 0 0 0 1.5px var(--j-gold-mid)!important}
+#today .td-quests .q-pips i.on{background:var(--j-gold-mid)!important;box-shadow:none!important}
+#today .td-quests .q-prize{background:var(--j-gold-ink)!important;color:var(--j-gold)!important}
+#today .td-quests .td-side{border-top-color:rgb(58 37 14 / .14)!important}
+#today .td-quests .td-side-tx b{color:var(--j-gold-ink)!important}
+#today .td-quests .td-side-tx small{color:#3E7A4A!important}
+#today .td-quests .td-side-ic{background:var(--j-sage-deep)!important;color:var(--j-sage)!important}
+#today .td-quests .td-side .ds-btn{background:var(--j-gold-ink)!important;color:var(--j-champ)!important;box-shadow:none!important}
+#today .td-quests .td-side-swap .ds-ic{color:rgb(58 37 14 / .7)!important}
+#today .td-quests.is-done{opacity:1!important}
+/* Treats: each treat is an object in its own jewel */
+#today .td-rail .td-foryou>.td-surprise{background:linear-gradient(155deg,var(--j-rose-deep),var(--j-rose-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 200 220 / .14),inset 0 0 0 1px rgb(242 155 182 / .3)!important}
+#today .td-rail .td-foryou>.tb-row:has(.td-cover){background:linear-gradient(155deg,#4A2470,#2C1648)!important;box-shadow:inset 0 1px 0 rgb(220 200 255 / .14),inset 0 0 0 1px rgb(180 150 240 / .3)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-lav){background:linear-gradient(155deg,var(--j-lav-deep),var(--j-lav-deep-2))!important;box-shadow:inset 0 1px 0 rgb(220 205 255 / .14),inset 0 0 0 1px rgb(199 177 246 / .28)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-sage){background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(166 212 154 / .24)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-gold){background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .55)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-gold) :is(.ds-row-title,.ds-row-sub,.tb-amt,.tb-caret){color:var(--j-gold-ink)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-gold) .ds-glyph{background:rgb(58 37 14 / .1)!important;color:var(--j-gold-mid)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-gold) .td-meter{background:rgb(58 37 14 / .14)!important}
+#today .td-rail .td-foryou>.tb-row:has(.ds-glyph-gold) .td-meter i{background:var(--j-gold-mid)!important}
+#today .td-rail .td-foryou>.tb-row .ds-row-sub{color:rgb(255 255 255 / .72)}
+#today .td-treat.tr-bingo{background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .55),0 16px 30px -20px rgb(227 176 79 / .7)!important}
+#today .td-treat.tr-bingo :is(b,small){color:var(--j-gold-ink)!important}
+#today .td-treat.tr-bingo .tr-mini{background:var(--j-gold-ink)!important;box-shadow:none!important;grid-template-columns:repeat(5,11px)!important;gap:3px!important;padding:6px!important}
+#today .td-treat.tr-bingo .tr-mini i{width:11px!important;height:11px!important;background:rgb(255 255 255 / .12)!important}
+#today .td-treat.tr-bingo .tr-mini i.on,#today .td-treat.tr-bingo .tr-mini i.free{background:var(--j-gold)!important}
+#today .td-treat.tr-tokens{background:linear-gradient(155deg,var(--j-lav-deep),var(--j-lav-deep-2))!important;box-shadow:inset 0 1px 0 rgb(220 205 255 / .14),inset 0 0 0 1px rgb(199 177 246 / .28)!important}
+#today .td-treat.tr-tokens .tr-ic{background:var(--j-gold)!important;color:var(--j-gold-ink)!important}
+#today .td-treat small{color:rgb(255 255 255 / .72)}
+/* the quote and Dexter band: a little tighter so useful content starts sooner */
+#today .td-top{margin-bottom:-18px!important;position:relative;z-index:2} /* Dexter stands on the hero, in front of it */
+#today .td-quote{font-size:19px!important;line-height:1.2!important}
+
+/* ---------- Pass 52 (Claude): Life HQ in the jewel language ---------- */
+#life .lf-focus{background:linear-gradient(155deg,var(--j-rose-deep),var(--j-rose-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 200 220 / .14),inset 0 0 0 1px rgb(242 155 182 / .3),0 18px 34px -20px rgb(217 102 140 / .6)!important}
+#life .lf-focus.is-late{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important;box-shadow:inset 0 1px 0 rgb(255 210 195 / .14),inset 0 0 0 1px rgb(238 136 120 / .32),0 18px 34px -20px rgb(200 90 80 / .6)!important}
+#life .lf-focus-k{color:var(--j-rose)!important}#life .lf-focus.is-late .lf-focus-k{color:var(--j-peach)!important}
+#life .lf-focus-m{color:rgb(255 235 240 / .78)!important}
+#life .lf-focus .ds-btn-primary{background:var(--j-rose)!important;color:var(--j-on-rose)!important}
+#life .lf-focus.is-late .ds-btn-primary{background:var(--j-peach)!important;color:#45160F!important}
+#life .lf-focus .ds-btn-secondary{background:rgb(255 255 255 / .1)!important;color:#FFE9EF!important;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .16)!important}
+#life .lf-task.has-area{box-shadow:inset 3px 0 0 var(--a)}
+#life .lf-task.has-area .lf-check{border-color:var(--a)!important}
+#life .lf-task.done{opacity:.6}
+#life .lf-quick{box-shadow:inset 0 0 0 1.5px rgb(242 155 182 / .35),var(--ds-card-shadow)!important}
+#life .lf-quick-ic{background:var(--j-rose)!important;color:var(--j-on-rose)!important}
+#life .lf-ideas{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(238 136 120 / .3)!important}
+#life .lf-ideas .ds-glyph{background:rgb(248 181 154 / .2)!important;color:var(--j-peach)!important}
+#life .lf-ideas small{color:rgb(255 225 215 / .75)!important}
+#life .ds-list.lf-today{background:linear-gradient(90deg,rgb(242 155 182 / .14),transparent 70%),var(--ds-surface)!important}
+
+/* ---------- Pass 53 (Claude): Progress in the jewel language ---------- */
+/* hero: what she has earned, so champagne with dark ink; the trophies sit in it as dark inlays */
+#stats .pg-hero{background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .6),0 18px 34px -20px rgb(227 176 79 / .75)!important}
+#stats .pg-hero .pg-level-tx>b{color:var(--j-gold-ink)!important}
+#stats .pg-hero .pg-level-tx>small{color:rgb(58 37 14 / .68)!important}
+#stats .pg-hero .pg-level-bar{background:rgb(58 37 14 / .14)!important}
+#stats .pg-hero .pg-level-bar i{background:linear-gradient(90deg,#A8752A,var(--j-gold-mid))!important}
+#stats .pg-hero .pg-level-n{background:linear-gradient(160deg,#4A3016,var(--j-gold-ink))!important;box-shadow:0 0 0 3px rgb(255 255 255 / .45),0 8px 16px -8px rgb(58 37 14 / .7)!important}
+#stats .pg-hero .pg-level-n small,#stats .pg-hero .pg-level-n b{color:var(--j-gold)!important}
+#stats .pg-trophies span{background:var(--j-gold-ink)!important;box-shadow:none!important}
+#stats .pg-trophies b{color:#FFF3DA!important}
+#stats .pg-trophies small{color:rgb(255 236 200 / .7)!important}
+/* this week and the habits: consistency, so emerald; Good Days stay gold within it */
+#stats .pg-wk{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 1px 0 rgb(200 240 190 / .12),inset 0 0 0 1px rgb(166 212 154 / .24),0 16px 32px -20px rgb(10 40 25 / .9)!important}
+#stats .pg-wk-top>span:first-child{color:var(--j-sage)!important}
+#stats .pg-wk :is(p,.pg-wk-vs){color:rgb(225 240 220 / .78)!important}
+#stats .pg-wk-dots .d.some i{background:rgb(166 212 154 / calc(.28 + var(--f) * .5))!important;box-shadow:none!important;color:#0F2418!important;text-shadow:none!important}
+#stats .pg-wk-dots .d small{color:rgb(225 240 220 / .6)!important}
+#stats .pg-wk-dots .d.none:not(.fut) i,#stats .pg-wk-dots .d.fut i{background:rgb(255 255 255 / .06)!important;box-shadow:none!important}
+#stats .pg-habs{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(166 212 154 / .22)!important}
+#stats .pg-habs .pg-hab{border-color:rgb(166 212 154 / .12)!important}
+#stats .pg-hab-bar{background:rgb(255 255 255 / .1)!important;height:6px!important}
+#stats .pg-hab-bar i{background:linear-gradient(90deg,var(--j-sage-mid),var(--j-sage))!important}
+#stats .pg-hab-n b{color:#F1F8EC}
+/* Life Area dials: each area on its own jewel */
+#stats .pg-dial.t-rose{background:linear-gradient(155deg,var(--j-rose-deep),var(--j-rose-deep-2))!important}
+#stats .pg-dial.t-sage{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important}
+#stats .pg-dial.t-peach{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important}
+#stats .pg-dial.t-lav{background:linear-gradient(155deg,var(--j-lav-deep),var(--j-lav-deep-2))!important}
+#stats .pg-dial.t-gold{background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important}
+#stats .pg-dial.t-gold b{color:var(--j-gold-ink)!important}#stats .pg-dial.t-gold small{color:#8A5E1C!important}
+#stats .pg-dial.t-gold .pg-area-ring{background:conic-gradient(var(--j-gold-mid) calc(var(--p) * 1%),rgb(58 37 14 / .14) 0)!important}
+#stats .pg-dial{box-shadow:inset 0 1px 0 rgb(255 255 255 / .1),inset 0 0 0 1px rgb(var(--tone) / .3)!important}
+#stats .pg-dial .pg-area-ring i{background:#1A0F1D!important} /* an opaque dial face, so it reads as a ring, not a pie */
+#stats .pg-dial small{color:rgb(var(--tone))!important}
+/* history: habit days in a clearer sage scale; Good Days solid gold */
+/* solid emerald steps: translucent green over plum turned olive-grey */
+#stats .pg-heat i.lv1{background:#2A4535!important;color:#CFE6C8!important}
+#stats .pg-heat i.lv2{background:#3F6A4E!important;color:#E6F3E1!important}
+#stats .pg-heat i.lv3{background:#79B784!important;color:#0E2416!important;font-weight:700!important;box-shadow:none!important}
+#stats .pg-key i.lv2{background:#79B784!important}
+/* running: emerald */
+#stats .pg-run{background:linear-gradient(155deg,var(--j-sage-deep),var(--j-sage-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(166 212 154 / .22)!important}
+
+/* ---------- Pass 54 (Claude): Arcade, a destination in jewels ---------- */
+/* three modes, each its own jewel even before it's chosen: Play garnet, Brain amethyst, Learn indigo (one family, not twins) */
+#boost .ar-mode{box-shadow:none!important}
+#boost .ar-mode.m-play{background:linear-gradient(155deg,#4A1C34,#2E1022)!important}
+#boost .ar-mode.m-brain{background:linear-gradient(155deg,#3A2468,#24163F)!important}
+#boost .ar-mode.m-learn{background:linear-gradient(155deg,#25306A,#171D44)!important}
+#boost .ar-mode .ar-mode-ic{background:rgb(255 255 255 / .1)!important}
+#boost .ar-mode.m-play .ar-mode-ic{color:var(--j-rose)!important}#boost .ar-mode.m-brain .ar-mode-ic{color:var(--j-lav)!important}#boost .ar-mode.m-learn .ar-mode-ic{color:#AFC1FF!important}
+#boost .ar-mode:not([aria-pressed="true"]){color:rgb(255 255 255 / .62)!important;filter:saturate(.75) brightness(.9)}
+#boost .ar-mode.m-play[aria-pressed="true"]{background:linear-gradient(155deg,#7A2A50,#4A1530)!important;box-shadow:inset 0 0 0 2px var(--j-rose),0 12px 26px -14px rgb(217 102 140 / .8)!important}
+#boost .ar-mode.m-play[aria-pressed="true"] .ar-mode-ic{background:var(--j-rose)!important;color:var(--j-on-rose)!important}
+#boost .ar-mode.m-brain[aria-pressed="true"]{background:linear-gradient(155deg,#5A3A9E,#35226A)!important;box-shadow:inset 0 0 0 2px var(--j-lav),0 12px 26px -14px rgb(140 100 230 / .8)!important}
+#boost .ar-mode.m-brain[aria-pressed="true"] .ar-mode-ic{background:var(--j-lav)!important;color:#241646!important}
+#boost .ar-mode.m-learn[aria-pressed="true"]{background:linear-gradient(155deg,#36479A,#212C66)!important;box-shadow:inset 0 0 0 2px #AFC1FF,0 12px 26px -14px rgb(110 130 230 / .8)!important}
+#boost .ar-mode.m-learn[aria-pressed="true"] .ar-mode-ic{background:#AFC1FF!important;color:#18204A!important}
+#boost .ar-mode[aria-pressed="true"]{color:#FFF6FA!important}
+/* tokens: Arcade currency, violet with a gold ticket */
+#boost .ar-wallet{background:linear-gradient(155deg,#3A2468,#24163F)!important;box-shadow:inset 0 0 0 1px rgb(199 177 246 / .25)!important}
+#boost .ar-wallet-ic{background:var(--j-gold)!important;color:var(--j-gold-ink)!important}
+#boost .ar-wallet-tx small{color:rgb(235 225 255 / .72)!important}
+/* Daily Play: the Arcade's violet, matching Home, with the gold ribbon */
+#boost .ar-daily{background:radial-gradient(90% 120% at 100% 0%,rgb(242 155 182 / .22),transparent 60%),linear-gradient(155deg,#4F2678,#2C1648)!important;box-shadow:inset 0 1px 0 rgb(230 210 255 / .16),inset 0 0 0 1px rgb(190 160 245 / .35),0 18px 36px -20px rgb(120 70 200 / .8)!important}
+#boost .ar-daily .ar-eyebrow{color:var(--j-lav)!important}
+#boost .ar-daily .tx small{color:rgb(235 225 255 / .72)!important}
+/* Weekly Bingo: champagne with a dark printed board, the same object as on Home */
+#boost .ar-board{background:linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .55),0 16px 30px -20px rgb(227 176 79 / .7)!important;color:var(--j-gold-ink)!important}
+#boost .ar-board .bd-grid{background:var(--j-gold-ink)!important;box-shadow:none!important}
+#boost .ar-board .bd-grid i{background:rgb(255 255 255 / .12)!important}
+#boost .ar-board .bd-grid i.on,#boost .ar-board .bd-grid i.free{background:var(--j-gold)!important;box-shadow:none!important}
+#boost .ar-board .bd-tx b{color:var(--j-gold-ink)!important}#boost .ar-board .bd-tx span{color:#8A5E1C!important}#boost .ar-board .bd-tx small{color:rgb(58 37 14 / .65)!important}
+/* each mode's content wears its jewel: Learn indigo, Brain amethyst */
+#boost .ln-word{background:radial-gradient(100% 80% at 100% 0%,rgb(175 193 255 / .2),transparent 60%),linear-gradient(155deg,#2B3577,#1A2049)!important;box-shadow:inset 0 1px 0 rgb(210 220 255 / .14),inset 0 0 0 1px rgb(175 193 255 / .3),0 18px 34px -20px rgb(60 80 200 / .7)!important}
+#boost .ln-ai{background:linear-gradient(155deg,#232B60,#161B3E)!important;box-shadow:inset 0 0 0 1px rgb(175 193 255 / .24)!important}
+#boost :is(.ln-word,.ln-ai) :is(.ln-eyebrow,.ln-pron){color:#B9C8FF!important}
+#boost .br-mix{background:radial-gradient(100% 80% at 100% 0%,rgb(199 177 246 / .22),transparent 60%),linear-gradient(155deg,#43297A,#28184C)!important;box-shadow:inset 0 1px 0 rgb(220 205 255 / .14),inset 0 0 0 1px rgb(199 177 246 / .32),0 18px 34px -20px rgb(110 70 210 / .7)!important}
+#boost .br-game{background:linear-gradient(155deg,#33215C,#21153C)!important;box-shadow:inset 0 0 0 1px rgb(199 177 246 / .22)!important}
+
+/* ---------- Pass 55 (Claude): Rewards, a little boutique ---------- */
+/* the wallet is what she's earned: champagne with dark ink, and Saving For lives inside it as the centerpiece */
+#rewards .bq-wallet{background:radial-gradient(120% 90% at 100% 0%,rgb(255 255 255 / .35),transparent 55%),linear-gradient(155deg,var(--j-champ),var(--j-champ-2))!important;box-shadow:inset 0 1px 0 rgb(255 255 255 / .6),0 20px 38px -20px rgb(227 176 79 / .8)!important}
+#rewards .bq-wallet::before,#rewards .bq-wallet::after{display:none!important}
+#rewards .bq-bal .ds-ic{color:var(--j-gold-mid)!important}
+#rewards .bq-bal b{color:var(--j-gold-ink)!important}
+#rewards .bq-wl b{color:var(--j-gold-ink)!important}#rewards .bq-wl small{color:rgb(58 37 14 / .62)!important}
+#rewards .bq-wallet .bq-goal{border-top-color:rgb(58 37 14 / .14)!important}
+#rewards .bq-wallet .bq-goal-tx small{color:#8A5E1C!important}
+#rewards .bq-wallet .bq-goal-tx b{color:var(--j-gold-ink)!important}
+#rewards .bq-wallet .bq-goal .bq-meter{background:rgb(58 37 14 / .14)!important}
+#rewards .bq-wallet .bq-goal .bq-meter i{background:linear-gradient(90deg,#A8752A,var(--j-gold-mid),#E9B85A)!important;box-shadow:none!important}
+#rewards .bq-wallet .bq-goal em{color:rgb(58 37 14 / .7)!important}
+#rewards .bq-wallet .bq-goal em strong{color:#8A5E1C!important}
+#rewards .bq-wallet .bq-goal.is-ready em{color:#B23A64!important}
+#rewards .bq-pick{border-top-color:rgb(58 37 14 / .14)!important;color:var(--j-gold-ink)!important}
+#rewards .bq-pick>.ds-ic:first-child{background:var(--j-gold-ink)!important;color:var(--j-gold)!important}
+#rewards .bq-pick small{color:rgb(58 37 14 / .65)!important}
+#rewards .bq-pick .tb-caret{color:rgb(58 37 14 / .5)!important}
+/* the Mystery box sits on garnet velvet with its gold gift; Collections are coral (personal, collectible); History stays quiet */
+#rewards .bq-mystery{background:radial-gradient(90% 140% at 0% 50%,rgb(243 203 120 / .3),transparent 60%),linear-gradient(155deg,#6A2245,#3D1329)!important;box-shadow:inset 0 1px 0 rgb(255 200 220 / .16),inset 0 0 0 1px rgb(243 203 120 / .35),0 18px 34px -20px rgb(217 102 140 / .7)!important}
+#rewards .bq-mystery-tx small{color:rgb(255 225 235 / .75)!important}
+#rewards .bq-links .bq-link:first-child{background:linear-gradient(155deg,var(--j-coral-deep),var(--j-coral-deep-2))!important;box-shadow:inset 0 0 0 1px rgb(238 136 120 / .3)!important}
+#rewards .bq-links .bq-link:first-child .ds-glyph{background:rgb(248 181 154 / .22)!important;color:var(--j-peach)!important}
+#rewards .bq-links .bq-link:first-child small{color:rgb(255 225 215 / .75)!important}
+/* reward tiles: the photos carry the color; a soft lift so they read as products on a shelf */
+#rewards .bq-tile .bq-ph{box-shadow:0 12px 22px -14px rgb(0 0 0 / .9),0 0 0 1px rgb(255 255 255 / .06)}
+#rewards .bq-tile .bq-nm{font-weight:600!important}
+
+/* ---------- Pass 56 (Claude): selected states you can see at a glance ---------- */
+/* a chosen chip is filled pink with dark ink (not a faint outline); a chosen segment is a garnet pill */
+.add-chip[aria-checked="true"]{background:var(--j-rose)!important;box-shadow:0 6px 14px -8px rgb(217 102 140 / .9)!important;color:var(--j-on-rose)!important;font-weight:650!important}
+.ds-seg button[aria-pressed="true"],.ds-seg button.on{background:linear-gradient(155deg,#7A2A50,#4A1530)!important;color:#FFF3F7!important;box-shadow:inset 0 0 0 1px rgb(242 155 182 / .45),0 6px 14px -8px rgb(217 102 140 / .7)!important}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -10747,7 +10987,9 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const meta = [due, subs.length ? `${sd}/${subs.length}` : '', t.recur ? { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' }[t.recur] : ''].filter(Boolean);
     // pass 35: the Life Area shows as a dot in its own tone, so tasks are scannable by area at a glance
     const areaTag = area ? `<span class="lf-area${meta.length ? ' sep' : ''}" style="--a:var(--ds-${String(area.tone || 'rose').replace(/[^a-z]/g, '')})">${esc(area.name)}</span>` : '';
-    return `<div class="ds-row lf-task ${t.done ? 'done' : ''} ${t.due && t.due < today() && !t.done ? 'overdue' : ''}"><button type="button" class="lf-check" onclick="lfToggle('${esc(t.id)}')" aria-pressed="${!!t.done}" aria-label="${t.done ? 'Mark not done' : 'Done'}: ${esc(t.name)}">${t.done ? ic('check-bold') : ''}</button>
+    // pass 52: the task's Life Area colors its leading edge, so the list scans by area before reading
+    const tone = area ? String(area.tone || 'rose').replace(/[^a-z]/g, '') : '';
+    return `<div class="ds-row lf-task ${t.done ? 'done' : ''} ${t.due && t.due < today() && !t.done ? 'overdue' : ''} ${tone ? 'has-area' : ''}"${tone ? ` style="--a:var(--ds-${tone})"` : ''}><button type="button" class="lf-check" onclick="lfToggle('${esc(t.id)}')" aria-pressed="${!!t.done}" aria-label="${t.done ? 'Mark not done' : 'Done'}: ${esc(t.name)}">${t.done ? ic('check-bold') : ''}</button>
       <button type="button" class="ds-row-main lf-open" onclick="lfTask('${esc(t.id)}')"><span class="ds-row-title">${prioDot(t)}${esc(t.name)}</span>${meta.length || areaTag ? `<span class="ds-row-sub">${esc(meta.join(', '))}${areaTag}</span>` : ''}</button></div>`;
   }
   /* Pass 42: Life HQ as a small personal command center. Typing a task is one line (return adds it, details are optional);
