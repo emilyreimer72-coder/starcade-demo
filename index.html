@@ -4712,14 +4712,13 @@ main>section.hide{display:none!important}main>section:not(.hide){display:block!i
     const b = boardState(); const pickIdx = sel != null ? sel : b.marks.findIndex((m, i) => !m.done);
     const det = pickIdx >= 0 ? cellDetail(b.cells[pickIdx], b.marks[pickIdx]) : { t: 'Full card!', s: 'Every square done this week.', ic: 'star-fill', p: 1 };
     const lineCells = new Set(b.lines.flatMap(i => LINES[i])), fresh = new Set(freshLines.flatMap(i => LINES[i])), gold = b.rec.gold;
-    // each finished line gets a strike; a line finished since the board was last seen draws itself in and its squares pop in order
-    const cc = j => [(j % 5 + .5) * 20, (Math.floor(j / 5) + .5) * 20];
-    const strikes = b.lines.map(i => { const l = LINES[i], [x1, y1] = cc(l[0]), [x2, y2] = cc(l[4]), f = freshLines.includes(i); return `<line class="${f ? 'fresh' : ''}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" pathLength="1"/>`; }).join('');
+    // a line finished since the board was last seen pops its squares in order and glows; finished lines keep their thin gold
+    // edge. No line is drawn across the board: Emmy rejected that overlay in v4 (DESIGN_SYSTEM "Bingo board"), pass 39 removed it.
     const popAt = j => { const k = freshLines.map(i => LINES[i].indexOf(j)).filter(n => n >= 0); return k.length ? ` style="--d:${Math.min(...k) * 90}ms"` : ''; };
     const html = `<div class="v7-top">${closeBtn}<span></span><span style="width:44px"></span></div>
       <div class="v7-bhead"><div><p class="v7-h">Weekly Bingo</p><div class="v7-ends">${endsText()}</div></div><span class="v7-bstat">${b.count} of 25${b.lines.length ? `, ${b.lines.length} line${b.lines.length === 1 ? '' : 's'}` : ''}</span></div>
       <div class="v7-board" role="grid" aria-label="Weekly Bingo board">${b.cells.map((id, i) => { const m = b.marks[i], s = SQ[id]; const free = id === 'free';
-        return `<button type="button" class="v7-cell ${m.done && !free ? 'on' : ''} ${free ? 'free' : ''} ${lineCells.has(i) ? 'ln' : ''} ${fresh.has(i) ? 'fresh' : ''} ${i === pickIdx ? 'sel' : ''} ${i === gold ? 'gold' : ''}"${popAt(i)} onclick="v7OpenBingo(${i})" aria-label="${free ? 'Free square' : escapeHTML(s ? s[1] : id)}${i === gold ? ', gold square' : ''}${m.done ? ', done' : ''}">${icon(free ? 'star-fill' : s ? s[2] : 'star-fill')}${free ? '' : `<span>${escapeHTML(s ? s[1] : id)}</span>`}</button>`; }).join('')}${strikes ? `<svg class="v7-strikes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${strikes}</svg>` : ''}</div>
+        return `<button type="button" class="v7-cell ${m.done && !free ? 'on' : ''} ${free ? 'free' : ''} ${lineCells.has(i) ? 'ln' : ''} ${fresh.has(i) ? 'fresh' : ''} ${i === pickIdx ? 'sel' : ''} ${i === gold ? 'gold' : ''}"${popAt(i)} onclick="v7OpenBingo(${i})" aria-label="${free ? 'Free square' : escapeHTML(s ? s[1] : id)}${i === gold ? ', gold square' : ''}${m.done ? ', done' : ''}">${icon(free ? 'star-fill' : s ? s[2] : 'star-fill')}${free ? '' : `<span>${escapeHTML(s ? s[1] : id)}</span>`}</button>`; }).join('')}</div>
       <div class="v7-detail b${pickIdx === gold ? ' gold' : ''}"><span class="ic">${icon(det.ic)}</span><div><b>${escapeHTML(det.t)}</b><small>${escapeHTML(det.s)}${pickIdx === gold ? (b.marks[gold].done ? ' Gold square: +20 XP earned.' : ' Gold square: worth +20 XP this week.') : ''}</small>${det.p < 1 ? `<div class="v7-bar"><i style="width:${Math.round(det.p * 100)}%"></i></div>` : ''}</div></div>
       ${b.rec.v >= 4 ? `<div class="v7-tiers">${[['1', '1 line', `+${BINGO_TIERS[1]} ★`], ['2', '2 lines', `+${BINGO_TIERS[2]} ★`], ['3', '3 lines', 'Mystery Box'], ['full', 'Blackout', `+${BINGO_TIERS.full} ★`]].map(([k, l, r]) => `<span class="${(b.rec.tiers || {})[k] ? 'got' : ''}"><small>${l}</small><b>${r}</b></span>`).join('')}</div>` : '<div class="v7-bfoot"><span>Each line <b>+3 ★</b></span><span>Full card <b>+10 ★</b> and a Bingo Mystery Box</span></div>'}
       <div class="v7-row" style="margin-top:10px"><button class="v7-btn ghost" onclick="v7BingoHistory()">Past boards</button></div>
@@ -5235,7 +5234,7 @@ button.ds-row:active,.ar-extra:active,.ar-bingo:active,.ar-game:active .cv,.td-c
 .td-sec{margin-top:var(--ds-s4)}
 .td-list .td-part{display:flex;align-items:center;gap:6px;font:650 12px/1 var(--ds-font);color:var(--ds-text-2);letter-spacing:.01em;padding:12px 16px 4px}
 .td-list .td-part .ds-ic{width:14px;height:14px}
-.td-part-morning .ds-ic{color:var(--ds-gold)}.td-part-anytime .ds-ic{color:var(--ds-rose)}.td-part-night .ds-ic{color:var(--ds-text-2)}
+.td-part-morning .ds-ic{color:var(--ds-peach)}.td-part-anytime .ds-ic{color:var(--ds-sage)}.td-part-night .ds-ic{color:var(--ds-lav)}
 .td-row{min-height:52px;padding-top:4px;padding-bottom:4px}
 .td-row .ds-glyph{width:32px;height:32px}
 .td-row .ds-row-title{white-space:normal;overflow:visible;text-overflow:clip;font-weight:600;line-height:1.25}
@@ -5518,7 +5517,7 @@ button.td-part .chev.ok{color:var(--ds-gold)}
 button.td-part.is-now{color:var(--ds-text);font-size:14px}
 button.td-part.is-now em{color:var(--ds-rose)}
 button.td-part.is-open{padding-top:10px}
-.td-part-night .ds-ic{color:color-mix(in srgb,var(--ds-rose) 40%,var(--ds-text-2))}
+.td-part-night .ds-ic{color:var(--ds-lav)}
 /* Good Day: per-routine chips that turn gold when met; the hero lights up when the day is good */
 .td-ctx span.ok{color:var(--ds-gold);background:var(--ds-gold-wash)}
 .td-ctx span.ok .ds-ic{color:var(--ds-gold)}
@@ -6995,7 +6994,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
 .td-side-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
 .td-side-tx small{font:600 11.5px var(--ds-font);color:var(--ds-sage)}
 .td-side-tx b{font:550 14px/1.3 var(--ds-font);color:var(--ds-text)}
-.td-side-swap{width:36px;height:36px;background:none!important;box-shadow:none!important}
+.td-side-swap{width:40px;height:40px;padding:0!important;flex:none;display:grid;place-items:center;background:none!important;box-shadow:none!important}
 .td-side.done{opacity:.75}
 .td-side.done .td-side-tx b{color:var(--ds-text-3)}
 .focus-ring{display:flex;flex-direction:column;align-items:center;gap:6px;margin:6px auto 4px;width:200px;height:200px;border-radius:50%;justify-content:center;background:radial-gradient(circle,var(--ds-surface) 62%,transparent 63%),conic-gradient(var(--ds-rose),var(--ds-lav),var(--ds-rose));box-shadow:0 0 30px -10px rgb(var(--ds-rose-rgb) / .5)}
@@ -7003,7 +7002,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
 .focus-ring small{max-width:150px;font:500 13px var(--ds-font);color:var(--ds-text-2);text-align:center}
 .pg-bingohist{margin:12px 0 0}
 .add-more{margin-top:-4px}
-.td-side-swap .ds-ic{width:19px!important;height:19px!important;color:var(--ds-text-2)}
+.td-side-swap .ds-ic{flex:none;width:19px!important;height:19px!important;color:var(--ds-text-2)}
 /* Solitaire materials (pass 31): a deeper bottle-green felt, printed card faces with serif indices, framed court cards,
    an ornate ace, a plum-and-gold lattice back with a star medallion, and ghost marks on empty slots. Layout and rules unchanged. */
 .gm-frame[data-game="solitaire"]{--ds-env-felt:#1C5E46;--ds-env-felt-2:#134634;--ds-env-felt-3:#0B2E22}
@@ -7021,18 +7020,12 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
 .sol-slot{border-color:rgb(255 255 255 / .14)!important;background:rgb(0 0 0 / .08)}
 .sol-slot.found::before,.sol-slot.tab::before{position:absolute;inset:0;display:grid;place-items:center;font:600 calc(var(--cw) * .42)/1 var(--sc-display);color:rgb(255 255 255 / .16)}
 .sol-slot.found::before{content:"A"}.sol-slot.tab::before{content:"K"}
-/* Bingo (pass 31): finished lines are struck through in gold; a new line draws itself in and its squares pop in order.
+/* Bingo (pass 31, line overlay removed in pass 39): a new line's squares pop in order and glow; finished lines keep the thin gold edge.
    One gold square a week, ringed in gold, worth XP. */
 .v7-board{position:relative}
-.v7-strikes{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;overflow:visible}
-.v7-strikes line{stroke:var(--ds-gold);stroke-width:1.1;stroke-linecap:round;opacity:.42;stroke-dasharray:1;stroke-dashoffset:0}
-.v7-strikes line.fresh{opacity:.9;filter:drop-shadow(0 0 4px rgb(var(--ds-gold-rgb) / .7))}
 @media (prefers-reduced-motion:no-preference){
-  .v7-strikes line.fresh{stroke-dashoffset:1;animation:v7strike .7s cubic-bezier(.6,0,.2,1) .55s forwards,v7strikeSettle .8s ease 2.4s forwards}
   .v7-cell.fresh{animation:v7pop .42s cubic-bezier(.3,1.6,.5,1) var(--d,0ms) both,v7lineglow 2.2s ease-in-out var(--d,0ms) 1!important}
 }
-@keyframes v7strike{to{stroke-dashoffset:0}}
-@keyframes v7strikeSettle{to{opacity:.42;filter:none}}
 @keyframes v7pop{0%{transform:scale(1)}45%{transform:scale(1.1)}100%{transform:scale(1)}}
 .v7-cell.gold{box-shadow:inset 0 0 0 1.5px rgb(var(--ds-gold-rgb) / .75),0 0 14px -6px rgb(var(--ds-gold-rgb) / .6)!important;background:linear-gradient(160deg,rgb(var(--ds-gold-rgb) / .14),rgb(var(--ds-gold-rgb) / .03)),#1F1620!important}
 .v7-cell.gold svg{color:var(--ds-gold)!important;opacity:1}
@@ -7042,6 +7035,256 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
 .v7-cell.gold.on::after{background:#FFF6E0}
 .v7-detail.gold .ic{color:var(--ds-gold)!important;background:rgb(var(--ds-gold-rgb) / .14)!important}
 .v7-mini i.gold{box-shadow:0 0 0 1px var(--ds-gold)}
+
+
+/* ===================== Pass 33: richer color + clearer UX ===================== */
+/* Purpose: fix the "same plum rectangles" problem without changing mechanics.
+   Color is semantic: rose = action, gold = earned, sage = wellness/consistency,
+   lavender = brain/learn/rest, peach = personal. */
+
+html.ds-shell body{
+  background:
+    radial-gradient(120% 65% at 50% -8%,rgb(var(--ds-rose-rgb) / .10),transparent 58%),
+    radial-gradient(95% 55% at 100% 18%,rgb(var(--ds-lav-rgb) / .055),transparent 62%),
+    var(--ds-bg);
+}
+
+/* Make the shell feel deliberately layered instead of flat. */
+html.ds-shell .ds-card,
+html.ds-shell .ds-list{
+  box-shadow:
+    inset 0 1px 0 rgb(255 235 242 / .07),
+    inset 0 0 0 1px rgb(255 224 235 / .045),
+    0 10px 26px -20px rgb(0 0 0 / .95);
+}
+html.ds-shell .ds-row{
+  transition:background var(--ds-fast) var(--ds-ease),transform var(--ds-fast) var(--ds-ease);
+}
+html.ds-shell button.ds-row:active,
+html.ds-shell .ds-row[role="button"]:active{
+  background:rgb(var(--ds-rose-rgb) / .075);
+  transform:scale(.994);
+}
+
+/* Section labels should orient the eye immediately. */
+html.ds-shell .ds-section{
+  color:var(--ds-text);
+  font-weight:700;
+  letter-spacing:.005em;
+}
+html.ds-shell .ds-section::before{
+  content:"";
+  width:4px;
+  height:14px;
+  border-radius:999px;
+  background:var(--ds-rose);
+  box-shadow:0 0 12px rgb(var(--ds-rose-rgb) / .22);
+  flex:none;
+  margin-right:6px;
+}
+html.ds-shell .ds-section{
+  justify-content:flex-start;
+}
+html.ds-shell .ds-section > :last-child:not(:first-child){
+  margin-left:auto;
+}
+
+/* Primary actions need to look unmistakably actionable. */
+html.ds-shell .ds-btn-primary{
+  background:linear-gradient(180deg,#F0ABC0,#E996B0);
+  color:#2A1520;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / .24),
+    0 7px 18px -10px rgb(var(--ds-rose-rgb) / .9);
+}
+html.ds-shell .ds-btn-secondary{
+  background:linear-gradient(180deg,var(--ds-raised-2),var(--ds-raised));
+}
+html.ds-shell .ds-btn-ghost{
+  font-weight:700;
+}
+
+/* Navigation: stronger active state, quieter inactive state. */
+html.ds-shell .ds-tabbar{
+  background:rgb(17 8 18 / .965);
+  box-shadow:0 -1px 0 rgb(255 225 236 / .11),0 -14px 32px -26px rgb(0 0 0 / .95);
+}
+html.ds-shell .ds-tab:not(.active){
+  color:rgb(var(--ds-text-rgb) / .50);
+}
+html.ds-shell .ds-tab.active{
+  color:var(--ds-cream);
+}
+html.ds-shell .ds-tab.active .ds-ic{
+  color:#FFD0DE;
+  background:rgb(var(--ds-rose-rgb) / .20);
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .16),0 4px 14px -8px rgb(var(--ds-rose-rgb) / .75);
+}
+
+/* HOME — the next action gets rose; quests feel earned/gold; supporting items recede. */
+.td-now{
+  position:relative;
+}
+.td-now-h span{
+  color:var(--ds-cream);
+}
+.td-now-h em{
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--ds-rose-wash);
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .18);
+}
+.td-nowlist{
+  background:linear-gradient(180deg,rgb(var(--ds-raised-rgb) / .88),rgb(var(--ds-surface-rgb) / .96))!important;
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .10),var(--ds-card-shadow)!important;
+}
+.td-nowlist .td-row:first-child{
+  background:
+    linear-gradient(90deg,rgb(var(--ds-rose-rgb) / .18),rgb(var(--ds-rose-rgb) / .045) 72%,transparent)!important;
+  box-shadow:inset 3px 0 0 var(--ds-rose);
+}
+.td-nowlist .td-row:first-child .td-star{
+  border-radius:999px;
+  background:rgb(var(--ds-rose-rgb) / .11);
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .13);
+}
+.td-nowlist .td-row:first-child .ds-row-sub{
+  color:var(--ds-text-2)!important;
+}
+
+.td-quests{
+  background:
+    radial-gradient(110% 150% at 100% 0%,rgb(var(--ds-gold-rgb) / .18),transparent 53%),
+    linear-gradient(180deg,rgb(68 45 46 / .92),rgb(46 29 43 / .98))!important;
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .14),var(--ds-card-shadow)!important;
+}
+.td-quests-h b{
+  color:var(--ds-cream);
+}
+.td-quest:not(.done):active{
+  background:rgb(var(--ds-gold-rgb) / .06);
+  border-radius:10px;
+}
+.td-side{
+  background:linear-gradient(90deg,rgb(var(--ds-sage-rgb) / .14),rgb(var(--ds-sage-rgb) / .055))!important;
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-sage-rgb) / .22)!important;
+}
+
+/* Routine choices should be scannable at a glance, not identical tiles. */
+button.td-pill{
+  background:linear-gradient(180deg,rgb(var(--ds-raised-rgb) / .95),rgb(var(--ds-surface-rgb) / .98))!important;
+}
+button.td-pill:nth-child(4n+1) .td-pill-ic{background:var(--ds-rose-wash);color:var(--ds-rose)}
+button.td-pill:nth-child(4n+2) .td-pill-ic{background:var(--ds-lav-wash);color:var(--ds-lav)}
+button.td-pill:nth-child(4n+3) .td-pill-ic{background:var(--ds-sage-wash);color:var(--ds-sage)}
+button.td-pill:nth-child(4n) .td-pill-ic{background:var(--ds-gold-wash);color:var(--ds-gold)}
+button.td-pill:active{
+  transform:translateY(1px) scale(.99);
+  filter:brightness(1.06);
+}
+
+/* Reward/treat rail: preserve cohesion, but make special objects visually distinct. */
+.td-rail .td-foryou>.tb-row,
+.td-rail .td-foryou>.td-surprise,
+.td-treat{
+  background:linear-gradient(180deg,rgb(var(--ds-raised-rgb) / .94),rgb(var(--ds-surface-rgb) / .98))!important;
+}
+.td-rail .td-foryou>.td-surprise{
+  background:
+    radial-gradient(90% 90% at 15% 5%,rgb(var(--ds-rose-rgb) / .28),transparent 58%),
+    linear-gradient(180deg,rgb(71 37 62 / .98),rgb(43 26 43 / .98))!important;
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .14),var(--ds-card-shadow)!important;
+}
+.td-treat.tr-bingo{
+  background:linear-gradient(180deg,rgb(77 58 40 / .92),rgb(47 31 39 / .98))!important;
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .13),var(--ds-card-shadow)!important;
+}
+.td-treat.tr-tokens{
+  background:linear-gradient(180deg,rgb(57 44 75 / .94),rgb(41 28 48 / .98))!important;
+  box-shadow:inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .14),var(--ds-card-shadow)!important;
+}
+
+/* Supporting text: raise useful secondary copy, keep true tertiary copy quiet. */
+html.ds-shell .ds-row-sub,
+.td-rail .td-foryou .ds-row-sub{
+  color:#BEA8B4;
+}
+html.ds-shell .ds-row-title{
+  font-weight:600;
+}
+
+/* Sheets and forms: stronger separation from the page underneath. */
+html.ds-shell .ds-sheet,
+html.ds-shell :is(.v15-modalContent,.pet-house,.v13-peek-inner){
+  background:
+    linear-gradient(180deg,rgb(var(--ds-raised-rgb) / .46),transparent 92px),
+    var(--ds-bg-2)!important;
+  box-shadow:0 -26px 58px rgb(0 0 0 / .72),inset 0 1px 0 rgb(255 235 242 / .08)!important;
+}
+
+@media (prefers-reduced-motion:no-preference){
+  html.ds-shell .ds-btn-primary:active,
+  .td-nowlist .td-row:first-child:active{
+    transform:scale(.985);
+  }
+}
+
+/* ===================== Pass 34 (Claude): Home hierarchy, semantic not positional color ===================== */
+/* Builds on pass 33. Two corrections from the owner's FEEDBACK_LOG ("contrast, texture, depth, type and hierarchy, not random
+   colors"): color follows meaning, never list position, and rose is kept for "act now" instead of marking every header. */
+html.ds-shell .ds-section::before{content:none}
+/* Routine pills: the part of the day decides the color (morning warmth, anytime wellness, night rest); others stay neutral */
+button.td-pill.td-part .td-pill-ic{background:rgb(var(--ds-text-rgb) / .07);color:var(--ds-text-2)}
+button.td-pill.td-part-morning .td-pill-ic{background:var(--ds-peach-wash);color:var(--ds-peach)}
+button.td-pill.td-part-anytime .td-pill-ic{background:var(--ds-sage-wash);color:var(--ds-sage)}
+button.td-pill.td-part-night .td-pill-ic{background:var(--ds-lav-wash);color:var(--ds-lav)}
+button.td-pill.is-done .td-pill-ic{background:var(--ds-sage-wash)!important;color:var(--ds-sage)!important}
+button.td-pill.is-done{opacity:.72}
+/* Daily quests: an earned system, so champagne on plum (not brown), with gold check wells */
+.td-quests{background:radial-gradient(120% 120% at 100% 0%,rgb(var(--ds-gold-rgb) / .16),transparent 55%),linear-gradient(180deg,#3A2341,#2A182E)!important;box-shadow:inset 0 1px 0 rgb(var(--ds-gold-rgb) / .28),inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .2),var(--ds-card-shadow)!important}
+.td-quests-h b{color:#F3DDB0!important}
+.td-quest .q-box{box-shadow:inset 0 0 0 1.5px rgb(var(--ds-gold-rgb) / .75)!important;background:rgb(var(--ds-gold-rgb) / .06)}
+.td-quest:not(.done) .q-tx small{color:rgb(var(--ds-gold-rgb) / .78)}
+.td-quests.is-done{opacity:.86}
+
+
+/* ===================== Pass 35 (Claude): Settings and Life HQ, the same semantic language ===================== */
+.ds-glyph-quiet{background:rgb(var(--ds-text-rgb) / .07);color:var(--ds-text-2)}
+/* Life HQ: open tasks invite a tap (rose ring), overdue ones are peach, finished ones turn a quiet gold, and Today carries
+   the same rose leading edge as Home's next action. The area is a dot in its own tone. */
+.lf .lf-task:not(.done) .lf-check{border-color:rgb(var(--ds-rose-rgb) / .6)}
+.lf .lf-task.overdue .lf-check{border-color:var(--ds-peach)}
+.lf-check[aria-pressed="true"]{background:rgb(var(--ds-gold-rgb) / .75)!important;border-color:transparent!important;color:#2A1A22}
+.ds-list.lf-today{box-shadow:inset 3px 0 0 var(--ds-rose),var(--ds-hi),var(--ds-card-shadow)!important;background:linear-gradient(90deg,rgb(var(--ds-rose-rgb) / .1),transparent 60%),var(--ds-surface)!important}
+.lf-area{display:inline-flex;align-items:center;gap:5px;color:var(--ds-text-2)}
+.lf-area::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--a,var(--ds-rose))}
+.lf-area.sep{margin-left:8px}
+/* the legacy global button padding stretched task checks into ovals; keep them true circles everywhere they appear */
+button.lf-check{padding:0!important;width:24px!important;height:24px!important;min-width:24px;box-sizing:border-box}
+
+/* ===================== Pass 36 (Claude): Progress, color by meaning ===================== */
+/* Days with habits done are consistency, so sage (rose is "act now" and doesn't belong on past days); Good Days stay gold */
+.pg-heat i.lv1{background:rgb(var(--ds-sage-rgb) / .08)!important;color:var(--ds-text-2)}
+.pg-heat i.lv2{background:rgb(var(--ds-sage-rgb) / .15)!important;color:var(--ds-text)}
+.pg-heat i.lv3{background:rgb(var(--ds-sage-rgb) / .22)!important;color:var(--ds-cream);box-shadow:inset 0 0 0 1px rgb(var(--ds-sage-rgb) / .22)}
+.pg-heat i.good{background:linear-gradient(160deg,#F2D79A,var(--ds-gold) 60%,#C99B3E)!important;color:#4A3210!important;box-shadow:0 2px 8px -3px rgb(var(--ds-gold-rgb) / .6)!important}
+.pg-key i.lv2,.pg-key i.some{background:rgb(var(--ds-sage-rgb) / .34)!important;box-shadow:none!important}
+.pg-key i.good{background:var(--ds-gold)!important}
+.pg-wk-dots .d.some i{background:rgb(var(--ds-sage-rgb) / calc(.18 + var(--f) * .4))!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-sage-rgb) / .5)!important}
+/* the level medal's label was gold on gold */
+.pg-level-n small,.pg-level-n b{color:#4A3210}
+/* Life Area tiles: each area's own tone washes in from the corner, so the grid reads as six places, not six copies */
+.pg-area{--tone:var(--ds-rose-rgb)}
+.pg-area.t-sage{--tone:var(--ds-sage-rgb)}.pg-area.t-peach{--tone:var(--ds-peach-rgb)}.pg-area.t-gold{--tone:var(--ds-gold-rgb)}.pg-area.t-lav{--tone:var(--ds-lav-rgb)}
+.pg-area{background:radial-gradient(130% 100% at 0% 0%,rgb(var(--tone) / .24),transparent 62%),var(--ds-surface)!important;box-shadow:inset 0 1px 0 rgb(var(--tone) / .18),var(--ds-hi),var(--ds-card-shadow)!important}
+/* bonus chips wrap instead of scrolling: with a handful of chips, a sliver of a cut-off chip at 360px read as a layout bug */
+.td-bonus{flex-wrap:wrap!important;overflow:visible!important;row-gap:8px}
+/* the Good Day hero's part icons use the same part-of-day colors as the pills and Settings */
+.td-pt-morning small .ds-ic{color:var(--ds-peach)}.td-pt-anytime small .ds-ic{color:var(--ds-sage)}.td-pt-night small .ds-ic{color:var(--ds-lav)}
+
+/* ===================== Pass 38 (Claude): Learn joins Brain's lavender; Rewards History is a record, not an action ===================== */
+.ln-word,.ln-ai{box-shadow:inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .22),inset 0 1px 0 rgb(var(--ds-lav-rgb) / .2),var(--ds-card-shadow)!important}
+.ln-word{background:radial-gradient(110% 80% at 100% 0%,rgb(var(--ds-lav-rgb) / .14),transparent 60%),var(--ds-surface)!important}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -8840,7 +9083,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
      what's done; its label sits under it. Same data as before (goodDayInfo parts). */
   function goodDayChips(g) {
     const ps = g.parts.filter(p => p.total);
-    return `<span class="td-parts" role="img" aria-label="${esc(ps.map(p => `${PART_LABEL[p.part]} ${p.done} of ${p.total}`).join(', '))}. Good Day: ${g.need} core habits, including Morning or Anytime and Night.">${ps.map(p => `<span class="td-pt ${p.ok ? 'ok' : ''} ${p.done >= p.total ? 'full' : ''}" style="flex:${p.total} 1 0"><i><b style="width:${Math.round(Math.min(1, p.done / p.total) * 100)}%"></b></i><small>${ic(PART_ICON[p.part])}${p.done}/${p.total}</small></span>`).join('')}</span>`;
+    return `<span class="td-parts" role="img" aria-label="${esc(ps.map(p => `${PART_LABEL[p.part]} ${p.done} of ${p.total}`).join(', '))}. Good Day: ${g.need} core habits, including Morning or Anytime and Night.">${ps.map(p => `<span class="td-pt td-pt-${p.part} ${p.ok ? 'ok' : ''} ${p.done >= p.total ? 'full' : ''}" style="flex:${p.total} 1 0"><i><b style="width:${Math.round(Math.min(1, p.done / p.total) * 100)}%"></b></i><small>${ic(PART_ICON[p.part])}${p.done}/${p.total}</small></span>`).join('')}</span>`;
   }
   /* Dexter's place on Home. His art isn't ready, so this is a calm portrait frame, not substitute pet art. */
   function companionSpot() {
@@ -9308,7 +9551,9 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
      Only controls that already work: habits, Oura, fitness import, reminder, notifications, backup. */
   const stOpen = new Set();
   // pass 25: each routine group gets its color role, like a native settings list
-  const ST_GLYPH = { Morning: ['sun-horizon-fill', 'ds-glyph-peach'], Anytime: ['sparkle-fill', ''], Night: ['moon-stars-fill', 'ds-glyph-lav'], Bonus: ['star-fill', 'ds-glyph-gold'], Weekly: ['calendar-check-duotone', 'ds-glyph-sage'], Retired: ['clock-fill', 'st-glyph-muted'] };
+  // pass 35: routines share their part of the day's color; utility rows (reminders, backups) stay quiet, since rose means "act now"
+  const ST_RT_GLYPH = { 'rt-morning': 'ds-glyph-peach', 'rt-night': 'ds-glyph-lav', 'rt-reset': 'ds-glyph-sage' };
+  const ST_GLYPH = { Morning: ['sun-horizon-fill', 'ds-glyph-peach'], Anytime: ['sparkle-fill', 'ds-glyph-sage'], Night: ['moon-stars-fill', 'ds-glyph-lav'], Bonus: ['star-fill', 'ds-glyph-gold'], Weekly: ['calendar-check-duotone', 'ds-glyph-sage'], Retired: ['clock-fill', 'st-glyph-muted'] };
   window.stGroup = g => { stOpen.has(g) ? stOpen.delete(g) : stOpen.add(g); renderSettings(); };
   renderSettings = function () {
     const el = document.getElementById('settings'); if (!el) return;
@@ -9321,7 +9566,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
       <div class="ds-list">${groups.filter(g => g[1].length).map(([g, hs]) => { const on = stOpen.has(g); return `<button type="button" class="ds-row tb-row st-grprow" onclick="stGroup('${g}')" aria-expanded="${on}"><span class="ds-glyph ${ST_GLYPH[g] ? ST_GLYPH[g][1] : ''}">${ic(ST_GLYPH[g] ? ST_GLYPH[g][0] : 'circle-fill')}</span><span class="ds-row-main"><span class="ds-row-title">${g}</span></span><span class="tb-amt">${hs.length}</span>${ic('caret-down-bold', 'tb-caret st-chev')}</button>${on ? hs.map(h => `<div class="ds-row st-habit"><button type="button" class="ds-row-main st-hopen" onclick="stHabit('${esc(h.id)}')" aria-label="Edit ${esc(h.name)}"><span class="ds-row-title">${esc(h.name)}</span><span class="ds-row-sub">${esc(stHabitSub(h))}</span></button>${h.frequency === 'retired' ? `<button type="button" class="ds-btn ds-btn-ghost ds-btn-sm st-restore" onclick="stRestore('${esc(h.id)}')" aria-label="Restore ${esc(h.name)}">Restore</button>` : /^oura-/.test(h.id) ? '' : `<button type="button" class="lf-x" onclick="stRemove('${esc(h.id)}')" aria-label="Remove ${esc(h.name)} from your routine">${ic('x-bold')}</button>`}</div>`).join('') : ''}`; }).join('')}</div>
       ${addRow('Add a habit', 'stHabitNew()')}
       <div class="ds-section"><span>Routines</span></div>
-      <div class="ds-list">${safe(() => SC2.routines(), []).slice().sort((a, b) => a.order - b.order).map(r => `<button type="button" class="ds-row tb-row" onclick="stRoutine('${esc(r.id)}')"><span class="ds-glyph">${ic(r.icon || 'stack-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">${esc(r.name)}</span><span class="ds-row-sub">${r.habitIds.filter(i => SC2.liveHabit(i)).length} habits</span></span>${ic('caret-right-bold', 'tb-caret')}</button>`).join('')}<button type="button" class="ds-row tb-row" onclick="stRoutineNew()"><span class="ds-glyph">${ic('plus-bold')}</span><span class="ds-row-main"><span class="ds-row-title">New routine</span></span></button></div>
+      <div class="ds-list">${safe(() => SC2.routines(), []).slice().sort((a, b) => a.order - b.order).map(r => `<button type="button" class="ds-row tb-row" onclick="stRoutine('${esc(r.id)}')"><span class="ds-glyph ${ST_RT_GLYPH[r.id] || 'ds-glyph-peach'}">${ic(r.icon || 'stack-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">${esc(r.name)}</span><span class="ds-row-sub">${r.habitIds.filter(i => SC2.liveHabit(i)).length} habits</span></span>${ic('caret-right-bold', 'tb-caret')}</button>`).join('')}<button type="button" class="ds-row tb-row" onclick="stRoutineNew()"><span class="ds-glyph">${ic('plus-bold')}</span><span class="ds-row-main"><span class="ds-row-title">New routine</span></span></button></div>
       <div class="ds-section"><span>Life</span></div>
       <div class="ds-list"><button type="button" class="ds-row tb-row" onclick="stAreas()"><span class="ds-glyph ds-glyph-lav">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Life areas</span><span class="ds-row-sub">${safe(() => SC2.areaList().map(a => a.name).slice(0, 4).join(', '), '')}${safe(() => SC2.areaList().length > 4, false) ? '…' : ''}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>
         <button type="button" class="ds-row tb-row" onclick="stPause()"><span class="ds-glyph ds-glyph-lav">${ic('moon-stars-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Vacation mode</span><span class="ds-row-sub">${safe(() => SC2.pausedNow(), false) ? 'On' : 'Rest without losing progress'}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>
@@ -9331,13 +9576,13 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
         <label class="ds-row tb-row st-row"><span class="ds-glyph ds-glyph-sage">${ic('person-simple-run-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Import workouts</span><span class="ds-row-sub">JSON file of runs or workouts</span></span>${ic('caret-right-bold', 'tb-caret')}<input type="file" accept="application/json,.json" onchange="importFitness(event)" hidden></label></div>
       <p class="tb-note">Oura completes Exercise or 7,500 steps and the weekly run goals automatically.</p>
       <div class="ds-section"><span>Reminders</span></div>
-      <div class="ds-list"><div class="ds-row st-row"><span class="ds-glyph">${ic('clock-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Daily reminder</span><span class="ds-row-sub" id="reminderStatus">While Starcade is open</span></span><input type="time" id="reminderTime" class="st-time" value="${esc(state.reminder || '20:00')}" aria-label="Reminder time" onchange="setReminder()"></div>
-        <button type="button" class="ds-row tb-row st-row" onclick="requestNotifications()"><span class="ds-glyph">${ic('sparkle-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Notifications</span><span class="ds-row-sub">${state.notifications ? 'On while the app is open' : 'Off'}</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>
+      <div class="ds-list"><div class="ds-row st-row"><span class="ds-glyph ds-glyph-quiet">${ic('clock-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Daily reminder</span><span class="ds-row-sub" id="reminderStatus">While Starcade is open</span></span><input type="time" id="reminderTime" class="st-time" value="${esc(state.reminder || '20:00')}" aria-label="Reminder time" onchange="setReminder()"></div>
+        <button type="button" class="ds-row tb-row st-row" onclick="requestNotifications()"><span class="ds-glyph ds-glyph-quiet">${ic('sparkle-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Notifications</span><span class="ds-row-sub">${state.notifications ? 'On while the app is open' : 'Off'}</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>
       <div class="ds-section"><span>Companion</span></div>
       <div class="ds-list"><button type="button" class="ds-row tb-row st-row" onclick="tdDexter()"><span class="ds-glyph ds-glyph-peach">${ic('paw-print-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Dexter</span><span class="ds-row-sub">Your Basset Hound on Home</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>
       <div class="ds-section"><span>Data</span></div>
-      <div class="ds-list"><button type="button" class="ds-row tb-row st-row" onclick="exportData()"><span class="ds-glyph">${ic('arrow-clockwise-bold')}</span><span class="ds-row-main"><span class="ds-row-title">Export backup</span><span class="ds-row-sub">Saves a file of everything</span></span>${ic('caret-right-bold', 'tb-caret')}</button>
-        <label class="ds-row tb-row st-row"><span class="ds-glyph">${ic('stack-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Restore from backup</span><span class="ds-row-sub">Replaces what's on this device</span></span>${ic('caret-right-bold', 'tb-caret')}<input type="file" accept="application/json" onchange="importData(event)" hidden></label></div>
+      <div class="ds-list"><button type="button" class="ds-row tb-row st-row" onclick="exportData()"><span class="ds-glyph ds-glyph-quiet">${ic('arrow-clockwise-bold')}</span><span class="ds-row-main"><span class="ds-row-title">Export backup</span><span class="ds-row-sub">Saves a file of everything</span></span>${ic('caret-right-bold', 'tb-caret')}</button>
+        <label class="ds-row tb-row st-row"><span class="ds-glyph ds-glyph-quiet">${ic('stack-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Restore from backup</span><span class="ds-row-sub">Replaces what's on this device</span></span>${ic('caret-right-bold', 'tb-caret')}<input type="file" accept="application/json" onchange="importData(event)" hidden></label></div>
       <div class="ds-section"><span>About</span></div>
       <p class="tb-note st-about">Starcade keeps your stars, habits and history on this device. Export a backup now and then.</p>
     </div>`;
@@ -9718,7 +9963,7 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
       <div class="bq-links">
         <button type="button" class="bq-link ${bal >= 45 ? '' : 'off'}" onclick="${bal >= 45 ? 'redeemMystery()' : ''}" ${bal >= 45 ? '' : 'aria-disabled="true"'} aria-label="Mystery box, 45 stars. A surprise from your own rewards"><span class="ds-glyph ds-glyph-gold">${ic('gift-fill')}</span><b>Mystery box</b><small>${ic('star-fill')}45</small></button>
         <button type="button" class="bq-link" onclick="bqCollections()" aria-label="Collections: Dexter and your sticker album"><span class="ds-glyph ds-glyph-peach">${ic('paw-print-fill')}</span><b>Collections</b><small>Dexter, stickers</small></button>
-        <button type="button" class="bq-link" onclick="bqHistory()" aria-label="History${reds.length ? `: ${reds.length} redeemed` : ''}"><span class="ds-glyph">${ic('clock-fill')}</span><b>History</b><small>${reds.length ? `${reds.length} redeemed` : 'None yet'}</small></button>
+        <button type="button" class="bq-link" onclick="bqHistory()" aria-label="History${reds.length ? `: ${reds.length} redeemed` : ''}"><span class="ds-glyph ds-glyph-quiet">${ic('clock-fill')}</span><b>History</b><small>${reds.length ? `${reds.length} redeemed` : 'None yet'}</small></button>
       </div></div>`;
   };
   window.bqOpen = function (id) {
@@ -10301,9 +10546,11 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
   const prioDot = t => t.priority === 'high' ? `<span class="lf-prio" title="High priority" aria-label="High priority"></span>` : '';
   function taskRow(t) {
     const subs = t.subtasks || [], sd = subs.filter(s => s.done).length, area = t.area ? SC2.areas().find(a => a.id === t.area) : null, due = t.due && !t.done ? relDay(t.due) : '';
-    const meta = [due, subs.length ? `${sd}/${subs.length}` : '', t.recur ? { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' }[t.recur] : '', area ? area.name : ''].filter(Boolean);
+    const meta = [due, subs.length ? `${sd}/${subs.length}` : '', t.recur ? { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' }[t.recur] : ''].filter(Boolean);
+    // pass 35: the Life Area shows as a dot in its own tone, so tasks are scannable by area at a glance
+    const areaTag = area ? `<span class="lf-area${meta.length ? ' sep' : ''}" style="--a:var(--ds-${String(area.tone || 'rose').replace(/[^a-z]/g, '')})">${esc(area.name)}</span>` : '';
     return `<div class="ds-row lf-task ${t.done ? 'done' : ''} ${t.due && t.due < today() && !t.done ? 'overdue' : ''}"><button type="button" class="lf-check" onclick="lfToggle('${esc(t.id)}')" aria-pressed="${!!t.done}" aria-label="${t.done ? 'Mark not done' : 'Done'}: ${esc(t.name)}">${t.done ? ic('check-bold') : ''}</button>
-      <button type="button" class="ds-row-main lf-open" onclick="lfTask('${esc(t.id)}')"><span class="ds-row-title">${prioDot(t)}${esc(t.name)}</span>${meta.length ? `<span class="ds-row-sub">${esc(meta.join(', '))}</span>` : ''}</button></div>`;
+      <button type="button" class="ds-row-main lf-open" onclick="lfTask('${esc(t.id)}')"><span class="ds-row-title">${prioDot(t)}${esc(t.name)}</span>${meta.length || areaTag ? `<span class="ds-row-sub">${esc(meta.join(', '))}${areaTag}</span>` : ''}</button></div>`;
   }
   renderLife = function () {
     const el = document.getElementById('life'); if (!el) return;
@@ -10312,10 +10559,10 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
     const groups = [['Overdue', open.filter(t => t.due && t.due < t0)], ['Today', open.filter(t => t.due === t0)], ['Coming up', open.filter(t => t.due && t.due > t0)], ['Anytime', open.filter(t => !t.due)]].filter(g => g[1].length);
     el.innerHTML = `<div class="tb lf">
       ${addRow('Add a task', 'lfTaskNew()')}
-      ${groups.length ? groups.map(([g, ts]) => `<div class="ds-section ${g === 'Overdue' ? 'tone-peach-t' : ''}"><span>${g}</span><span>${ts.length}</span></div><div class="ds-list">${ts.sort(byDue).map(taskRow).join('')}</div>`).join('') : '<div class="pg-empty t-rose"><span class="pg-empty-art">' + ic('check-bold') + '</span><b>Nothing waiting</b><small>Add the next real-life thing you want off your mind.</small></div>'}
+      ${groups.length ? groups.map(([g, ts]) => `<div class="ds-section ${g === 'Overdue' ? 'tone-peach-t' : ''}"><span>${g}</span><span>${ts.length}</span></div><div class="ds-list ${g === 'Today' ? 'lf-today' : ''}">${ts.sort(byDue).map(taskRow).join('')}</div>`).join('') : '<div class="pg-empty t-rose"><span class="pg-empty-art">' + ic('check-bold') + '</span><b>Nothing waiting</b><small>Add the next real-life thing you want off your mind.</small></div>'}
       ${done.length ? `<button type="button" class="lf-fold" onclick="lfDone()" aria-expanded="${lfOpenDone}">Completed <b>${done.length}</b>${ic('caret-down-bold')}</button>${lfOpenDone ? `<div class="ds-list">${done.slice(0, 40).map(taskRow).join('')}</div>` : ''}` : ''}
       <div class="ds-section"><span>Ideas</span></div>
-      <div class="ds-list"><button type="button" class="ds-row tb-row" onclick="lfIdeas()"><span class="ds-glyph">${ic('calendar-check-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Content ideas</span><span class="ds-row-sub">Occasions for this month</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div></div>`;
+      <div class="ds-list"><button type="button" class="ds-row tb-row" onclick="lfIdeas()"><span class="ds-glyph ds-glyph-peach">${ic('calendar-check-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Content ideas</span><span class="ds-row-sub">Occasions for this month</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div></div>`;
   };
   window.lfDone = () => { lfOpenDone = !lfOpenDone; renderLife(); };
   window.lfToggle = id => { const t = SC2.tasks().find(x => String(x.id) === String(id)); if (!t) return; SC2.completeTask(id, !t.done); if (!t.done) {} else feedback('success'); renderLife(); render(); };
@@ -10469,14 +10716,15 @@ button.td-pill{width:auto!important;flex:0 0 auto!important;min-width:132px;max-
     const nowHTML = now ? `<div class="td-now"><div class="td-now-h"><span>${now.current ? NOW_LABEL[now.p] : `Still open: ${PART_LABEL[now.p]}`}</span><button type="button" class="td-one" onclick="tdJustOne()">${ic('sparkle-fill')}Just one thing</button></div>
         <div class="ds-list td-list td-nowlist">${now.list.map(rowHTML).join('')}</div></div>`
       : `<div class="td-alldone-hero">${ic('sparkle-fill')}<b>${core.length ? 'Everything’s done for today' : 'Add your first habit'}</b><small>${core.length ? 'Enjoy the rest of your day.' : 'Settings → Add a habit.'}</small></div>`;
+    // Pass 34: the next action leads, right under the progress hero (with its routine pills); quests and the side quest follow.
     el.innerHTML = `<div class="td td2">
       <div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div>
       ${tdNotice()}
       <section class="td-hero ${g.good ? 'is-good' : ''}" aria-label="Today’s progress">${ring(doneCore, g.need)}<div class="td-head"><h2>${g.good ? ic('sparkle-fill', 'gd') : ''}${esc(cheer)}</h2><p class="td-sub">${esc(subline)}</p><div class="td-ctx">${goodDayChips(g)}</div></div></section>
-      ${questsHTML()}
-      ${(window.__starcadeSideQuestHTML || (() => ''))()}
       ${nowHTML}
       ${pillsHTML(now && now.current ? now.p : null)}
+      ${questsHTML()}
+      ${(window.__starcadeSideQuestHTML || (() => ''))()}
       ${tasksHTML()}
       ${treatsHTML()}
       ${bonusHTML()}
