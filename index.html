@@ -7285,6 +7285,15 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
 /* ===================== Pass 38 (Claude): Learn joins Brain's lavender; Rewards History is a record, not an action ===================== */
 .ln-word,.ln-ai{box-shadow:inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .22),inset 0 1px 0 rgb(var(--ds-lav-rgb) / .2),var(--ds-card-shadow)!important}
 .ln-word{background:radial-gradient(110% 80% at 100% 0%,rgb(var(--ds-lav-rgb) / .14),transparent 60%),var(--ds-surface)!important}
+
+/* ===================== Pass 40 (Claude): treats read as objects, each in its own meaning ===================== */
+.tr-mini{display:grid;grid-template-columns:repeat(5,9px);gap:3px;padding:7px;border-radius:10px;background:rgb(0 0 0 / .22);box-shadow:inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .14);width:max-content}
+.tr-mini i{width:9px;height:9px;border-radius:2.5px;background:rgb(var(--ds-text-rgb) / .1)}
+.tr-mini i.on,.tr-mini i.free{background:var(--ds-gold)}
+.tr-mini i.gold{box-shadow:0 0 0 1.5px var(--ds-gold)}
+.td-treat.tr-bingo{background:radial-gradient(110% 90% at 100% 0%,rgb(var(--ds-gold-rgb) / .14),transparent 60%),linear-gradient(180deg,#3A2341,#2A182E)!important;box-shadow:inset 0 1px 0 rgb(var(--ds-gold-rgb) / .26),inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .18),var(--ds-card-shadow)!important}
+.td-rail .td-foryou>.tb-row:has(.ds-glyph-lav){background:radial-gradient(110% 90% at 0% 0%,rgb(var(--ds-lav-rgb) / .16),transparent 60%),var(--ds-surface)!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .16),var(--ds-card-shadow)!important}
+.td-rail .td-foryou>.tb-row:has(.td-cover){box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .2),var(--ds-card-shadow)!important}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -10700,7 +10709,9 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const extra = [];
     try { // this week's Bingo: how close the next reward is
       const B = __starcadeV7.bingoTest.state(), rec = B.rec, n = B.lines.length;
-      extra.push(`<button type="button" class="td-treat tr-bingo" onclick="v7OpenBingo()"><span class="tr-ic">${ic('grid-nine-fill')}</span><b>Weekly Bingo</b><small>${B.count} of 25${n ? `, ${n} line${n === 1 ? '' : 's'}` : ''}</small></button>`);
+      // pass 40: the treat shows this week's actual board (done squares gold, the gold square ringed), not a generic icon
+      const mini = `<span class="tr-mini" aria-hidden="true">${B.marks.map((m, i) => `<i class="${i === 12 ? 'free' : m.done ? 'on' : ''}${i === rec.gold ? ' gold' : ''}"></i>`).join('')}</span>`;
+      extra.push(`<button type="button" class="td-treat tr-bingo" onclick="v7OpenBingo()">${mini}<b>Weekly Bingo</b><small>${B.count} of 25${n ? `, ${n} line${n === 1 ? '' : 's'}` : ''}</small></button>`);
     } catch (e) {}
     if (SC2.tokensOn()) { const t = SC2.tokenBalance(); extra.push(`<button type="button" class="td-treat tr-tokens" onclick="starcadeNavigate('boost')"><span class="tr-ic">${ic('ticket-fill')}</span><b>${t} Arcade token${t === 1 ? '' : 's'}</b><small>${esc(SC2.nextTokenHint().replace(/\.$/, ''))}</small></button>`); }
     const inner = fy.replace(/<div class="ds-section td-sec">[\s\S]*?<\/div>/, ''); // the old header (title + Inbox link) is replaced by the rail's own
