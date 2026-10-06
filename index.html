@@ -7294,6 +7294,170 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
 .td-treat.tr-bingo{background:radial-gradient(110% 90% at 100% 0%,rgb(var(--ds-gold-rgb) / .14),transparent 60%),linear-gradient(180deg,#3A2341,#2A182E)!important;box-shadow:inset 0 1px 0 rgb(var(--ds-gold-rgb) / .26),inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .18),var(--ds-card-shadow)!important}
 .td-rail .td-foryou>.tb-row:has(.ds-glyph-lav){background:radial-gradient(110% 90% at 0% 0%,rgb(var(--ds-lav-rgb) / .16),transparent 60%),var(--ds-surface)!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .16),var(--ds-card-shadow)!important}
 .td-rail .td-foryou>.tb-row:has(.td-cover){box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .2),var(--ds-card-shadow)!important}
+
+/* ===================== Pass 41 (Claude): Home redesign ===================== */
+/* Up next: one featured action (its icon, what follows, a round check), then at most two quiet rows and a "more" line */
+.td-next{margin:0 0 14px}
+.td-next .td-now-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 9px}
+.td-next-t{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:10px;row-gap:2px;font:600 22px/1.1 var(--sc-display);color:var(--ds-text);min-width:0}
+.td-next .td-now-h em{display:inline-flex;align-items:center;gap:5px;padding:0!important;background:none!important;box-shadow:none!important;font:600 13px/1 var(--ds-font);font-style:normal;color:var(--ds-text-2);white-space:nowrap}
+.td-next .td-now-h em .ds-ic{width:14px;height:14px}
+.td-nowlist{padding:0!important;overflow:hidden}
+.td-nowlist .td-row-next{min-height:74px;gap:12px;padding:12px 12px 12px 14px!important;background:linear-gradient(90deg,rgb(var(--ds-rose-rgb) / .17),rgb(var(--ds-rose-rgb) / .04) 75%,transparent)!important;box-shadow:inset 3px 0 0 var(--ds-rose)!important}
+.td-next-ic{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgb(var(--ds-rose-rgb) / .16);color:var(--ds-rose);box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .18)}
+.td-next-ic .ds-ic{width:23px;height:23px}
+.td-row-next .ds-row-title{font:600 17.5px/1.2 var(--ds-font)!important;color:var(--ds-text)!important}
+.td-row-next .ds-row-sub{color:var(--ds-text-2)!important;font-size:13px!important}
+.td-check{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ds-rose);color:rgb(var(--ds-rose-rgb) / .5);transition:background var(--ds-fast) var(--ds-ease),color var(--ds-fast) var(--ds-ease)}
+.td-check .ds-ic{width:20px;height:20px}
+.td-row-next:active .td-check{background:rgb(var(--ds-rose-rgb) / .22);color:var(--ds-rose)}
+.td-row-next.is-done .td-check{background:var(--ds-gold);box-shadow:none;color:#3A2410}
+.td-row-next.is-done .td-next-ic{background:rgb(var(--ds-gold-rgb) / .16);color:var(--ds-gold)}
+.td-nowlist .td-row:not(.td-row-next){min-height:50px}
+.td-nowlist .td-row:not(.td-row-next) .ds-row-title{color:var(--ds-text-2)}
+.td-more{appearance:none;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;padding:0;border:0;border-top:1px solid var(--ds-line);background:none;color:var(--ds-text-2);font:600 13.5px var(--ds-font);cursor:pointer}
+.td-more .ds-ic{width:12px;height:12px;transition:transform var(--ds-fast) var(--ds-ease)}
+.td-more[aria-expanded="true"] .ds-ic{transform:rotate(180deg)}
+/* Routines: a fixed strip, every part of the day in its own place, no sideways scrolling */
+.td-routines{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:8px;overflow:visible!important;margin:0 0 16px!important;padding:0!important}
+.td-routines button.td-pill{display:flex!important;flex-direction:column;align-items:flex-start;gap:7px;width:auto!important;min-width:0!important;max-width:none!important;min-height:86px;padding:10px 10px 10px!important;border-radius:15px!important}
+.td-routines .td-pill-tx{width:100%;min-width:0}
+.td-routines .td-pill-tx b{display:block;font:600 13.5px/1.15 var(--ds-font);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.td-routines .td-pill-tx small{font-size:12px}
+.td-routines .td-pill-bar{width:100%;margin-top:auto}
+.td-routines button.td-pill.is-now{box-shadow:inset 0 0 0 1.5px rgb(var(--ds-rose-rgb) / .5),var(--ds-card-shadow)!important}
+.td-routines button.td-pill.is-now .td-pill-tx small{color:var(--ds-rose)}
+/* Daily quests: a small objective with progress pips and its prize; the side quest is the card's last line */
+.td-quests-h{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px}
+.q-pips{display:inline-flex;gap:5px;margin-left:auto}
+.q-pips i{width:9px;height:9px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgb(var(--ds-gold-rgb) / .6)}
+.q-pips i.on{background:var(--ds-gold);box-shadow:0 0 8px rgb(var(--ds-gold-rgb) / .5)}
+.q-prize{display:inline-flex!important;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;background:rgb(var(--ds-gold-rgb) / .14);color:var(--ds-gold)!important;font:650 12px/1 var(--ds-num)!important}
+.q-prize .ds-ic{width:11px;height:11px}
+.td-quests .td-side{margin:4px 0 0!important;padding:10px 0 6px 2px!important;background:none!important;box-shadow:none!important;border-radius:0!important;border-top:1px solid rgb(var(--ds-gold-rgb) / .14)}
+
+/* ===================== Pass 42 (Claude): Life HQ as a personal command center ===================== */
+.lf-quick{display:flex;align-items:center;gap:10px;min-height:52px;margin:0 0 14px;padding:0 6px 0 14px;border-radius:16px;background:var(--ds-surface);box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .22),var(--ds-card-shadow)}
+.lf-quick:focus-within{box-shadow:inset 0 0 0 1.5px var(--ds-rose),var(--ds-card-shadow)}
+.lf-quick-ic{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--ds-rose);color:#2A1520}
+.lf-quick-ic .ds-ic{width:14px;height:14px}
+.lf-quick input{flex:1;min-width:0;height:48px;border:0;outline:0;background:none;color:var(--ds-text);font:500 16px var(--ds-font)}
+.lf-quick input::placeholder{color:var(--ds-text-3)}
+.lf-quick-more{appearance:none;flex:none;width:42px;height:42px;padding:0!important;border:0;border-radius:12px;display:grid;place-items:center;background:rgb(var(--ds-text-rgb) / .06)!important;color:var(--ds-text-2);cursor:pointer}
+.lf-quick-more .ds-ic{width:19px;height:19px}
+.lf-focus{display:flex;flex-direction:column;gap:6px;margin:0 0 18px;padding:14px 14px 14px 16px;border-radius:18px;background:linear-gradient(120deg,rgb(var(--ds-rose-rgb) / .2),rgb(var(--ds-rose-rgb) / .05) 70%),var(--ds-surface);box-shadow:inset 3px 0 0 var(--ds-rose),inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .16),var(--ds-card-shadow)}
+.lf-focus.is-late{background:linear-gradient(120deg,rgb(var(--ds-peach-rgb) / .2),rgb(var(--ds-peach-rgb) / .05) 70%),var(--ds-surface);box-shadow:inset 3px 0 0 var(--ds-peach),inset 0 0 0 1px rgb(var(--ds-peach-rgb) / .16),var(--ds-card-shadow)}
+.lf-focus-k{display:inline-flex;align-items:center;gap:6px;font:650 12.5px var(--ds-font);color:var(--ds-rose)}
+.lf-focus.is-late .lf-focus-k{color:var(--ds-peach)}
+.lf-focus-k .ds-ic{width:14px;height:14px}
+.lf-focus-t{appearance:none;border:0;background:none;padding:0!important;text-align:left;color:var(--ds-text);font:600 20px/1.2 var(--sc-display);cursor:pointer;display:flex;align-items:center;gap:6px}
+.lf-focus-m{display:flex;align-items:center;flex-wrap:wrap;font:500 13px var(--ds-font);color:var(--ds-text-2)}
+.lf-focus-b{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.lf-focus-b .ds-btn{min-height:44px;gap:6px}
+.lf-focus-b .ds-ic{width:16px;height:16px}
+.lf-g-overdue span:first-child{color:var(--ds-peach)}
+.lf-g-today span:first-child{color:var(--ds-rose)}
+.lf .ds-section span:last-child{font:600 12.5px var(--ds-num);color:var(--ds-text-3)}
+.lf-ideas{appearance:none;display:flex;align-items:center;gap:12px;width:100%;margin-top:22px;padding:10px 12px!important;border:0;border-radius:14px;background:rgb(var(--ds-peach-rgb) / .06)!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-peach-rgb) / .14);color:var(--ds-text);text-align:left;cursor:pointer}
+.lf-ideas>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:1px}
+.lf-ideas b{font:600 15px var(--ds-font)}.lf-ideas small{font:500 12.5px var(--ds-font);color:var(--ds-text-2)}
+.lf-quick input{background:none!important;box-shadow:none!important;border:0!important;padding:0!important;border-radius:0!important;min-height:0!important}
+
+/* ===================== Pass 43 (Claude): Progress tells a story ===================== */
+/* hero: the medal and XP, then three trophies that only ever grow */
+.pg-hero{padding:16px!important;background:radial-gradient(120% 100% at 0% 0%,rgb(var(--ds-gold-rgb) / .2),transparent 55%),linear-gradient(180deg,#3A2341,#29172D)!important;box-shadow:inset 0 1px 0 rgb(var(--ds-gold-rgb) / .3),inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .16),var(--ds-card-shadow)!important}
+.pg-hero .pg-level-top{display:flex;align-items:center;gap:14px}
+.pg-hero .pg-level-n{width:66px!important;height:66px!important;flex:none}
+.pg-hero .pg-level-n b{font-size:27px!important}
+.pg-hero .pg-level-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.pg-hero .pg-level-tx>b{font:600 22px/1.1 var(--sc-display)!important;color:var(--ds-text)}
+.pg-hero .pg-level-tx>small{color:var(--ds-text-2)}
+.pg-hero .pg-level-bar{display:block;height:7px;margin-top:5px!important;border-radius:4px;background:rgb(var(--ds-text-rgb) / .1);overflow:hidden}
+.pg-hero .pg-level-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#C99B3E,var(--ds-gold),#F6DFA4)}
+.pg-trophies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.pg-trophies span{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 9px;border-radius:13px;background:rgb(0 0 0 / .2);box-shadow:inset 0 0 0 1px rgb(var(--ds-text-rgb) / .06)}
+.pg-trophies b{display:inline-flex;align-items:center;gap:5px;font:700 19px/1 var(--ds-num);color:var(--ds-text);font-variant-numeric:tabular-nums}
+.pg-trophies b .ds-ic{width:15px;height:15px}
+.pg-trophies small{font:600 11.5px var(--ds-font);color:var(--ds-text-2);white-space:nowrap}
+.pg-trophies .tr-gd b .ds-ic,.pg-trophies .tr-stars b .ds-ic{color:var(--ds-gold)}
+.pg-trophies .tr-streak b .ds-ic{color:var(--ds-peach)}
+/* Life Areas as dials: the area's icon inside a ring in its own tone, three across */
+.pg-dials{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.pg-area.pg-dial{align-items:center!important;text-align:center;gap:4px!important;padding:12px 6px 10px!important}
+.pg-dial .pg-area-ring{position:static!important;width:54px!important;height:54px!important;margin-bottom:4px;background:conic-gradient(rgb(var(--tone)) calc(var(--p) * 1%),rgb(var(--ds-text-rgb) / .09) 0)!important}
+.pg-dial .pg-area-ring i{width:45px!important;height:45px!important;color:rgb(var(--tone));background:var(--ds-surface)!important}
+.pg-dial .pg-area-ring .ds-ic{width:21px;height:21px}
+.pg-dial b{font-size:13.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pg-dial small{font:650 12.5px var(--ds-num)!important;color:var(--ds-text-2)!important}
+.pg-area.pg-dial.t-rose{--tone:var(--ds-rose-rgb)}
+
+/* ===================== Pass 44 (Claude): Arcade modes and Daily Play ===================== */
+/* three mode tiles, each in its own color when chosen: Play rose, Brain and Learn lavender (with their own icons) */
+.ar-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 16px!important;padding:0!important;background:none!important;box-shadow:none!important}
+.ar-mode{appearance:none;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:64px;padding:8px 4px!important;border:0;border-radius:16px;background:var(--ds-surface)!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-text-rgb) / .06);color:var(--ds-text-2);font:650 14px var(--ds-font);cursor:pointer;transition:background var(--ds-fast) var(--ds-ease)}
+.ar-mode-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:rgb(var(--ds-text-rgb) / .06)}
+.ar-mode-ic .ds-ic{width:18px;height:18px}
+.ar-mode.m-play .ar-mode-ic{color:var(--ds-rose)}.ar-mode.m-brain .ar-mode-ic,.ar-mode.m-learn .ar-mode-ic{color:var(--ds-lav)}
+.ar-mode[aria-pressed="true"]{color:var(--ds-text)}
+.ar-mode.m-play[aria-pressed="true"]{background:linear-gradient(180deg,rgb(var(--ds-rose-rgb) / .22),rgb(var(--ds-rose-rgb) / .08)),var(--ds-surface)!important;box-shadow:inset 0 0 0 1.5px rgb(var(--ds-rose-rgb) / .55)}
+.ar-mode.m-play[aria-pressed="true"] .ar-mode-ic{background:var(--ds-rose);color:#2A1520}
+.ar-mode:is(.m-brain,.m-learn)[aria-pressed="true"]{background:linear-gradient(180deg,rgb(var(--ds-lav-rgb) / .22),rgb(var(--ds-lav-rgb) / .08)),var(--ds-surface)!important;box-shadow:inset 0 0 0 1.5px rgb(var(--ds-lav-rgb) / .55)}
+.ar-mode:is(.m-brain,.m-learn)[aria-pressed="true"] .ar-mode-ic{background:var(--ds-lav);color:#231A33}
+.ar-mode .dot{position:absolute;top:9px;right:12px;margin:0!important}
+/* Daily Play: a ribbon with the reward makes the free round read as a gift */
+.ar-daily{position:relative;padding-top:30px!important}
+.ar-daily-rib{position:absolute;top:0;left:16px;display:inline-flex;align-items:center;gap:5px;padding:5px 10px 6px;border-radius:0 0 10px 10px;background:linear-gradient(180deg,#F0CF86,var(--ds-gold));color:#3A2410;font:700 11.5px/1 var(--ds-font);box-shadow:0 4px 10px -4px rgb(var(--ds-gold-rgb) / .7)}
+.ar-daily-rib .ds-ic{width:12px;height:12px}
+.ar-daily.is-played .ar-daily-rib{background:rgb(var(--ds-text-rgb) / .12);color:var(--ds-text-2);box-shadow:none}
+
+/* ===================== Pass 45 (Claude): Rewards as her little shop ===================== */
+/* Saving For: a real moment, a bigger photo, a gold meter with the percentage; an invitation when nothing is chosen */
+.bq-wallet .bq-goal{gap:14px!important;margin-top:14px!important;padding-top:14px!important}
+.bq-wallet .bq-goal-ph{width:72px!important;height:72px!important;border-radius:16px!important;box-shadow:0 8px 18px -10px rgb(0 0 0 / .9),0 0 0 1px rgb(var(--ds-gold-rgb) / .25)}
+.bq-wallet .bq-goal-tx b{font:600 18px/1.2 var(--sc-display)!important;color:var(--ds-text)}
+.bq-wallet .bq-goal-tx small{color:var(--ds-gold)!important}
+.bq-wallet .bq-goal .bq-meter{height:9px!important;border-radius:5px!important;background:rgb(0 0 0 / .3)!important}
+.bq-wallet .bq-goal .bq-meter i{background:linear-gradient(90deg,#C99B3E,var(--ds-gold),#F6DFA4)!important;border-radius:5px!important;box-shadow:0 0 10px rgb(var(--ds-gold-rgb) / .5)}
+.bq-wallet .bq-goal em{display:flex;align-items:center;gap:6px;font:500 12.5px var(--ds-font);font-style:normal;color:var(--ds-text-2)}
+.bq-wallet .bq-goal em strong{font:700 13px var(--ds-num);color:var(--ds-gold)}
+.bq-wallet .bq-goal.is-ready em{color:var(--ds-rose);font-weight:650}
+.bq-wallet .bq-goal em .ds-ic{width:13px;height:13px}
+.bq-pick{appearance:none;display:flex;align-items:center;gap:12px;width:100%;margin-top:14px;padding:12px 4px 0!important;border:0;border-top:1px solid rgb(var(--ds-gold-rgb) / .16);background:none!important;color:var(--ds-text);text-align:left;cursor:pointer}
+.bq-pick>.ds-ic:first-child{flex:none;width:40px;height:40px;padding:10px;box-sizing:border-box;border-radius:12px;background:var(--ds-rose-wash);color:var(--ds-rose)}
+.bq-pick span{flex:1;display:flex;flex-direction:column;gap:2px}
+.bq-pick b{font:600 15px var(--ds-font)}.bq-pick small{font:500 12.5px var(--ds-font);color:var(--ds-text-2)}
+.bq-pickgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bq-pickone{appearance:none;display:flex;flex-direction:column;gap:4px;padding:0!important;border:0;background:none!important;color:var(--ds-text);text-align:left;cursor:pointer}
+.bq-pickone .bq-ph{position:relative;display:block;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--ds-surface)}
+.bq-pickone .bq-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bq-pickone b{font:600 13px/1.2 var(--ds-font)}.bq-pickone small{display:inline-flex;align-items:center;gap:3px;font:650 12px var(--ds-num);color:var(--ds-gold)}
+.bq-pickone small .ds-ic{width:11px;height:11px}
+/* Mystery box: its own wide gold tile, so the surprise reads as special, not as one more link */
+.bq-mystery{appearance:none;position:relative;display:flex;align-items:center;gap:14px;width:100%;min-height:76px;margin:0 0 10px;padding:12px 14px!important;border:0;border-radius:18px;overflow:hidden;background:radial-gradient(90% 140% at 0% 50%,rgb(var(--ds-gold-rgb) / .28),transparent 60%),linear-gradient(180deg,#3E2645,#2A182E)!important;box-shadow:inset 0 1px 0 rgb(var(--ds-gold-rgb) / .3),inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .2),var(--ds-card-shadow);color:var(--ds-text);text-align:left;cursor:pointer}
+.bq-mystery.off{opacity:.6}
+.bq-mystery-art{position:relative;flex:none;width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(160deg,#F2D79A,var(--ds-gold) 55%,#B8862E);color:#5A3510;box-shadow:0 8px 16px -8px rgb(var(--ds-gold-rgb) / .8)}
+.bq-mystery-art .ds-ic{width:26px;height:26px}
+.bq-mystery-art i{position:absolute;width:5px;height:5px;border-radius:50%;background:#FFF4D6;box-shadow:0 0 6px #FFF4D6}
+.bq-mystery-art i:nth-of-type(1){top:-3px;right:4px}.bq-mystery-art i:nth-of-type(2){bottom:2px;left:-4px;width:4px;height:4px}.bq-mystery-art i:nth-of-type(3){top:10px;right:-5px;width:3px;height:3px}
+.bq-mystery-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.bq-mystery-tx b{font:600 17px var(--sc-display)}.bq-mystery-tx small{font:500 12.5px var(--ds-font);color:var(--ds-text-2)}
+.bq-mystery-pr{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:999px;background:var(--ds-gold);color:#3A2410;font:700 13px var(--ds-num)}
+.bq-mystery-pr .ds-ic{width:12px;height:12px}
+.bq-links{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+
+/* ===================== Pass 48 (Claude): a finished day steps aside ===================== */
+.td-alldone-line{display:flex!important;flex-direction:row!important;align-items:center;gap:12px;min-height:0!important;margin:0 0 14px!important;padding:12px 14px!important;border-radius:16px!important;text-align:left!important;background:linear-gradient(90deg,rgb(var(--ds-gold-rgb) / .16),rgb(var(--ds-gold-rgb) / .04))!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-gold-rgb) / .2)!important}
+.td-alldone-line>.ds-ic{flex:none;width:22px!important;height:22px!important;color:var(--ds-gold)}
+.td-alldone-line span{display:flex;flex-direction:column;gap:1px}
+.td-alldone-line b{font:600 15.5px var(--ds-font)!important}.td-alldone-line small{font:500 12.5px var(--ds-font)!important;color:var(--ds-text-2)}
+.td-next .td-now-h em.td-part-weekly .ds-ic{color:var(--ds-sage)}
+
+/* ===================== Pass 50 (Claude): the habit sheet's facts carry their meaning ===================== */
+.hs-facts small{display:inline-flex;align-items:center;gap:5px}
+.hs-facts small .ds-ic{width:12px;height:12px}
+.hs-facts .hf-streak{background:linear-gradient(160deg,rgb(var(--ds-peach-rgb) / .16),transparent 70%),var(--ds-surface)}.hs-facts .hf-streak small{color:var(--ds-peach)}
+.hs-facts .hf-best{background:linear-gradient(160deg,rgb(var(--ds-gold-rgb) / .16),transparent 70%),var(--ds-surface)}.hs-facts .hf-best small{color:var(--ds-gold)}
+.hs-facts .hf-cons{background:linear-gradient(160deg,rgb(var(--ds-sage-rgb) / .16),transparent 70%),var(--ds-surface)}.hs-facts .hf-cons small{color:var(--ds-sage)}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -7344,7 +7508,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
    face=(x,y,ic,col,rot)=>`<g transform="translate(${x} ${y}) rotate(${rot})"><rect x="-13" y="-17" width="26" height="34" rx="4" fill="#FBF7F1" stroke="#E2D7CA"/>${use(ic,-7.5,-7.5,15,col)}</g>`;
    return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#1E1226"/>${back(24,30,-7)}${face(51,28,'ph-moon-fill','#B88A2E',3)}${back(78,32,8)}${face(25,70,'ph-moon-fill','#B88A2E',-4)}${back(52,72,2)}${face(78,68,'ph-butterfly-fill','#4E7EA8',-7)}</svg>`;}
   function coverPinball(){uid++;const i=uid;return `<svg viewBox="0 0 100 100"><defs><linearGradient id="pb${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B1638"/><stop offset="1" stop-color="#140B1E"/></linearGradient><radialGradient id="pk${i}" cx=".35" cy=".3"><stop offset="0" stop-color="#F6C1CF"/><stop offset="1" stop-color="#B34F6E"/></radialGradient></defs><rect width="100" height="100" fill="#0E0A12"/><path d="M14 100 V40 A36 36 0 0 1 86 40 V100Z" fill="url(#pb${i})" stroke="#BFA9C8" stroke-width="1.6"/><path d="M78 46 V100" stroke="#BFA9C8" stroke-width="1.4"/>
-   ${[[38,46],[60,44],[49,60]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="7" fill="url(#pk${i})"/><circle cx="${x}" cy="${y}" r="4.3" fill="none" stroke="#2A1630" stroke-width="1.6"/><circle cx="${x}" cy="${y}" r="2" fill="#2A1630"/>`).join('')}
+   <circle cx="49" cy="51" r="17" fill="none" stroke="#EDC878" stroke-opacity=".25" stroke-width=".8"/><polygon points="49.0,37.0 52.5,46.1 62.3,46.7 54.7,52.9 57.2,62.3 49.0,57.0 40.8,62.3 43.3,52.9 35.7,46.7 45.5,46.1" fill="#EDC878" fill-opacity=".08" stroke="#EDC878" stroke-opacity=".3" stroke-width=".7"/><circle cx="38" cy="46.8" r="7.6" fill="#1E1226"/><circle cx="38" cy="46" r="6.6" fill="url(#pk${i})"/><circle cx="38" cy="45.4" r="4.6" fill="#F4E8E1"/><polygon points="38.0,42.5 38.7,44.4 40.8,44.5 39.1,45.8 39.7,47.7 38.0,46.6 36.3,47.7 36.9,45.8 35.2,44.5 37.3,44.4" fill="#D9B25E"/><circle cx="60" cy="44.8" r="7.6" fill="#1E1226"/><circle cx="60" cy="44" r="6.6" fill="url(#pk${i})"/><circle cx="60" cy="43.4" r="4.6" fill="#F4E8E1"/><polygon points="60.0,40.5 60.7,42.4 62.8,42.5 61.1,43.8 61.7,45.7 60.0,44.6 58.3,45.7 58.9,43.8 57.2,42.5 59.3,42.4" fill="#D9B25E"/><circle cx="49" cy="60.8" r="7.6" fill="#1E1226"/><circle cx="49" cy="60" r="6.6" fill="url(#pk${i})"/><circle cx="49" cy="59.4" r="4.6" fill="#F4E8E1"/><polygon points="49.0,56.5 49.7,58.4 51.8,58.5 50.1,59.8 50.7,61.7 49.0,60.6 47.3,61.7 47.9,59.8 46.2,58.5 48.3,58.4" fill="#D9B25E"/>
    <path d="M22 72 V80 L30 85Z M70 72 V80 L62 85Z" fill="#E8A5B6" fill-opacity=".25" stroke="#E8A5B6" stroke-width="1.2" stroke-linejoin="round"/><path d="M14 84 L32 94 M78 84 L60 94" stroke="#BFA9C8" stroke-width="1.4"/>
    <path d="M32 94 L44 99" stroke="#F8EFE9" stroke-width="3.4" stroke-linecap="round"/><path d="M60 94 L48 99" stroke="#F8EFE9" stroke-width="3.4" stroke-linecap="round"/><circle cx="57" cy="72" r="3.2" fill="#E4E6EA"/><path d="M57 76 Q55 82 50 86" stroke="#fff" stroke-dasharray="1.5 2.5" fill="none" opacity=".5"/></svg>`;}
   function coverTtt(){const X=(x,y)=>`<path d="M${x-7} ${y-7} L${x+7} ${y+7} M${x+7} ${y-7} L${x-7} ${y+7}" stroke="#E8A5B6" stroke-width="4.5" stroke-linecap="round"/>`,O=(x,y)=>`<circle cx="${x}" cy="${y}" r="7.5" fill="none" stroke="#F0C96E" stroke-width="4.5"/>`;
@@ -9252,9 +9416,9 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const d = dailyPick(), claimed = dailyClaimed();
     // pass 29: the Arcade opens with what real life has earned (tokens), so it reads as a reward, not a time sink
     const wallet = SC2.tokensOn() ? `<button type="button" class="ar-wallet" onclick="arTokens()"><span class="ar-wallet-ic">${ic('ticket-fill')}</span><span class="ar-wallet-tx"><b>${SC2.tokenBalance()} token${SC2.tokenBalance() === 1 ? '' : 's'}</b><small>${esc(SC2.nextTokenHint())}</small></span>${ic('caret-right-bold', 'tb-caret')}</button>` : '';
-    return `${wallet}<section class="ar-daily" style="--tint:${d.tint}" aria-label="Daily Play">
+    return `${wallet}<section class="ar-daily ${claimed ? 'is-played' : ''}" style="--tint:${d.tint}" aria-label="Daily Play"><span class="ar-daily-rib">${claimed ? ic('check-bold') + 'Played today' : ic('sparkle-fill') + 'Free today, +' + SC2.XP_RULES.dailyPlay + ' XP'}</span>
         <button type="button" class="ar-daily-art" onclick="arPlay('${d.id}',true)" aria-label="Play ${esc(d.name)}">${cover(d)}</button>
-        <div class="tx"><span class="ar-eyebrow">Daily Play</span><b>${esc(d.name)}</b><small>${claimed ? 'Played today' : 'Free play today'}</small>
+        <div class="tx"><span class="ar-eyebrow">Daily Play</span><b>${esc(d.name)}</b><small>${claimed ? 'Played today' : 'Today’s pick'}</small>
           <div class="acts"><button type="button" class="ds-btn ds-btn-primary ds-btn-sm" onclick="arPlay('${d.id}',true)">${ic('play-fill')}Play</button><button type="button" class="ds-btn ds-btn-ghost ds-btn-sm" onclick="arPickOther()">Choose another</button></div></div>
       </section>
       <div class="ds-section"><span>This week</span></div>
@@ -9281,7 +9445,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const el = document.getElementById('boost'); if (!el) return;
     const wordPending = !((SC().wordDone || {})[today()]);
     el.innerHTML = `<div class="ar">
-      <div class="ds-seg ar-seg" role="tablist"><button type="button" role="tab" aria-pressed="${arTab === 'play'}" onclick="arTabSet('play')">Play</button><button type="button" role="tab" aria-pressed="${arTab === 'brain'}" onclick="arTabSet('brain')">Brain</button><button type="button" role="tab" aria-pressed="${arTab === 'learn'}" onclick="arTabSet('learn')">Learn${wordPending ? '<i class="dot" aria-label="new"></i>' : ''}</button></div>
+      <div class="ar-seg ar-modes" role="tablist">${[['play', 'Play', 'game-controller-fill'], ['brain', 'Brain', 'lightbulb-fill'], ['learn', 'Learn', 'book-open-fill']].map(([k, l, icn]) => `<button type="button" role="tab" class="ar-mode m-${k}" aria-pressed="${arTab === k}" onclick="arTabSet('${k}')"><span class="ar-mode-ic">${ic(icn)}</span>${l}${k === 'learn' && wordPending ? '<i class="dot" aria-label="new"></i>' : ''}</button>`).join('')}</div>
       ${arTab === 'play' ? playHTML() : arTab === 'brain' ? brainHTML() : learnHTML()}</div>`;
   };
   window.arTabSet = t => { arTab = t; renderBoost(); window.scrollTo(0, 0); };
@@ -9571,7 +9735,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const preview = safe(() => v12PreviewOnly, false), oStatus = safe(() => ouraStatus, ''), oSync = safe(() => ouraLastSync, ''), oConn = safe(() => ouraHasConnection, false);
     const ouraAct = preview ? '' : !oConn ? '<a class="ds-btn ds-btn-primary ds-btn-sm" href="/auth/oura/start">Connect</a>' : /enable automatic/.test(oStatus) ? '<a class="ds-btn ds-btn-primary ds-btn-sm" href="/auth/oura/enable-auto">Enable auto sync</a>' : '<button type="button" class="ds-btn ds-btn-ghost ds-btn-sm" onclick="refreshOura()">Check now</button>';
     el.innerHTML = `<div class="tb st">
-      <div class="ds-section"><span>Habits &amp; routines</span><span>${act.length} active</span></div>
+      <div class="ds-section"><span>Habits</span><span>${act.length} active</span></div>
       <div class="ds-list">${groups.filter(g => g[1].length).map(([g, hs]) => { const on = stOpen.has(g); return `<button type="button" class="ds-row tb-row st-grprow" onclick="stGroup('${g}')" aria-expanded="${on}"><span class="ds-glyph ${ST_GLYPH[g] ? ST_GLYPH[g][1] : ''}">${ic(ST_GLYPH[g] ? ST_GLYPH[g][0] : 'circle-fill')}</span><span class="ds-row-main"><span class="ds-row-title">${g}</span></span><span class="tb-amt">${hs.length}</span>${ic('caret-down-bold', 'tb-caret st-chev')}</button>${on ? hs.map(h => `<div class="ds-row st-habit"><button type="button" class="ds-row-main st-hopen" onclick="stHabit('${esc(h.id)}')" aria-label="Edit ${esc(h.name)}"><span class="ds-row-title">${esc(h.name)}</span><span class="ds-row-sub">${esc(stHabitSub(h))}</span></button>${h.frequency === 'retired' ? `<button type="button" class="ds-btn ds-btn-ghost ds-btn-sm st-restore" onclick="stRestore('${esc(h.id)}')" aria-label="Restore ${esc(h.name)}">Restore</button>` : /^oura-/.test(h.id) ? '' : `<button type="button" class="lf-x" onclick="stRemove('${esc(h.id)}')" aria-label="Remove ${esc(h.name)} from your routine">${ic('x-bold')}</button>`}</div>`).join('') : ''}`; }).join('')}</div>
       ${addRow('Add a habit', 'stHabitNew()')}
       <div class="ds-section"><span>Routines</span></div>
@@ -9579,7 +9743,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       <div class="ds-section"><span>Life</span></div>
       <div class="ds-list"><button type="button" class="ds-row tb-row" onclick="stAreas()"><span class="ds-glyph ds-glyph-lav">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Life areas</span><span class="ds-row-sub">${safe(() => SC2.areaList().map(a => a.name).slice(0, 4).join(', '), '')}${safe(() => SC2.areaList().length > 4, false) ? '…' : ''}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>
         <button type="button" class="ds-row tb-row" onclick="stPause()"><span class="ds-glyph ds-glyph-lav">${ic('moon-stars-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Vacation mode</span><span class="ds-row-sub">${safe(() => SC2.pausedNow(), false) ? 'On' : 'Rest without losing progress'}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>
-        <button type="button" class="ds-row tb-row" onclick="stTokens()" role="switch" aria-checked="${safe(() => SC2.tokensOn(), true)}"><span class="ds-glyph ds-glyph-gold">${ic('game-controller-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Arcade tokens</span><span class="ds-row-sub">${safe(() => SC2.tokensOn(), true) ? 'On: real-life habits earn your Arcade plays' : 'Off: Arcade games are always open'}</span></span><span class="st-switch" aria-hidden="true"><i></i></span></button></div>
+        <button type="button" class="ds-row tb-row" onclick="stTokens()" role="switch" aria-checked="${safe(() => SC2.tokensOn(), true)}"><span class="ds-glyph ds-glyph-gold">${ic('game-controller-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Arcade tokens</span><span class="ds-row-sub">${safe(() => SC2.tokensOn(), true) ? 'On: habits earn your game plays' : 'Off: Arcade games are always open'}</span></span><span class="st-switch" aria-hidden="true"><i></i></span></button></div>
       <div class="ds-section"><span>Integrations</span></div>
       <div class="ds-list"><div class="ds-row st-row"><span class="ds-glyph ds-glyph-sage">${ic('heartbeat-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Oura</span><span class="ds-row-sub lf-wrap">${esc(oStatus || 'Status unavailable')}${oSync && !preview ? ' · ' + esc(new Date(oSync).toLocaleString()) : ''}</span></span>${ouraAct}</div>
         <label class="ds-row tb-row st-row"><span class="ds-glyph ds-glyph-sage">${ic('person-simple-run-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Import workouts</span><span class="ds-row-sub">JSON file of runs or workouts</span></span>${ic('caret-right-bold', 'tb-caret')}<input type="file" accept="application/json,.json" onchange="importFitness(event)" hidden></label></div>
@@ -9862,9 +10026,12 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
      Everything shown is computed from stored history; nothing is estimated. */
   const _renderStatsP = renderStats;
   const pct = x => Math.round(x * 100);
-  function levelHTML() {
-    const X = SC2.xp(), L = SC2.level(X.total);
-    return `<section class="pg-level" aria-label="Your level"><div class="pg-level-top"><span class="pg-level-n"><small>Level</small><b>${L.level}</b></span><span class="pg-level-tx"><b>${X.total.toLocaleString()} XP</b><small>${(L.need - L.into).toLocaleString()} to level ${L.level + 1}</small></span></div><span class="pg-level-bar"><i style="width:${Math.max(2, pct(L.pct))}%"></i></span></section>`;
+  // Pass 43: "look how I'm doing" first. The level medal and XP, then three trophies that only ever grow.
+  function heroHTML(life) {
+    const X = SC2.xp(), L = SC2.level(X.total), gd = Math.round((X.parts.goodDays || 0) / SC2.XP_RULES.goodDay);
+    const best = state.habits.filter(h => h.frequency === 'daily' || h.frequency === 'weekly').reduce((m, h) => { const st = SC2.stats(h); return st.has ? Math.max(m, st.longest || 0) : m; }, 0);
+    return `<section class="pg-level pg-hero" aria-label="Your progress"><div class="pg-level-top"><span class="pg-level-n"><small>Level</small><b>${L.level}</b></span><span class="pg-level-tx"><b>${X.total.toLocaleString()} XP</b><small>${(L.need - L.into).toLocaleString()} to level ${L.level + 1}</small><span class="pg-level-bar"><i style="width:${Math.max(2, pct(L.pct))}%"></i></span></span></div>
+      <div class="pg-trophies"><span class="tr-gd"><b>${ic('sparkle-fill')}${gd.toLocaleString()}</b><small>Good Days</small></span><span class="tr-streak"><b>${ic('flame-fill')}${best}</b><small>Best streak</small></span><span class="tr-stars"><b>${ic('star-fill')}${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div></section>`;
   }
   function habitRows(list) {
     return list.map(({ h, s }) => `<button type="button" class="ds-row tb-row pg-hab" onclick="stHabit('${esc(h.id)}')"><span class="ds-row-main"><span class="ds-row-title">${esc(h.name)}</span><span class="pg-hab-bar"><i style="width:${pct(s.consistency)}%"></i></span></span><span class="pg-hab-n"><b>${pct(s.consistency)}%</b>${s.current >= 2 ? `<small>${ic('flame-fill')}${s.current}</small>` : ''}</span></button>`).join('');
@@ -9888,18 +10055,21 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       const hs = state.habits.filter(h => h.frequency !== 'retired' && (SC2.meta(h.id) || {}).area === a.id).map(h => SC2.stats(h)).filter(s => s.has && s.consistency != null);
       if (!hs.length) return '';
       const c = hs.reduce((t, s) => t + s.consistency, 0) / hs.length;
-      return `<div class="pg-area t-${a.tone || 'rose'}"><span class="ds-glyph ds-glyph-${a.tone || 'rose'}">${ic(a.icon || 'circle-fill')}</span><b>${esc(a.name)}</b><small>${hs.length} habit${hs.length === 1 ? '' : 's'}</small><span class="pg-area-ring" style="--p:${pct(c)}"><i>${pct(c)}%</i></span></div>`;
+      return `<div class="pg-area pg-dial t-${a.tone || 'rose'}" title="${hs.length} habit${hs.length === 1 ? '' : 's'}"><span class="pg-area-ring" style="--p:${pct(c)}"><i>${ic(a.icon || 'circle-fill')}</i></span><b>${esc(a.name)}</b><small>${pct(c)}%</small></div>`;
     }).filter(Boolean);
     if (!rows.length) return '';
-    return `<div class="ds-section"><span>Life areas</span><button type="button" class="pg-link" onclick="stAreas()">Edit</button></div><div class="pg-areas">${rows.join('')}</div>`;
+    return `<div class="ds-section"><span>Life areas</span><button type="button" class="pg-link" onclick="stAreas()">Edit</button></div><div class="pg-areas pg-dials">${rows.join('')}</div>`;
   }
   function lifeGoalsHTML() {
     const G = SC2.goals(), open = G.filter(g => !g.doneAt), done = G.filter(g => g.doneAt);
     const row = g => { const p = SC2.goalProgress(g), a = g.area ? SC2.areas().find(x => x.id === g.area) : null; return `<button type="button" class="ds-row tb-row pg-lgoal ${g.doneAt ? 'done' : ''}" onclick="pgLifeGoal('${esc(g.id)}')"><span class="ds-glyph ${g.doneAt ? 'ds-glyph-gold' : 'ds-glyph-' + ((a && a.tone) || 'rose')}">${ic(g.doneAt ? 'trophy-fill' : (a && a.icon) || 'flag-checkered-duotone')}</span><span class="ds-row-main"><span class="ds-row-title lf-wrap">${esc(g.title)}</span>${p.total ? `<span class="pg-bar tone-gold"><i style="width:${pct(p.done / p.total)}%"></i></span><span class="ds-row-sub">${p.done} of ${p.total} milestones</span>` : `<span class="ds-row-sub">${g.doneAt ? 'Reached' : 'Add milestones to track it'}</span>`}</span>${ic('caret-right-bold', 'tb-caret')}</button>`; };
-    return `<div class="ds-section"><span>Your goals</span><span>${open.length ? open.length + ' active' : ''}</span></div>
-      ${G.length ? `<div class="ds-list">${open.concat(done).map(row).join('')}</div>` : ''}
-      <button type="button" class="add-row" onclick="pgLifeGoalNew()"><span class="add-plus">${ic('plus-bold')}</span><span>New goal with milestones</span></button>`;
+    return G.length ? `<div class="ds-list pg-lgoals">${open.concat(done).map(row).join('')}</div>` : '';
   }
+  // Pass 47: one way to start a goal. Two kinds, explained in a line each, instead of two sections with two add buttons.
+  window.pgGoalChoose = function () {
+    const opt = (tone, icon, t, sub, js) => `<button type="button" class="ds-row tb-row pg-choose" onclick="tbClose();setTimeout(()=>${js},220)"><span class="ds-glyph ds-glyph-${tone}">${ic(icon)}</span><span class="ds-row-main"><span class="ds-row-title">${t}</span><span class="ds-row-sub lf-wrap">${sub}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>`;
+    tbSheet(`<div class="ds-list">${opt('sage', 'chart-line-up', 'Something Starcade tracks', 'Runs, Good Days or saving for a reward. It fills in by itself.', 'pgGoalNew()')}${opt('peach', 'flag-checkered-duotone', 'My own goal', 'Break it into milestones and tick them off as you go.', 'pgLifeGoalNew()')}</div>`, 'New goal');
+  };
   renderStats = function () {
     _renderStatsP();
     const el = document.getElementById('stats'); if (!el) return;
@@ -9911,14 +10081,28 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
         [...tb.querySelectorAll('.ds-section')].filter(s => /^Goals/.test(s.textContent.trim())).forEach(s => { const n = s.nextElementSibling; if (n && n.classList.contains('ds-list')) n.remove(); s.remove(); });
         tb.querySelectorAll('.pg-goal-invite').forEach(n => n.remove());
         // new: level above the story; habits and life areas after the next milestone; then history
-        tb.querySelector('.pg-tabs').insertAdjacentHTML('afterend', levelHTML());
-        const anchor = tb.querySelector('.pg-next') || tb.querySelector('.pg-wk');
+        const wk = tb.querySelector('.pg-wk');
+        tb.querySelector('.pg-tabs').insertAdjacentHTML('afterend', heroHTML(wk.dataset.life));
+        wk.querySelector('.pg-wk-life')?.remove(); // lifetime stars now sit in the hero's trophies
+        // milestones move up: collecting them is the most rewarding thing here, so they follow the week, with the next one
+        const mh = [...tb.querySelectorAll('.ds-section')].find(x => x.textContent.trim().startsWith('Milestones')), mrow = mh && mh.nextElementSibling, next = tb.querySelector('.pg-next');
+        let tail = wk;
+        if (mh && mrow && mrow.classList.contains('pg-miles')) { wk.after(mh); mh.after(mrow); tail = mrow; }
+        if (next) { tail.after(next); tail = next; }
+        const anchor = tail;
         anchor.insertAdjacentHTML('afterend', habitsHTML() + areasHTML() + '<div class="ds-section pg-histhead"><span>History</span></div>');
         const run = [...tb.querySelectorAll('.ds-section')].find(s => s.textContent.trim().startsWith('Running'));
         if (run) run.insertAdjacentHTML('beforebegin', `<div class="ds-list pg-bingohist"><button type="button" class="ds-row tb-row" onclick="v7BingoHistory()"><span class="ds-glyph ds-glyph-gold">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Past Bingo boards</span><span class="ds-row-sub">One board a week, as each one ended</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`);
         const act = [...tb.querySelectorAll('.ds-section')].find(s => s.textContent.trim() === 'Activity'); if (act) act.remove();
       } else if (pgTab === 'goals') {
-        const first = tb.querySelector('.ds-section'); if (first) first.insertAdjacentHTML('beforebegin', lifeGoalsHTML());
+        // one Goals list: her milestone goals first, then the tracked ones, then a single "New goal" (the empty card only when there are none)
+        const sec = [...tb.querySelectorAll('.ds-section')].find(x => x.textContent.trim().startsWith('Goals'));
+        if (sec) {
+          const mine = lifeGoalsHTML(), n = SC2.goals().filter(g => !g.doneAt).length + tb.querySelectorAll('.pg-goal:not(.done)').length;
+          sec.innerHTML = `<span>Goals</span><span>${n ? n + ' active' : ''}</span>`;
+          if (mine) { sec.insertAdjacentHTML('afterend', mine); tb.querySelector('.pg-empty')?.remove(); }
+          const add = tb.querySelector('.pg-addgoal'); if (add) { add.setAttribute('onclick', 'pgGoalChoose()'); add.querySelector('span:last-child').textContent = 'New goal'; }
+        }
       }
     } catch (e) { console.warn('Progress layout', e); }
   };
@@ -9963,14 +10147,15 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       <span class="bq-nm">${esc(r.name)}</span>${ok ? '' : `<span class="bq-meter" title="${left.toLocaleString()} to go"><i style="width:${pct}%"></i></span><span class="bq-left">${pct >= 80 ? 'Almost there' : `${left.toLocaleString()} to go`}</span>`}</button>`; };
     el.innerHTML = `<div class="tb bq">
       <div class="bq-wallet sc-starlit"><div class="bq-wtop"><span class="bq-bal">${ic('star-fill')}<b>${bal.toLocaleString()}</b></span><span class="bq-wl"><b>stars to spend</b><small>They never expire</small></span></div>
-      ${tgt ? `<button type="button" class="bq-goal" onclick="bqOpen('${esc(tgt.id)}')"><span class="bq-goal-ph">${bqVisual(tgt)}</span><span class="bq-goal-tx"><small>Saving for</small><b>${esc(tgt.name)}</b><span class="bq-meter"><i style="width:${Math.min(100, Math.round(bal / tgt.cost * 100))}%"></i></span><em>${tgt.cost <= bal ? 'Ready to redeem' : `${(tgt.cost - bal).toLocaleString()} of ${tgt.cost.toLocaleString()} ★ to go`}</em></span>${ic('caret-right-bold', 'tb-caret')}</button>` : ''}</div>
+      ${tgt ? (() => { const p = Math.min(100, Math.round(bal / tgt.cost * 100)), ok = tgt.cost <= bal; return `<button type="button" class="bq-goal ${ok ? 'is-ready' : ''}" onclick="bqOpen('${esc(tgt.id)}')"><span class="bq-goal-ph">${bqVisual(tgt)}</span><span class="bq-goal-tx"><small>${ok ? 'Ready for you' : 'Saving for'}</small><b>${esc(tgt.name)}</b><span class="bq-meter"><i style="width:${p}%"></i></span><em>${ok ? `${ic('sparkle-fill')}Tap to redeem` : `<strong>${p}%</strong> ${(tgt.cost - bal).toLocaleString()} ★ to go`}</em></span></button>`; })()
+        : list.length ? `<button type="button" class="bq-pick" onclick="bqPickGoal()">${ic('flag-checkered-duotone')}<span><b>Pick something to save for</b><small>Watch it fill up as you earn stars</small></span>${ic('caret-right-bold', 'tb-caret')}</button>` : ''}</div>
       ${ready.length ? `<div class="ds-section"><span>Ready for you</span></div><div class="bq-grid">${ready.map(tile).join('')}${saving.length ? '' : addTile}</div>` : ''}
       ${saving.length ? `<div class="ds-section"><span>Saving toward</span></div><div class="bq-grid">${saving.map(tile).join('')}${addTile}</div>` : ''}
       ${!ready.length && !saving.length ? `<div class="bq-grid">${addTile}</div>` : ''}
       ${state.rewards.some(r => r.retired && r.archivedAt) ? `<button type="button" class="lf-fold" onclick="bqArchivedOpen()">Archived <b>${state.rewards.filter(r => r.retired && r.archivedAt).length}</b>${ic('caret-right-bold')}</button>` : ''}
-      <div class="ds-section"><span>More</span></div>
+      <div class="ds-section"><span>Surprises and keepsakes</span></div>
+      <button type="button" class="bq-mystery ${bal >= 45 ? '' : 'off'}" onclick="${bal >= 45 ? 'redeemMystery()' : ''}" ${bal >= 45 ? '' : 'aria-disabled="true"'} aria-label="Mystery box, 45 stars. A surprise from your own rewards"><span class="bq-mystery-art" aria-hidden="true">${ic('gift-fill')}<i></i><i></i><i></i></span><span class="bq-mystery-tx"><b>Mystery box</b><small>A surprise from your own rewards</small></span><span class="bq-mystery-pr">${ic('star-fill')}45</span></button>
       <div class="bq-links">
-        <button type="button" class="bq-link ${bal >= 45 ? '' : 'off'}" onclick="${bal >= 45 ? 'redeemMystery()' : ''}" ${bal >= 45 ? '' : 'aria-disabled="true"'} aria-label="Mystery box, 45 stars. A surprise from your own rewards"><span class="ds-glyph ds-glyph-gold">${ic('gift-fill')}</span><b>Mystery box</b><small>${ic('star-fill')}45</small></button>
         <button type="button" class="bq-link" onclick="bqCollections()" aria-label="Collections: Dexter and your sticker album"><span class="ds-glyph ds-glyph-peach">${ic('paw-print-fill')}</span><b>Collections</b><small>Dexter, stickers</small></button>
         <button type="button" class="bq-link" onclick="bqHistory()" aria-label="History${reds.length ? `: ${reds.length} redeemed` : ''}"><span class="ds-glyph ds-glyph-quiet">${ic('clock-fill')}</span><b>History</b><small>${reds.length ? `${reds.length} redeemed` : 'None yet'}</small></button>
       </div></div>`;
@@ -9989,6 +10174,10 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   // pass 29: archive keeps a reward (and its history) but takes it out of the shop; restore brings it back
   window.bqArchive = function (id, on) { const r = state.rewards.find(x => x.id === id); if (!r) return; if (on) { r.retired = true; r.archivedAt = new Date().toISOString(); if (SC().rewardTarget === id) SC().rewardTarget = null; } else { delete r.retired; delete r.archivedAt; } save(); tbClose(); render(); };
   window.bqArchivedOpen = function () { const A = state.rewards.filter(r => r.retired && r.archivedAt); tbSheet(`<div class="ds-list">${A.map(r => `<div class="ds-row"><span class="ds-row-main"><span class="ds-row-title">${esc(r.name)}</span><span class="ds-row-sub">${r.cost} stars</span></span><button type="button" class="ds-btn ds-btn-ghost ds-btn-sm" onclick="bqArchive('${esc(r.id)}',false)">Restore</button></div>`).join('')}</div><p class="tb-note">Archived rewards keep their history.</p>`, 'Archived rewards'); };
+  window.bqPickGoal = function () {
+    const bal = balance(), L = state.rewards.filter(x => !x.retired && x.cost > 0).slice().sort((a, b) => (a.cost <= bal) - (b.cost <= bal) || a.cost - b.cost);
+    tbSheet(`<p class="tb-note">Choose a reward to save toward. It shows at the top of Rewards and on Home as it fills up.</p><div class="bq-pickgrid">${L.map(x => `<button type="button" class="bq-pickone" onclick="bqTargetSet('${esc(x.id)}')"><span class="bq-ph">${bqVisual(x)}</span><b>${esc(x.name)}</b><small>${ic('star-fill')}${x.cost.toLocaleString()}</small></button>`).join('')}</div>`, 'Save for something');
+  };
   window.bqTargetSet = function (id) { const S = SC(); S.rewardTarget = S.rewardTarget === id ? null : id; save(); tbClose(); render(); };
   /* Redeeming is a real moment: a quiet card with a little gold, then back to the shop. */
   window.bqRedeem = function (id) {
@@ -10420,9 +10609,9 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const s = SC2.stats(h); if (!s.has) return { facts: [], text: 'No history yet' };
     const unit = s.kind === 'week' ? 'week' : s.kind === 'month' ? 'month' : 'day', pl = n => `${n} ${unit}${n === 1 ? '' : 's'}`;
     const facts = [];
-    facts.push({ k: 'Streak', v: s.current ? pl(s.current) : 'Start one today' });
-    if (s.longest) facts.push({ k: 'Best', v: pl(s.longest) });
-    if (s.consistency != null) facts.push({ k: s.kind === 'day' ? 'Last 30 days' : 'Recently', v: `${Math.round(s.consistency * 100)}%` });
+    facts.push({ k: 'Streak', v: s.current ? pl(s.current) : 'Start one today', t: 'streak', i: 'flame-fill' });
+    if (s.longest) facts.push({ k: 'Best', v: pl(s.longest), t: 'best', i: 'trophy-fill' });
+    if (s.consistency != null) facts.push({ k: s.kind === 'day' ? 'Last 30 days' : 'Recently', v: `${Math.round(s.consistency * 100)}%`, t: 'cons', i: 'chart-line-up' });
     return { facts, s };
   }
   function historyStrip(h, n = 14) {
@@ -10442,7 +10631,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const e = hEdit, h = state.habits.find(x => x.id === e.id); if (!h) return;
     const weeklyLegacy = h.frequency === 'weekly', retired = h.frequency === 'retired', st = statsLine(h), paused = !!SC2.meta(h.id).paused;
     sheetBody('hsBody', `
-      ${st.facts.length ? `<div class="hs-facts">${st.facts.map(f => `<span><small>${f.k}</small><b>${esc(f.v)}</b></span>`).join('')}</div>` : `<p class="tb-note">${st.text}</p>`}
+      ${st.facts.length ? `<div class="hs-facts">${st.facts.map(f => `<span class="hf-${f.t}"><small>${ic(f.i)}${f.k}</small><b>${esc(f.v)}</b></span>`).join('')}</div>` : `<p class="tb-note">${st.text}</p>`}
       ${historyStrip(h)}
       ${paused ? `<p class="hs-paused">${ic('moon-stars-fill')}Paused. It's off Today and won't affect streaks.</p>` : ''}
       <label class="hs-l">Name<input id="hsName" maxlength="80" value="${esc(e.name)}" oninput="stHE('name',this.value)"></label>
@@ -10561,17 +10750,37 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     return `<div class="ds-row lf-task ${t.done ? 'done' : ''} ${t.due && t.due < today() && !t.done ? 'overdue' : ''}"><button type="button" class="lf-check" onclick="lfToggle('${esc(t.id)}')" aria-pressed="${!!t.done}" aria-label="${t.done ? 'Mark not done' : 'Done'}: ${esc(t.name)}">${t.done ? ic('check-bold') : ''}</button>
       <button type="button" class="ds-row-main lf-open" onclick="lfTask('${esc(t.id)}')"><span class="ds-row-title">${prioDot(t)}${esc(t.name)}</span>${meta.length || areaTag ? `<span class="ds-row-sub">${esc(meta.join(', '))}${areaTag}</span>` : ''}</button></div>`;
   }
+  /* Pass 42: Life HQ as a small personal command center. Typing a task is one line (return adds it, details are optional);
+     the most pressing task (overdue, then today) is featured with Done and a 15-minute focus; everything else sits in short
+     groups below; finished tasks and ideas stay quiet at the end. */
+  function lfFeatured(open, t0) {
+    const pick = open.filter(t => t.due && t.due <= t0).sort((x, y) => x.due.localeCompare(y.due) || (y.priority === 'high') - (x.priority === 'high'))[0];
+    if (!pick) return { html: '', id: null };
+    const area = pick.area ? SC2.areas().find(a => a.id === pick.area) : null, late = pick.due < t0;
+    const meta = [late ? relDay(pick.due) : 'Due today', (pick.subtasks || []).length ? `${pick.subtasks.filter(x => x.done).length}/${pick.subtasks.length} steps` : ''].filter(Boolean).join(', ');
+    return { id: pick.id, html: `<section class="lf-focus ${late ? 'is-late' : ''}" aria-label="Focus on">
+      <span class="lf-focus-k">${ic(late ? 'clock-fill' : 'target-fill')}${late ? 'Overdue, start here' : 'Focus on'}</span>
+      <button type="button" class="lf-focus-t" onclick="lfTask('${esc(pick.id)}')">${prioDot(pick)}${esc(pick.name)}</button>
+      <span class="lf-focus-m">${esc(meta)}${area ? `<span class="lf-area sep" style="--a:var(--ds-${String(area.tone || 'rose').replace(/[^a-z]/g, '')})">${esc(area.name)}</span>` : ''}</span>
+      <div class="lf-focus-b"><button type="button" class="ds-btn ds-btn-primary" onclick="lfToggle('${esc(pick.id)}')">${ic('check-bold')}Done</button><button type="button" class="ds-btn ds-btn-secondary" onclick="lfFocus('${esc(pick.id)}')">${ic('clock-fill')}Focus 15 min</button></div></section>` };
+  }
+  window.lfQuickAdd = function (e) {
+    e.preventDefault(); const inp = document.getElementById('lfQuick'); const n = String((inp || {}).value || '').trim(); if (!n) return;
+    if (!SC2.addTask({ name: n })) return; feedback('tap'); renderLife(); render();
+    const again = document.getElementById('lfQuick'); if (again) again.focus({ preventScroll: true }); // ready for the next one
+  };
   renderLife = function () {
     const el = document.getElementById('life'); if (!el) return;
     const all = SC2.tasks(), open = all.filter(t => !t.done), done = all.filter(t => t.done).sort((a, b) => String(b.doneAt || '').localeCompare(String(a.doneAt || '')));
     const t0 = today(), byDue = (a, b) => (a.due || '9999').localeCompare(b.due || '9999') || (a.priority === 'high' ? -1 : 0) - (b.priority === 'high' ? -1 : 0);
-    const groups = [['Overdue', open.filter(t => t.due && t.due < t0)], ['Today', open.filter(t => t.due === t0)], ['Coming up', open.filter(t => t.due && t.due > t0)], ['Anytime', open.filter(t => !t.due)]].filter(g => g[1].length);
+    const feat = lfFeatured(open, t0), rest = open.filter(t => t.id !== feat.id);
+    const groups = [['Overdue', rest.filter(t => t.due && t.due < t0)], ['Today', rest.filter(t => t.due === t0)], ['Coming up', rest.filter(t => t.due && t.due > t0)], ['Anytime', rest.filter(t => !t.due)]].filter(g => g[1].length);
     el.innerHTML = `<div class="tb lf">
-      ${addRow('Add a task', 'lfTaskNew()')}
-      ${groups.length ? groups.map(([g, ts]) => `<div class="ds-section ${g === 'Overdue' ? 'tone-peach-t' : ''}"><span>${g}</span><span>${ts.length}</span></div><div class="ds-list ${g === 'Today' ? 'lf-today' : ''}">${ts.sort(byDue).map(taskRow).join('')}</div>`).join('') : '<div class="pg-empty t-rose"><span class="pg-empty-art">' + ic('check-bold') + '</span><b>Nothing waiting</b><small>Add the next real-life thing you want off your mind.</small></div>'}
+      <form class="lf-quick" onsubmit="lfQuickAdd(event)"><span class="lf-quick-ic">${ic('plus-bold')}</span><input id="lfQuick" type="text" maxlength="120" enterkeyhint="done" autocomplete="off" placeholder="Add a task" aria-label="Add a task"><button type="button" class="lf-quick-more" onclick="lfTaskNew()" aria-label="Add with a due date, area or steps">${ic('calendar-check-duotone')}</button></form>
+      ${feat.html}
+      ${groups.length ? groups.map(([g, ts]) => `<div class="ds-section lf-g lf-g-${g.toLowerCase().replace(/ /g, '')}"><span>${g}</span><span>${ts.length}</span></div><div class="ds-list ${g === 'Today' ? 'lf-today' : ''}">${ts.sort(byDue).map(taskRow).join('')}</div>`).join('') : feat.html ? '' : '<div class="pg-empty t-rose"><span class="pg-empty-art">' + ic('check-bold') + '</span><b>Nothing waiting</b><small>Add the next real-life thing you want off your mind.</small></div>'}
       ${done.length ? `<button type="button" class="lf-fold" onclick="lfDone()" aria-expanded="${lfOpenDone}">Completed <b>${done.length}</b>${ic('caret-down-bold')}</button>${lfOpenDone ? `<div class="ds-list">${done.slice(0, 40).map(taskRow).join('')}</div>` : ''}` : ''}
-      <div class="ds-section"><span>Ideas</span></div>
-      <div class="ds-list"><button type="button" class="ds-row tb-row" onclick="lfIdeas()"><span class="ds-glyph ds-glyph-peach">${ic('calendar-check-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Content ideas</span><span class="ds-row-sub">Occasions for this month</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div></div>`;
+      <button type="button" class="lf-ideas" onclick="lfIdeas()"><span class="ds-glyph ds-glyph-peach">${ic('calendar-check-duotone')}</span><span><b>Content ideas</b><small>Occasions for this month</small></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`;
   };
   window.lfDone = () => { lfOpenDone = !lfOpenDone; renderLife(); };
   window.lfToggle = id => { const t = SC2.tasks().find(x => String(x.id) === String(id)); if (!t) return; SC2.completeTask(id, !t.done); if (!t.done) {} else feedback('success'); renderLife(); render(); };
@@ -10677,15 +10886,16 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     for (const p of order) { const o = openIn(p); if (o.length) return { p, list: o, current: p === ph }; }
     return null;
   }
-  function pillHTML(key, label, icon, have, total, extra = '') {
+  function pillHTML(key, label, icon, have, total, extra = '', isNow = false) {
     const on = tdPill === key, done = total && have >= total;
     const cls = PARTS.includes(key) ? `td-part td-part-${key}` : 'td-part';
-    return `<button type="button" class="td-pill ${cls} ${on ? 'is-open' : ''} ${done ? 'is-done' : ''}" onclick="tdPillSet('${key}')" aria-expanded="${on}" ${extra}><span class="td-pill-ic">${ic(done ? 'check-bold' : icon)}</span><span class="td-pill-tx"><b>${esc(label)}</b><small>${total ? (done ? 'Done' : `${have} of ${total}`) : 'Empty'}</small></span><i class="td-pill-bar" aria-hidden="true"><b style="width:${total ? Math.round(have / total * 100) : 0}%"></b></i></button>`;
+    return `<button type="button" class="td-pill ${cls} ${on ? 'is-open' : ''} ${done ? 'is-done' : ''} ${isNow ? 'is-now' : ''}" onclick="tdPillSet('${key}')" aria-expanded="${on}" ${extra}><span class="td-pill-ic">${ic(done ? 'check-bold' : icon)}</span><span class="td-pill-tx"><b>${esc(label)}</b><small>${total ? (done ? 'Done' : `${have} of ${total}`) : 'Empty'}</small></span><i class="td-pill-bar" aria-hidden="true"><b style="width:${total ? Math.round(have / total * 100) : 0}%"></b></i></button>`;
   }
   function pillsHTML(nowP) {
     const pills = [];
-    PARTS.forEach(p => { if (p === nowP) return; const all = allIn(p); if (!all.length) return; pills.push(pillHTML(p, PART_LABEL[p], PART_ICON[p], all.filter(h => completed(h)).length, all.length)); });
-    const wk = weekly().filter(h => !SC2.meta(h.id).paused); if (wk.length) pills.push(pillHTML('weekly', 'This week', 'calendar-check-duotone', wk.filter(h => completed(h)).length, wk.length));
+    // pass 41: every part keeps a fixed place (Morning, Anytime, Night), so the strip scans at a glance; the current one is marked
+    PARTS.forEach(p => { const all = allIn(p); if (!all.length) return; pills.push(pillHTML(p, PART_LABEL[p], PART_ICON[p], all.filter(h => completed(h)).length, all.length, '', p === nowP)); });
+    const wk = weekly().filter(h => !SC2.meta(h.id).paused); if (wk.length) pills.push(pillHTML('weekly', 'Weekly', 'calendar-check-duotone', wk.filter(h => completed(h)).length, wk.length, '', nowP === 'weekly'));
     safe(() => SC2.routines(), []).filter(r => !/^rt-(morning|night|reset)$/.test(r.id)).forEach(r => { const p = SC2.routineProgress(r); if (p.total) pills.push(pillHTML(r.id, r.name, r.icon || 'stack-duotone', p.done, p.total)); });
     if (!pills.length) return '';
     let body = '';
@@ -10694,7 +10904,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       const open = list.filter(h => !completed(h)), done = list.filter(h => completed(h));
       body = `<div class="ds-list td-list td-pill-list">${open.map(rowHTML).join('')}${done.map(h => `<button type="button" class="td-donerow" onclick="tdUndo('${esc(h.id)}')" aria-label="${esc(h.name)}, done. Tap to undo.">${ic('star-fill')}<span>${esc(h.name)}</span></button>`).join('')}${!list.length ? '<p class="tb-empty">Nothing here right now.</p>' : ''}</div>`;
     }
-    return `<div class="td-pills" role="group" aria-label="Routines">${pills.join('')}</div>${body}`;
+    return `<div class="td-pills td-routines" role="group" aria-label="Routines">${pills.join('')}</div>${body}`;
   }
   window.tdPillSet = k => { tdPill = tdPill === k ? null : k; if (PARTS.includes(k)) { openParts = openParts || new Set(); openParts.has(k) ? openParts.delete(k) : openParts.add(k); } renderToday(); };
   function tasksHTML() {
@@ -10717,25 +10927,40 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
     const inner = fy.replace(/<div class="ds-section td-sec">[\s\S]*?<\/div>/, ''); // the old header (title + Inbox link) is replaced by the rail's own
     return `<div class="ds-section td-sec"><span>Treats</span></div><div class="td-rail">${inner}${extra.join('')}</div>`;
   }
+  // Pass 41: "Up next". The next habit is featured (its own icon, what comes after, a round check); the rest of this part of the
+  // day follows as quiet rows, two at most until "more" is tapped, so a long evening routine doesn't push everything down.
+  let tdMoreOpen = false;
+  window.tdNextMore = () => { tdMoreOpen = !tdMoreOpen; renderToday(); };
+  function nextRowHTML(h, left) {
+    const sub = habitSub(h) || (left > 1 ? `Then ${left - 1} more` : 'The last one for now');
+    return `<button type="button" class="ds-row td-row td-row-next" data-id="${esc(h.id)}" onclick="tdTap('${esc(h.id)}')" aria-label="${esc(h.name)}, up next. Tap to complete.">
+      <span class="td-next-ic" aria-hidden="true">${ic(habitIcon(h.name, partOfHabit(h)))}</span><span class="ds-row-main"><span class="ds-row-title">${esc(h.name)}</span><span class="ds-row-sub">${esc(sub)}</span></span><span class="td-check" aria-hidden="true">${ic('check-bold')}</span></button>`;
+  }
+  function upNextHTML(now) {
+    const [first, ...rest] = now.list, shown = tdMoreOpen ? rest : rest.slice(0, 2), more = rest.length - shown.length;
+    const wkly = now.p === 'weekly', label = wkly ? 'This week' : now.current ? NOW_LABEL[now.p] : `Still open: ${PART_LABEL[now.p]}`;
+    return `<section class="td-now td-next" aria-label="Up next"><div class="td-now-h"><span class="td-next-t">Up next<em class="td-part-${now.p}">${ic(wkly ? 'calendar-check-duotone' : PART_ICON[now.p])}${esc(label)}</em></span><button type="button" class="td-one" onclick="tdJustOne()">${ic('sparkle-fill')}Just one thing</button></div>
+      <div class="ds-list td-list td-nowlist">${nextRowHTML(first, now.list.length)}${shown.map(rowHTML).join('')}${more > 0 || (tdMoreOpen && rest.length > 2) ? `<button type="button" class="td-more" onclick="tdNextMore()" aria-expanded="${tdMoreOpen}">${tdMoreOpen ? 'Show less' : `${more} more ${wkly ? 'this week' : now.current ? NOW_LABEL[now.p].replace(/^This /, 'this ').replace(/^Tonight$/, 'tonight') : PART_LABEL[now.p].toLowerCase()}`}${ic('caret-down-bold')}</button>` : ''}</div></section>`;
+  }
   renderToday = function () {
     const el = document.getElementById('today'); if (!el) return;
     const g = goodDayInfo(), core = daily(), doneCore = Math.min(g.need, g.done), count = dailyCount(new Date());
-    const now = nowGroup();
+    let now = nowGroup();
+    if (!now) { const wk = weekly().filter(h => !completed(h) && !SC2.meta(h.id).paused && SC2.dayStatus(h, new Date()) !== 'paused'); if (wk.length) now = { p: 'weekly', list: wk, current: false }; } // pass 48
     const cheer = g.good ? 'Good day' : doneCore === 0 ? 'A fresh start' : g.left <= 2 ? 'Almost a good day' : doneCore >= g.need / 2 ? 'Halfway there' : 'Off to a lovely start';
     const subline = g.good ? `${count} habits today` : g.done >= g.need ? (g.needNight ? 'One Night habit makes it a good day' : 'One Morning or Anytime habit makes it a good day') : `${g.need - doneCore} more for a Good Day`;
     const done = core.filter(h => completed(h)), aside = core.filter(h => !completed(h) && ['skip', 'rest', 'paused'].includes(SC2.dayStatus(h, new Date())));
-    const nowHTML = now ? `<div class="td-now"><div class="td-now-h"><span>${now.current ? NOW_LABEL[now.p] : `Still open: ${PART_LABEL[now.p]}`}</span><button type="button" class="td-one" onclick="tdJustOne()">${ic('sparkle-fill')}Just one thing</button></div>
-        <div class="ds-list td-list td-nowlist">${now.list.map(rowHTML).join('')}</div></div>`
-      : `<div class="td-alldone-hero">${ic('sparkle-fill')}<b>${core.length ? 'Everything’s done for today' : 'Add your first habit'}</b><small>${core.length ? 'Enjoy the rest of your day.' : 'Settings → Add a habit.'}</small></div>`;
-    // Pass 34: the next action leads, right under the progress hero (with its routine pills); quests and the side quest follow.
+    const nowHTML = now ? upNextHTML(now)
+      : `<div class="td-alldone-hero td-alldone-line">${ic('sparkle-fill')}<span><b>${core.length ? 'Everything’s done for today' : 'Add your first habit'}</b><small>${core.length ? 'Enjoy the rest of your day.' : 'Settings → Add a habit.'}</small></span></div>`;
+    // Pass 34/41: the next action leads under the progress hero, then the routine strip, then quests (side quest inside).
+    const side = (window.__starcadeSideQuestHTML || (() => ''))(), quests = questsHTML(side);
     el.innerHTML = `<div class="td td2">
       <div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div>
       ${tdNotice()}
       <section class="td-hero ${g.good ? 'is-good' : ''}" aria-label="Today’s progress">${ring(doneCore, g.need)}<div class="td-head"><h2>${g.good ? ic('sparkle-fill', 'gd') : ''}${esc(cheer)}</h2><p class="td-sub">${esc(subline)}</p><div class="td-ctx">${goodDayChips(g)}</div></div></section>
       ${nowHTML}
-      ${pillsHTML(now && now.current ? now.p : null)}
-      ${questsHTML()}
-      ${(window.__starcadeSideQuestHTML || (() => ''))()}
+      ${pillsHTML(now && (now.current || now.p === 'weekly') ? now.p : null)}
+      ${quests || side}
       ${tasksHTML()}
       ${treatsHTML()}
       ${bonusHTML()}
@@ -10796,12 +11021,12 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       const h = state.habits.find(x => x.id === q.id); return h ? Object.assign({}, q, { title: h.name, why: q.stretch ? 'A little stretch' : h.frequency === 'weekly' ? 'This week' : 'Today', done: completed(h) }) : null;
     }).filter(Boolean);
   }
-  function questsHTML() {
+  function questsHTML(side = '') {
     let qs; try { qs = dailyQuests(); } catch (e) { return ''; } if (qs.length < 2) return '';
     const done = qs.filter(q => q.done).length, all = done === qs.length;
     if (all) { try { if (V7().awardStars && V7().awardStars('quest:' + today(), QUEST_BONUS, 'Daily quests')) { feedback('success'); setTimeout(() => { try { celebrateWin(`Quests complete, +${QUEST_BONUS} stars`); } catch (e) {} }, 300); } } catch (e) {} }
-    return `<section class="td-quests ${all ? 'is-done' : ''}" aria-label="Daily quests"><div class="td-quests-h"><b>${all ? 'Quests complete' : 'Daily quests'}</b><span>${all ? `+${QUEST_BONUS} ★ earned` : `${done} of ${qs.length}, +${QUEST_BONUS} ★ for all`}</span></div>
-      ${qs.map(q => `<button type="button" class="td-quest ${q.done ? 'done' : ''}" onclick="${q.done ? '' : q.kind === 'task' ? `lfToggle('${esc(q.id)}')` : `tdTap('${esc(q.id)}')`}" ${q.done ? 'aria-disabled="true"' : ''} aria-label="${esc(q.title)}${q.done ? ', done' : ''}"><span class="q-box">${q.done ? ic('check-bold') : ''}</span><span class="q-tx"><b>${esc(q.title)}</b><small>${esc(q.why)}</small></span></button>`).join('')}</section>`;
+    return `<section class="td-quests ${all ? 'is-done' : ''}" aria-label="Daily quests"><div class="td-quests-h"><b>${all ? 'Quests complete' : 'Daily quests'}</b><span class="q-pips" role="img" aria-label="${done} of ${qs.length} done">${qs.map(q => `<i class="${q.done ? 'on' : ''}"></i>`).join('')}</span><span class="q-prize">${ic('star-fill')}${all ? `+${QUEST_BONUS} earned` : `+${QUEST_BONUS} for all`}</span></div>
+      ${qs.map(q => `<button type="button" class="td-quest ${q.done ? 'done' : ''}" onclick="${q.done ? '' : q.kind === 'task' ? `lfToggle('${esc(q.id)}')` : `tdTap('${esc(q.id)}')`}" ${q.done ? 'aria-disabled="true"' : ''} aria-label="${esc(q.title)}${q.done ? ', done' : ''}"><span class="q-box">${q.done ? ic('check-bold') : ''}</span><span class="q-tx"><b>${esc(q.title)}</b><small>${esc(q.why)}</small></span></button>`).join('')}${side}</section>`;
   }
   window.tdJustOne = function (skipId) {
     const cand = daily().filter(h => !completed(h) && SC2.showToday(h) && h.id !== skipId).map(h => ({ h, s: SC2.stats(h), now: partOfHabit(h) === phaseNow() ? 1 : 0 })).sort((a, b) => (b.now - a.now) || ((b.s.consistency || 0) - (a.s.consistency || 0))); // this part of the day first, then the most reliable
