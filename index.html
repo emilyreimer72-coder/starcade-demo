@@ -7855,6 +7855,152 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
 #rewards .bq-links .bq-link:first-child small{color:var(--ds-text-3)!important}
 .cl-dex-tx small,.cl-dex-tx span{color:var(--ds-text-2)!important}
 .cl-album{background:var(--ds-surface)!important;box-shadow:var(--ds-hi),inset 0 0 0 1px rgb(238 136 120 / .12)!important}
+
+/* ===================== Pass 62 (Claude): sophisticated dark boutique ===================== */
+/* the owner: the jewel box was too bright, too saturated, with too many fully colored surfaces. Target: about 80% dark
+   aubergine, 15% muted semantic color, 5% bright action or reward. Color guides the eye; it doesn't compete for it.
+   This block retires the last large light or saturated surfaces (the Rewards wallet slab, solid gold price tags, the
+   bright green calendar, the saturated violet Daily Play) and makes Bingo a real printed card. Structure and art stay. */
+
+/* ---------- Home ---------- */
+/* Good Day / Dexter: warm and special, never a colored block. A low candle-warm glow behind Dexter; sage only by the ring */
+#today .td-hero:not(.is-good){background:radial-gradient(60% 120% at 92% 0%,rgb(248 181 154 / .13),transparent 62%),radial-gradient(55% 120% at 0% 50%,rgb(166 212 154 / .12),transparent 60%),var(--ds-sheen),var(--ds-surface)!important;box-shadow:var(--ds-hi),inset 0 0 0 1px rgb(243 203 120 / .14),var(--ds-card-shadow)!important}
+/* Up next: the one focal point. Dusty rose rather than saturated garnet; the solid pink check is the bright 5% */
+#today .td-nowlist{background:radial-gradient(90% 130% at 100% 0%,rgb(242 155 182 / .16),transparent 62%),linear-gradient(160deg,#4A2238,#2E1524)!important;box-shadow:inset 0 1px 0 rgb(255 210 225 / .1),inset 0 0 0 1px rgb(242 155 182 / .3),0 16px 30px -20px rgb(217 102 140 / .55)!important}
+/* routines: the part's color lives in the icon and the bar; only a whisper at the top */
+#today .td-routines .td-part-morning{background:linear-gradient(180deg,rgb(248 181 154 / .07),transparent 70%),var(--ds-surface)!important}
+#today .td-routines .td-part-anytime{background:linear-gradient(180deg,rgb(166 212 154 / .07),transparent 70%),var(--ds-surface)!important}
+#today .td-routines .td-part-night{background:linear-gradient(180deg,rgb(199 177 246 / .07),transparent 70%),var(--ds-surface)!important}
+#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night){background:linear-gradient(180deg,rgb(243 203 120 / .06),transparent 70%),var(--ds-surface)!important}
+/* Daily quests: special through the gold hairline, pips and prize, with a quieter glow */
+#today .td-quests{--tn-a:.11;--tn-e:.3}
+/* treats: plum objects; wells are tinted, never solid color squares */
+#today .td-treat.tr-tokens .tr-ic{background:rgb(199 177 246 / .14)!important;color:var(--j-lav)!important;box-shadow:inset 0 0 0 1px rgb(199 177 246 / .2)!important}
+
+/* ---------- Bingo: a real, crisp printed card (the Home treat and the Arcade board) ---------- */
+#today .td-treat.tr-bingo .tr-mini,#boost .ar-board .bd-grid{position:relative;background:#EADBC8!important;border-radius:6px!important;box-shadow:0 6px 14px -8px rgb(0 0 0 / .8),inset 0 0 0 1px rgb(58 37 14 / .12)!important;padding:4px!important;gap:2px!important;transform:rotate(-2deg)}
+#today .td-treat.tr-bingo .tr-mini{grid-template-columns:repeat(5,12px)!important}
+#boost .ar-board .bd-grid{grid-template-columns:repeat(5,19px)!important;width:max-content!important}
+#today .td-treat.tr-bingo .tr-mini::before,#boost .ar-board .bd-grid::before{content:"BINGO";grid-column:1/-1;display:block;margin:-4px -4px 1px;padding:2px 0;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#6B2A48,#4E1C35);color:#F7E4D6;font:800 8px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:9.2px;text-indent:7px;white-space:nowrap;overflow:hidden}
+#boost .ar-board .bd-grid::before{font-size:10px;letter-spacing:15px;text-indent:11px;padding:3px 0}
+#today .td-treat.tr-bingo .tr-mini i,#boost .ar-board .bd-grid i{width:auto!important;height:auto!important;aspect-ratio:1;border-radius:1.5px!important;background:#FBF4EA!important;box-shadow:inset 0 0 0 .5px rgb(58 37 14 / .18)!important}
+#today .td-treat.tr-bingo .tr-mini i.on,#boost .ar-board .bd-grid i.on{background:radial-gradient(circle,rgb(188 96 132 / .72) 0 50%,rgb(188 96 132 / .2) 54%,transparent 58%),#FBF4EA!important}
+#today .td-treat.tr-bingo .tr-mini i.free,#boost .ar-board .bd-grid i.free{background:radial-gradient(circle,#D9A548 0 34%,transparent 38%),#FBF4EA!important}
+#today .td-treat.tr-bingo .tr-mini i.gold{box-shadow:inset 0 0 0 1.5px #C9963E!important}
+
+/* ---------- Progress: a dark foundation; color lives inside rings, bars, dots and medals ---------- */
+#stats .pg-hero{--tn-a:.14}
+#stats .pg-hero .pg-level-n{box-shadow:0 0 0 3px rgb(243 203 120 / .12),0 6px 14px -8px rgb(227 176 79 / .45)!important}
+#stats .pg-wk-dots .d.some i{background:rgb(166 212 154 / calc(.14 + var(--f) * .3))!important;color:#EEF6EA!important;box-shadow:inset 0 0 0 1px rgb(166 212 154 / .35)!important}
+#stats .pg-wk-dots .d.good i{background:#4A3A1E!important;color:#F3DDB0!important;box-shadow:inset 0 0 0 1.5px #D9A548!important}
+#stats .pg-hab-bar i{background:linear-gradient(90deg,#5E8F69,#8DBB87)!important}
+/* milestones: satin gold, not glowing coins */
+#stats .pg-mile.on .medal{background:radial-gradient(circle at 35% 28%,#EBD3A0,#C99B52 52%,#8E6A30)!important;box-shadow:0 4px 10px -6px rgb(0 0 0 / .8)!important}
+/* history calendar: deep sage steps with cream numbers; Good Days are a gold-rimmed dark tile, so gold stays rare */
+#stats .pg-heat i.lv1{background:#2B3330!important;color:#BFD0BA!important}
+#stats .pg-heat i.lv2{background:#34493C!important;color:#DCEAD6!important}
+#stats .pg-heat i.lv3{background:#4C6E55!important;color:#F1F7EE!important;font-weight:650!important}
+#stats .pg-heat i.good{background:#4A3A1E!important;color:#F6DFA8!important;box-shadow:inset 0 0 0 1.5px #D9A548!important}
+#stats .pg-key i.lv2{background:#4C6E55!important}
+#stats .pg-key i.good{background:#4A3A1E!important;box-shadow:inset 0 0 0 1.5px #D9A548!important}
+
+/* ---------- Arcade: the games carry the color; the room stays dark ---------- */
+#boost .ar-daily{background:radial-gradient(90% 120% at 100% 0%,rgb(242 155 182 / .12),transparent 60%),linear-gradient(155deg,#3A2450,#241731)!important;box-shadow:inset 0 1px 0 rgb(230 210 255 / .1),inset 0 0 0 1px rgb(190 160 245 / .26),0 16px 30px -20px rgb(90 50 160 / .6)!important}
+#boost .ar-wallet-ic{background:rgb(199 177 246 / .14)!important;color:var(--j-lav)!important;box-shadow:inset 0 0 0 1px rgb(199 177 246 / .2)!important}
+#boost .ar-ticket{filter:brightness(.88) saturate(.9)}
+
+/* ---------- Rewards: a dark boutique; the photos carry the color and gold is rare ---------- */
+#rewards .bq-wallet{background:radial-gradient(90% 140% at 0% 0%,rgb(243 203 120 / .16),transparent 58%),var(--ds-sheen),linear-gradient(160deg,#33202D,#251723)!important;box-shadow:var(--ds-hi),inset 0 0 0 1px rgb(243 203 120 / .32),0 16px 30px -20px rgb(0 0 0 / .9)!important}
+#rewards .bq-bal .ds-ic{color:var(--j-gold)!important}
+#rewards .bq-bal b{color:#F3DDB0!important}
+#rewards .bq-wl b{color:var(--ds-text)!important}#rewards .bq-wl small{color:var(--ds-text-3)!important}
+#rewards .bq-wallet .bq-goal,#rewards .bq-pick{border-top-color:rgb(243 203 120 / .14)!important}
+#rewards .bq-wallet .bq-goal-tx small{color:var(--j-gold)!important}
+#rewards .bq-wallet .bq-goal-tx b{color:var(--ds-text)!important}
+#rewards .bq-wallet .bq-goal .bq-meter{background:rgb(255 255 255 / .08)!important}
+#rewards .bq-wallet .bq-goal .bq-meter i{background:linear-gradient(90deg,#B0843C,var(--j-gold))!important;box-shadow:0 0 8px rgb(243 203 120 / .35)!important}
+#rewards .bq-wallet .bq-goal em{color:var(--ds-text-2)!important}
+#rewards .bq-wallet .bq-goal em strong{color:var(--j-gold)!important}
+#rewards .bq-wallet .bq-goal.is-ready em{color:var(--j-rose)!important}
+#rewards .bq-pick{color:var(--ds-text)!important}
+#rewards .bq-pick>.ds-ic:first-child{background:rgb(243 203 120 / .14)!important;color:var(--j-gold)!important}
+#rewards .bq-pick small,#rewards .bq-pick .tb-caret{color:var(--ds-text-3)!important}
+/* price tags: dark glass with a gold star, so fourteen tiles don't read as fourteen gold coins */
+.bq-ph .bq-pr{background:rgb(24 12 22 / .66)!important;color:#FFF3E6!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 0 0 1px rgb(243 203 120 / .28),0 2px 8px rgb(0 0 0 / .35)!important}
+.bq-ph .bq-pr .ds-ic{color:var(--j-gold)!important}
+
+/* ---------- Settings: restrained ---------- */
+[aria-checked="true"] > .st-switch{background:#6E9A70!important}
+
+/* ===================== Pass 63 (Claude): Dexter, alive and growing with Good Days ===================== */
+/* Signs of life on his real art: an occasional blink (a slow, sleepy one in the evening), a drifting z at night, a heart
+   when tapped, a happy hop when something good happens. Rare, small, never over controls; all still under Reduce Motion. */
+.cp-say{pointer-events:none}
+.cp.has-art .cp-scene .cp-blink{position:absolute;z-index:2;left:calc(var(--dl) * var(--k));bottom:calc(var(--db) * var(--k));width:calc(var(--dw) * var(--k));height:calc(var(--dh) * var(--k));pointer-events:none;overflow:visible;transform-origin:50% 96%}
+.cp-blink .lid{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0)}
+.cp[data-state="celebrate"] .cp-blink{display:none}
+.cp{--hx:.5}.cp[data-pic="awake"]{--hx:.72}.cp[data-pic="relaxed"]{--hx:.36}.cp[data-pic="cozy"]{--hx:.4}.cp[data-pic="celebrate"]{--hx:.62}
+.cp-heart{position:absolute;z-index:5;left:calc((var(--dl, 30px) + var(--dw, 60px) * var(--hx)) * var(--k, 1));top:0;width:14px;height:14px;color:var(--j-rose);pointer-events:none;opacity:0;filter:drop-shadow(0 2px 3px rgb(0 0 0 / .4))}
+.cp-heart .ds-ic{width:14px;height:14px}
+@media (prefers-reduced-motion:no-preference){
+  .cp.has-art[data-pic="cozy"]:not([data-state="celebrate"]) .cp-scene .cp-blink{animation:dxBreathe 4.4s ease-in-out infinite,dxSettle 1.6s var(--ds-ease) 1;--br:1.016}
+  .cp.has-art[data-pic="relaxed"]:not([data-state="celebrate"]) .cp-scene .cp-blink{animation:dxBreathe 3.9s ease-in-out infinite,dxShift 15s ease-in-out 4s infinite;--br:1.013}
+  .cp.has-art[data-pic="awake"]:not([data-state="celebrate"]) .cp-scene .cp-blink{animation:dxBreathe 3.1s ease-in-out infinite,dxLook 12s ease-in-out 2s infinite;--br:1.01}
+  .cp[data-pic="awake"] .cp-blink .lid{animation:dxBlink 6.8s linear 1.4s infinite}
+  .cp[data-pic="relaxed"] .cp-blink .lid{animation:dxBlink 8.4s linear 3.2s infinite}
+  .cp[data-pic="cozy"] .cp-blink .lid{animation:dxSleepy 9.6s ease-in-out 2.4s infinite}
+  .cp-heart{animation:cpHeart 1.3s ease-out forwards}
+  .cp.happy[data-pic="awake"] .cp-scene :is(.cp-art,.cp-blink),.cp.happy[data-pic="celebrate"] .cp-scene .cp-art{animation:dxHop .9s cubic-bezier(.3,1.3,.5,1) 1!important}
+  .cp.happy:is([data-pic="relaxed"],[data-pic="cozy"]) .cp-scene :is(.cp-art,.cp-blink){animation:dxWiggle .9s ease-in-out 1!important}
+}
+@keyframes dxBlink{0%,94%,100%{transform:scaleY(0)}95.6%{transform:scaleY(1)}97.4%{transform:scaleY(0)}}
+@keyframes dxSleepy{0%,78%,100%{transform:scaleY(0)}85%{transform:scaleY(1)}91%{transform:scaleY(1)}96%{transform:scaleY(0)}}
+@keyframes cpHeart{0%{opacity:0;transform:translateY(8px) scale(.6)}25%{opacity:1;transform:translateY(-2px) scale(1)}100%{opacity:0;transform:translate(5px,-24px) scale(.9)}}
+@keyframes dxHop{0%,100%{transform:none}30%{transform:translateY(-7px)}55%{transform:none}75%{transform:translateY(-2.5px)}}
+@keyframes dxWiggle{0%,100%{transform:none}25%{transform:rotate(-1.6deg)}50%{transform:rotate(1.2deg)}75%{transform:rotate(-.5deg)}}
+
+/* ---------- keepsakes on Home: through the companion's scene layers ---------- */
+.cp-keep{position:absolute;display:block;pointer-events:none}
+.cp-keep svg{display:block;width:100%;height:auto}
+.cp-bedwrap .cp-keep-blanket{left:57%;top:27%;width:29%;transform:rotate(-3deg)}
+.cp-bedwrap .cp-keep-bone{left:41%;top:66%;width:17%;transform:rotate(-6deg)}
+
+/* ---------- the Clubhouse: keepsakes in his room ---------- */
+.dx-item{position:absolute;display:block;pointer-events:none}
+.dx-item svg{display:block;width:100%;height:auto}
+.dx-portrait-frame{z-index:0;left:calc(50% - 66px);top:16px;width:34px;filter:drop-shadow(0 5px 8px rgb(0 0 0 / .45))}
+.dx-blanket{z-index:2;left:calc(50% - 150px);bottom:16px;width:66px;filter:drop-shadow(0 4px 6px rgb(0 0 0 / .35))}
+.dx-bone{z-index:2;left:calc(50% + 88px);bottom:12px;width:40px;transform:rotate(-8deg)}
+.dx-room.is-velvet .dx-rug{background:radial-gradient(ellipse at center,#8E3F5E 0 52%,#73304B 53% 64%,#4E1E33 65% 100%);box-shadow:0 0 0 2px rgb(233 196 120 / .55),0 6px 12px -6px rgb(0 0 0 / .6)}
+/* the shelf: what he has, and what's next */
+.dx-keeps-h{display:flex;justify-content:space-between;align-items:baseline}
+.dx-keeps-n{font:500 12.5px var(--ds-font);color:var(--ds-text-3)}
+.dx-keeps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.dx-keep{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0;padding:10px 4px 9px;border-radius:var(--ds-r-md);background:var(--ds-surface);box-shadow:var(--ds-hi);text-align:center}
+.dx-keep.on{box-shadow:var(--ds-hi),inset 0 0 0 1px rgb(243 203 120 / .24)}
+.dx-keep.next{box-shadow:var(--ds-hi),inset 0 0 0 1px rgb(242 155 182 / .32)}
+.dx-keep-art{height:36px;display:grid;place-items:center}
+.dx-keep-art svg{display:block;height:34px;width:auto;max-width:54px}
+.dx-keep-art.dk-bone svg{height:20px}
+.dx-keep:not(.on) .dx-keep-art{filter:grayscale(1) brightness(.6);opacity:.5}
+.dx-keep.next .dx-keep-art{filter:grayscale(.5) brightness(.85);opacity:.85}
+.dx-keep b{font:600 12px/1.2 var(--ds-font);color:var(--ds-text);overflow-wrap:anywhere}
+.dx-keep small{font:500 11px/1.2 var(--ds-font);color:var(--ds-text-3)}
+.dx-keep.on small{color:var(--j-gold)}
+.dx-keep small em{font-style:normal;font-weight:650;color:var(--j-rose)}
+.dx-keep-bar{display:block;width:72%;height:4px;margin-top:2px;border-radius:2px;overflow:hidden;background:rgb(255 255 255 / .08)}
+.dx-keep-bar i{display:block;height:100%;border-radius:2px;background:var(--j-rose)}
+.dx-keeps-note{margin:9px 2px 4px;font:500 12.5px/1.4 var(--ds-font);color:var(--ds-text-3)}
+/* the unlock moment: one small sheet, once per keepsake */
+.dx-unlock{display:flex;flex-direction:column;align-items:center;text-align:center;padding:4px 4px 2px}
+.dx-unlock-art{width:160px;height:116px;display:grid;place-items:center;margin-bottom:4px;background:radial-gradient(closest-side,rgb(243 203 120 / .16),transparent)}
+.dx-unlock-art svg{width:118px;height:auto;max-height:100px;filter:drop-shadow(0 8px 12px rgb(0 0 0 / .45))}
+.dx-unlock-art.dk-portrait svg{width:70px}
+.dx-unlock-eb{margin:0;font:650 12.5px var(--ds-font);color:var(--j-gold)}
+.dx-unlock h3{margin:4px 0 2px;font:600 22px/1.2 var(--sc-display);color:var(--ds-text)}
+.dx-unlock-sub{margin:0 0 16px;font:500 14px/1.4 var(--ds-font);color:var(--ds-text-2)}
+@media (prefers-reduced-motion:no-preference){.dx-unlock-art svg{animation:dxGift .7s cubic-bezier(.3,1.4,.5,1) 1}}
+@keyframes dxGift{0%{transform:translateY(10px) scale(.6);opacity:0}100%{transform:none;opacity:1}}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -9382,7 +9528,7 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   };
   const compStateAt = (d = new Date()) => { const m = d.getHours() * 60 + d.getMinutes(); const s = COMPANION.schedule.find(([a, b]) => m >= a && m < b); return s ? s[2] : COMPANION.night; };
   const compArt = {}; // state → true (loaded) | false (missing); undefined = not probed yet
-  let compOverride = null, compTimer = 0, compTalkTimer = 0, compLine = 0;
+  let compOverride = null, compTimer = 0, compTalkTimer = 0, compLine = 0, compHappyAt = 0;
   function compProbe(state) {
     if (compArt[state] !== undefined) return;
     compArt[state] = 'pending';
@@ -9401,11 +9547,17 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
      front of him), so he can lie in it, lounge on it or stand beside it. COMPANION.scene.layers is the extension point for
      future optional cosmetics (a seasonal cover, a little blanket): each entry is { layer: 'back' | 'front', html }. ---------- */
   COMPANION.scene = { bed: 'upholstered', layers: [] };
-  const BED_DEFS = `<defs>
-    <linearGradient id="cpbRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A6B76"/><stop offset=".5" stop-color="#835865"/><stop offset="1" stop-color="#5F3E4B"/></linearGradient>
-    <linearGradient id="cpbWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A3845"/><stop offset="1" stop-color="#78505E"/></linearGradient>
-    <radialGradient id="cpbCush" cx=".5" cy=".3" r=".75"><stop offset="0" stop-color="#E3CEC6"/><stop offset=".6" stop-color="#CDB0AC"/><stop offset="1" stop-color="#A68A8C"/></radialGradient>
-    <linearGradient id="cpbFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A57682"/><stop offset=".45" stop-color="#8C5F6C"/><stop offset="1" stop-color="#5E3D4A"/></linearGradient>
+  /* Bed upholstery. 'velvet' is the 60 Good Days keepsake (pass 63): berry velvet with gold piping. */
+  const BED_PAL = {
+    upholstered: { rim: ['#9A6B76', '#835865', '#5F3E4B'], wall: ['#5A3845', '#78505E'], cush: ['#E3CEC6', '#CDB0AC', '#A68A8C'], front: ['#A57682', '#8C5F6C', '#5E3D4A'], pipe: 'rgba(239,224,214,.5)', pipeF: 'rgba(239,224,214,.48)' },
+    velvet: { rim: ['#8E3F5E', '#73304B', '#4E1E33'], wall: ['#4A1C31', '#6A2A45'], cush: ['#F0DCD3', '#DCC0BA', '#B8989A'], front: ['#9A4766', '#7A3350', '#4E1E33'], pipe: 'rgba(233,196,120,.8)', pipeF: 'rgba(233,196,120,.75)' },
+  };
+  const bedPal = () => BED_PAL[COMPANION.scene.bed] || BED_PAL.upholstered;
+  const BED_DEFS_FN = P => `<defs>
+    <linearGradient id="cpbRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.rim[0]}"/><stop offset=".5" stop-color="${P.rim[1]}"/><stop offset="1" stop-color="${P.rim[2]}"/></linearGradient>
+    <linearGradient id="cpbWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.wall[0]}"/><stop offset="1" stop-color="${P.wall[1]}"/></linearGradient>
+    <radialGradient id="cpbCush" cx=".5" cy=".3" r=".75"><stop offset="0" stop-color="${P.cush[0]}"/><stop offset=".6" stop-color="${P.cush[1]}"/><stop offset="1" stop-color="${P.cush[2]}"/></radialGradient>
+    <linearGradient id="cpbFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.front[0]}"/><stop offset=".45" stop-color="${P.front[1]}"/><stop offset="1" stop-color="${P.front[2]}"/></linearGradient>
     <radialGradient id="cpbShadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="rgba(0,0,0,.5)"/><stop offset=".6" stop-color="rgba(0,0,0,.2)"/><stop offset="1" stop-color="rgba(0,0,0,0)"/></radialGradient>
     <pattern id="cpbTwill" width="2.4" height="2.4" patternUnits="userSpaceOnUse"><path d="M0 2.4L2.4 0" stroke="rgba(255,240,235,.07)" stroke-width=".6"/></pattern>
     <filter id="cpbGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .93  0 0 0 .09 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
@@ -9414,9 +9566,9 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   const RIM = 'M4 41C4 17 36 5 80 5S156 17 156 41V47C156 57 123 62 80 62S4 57 4 47Z';
   const WALL = 'M16 40C18 24 44 15 80 15S142 24 144 40C138 33 112 28 80 28S22 33 16 40Z';
   const BOLSTER = 'M4 41C10 52 43 56 80 56S150 52 156 41V48C155 58 123 63 80 63S5 58 4 48Z';
-  const bedBack = () => `<svg class="cp-bedsvg" viewBox="0 0 160 66" aria-hidden="true">${BED_DEFS}<ellipse cx="80" cy="62" rx="82" ry="5.5" fill="url(#cpbShadow)"/>
+  const bedBack = () => `<svg class="cp-bedsvg" viewBox="0 0 160 66" aria-hidden="true">${BED_DEFS_FN(bedPal())}<ellipse cx="80" cy="62" rx="82" ry="5.5" fill="url(#cpbShadow)"/>
     <path d="${RIM}" fill="url(#cpbRim)"/><path d="${RIM}" fill="url(#cpbTwill)"/><path d="${RIM}" fill="#000" filter="url(#cpbGrain)"/>
-    <path d="M9 39C11 19 41 9 80 9S149 19 151 39" fill="none" stroke="rgba(239,224,214,.5)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M9 39C11 19 41 9 80 9S149 19 151 39" fill="none" stroke="${bedPal().pipe}" stroke-width="1.8" stroke-linecap="round"/>
     <path d="M9 40.5C11 21 41 11 80 11S149 21 151 40.5" fill="none" stroke="rgba(40,20,28,.25)" stroke-width="1"/>
     <path d="${WALL}" fill="url(#cpbWall)"/>
     <ellipse cx="80" cy="42" rx="63" ry="14" fill="url(#cpbCush)"/><ellipse cx="80" cy="42" rx="63" ry="14" fill="url(#cpbTwill)"/><ellipse cx="80" cy="42" rx="63" ry="14" fill="#000" filter="url(#cpbGrain)"/>
@@ -9427,13 +9579,28 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   const bedFront = () => `<svg class="cp-bedsvg" viewBox="0 0 160 66" aria-hidden="true">
     <path d="M10 44C18 50 46 53 80 53S142 50 150 44" fill="none" stroke="rgba(40,20,28,.35)" stroke-width="3" stroke-linecap="round"/>
     <path d="${BOLSTER}" fill="url(#cpbFront)"/><path d="${BOLSTER}" fill="url(#cpbTwill)"/><path d="${BOLSTER}" fill="#000" filter="url(#cpbGrain)"/>
-    <path d="M7 43C13 52.5 45 56.5 80 56.5S147 52.5 153 43" fill="none" stroke="rgba(239,224,214,.48)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M7 43C13 52.5 45 56.5 80 56.5S147 52.5 153 43" fill="none" stroke="${bedPal().pipeF}" stroke-width="1.6" stroke-linecap="round"/>
     <path d="M14 47C26 53 52 56 80 56S134 53 146 47" fill="none" stroke="rgba(255,240,235,.1)" stroke-width="3" stroke-linecap="round"/></svg>`;
-  const sceneLayers = where => COMPANION.scene.layers.filter(l => l.layer === where).map(l => l.html).join('');
+  // layers: 'back' and 'front' sit in the bed's 160×66 space; 'floor' sits in the scene (pass 63). Each html may be a function of the pose.
+  const sceneLayers = (where, pic) => (COMPANION.scene.layers || []).filter(l => l.layer === where && (!l.poses || l.poses.includes(pic))).map(l => typeof l.html === 'function' ? l.html(pic) : l.html).join('');
+  /* ---------- Pass 63: small signs of life on top of his real art (the art itself never changes) ----------
+     Blink: two eyelids drawn in his fur tones over the exact eye positions of each pose image (natural px), in an SVG
+     that shares the image's box and fit (contain, bottom center), so it follows his breathing and looks. Sleeping and
+     celebrate have no lids (eyes closed / a brief pose; the night z stays retired, as in pass 21). All of it is decorative (aria-hidden,
+     pointer-events: none) and still under Reduce Motion. */
+  const EYES = {
+    awake: { w: 603, h: 561, e: [[377, 95], [457, 66]] },
+    relaxed: { w: 569, h: 400, e: [[152, 83], [236, 62]] },
+    cozy: { w: 487, h: 324, e: [[144, 128], [230, 90]] },
+  };
+  const blinkHTML = pic => {
+    const E = EYES[pic]; if (!E) return '';
+    return `<svg class="cp-blink" viewBox="0 0 ${E.w} ${E.h}" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="cpLid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93593A"/><stop offset=".75" stop-color="#6A3D27"/><stop offset="1" stop-color="#4A2A1C"/></linearGradient></defs>${E.e.map(([x, y]) => `<g class="lid"><path d="M${x - 15} ${y - 2}C${x - 14} ${y - 13} ${x + 14} ${y - 13} ${x + 15} ${y - 2}C${x + 13} ${y + 7} ${x - 13} ${y + 7} ${x - 15} ${y - 2}Z" fill="url(#cpLid)"/><path d="M${x - 14} ${y}C${x - 7} ${y + 7} ${x + 7} ${y + 7} ${x + 14} ${y}" fill="none" stroke="#1C0E0A" stroke-width="2.6" stroke-linecap="round"/></g>`).join('')}</svg>`;
+  };
   function sceneHTML(pic, asleep) {
-    return `<span class="cp-stage cp-scene"><span class="cp-bedwrap back">${bedBack()}${sceneLayers('back')}</span>
-      <img class="cp-art" src="${esc(COMPANION.base + COMPANION.file(pic))}" alt="" draggable="false">
-      <span class="cp-bedwrap front">${bedFront()}${sceneLayers('front')}</span><span class="cp-floor" aria-hidden="true"></span></span>`;
+    return `<span class="cp-stage cp-scene"><span class="cp-bedwrap back">${bedBack()}${sceneLayers('back', pic)}</span>
+      <img class="cp-art" src="${esc(COMPANION.base + COMPANION.file(pic))}" alt="" draggable="false">${blinkHTML(pic)}
+      <span class="cp-bedwrap front">${bedFront()}${sceneLayers('front', pic)}</span>${sceneLayers('floor', pic)}<span class="cp-floor" aria-hidden="true"></span></span>`;
   }
 
   /* ---------- Dexter cameos: rare, small, never modal. One of his five poses peeks in at a meaningful moment, then leaves.
@@ -9456,7 +9623,9 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   function companionHTML() {
     const st = compState(), pic = compPicture(st) || (st === 'celebrate' ? compPicture(compStateAt()) : null);
     const label = `${COMPANION.name} is ${{ awake: 'awake', relaxed: 'relaxing', cozy: 'getting cozy', sleeping: 'asleep', celebrate: 'celebrating' }[st]}. Tap to say hi.`;
-    return `<button type="button" class="cp ${pic ? 'has-art' : 'no-art'}" data-state="${st}" data-pic="${pic || ''}" onclick="compTap()" aria-label="${esc(label)}">
+    // a reward earned elsewhere (Rewards, Life HQ…) is greeted with one happy hop the next time Home shows him, within 15 min
+    const happy = compHappyAt && Date.now() - compHappyAt < 900000 && st !== 'sleeping' && st !== 'celebrate' && !reduced(); if (happy) { compHappyAt = 0; setTimeout(compHappyDone, 60); }
+    return `<button type="button" class="cp ${pic ? 'has-art' : 'no-art'}${happy ? ' happy' : ''}" data-state="${st}" data-pic="${pic || ''}" onclick="compTap()" aria-label="${esc(label)}">
       ${pic ? sceneHTML(pic, st === 'sleeping') : `<span class="cp-stage"><span class="cp-bed" aria-hidden="true"><i class="cp-paw">${ic('paw-print-fill')}</i></span><span class="cp-floor" aria-hidden="true"></span>${st === 'sleeping' ? '<span class="cp-z" aria-hidden="true">z</span>' : ''}</span>`}
       ${pic ? '' : `<span class="cp-name">${esc(COMPANION.name)}</span>`}</button><span class="cp-say" role="status" aria-live="polite"></span>`;
   }
@@ -9470,8 +9639,34 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
   window.compTap = function () {
     const st = compState(), ls = COMPANION.lines[st] || COMPANION.lines.relaxed;
     compSay(ls[compLine++ % ls.length]);
-    const c = document.querySelector('#today .cp'); if (c && !reduced()) { c.classList.remove('nudge'); void c.offsetWidth; c.classList.add('nudge'); }
+    const c = document.querySelector('#today .cp'); if (c && !reduced()) { c.classList.remove('nudge'); void c.offsetWidth; c.classList.add('nudge'); compHeart(c); }
   };
+  // pass 63: one small heart rises from him when tapped (never while asleep; nothing under Reduce Motion; never over controls)
+  let compHeartAt = 0;
+  function compHeart(c) {
+    if (compState() === 'sleeping' || Date.now() - compHeartAt < 900) return; compHeartAt = Date.now();
+    const st = c.querySelector('.cp-stage'); if (!st) return;
+    const h = document.createElement('span'); h.className = 'cp-heart'; h.setAttribute('aria-hidden', 'true'); h.innerHTML = ic('heart-fill');
+    st.appendChild(h); setTimeout(() => h.remove(), 1500);
+  }
+  // the hop plays once with a heart, then he goes back to breathing
+  function compHappyDone() { const c = document.querySelector('#today .cp.happy'); if (!c) return; compHeart(c); setTimeout(() => c.classList.remove('happy'), 1000); }
+  // pass 63: meaningful moments (a reward redeemed, a goal milestone, Daily quests, a Daily Surprise) make him happy
+
+  document.addEventListener('starcade:feedback', e => {
+    const k = e.detail && e.detail.kind; if (k !== 'success') return;
+    const c = document.querySelector('#today .cp');
+    if (c && c.offsetParent !== null && !reduced()) { if (compState() === 'sleeping' || compState() === 'celebrate') return; c.classList.remove('happy'); void c.offsetWidth; c.classList.add('happy'); compHappyDone(); }
+    else compHappyAt = Date.now();
+  });
+  // coming back to Home (the shell marks the tab on <html>) with a happy moment waiting: greet her once
+  new MutationObserver(() => {
+    if (document.documentElement.dataset.scTab !== 'today' || !compHappyAt) return;
+    const fresh = Date.now() - compHappyAt < 900000; compHappyAt = 0;
+    const c = document.querySelector('#today .cp'), st = compState();
+    if (!fresh || !c || reduced() || st === 'sleeping' || st === 'celebrate') return;
+    setTimeout(() => { c.classList.remove('happy'); void c.offsetWidth; c.classList.add('happy'); compHappyDone(); }, 250);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-sc-tab'] });
   function compCelebrate() {
     if (compStateAt() === 'sleeping') return; // he sleeps through it; no waking him for confetti
     compOverride = 'celebrate'; compRefresh();
@@ -11472,6 +11667,134 @@ button.lf-check{padding:0!important;width:24px!important;height:24px!important;m
       <div class="hs-more"><button type="button" class="ds-btn ds-btn-ghost" onclick="tdJustOne('${esc(pick.h.id)}')">Something else</button><button type="button" class="ds-btn ds-btn-ghost" onclick="tbClose()">Not now</button></div></div>`, 'Just one thing');
   };
   window.tdJustOneAgain = function () { if (!daily().some(h => !completed(h) && SC2.showToday(h))) return; tbSheet(`<div class="hs one"><div class="ar-tok-hero">${ic('star-fill')}<b>Nice</b><span>That counts.</span></div><button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="tdJustOne()">One more</button><button type="button" class="ds-btn ds-btn-ghost ds-btn-block" onclick="tbClose()">That’s enough for now</button></div>`, 'Just one thing'); };
+
+  /* ===================== Dexter's keepsakes (pass 63): progression from real life =====================
+     Dexter grows with Good Days, never with games. Four keepsakes at 5, 15, 30 and 60 Good Days together (the same
+     count the Clubhouse shows, derived from the Good Day history). Once earned, a keepsake is recorded in
+     starcade.dexKeep { id: 'YYYY-MM-DD' } (additive) and is never taken away, even if a past day changes. No streaks,
+     no decay, no shame: a missed day costs nothing.
+     - Blanket (5): folded in his bed on Home (while he is up) and beside him in the Clubhouse.
+     - Plush bone (15): in his bed on Home (while he is up) and on the Clubhouse floor.
+     - Portrait (30): a framed portrait of him on the Clubhouse wall.
+     - Velvet bed (60): his bed on Home becomes berry velvet with gold piping; the Clubhouse rug matches.
+     The first time this runs, keepsakes already earned arrive quietly (marked New in the Clubhouse). After that, the
+     moment a Good Day reaches a milestone, Dexter celebrates and a small sheet shows what he got, once. */
+  const DEX_KEEPS = [
+    { id: 'blanket', at: 5, name: 'A cozy knit blanket', where: 'Folded in his bed on Home' },
+    { id: 'bone', at: 15, name: 'A plush bone', where: 'In his bed on Home' },
+    { id: 'portrait', at: 30, name: 'His portrait', where: 'On the Clubhouse wall' },
+    { id: 'velvet', at: 60, name: 'A velvet bed', where: 'Berry velvet, gold piping' },
+  ];
+  const dxSafe = (f, d) => { try { return f(); } catch (e) { return d; } };
+  const dexGoodDays = () => dxSafe(() => Math.round(SC2.xp().parts.goodDays / SC2.XP_RULES.goodDay), 0);
+  const dexKept = () => { const S = SC(); const k = S.dexKeep || {}, gd = dexGoodDays(); return DEX_KEEPS.filter(x => k[x.id] || gd >= x.at).map(x => x.id); };
+  const dexNext = () => { const kept = dexKept(); return DEX_KEEPS.find(x => !kept.includes(x.id)) || null; };
+
+  /* ---------- keepsake art: one illustration per item, drawn for Starcade (soft light from the top left, the bed's
+     upholstery tones, a little texture). Gradient ids are unique per drawing so hidden copies never break visible ones. */
+  let dkN = 0;
+  const DK_ART = {
+    blanket: () => { const n = ++dkN; return `<svg viewBox="0 0 60 40" aria-hidden="true"><defs>
+      <linearGradient id="dkB${n}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9A3B1"/><stop offset="1" stop-color="#A2607A"/></linearGradient>
+      <pattern id="dkK${n}" width="3.6" height="3" patternUnits="userSpaceOnUse"><path d="M0 0L1.8 2.6L3.6 0" fill="none" stroke="rgba(255,236,242,.28)" stroke-width=".7"/></pattern></defs>
+      <ellipse cx="30" cy="36" rx="27" ry="3" fill="rgba(0,0,0,.28)"/>
+      <path d="M5 15Q5 10 10 10H50Q55 10 55 15V30Q55 35 50 35H10Q5 35 5 30Z" fill="url(#dkB${n})"/>
+      <path d="M5 15Q5 10 10 10H50Q55 10 55 15V30Q55 35 50 35H10Q5 35 5 30Z" fill="url(#dkK${n})"/>
+      <path d="M5 15Q5 10 10 10H50Q55 10 55 15V21H5Z" fill="rgba(255,240,245,.14)"/>
+      <path d="M5.4 21H54.6" stroke="rgba(80,30,50,.35)" stroke-width="1"/>
+      <rect x="5" y="27" width="50" height="2.6" fill="#EFDCCF" opacity=".85"/>
+      ${[13, 16, 19, 22, 25, 28, 31].map(y => `<path d="M55 ${y}l2.8 .6" stroke="#EFDCCF" stroke-width="1.1" stroke-linecap="round"/>`).join('')}
+      <path d="M9 11.5H48" stroke="rgba(255,250,252,.35)" stroke-width="1" stroke-linecap="round"/></svg>`; },
+    bone: () => { const n = ++dkN; return `<svg viewBox="0 0 40 18" aria-hidden="true"><defs>
+      <linearGradient id="dkO${n}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF1E4"/><stop offset=".6" stop-color="#E7D3BE"/><stop offset="1" stop-color="#C9AE95"/></linearGradient></defs>
+      <ellipse cx="20" cy="15.6" rx="17" ry="2" fill="rgba(0,0,0,.3)"/>
+      <path d="M9 6.2C7.6 2.4 2.2 2.8 2.4 6.6C.4 7.6.6 11.8 3.4 12.6C5.4 13.2 7.6 12.6 9 11H31C32.4 12.6 34.6 13.2 36.6 12.6C39.4 11.8 39.6 7.6 37.6 6.6C37.8 2.8 32.4 2.4 31 6.2Z" fill="url(#dkO${n})" stroke="rgba(140,100,80,.35)" stroke-width=".6"/>
+      <path d="M9.5 8.6H30.5" stroke="rgba(150,110,90,.55)" stroke-width=".7" stroke-dasharray="1.4 1.2"/>
+      <path d="M4 5.6C4.8 4.4 6.6 4.2 7.6 5.2M11 6.9H28" stroke="rgba(255,255,255,.7)" stroke-width=".8" stroke-linecap="round" fill="none"/></svg>`; },
+    portrait: () => { const n = ++dkN; return `<svg viewBox="0 0 44 52" aria-hidden="true"><defs>
+      <linearGradient id="dkF${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D99A"/><stop offset=".5" stop-color="#C99B52"/><stop offset="1" stop-color="#8E6A30"/></linearGradient>
+      <radialGradient id="dkP${n}" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="#E9C9B6"/><stop offset="1" stop-color="#B98A86"/></radialGradient>
+      <clipPath id="dkC${n}"><rect x="7" y="7" width="30" height="38" rx="14"/></clipPath></defs>
+      <rect x="2" y="2" width="40" height="48" rx="19" fill="url(#dkF${n})"/><rect x="4.5" y="4.5" width="35" height="43" rx="16.5" fill="none" stroke="rgba(90,60,20,.35)" stroke-width="1"/>
+      <rect x="7" y="7" width="30" height="38" rx="14" fill="url(#dkP${n})"/>
+      <image href="assets/companions/dex/dex-awake.png" x="-36" y="1" width="86" height="80" clip-path="url(#dkC${n})" preserveAspectRatio="xMidYMin meet"/>
+      <rect x="7" y="7" width="30" height="38" rx="14" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1"/></svg>`; },
+    velvet: () => { const n = ++dkN; return `<svg viewBox="0 0 60 30" aria-hidden="true"><defs>
+      <linearGradient id="dkV${n}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9A4766"/><stop offset=".5" stop-color="#7A3350"/><stop offset="1" stop-color="#4E1E33"/></linearGradient>
+      <radialGradient id="dkW${n}" cx=".5" cy=".3" r=".75"><stop offset="0" stop-color="#F0DCD3"/><stop offset="1" stop-color="#B8989A"/></radialGradient></defs>
+      <ellipse cx="30" cy="27.5" rx="28" ry="2.4" fill="rgba(0,0,0,.3)"/>
+      <path d="M3 17C3 8 15 3 30 3S57 8 57 17V20C57 25 45 28 30 28S3 25 3 20Z" fill="url(#dkV${n})"/>
+      <path d="M6 16C7 9 17 5 30 5S53 9 54 16" fill="none" stroke="rgba(233,196,120,.85)" stroke-width="1.1" stroke-linecap="round"/>
+      <ellipse cx="30" cy="17" rx="22" ry="6" fill="url(#dkW${n})"/>
+      <path d="M3 18C6 23 17 25.5 30 25.5S54 23 57 18" fill="none" stroke="rgba(233,196,120,.8)" stroke-width="1.1" stroke-linecap="round"/>
+      <ellipse cx="24" cy="15" rx="8" ry="1.8" fill="rgba(255,250,246,.25)"/></svg>`; },
+  };
+  window.__dexArt = k => (DK_ART[k] ? DK_ART[k]() : '');
+
+  /* ---------- Home: the keepsakes join his scene through the companion's layer hooks ---------- */
+  function dexApplyScene() {
+    const C = window.__starcadeCompanion; if (!C) return;
+    const kept = dexKept(), L = [], ON_BED = ['awake', 'celebrate']; // his things show in the bed while he's up; lying down, he's on them
+    if (kept.includes('blanket')) L.push({ layer: 'back', poses: ON_BED, html: () => `<span class="cp-keep cp-keep-blanket">${DK_ART.blanket()}</span>` });
+    if (kept.includes('bone')) L.push({ layer: 'back', poses: ON_BED, html: () => `<span class="cp-keep cp-keep-bone">${DK_ART.bone()}</span>` });
+    C.config.scene.layers = L;
+    C.config.scene.bed = kept.includes('velvet') ? 'velvet' : 'upholstered';
+  }
+
+  /* ---------- earning: record new keepsakes; announce them only when a Good Day just reached one ---------- */
+  function dexSync(announce) {
+    const S = SC(), first = !S.dexKeep, gd = dexGoodDays();
+    S.dexKeep = S.dexKeep || {};
+    const fresh = DEX_KEEPS.filter(x => gd >= x.at && !S.dexKeep[x.id]);
+    if (first || fresh.length) {
+      fresh.forEach(x => { S.dexKeep[x.id] = today(); });
+      if (fresh.length) S.dexKeepNew = [...new Set([...(S.dexKeepNew || []), ...fresh.map(x => x.id)])];
+      save();
+    }
+    dexApplyScene();
+    if (fresh.length) { const C = window.__starcadeCompanion; C && C.refresh && C.refresh(); }
+    if (fresh.length && announce && !first) setTimeout(() => dexUnlockSheet(fresh[fresh.length - 1]), 3400); // after the Good Day moment
+    return fresh;
+  }
+  function dexUnlockSheet(k) {
+    if (document.getElementById('tbSheet') || document.documentElement.classList.contains('ar-playing')) return; // never over a sheet or a game
+    document.dispatchEvent(new CustomEvent('starcade:companion', { detail: 'celebrate' }));
+    tbSheet(`<div class="dx-unlock"><div class="dx-unlock-art dk-${k.id}">${DK_ART[k.id]()}</div>
+      <p class="dx-unlock-eb">${k.at} Good Days together</p><h3>${esc(k.name)}</h3><p class="dx-unlock-sub">${esc(k.where)}. Dexter’s to keep, always.</p>
+      <button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="tbClose();setTimeout(tdDexter,240)">See his Clubhouse</button></div>`, 'Something new for Dexter');
+  }
+  // a Good Day is the moment keepsakes are earned; any other path (an edited past day) is picked up quietly next time
+  document.addEventListener('starcade:feedback', e => { if (e.detail && e.detail.kind === 'celebrate') setTimeout(() => dexSync(true), 50); });
+  setTimeout(() => dxSafe(() => dexSync(false)), 0);
+
+  /* ---------- the Clubhouse: keepsakes in his room, and a short shelf that shows what's next ---------- */
+  const tdDexterBase = window.tdDexter;
+  window.tdDexter = function () {
+    dxSafe(() => dexSync(false));
+    tdDexterBase.apply(this, arguments);
+    const sheet = document.querySelector('#tbSheet .dx-club'); if (!sheet) return;
+    const kept = dexKept(), gd = dexGoodDays(), S = SC(), isNew = S.dexKeepNew || [], next = dexNext();
+    const room = sheet.querySelector('.dx-room');
+    if (room) {
+      if (kept.includes('portrait')) room.insertAdjacentHTML('beforeend', `<span class="dx-item dx-portrait-frame" aria-hidden="true">${DK_ART.portrait()}</span>`);
+      if (kept.includes('blanket')) room.insertAdjacentHTML('beforeend', `<span class="dx-item dx-blanket" aria-hidden="true">${DK_ART.blanket()}</span>`);
+      if (kept.includes('bone')) room.insertAdjacentHTML('beforeend', `<span class="dx-item dx-bone" aria-hidden="true">${DK_ART.bone()}</span>`);
+      room.classList.toggle('is-velvet', kept.includes('velvet'));
+    }
+    const tile = x => {
+      const on = kept.includes(x.id), nx = next && next.id === x.id;
+      const pct = nx ? Math.min(100, Math.round(gd / x.at * 100)) : 0, left = Math.max(0, x.at - gd);
+      return `<div class="dx-keep${on ? ' on' : ''}${nx ? ' next' : ''}" role="listitem"><span class="dx-keep-art dk-${x.id}">${DK_ART[x.id]()}</span>
+        <b>${esc(x.name.replace(/^An? /, '').replace(/^His /, '').replace(/^./, c => c.toUpperCase()))}</b>
+        <small>${on ? (isNew.includes(x.id) ? '<em>New</em>' : 'Earned') : nx ? `${left} more` : `${x.at} Good Days`}</small>${nx ? `<i class="dx-keep-bar"><i style="width:${pct}%"></i></i>` : ''}</div>`;
+    };
+    const shelf = `<div class="ds-section dx-keeps-h"><span>Keepsakes</span><span class="dx-keeps-n">${kept.length} of ${DEX_KEEPS.length}</span></div>
+      <div class="dx-keeps" role="list">${DEX_KEEPS.map(tile).join('')}</div>
+      <p class="dx-keeps-note">${next ? `Good Days earn Dexter something new: ${next.at - gd === 1 ? 'one more Good Day' : `${next.at - gd} more Good Days`} until ${esc(next.name.toLowerCase())}.` : 'Dexter has every keepsake. Good Days still make his day.'} Games never count, and nothing is ever taken away.</p>`;
+    (sheet.querySelector('.dx-stats') || room)?.insertAdjacentHTML('afterend', shelf);
+    if (isNew.length) { S.dexKeepNew = []; save(); } // seen
+  };
+  window.__starcadeDexter = { keeps: DEX_KEEPS, goodDays: dexGoodDays, kept: dexKept, next: dexNext, sync: dexSync, apply: dexApplyScene, unlockSheet: dexUnlockSheet };
 
   /* ===================== PASS 30: small 2.0 features on the stable foundation =====================
      Side quests, a focus timer for Life HQ tasks, Bingo in Progress, and progressive disclosure when adding a habit.
