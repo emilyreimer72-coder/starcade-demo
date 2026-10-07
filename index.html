@@ -8081,6 +8081,36 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
 #boost .ln-ai{background:rgb(255 255 255 / .018)!important;background-image:none!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .16)!important;padding:13px 16px 14px!important}
 #boost .ln-ai :is(h3,.ln-ai-term,b.ln-term){font-size:19px!important}
 #stats .pg-next-medal use[href="#ds-i-star-fill"]{--st-glint:1}
+
+/* ============ Pass 65: the treats shelf. One anatomy for every treat ============
+   A 48px art zone on top (the object), then one line of title and one line of status, in a fixed 122px card, so no
+   card is hollow because a neighbour is wordy. The only corner mark is the rose "ready" dot; carets and play
+   triangles are gone (the whole card is the button). Price chips and "x to go" stay: they're information. */
+#today .td-rail{align-items:flex-start!important}
+#today .td-rail .td-foryou>.tb-row,#today .td-rail .td-foryou>.td-surprise,#today .td-treat{width:144px!important;height:122px!important;min-height:0!important;padding:12px 12px 11px!important;justify-content:flex-start!important;gap:0!important}
+/* the art zone */
+#today .td-rail .td-foryou :is(.ds-glyph,.td-cover,.sp-art,.tr-wordart),#today .td-treat :is(.tr-ic,.tr-mini){flex:none;margin:0 0 auto 0!important}
+#today .td-rail .td-foryou .ds-glyph,#today .td-treat .tr-ic{width:44px!important;height:44px!important;border-radius:13px!important}
+#today .td-rail .td-foryou .ds-glyph .ds-ic,#today .td-treat .tr-ic .ds-ic{width:22px!important;height:22px!important}
+#today .td-rail .td-foryou .td-cover{width:44px!important;height:44px!important;border-radius:12px!important}
+#today .td-rail .td-foryou .td-surprise .sp-art{width:48px!important;height:48px!important;margin:-4px 0 auto -4px!important}
+#today .td-treat.tr-bingo .tr-mini{zoom:.66;margin:2px 0 auto 2px!important}
+/* the word is its own object: set in the display serif on a lavender-tinted card */
+#today .td-rail .tr-wordart{display:block;max-width:100%;height:44px;font:italic 500 22px/44px var(--sc-display);color:#E4DAFA;letter-spacing:.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#today .td-rail .td-foryou>.tr-word{background:radial-gradient(90% 80% at 15% 10%,rgb(var(--ds-lav-rgb) / .16),transparent 62%),var(--ds-surface)!important;box-shadow:var(--ds-hi),inset 0 0 0 1px rgb(var(--ds-lav-rgb) / .14),var(--ds-card-shadow)!important}
+/* one line of title, one line of status */
+#today .td-rail .td-foryou .ds-row-main{gap:1px!important}
+#today .td-rail .td-foryou .ds-row-title,#today .td-treat b{display:block;max-width:100%;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;font:600 14px/1.3 var(--ds-font)!important}
+#today .td-rail .td-foryou .ds-row-sub,#today .td-treat small{display:block;max-width:100%;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;font:500 12px/1.35 var(--ds-font)!important}
+#today .td-rail .td-foryou .td-meter{margin-top:6px!important}
+/* corner marks: only the ready dot */
+#today .td-rail .td-foryou .tb-caret{display:none!important}
+#today .td-rail .td-foryou .sp-dot{top:14px!important;right:14px!important}
+/* "You're all set" contradicts a shelf that still has treats (Bingo, tokens) and was squeezed into a narrow column;
+   it shows only when the shelf is truly empty, as one full-width quiet line */
+#today .td-rail .td-allset{display:none}
+#today .td-rail:not(:has(.td-treat,.tb-row)) .td-allset{display:block;flex:1 0 100%;align-self:flex-start;white-space:normal;margin:2px 0 0}
+#today .td-rail .tr-wordart.is-long{font-size:18.5px}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -9843,7 +9873,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
   function surpriseRow() {
     if (!surpriseReady()) return '';
     const o = surpriseObjectFor(today());
-    return `<button type="button" class="ds-row tb-row td-surprise sp-${o}" onclick="tdSurpriseOpen()" aria-label="Daily Surprise. Tap to open."><span class="sp-art">${SURPRISE_OBJECTS[o]()}</span><span class="ds-row-main"><span class="ds-row-title">Daily Surprise</span><span class="ds-row-sub">Something small is waiting</span></span><span class="sp-dot" aria-hidden="true"></span></button>`;
+    return `<button type="button" class="ds-row tb-row td-surprise sp-${o}" onclick="tdSurpriseOpen()" aria-label="Daily Surprise. Tap to open."><span class="sp-art">${SURPRISE_OBJECTS[o]()}</span><span class="ds-row-main"><span class="ds-row-title">Daily Surprise</span><span class="ds-row-sub">Ready to open</span></span><span class="sp-dot" aria-hidden="true"></span></button>`;
   }
   window.tdSurpriseOpen = function () {
     if (!surpriseReady()) return;
@@ -9990,7 +10020,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     const row = (glyph, title, sub, onclick, end = ic('caret-right-bold', 'tb-caret'), extra = '') => `<button type="button" class="ds-row tb-row ${extra}" onclick="${onclick}">${glyph}<span class="ds-row-main"><span class="ds-row-title">${title}</span>${sub}</span>${end}</button>`;
     const subline = t => `<span class="ds-row-sub">${t}</span>`;
     add(surpriseRow());
-    try { const d = dailyPick(); if (!dailyClaimed()) add(row(`<span class="td-cover">${cover(d)}</span>`, `Daily Play: ${esc(d.name)}`, subline('Free play today'), `arPlay('${d.id}',true)`, ic('play-fill', 'tb-caret'))); } catch (e) {}
+    try { const d = dailyPick(); if (!dailyClaimed()) add(row(`<span class="td-cover">${cover(d)}</span>`, esc(d.name), subline('Free Daily Play'), `arPlay('${d.id}',true)`, '', 'tr-play')); } catch (e) {}
     let bal = 0, tgt = null, rs = [];
     try { bal = balance(); rs = state.rewards.filter(r => !r.retired && r.cost > 0).sort((a, b) => a.cost - b.cost); tgt = window.__starcadeRewardTarget ? window.__starcadeRewardTarget() : null; } catch (e) {}
     // the reward she chose to save toward: ready, or how far
@@ -10002,7 +10032,8 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     } catch (e) {}
     try { // today's Learn, until the Daily Word is checked
       if (!((SC().wordDone || {})[today()])) { const w = wordForToday(), t = typeof aiTermForToday === 'function' ? aiTermForToday() : null;
-        add(row(`<span class="ds-glyph ds-glyph-lav">${ic('book-open-text-duotone')}</span>`, `Today’s word: ${esc(w.w)}`, subline(t ? `Plus today’s AI term: ${esc(t.w)}` : 'Learn · about a minute'), "starcadeNavigate('boost');setTimeout(()=>arTabSet('learn'),40)")); }
+        // pass 65: the word itself, set in the display serif, is the treat's object (not a generic book icon)
+        add(row(`<span class="tr-wordart${w.w.length > 11 ? ' is-long' : ''}" aria-hidden="true">${esc(w.w)}</span>`, 'Today’s word', subline(t ? 'Plus an AI term' : 'About a minute'), "starcadeNavigate('boost');setTimeout(()=>arTabSet('learn'),40)", '', 'tr-word')); }
     } catch (e) {}
     try { // runs this week, only once runs are part of her history
       const hist = typeof v8RunHistory === 'function' ? v8RunHistory() : [], wk = typeof fitnessWeek === 'function' ? fitnessWeek().length : 0;
@@ -11633,7 +11664,12 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
       const mini = `<span class="tr-mini" aria-hidden="true">${B.marks.map((m, i) => `<i class="${i === 12 ? 'free' : m.done ? 'on' : ''}${i === rec.gold ? ' gold' : ''}"></i>`).join('')}</span>`;
       extra.push(`<button type="button" class="td-treat tr-bingo" onclick="v7OpenBingo()">${mini}<b>Weekly Bingo</b><small>${B.count} of 25${n ? `, ${n} line${n === 1 ? '' : 's'}` : ''}</small></button>`);
     } catch (e) {}
-    if (SC2.tokensOn()) { const t = SC2.tokenBalance(); extra.push(`<button type="button" class="td-treat tr-tokens" onclick="starcadeNavigate('boost')"><span class="tr-ic">${ic('ticket-fill')}</span><b>${t} Arcade token${t === 1 ? '' : 's'}</b><small>${esc(SC2.nextTokenHint().replace(/\.$/, ''))}</small></button>`); }
+    if (SC2.tokensOn()) {
+      // pass 65: one line of status ("3 more habits today earns a token" becomes "Next in 3 habits")
+      const t = SC2.tokenBalance(), hint = SC2.nextTokenHint(), m = /^(\d+) more habit/.exec(hint);
+      const sub = m ? `Next in ${m[1]} habit${m[1] === '1' ? '' : 's'}` : 'A Good Day adds one';
+      extra.push(`<button type="button" class="td-treat tr-tokens" onclick="starcadeNavigate('boost')" aria-label="${t} Arcade token${t === 1 ? '' : 's'}. ${esc(hint)}"><span class="tr-ic">${ic('ticket-fill')}</span><b>${t} token${t === 1 ? '' : 's'}</b><small>${esc(sub)}</small></button>`);
+    }
     const inner = fy.replace(/<div class="ds-section td-sec">[\s\S]*?<\/div>/, ''); // the old header (title + Inbox link) is replaced by the rail's own
     return `<div class="ds-section td-sec"><span>Treats</span></div><div class="td-rail">${inner}${extra.join('')}</div>`;
   }
