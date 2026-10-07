@@ -8111,6 +8111,177 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
 #today .td-rail .td-allset{display:none}
 #today .td-rail:not(:has(.td-treat,.tb-row)) .td-allset{display:block;flex:1 0 100%;align-self:flex-start;white-space:normal;margin:2px 0 0}
 #today .td-rail .tr-wordart.is-long{font-size:18.5px}
+
+/* ============ Pass 66: Progress, calm and honest ============
+   No levels or XP here (they belong to the Arcade). This week is the hero; three facts that only grow sit in it as a
+   quiet strip. Colour reports performance: a Good Day is the strongest state (full sage, a small gold star), partial days
+   are graduated sage, a missed day is a neutral outline, the future is barely there. Gold is kept for stars and real
+   achievements, and it's satin, never bright yellow. */
+#stats .pg-wk.pg-hero{padding:16px 16px 0!important;overflow:hidden}
+#stats .pg-wk .pg-wk-top span:first-child{font:600 13px var(--ds-font)!important;color:#B9CDB3!important;letter-spacing:0!important;text-transform:none!important}
+#stats .pg-wk h2{font:600 21px/1.25 var(--sc-display)!important;margin:4px 0 2px!important;color:var(--ds-cream)!important}
+#stats .pg-wk .pg-wk-vs{font:500 13px var(--ds-font)!important;color:var(--ds-text-3)!important;margin:0 0 12px!important}
+#stats .pg-wk>p:not(.pg-wk-vs){font:500 13px var(--ds-font)!important;color:var(--ds-text-2)!important;margin:10px 0 14px!important}
+/* the week's days: one honest scale */
+#stats .pg-wk-dots{gap:0!important;justify-content:space-between!important}
+#stats .pg-wk-dots .d i{width:34px!important;height:34px!important;border-radius:50%!important;font:650 12.5px/34px var(--ds-num)!important;text-shadow:none!important}
+#stats .pg-wk-dots .d.good i{background:#86B586!important;color:#10240F!important;box-shadow:0 4px 12px -6px rgb(134 181 134 / .9)!important}
+#stats .pg-wk-dots .d.good i .ds-ic{width:17px;height:17px;vertical-align:-3px;filter:drop-shadow(0 1px 1px rgb(20 40 15 / .35))}
+#stats .pg-wk-dots .d.some i{background:rgb(134 181 134 / calc(.10 + var(--f) * .36))!important;color:var(--ds-cream)!important;box-shadow:inset 0 0 0 1px rgb(134 181 134 / calc(.18 + var(--f) * .3))!important}
+#stats .pg-wk-dots .d.none:not(.fut) i{background:transparent!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-text-rgb) / .14)!important;color:var(--ds-text-3)!important}
+#stats .pg-wk-dots .d.fut i{background:rgb(var(--ds-text-rgb) / .03)!important;box-shadow:none!important}
+#stats .pg-wk-dots .d.now i{outline:2px solid var(--ds-rose);outline-offset:2px}
+#stats .pg-wk-dots .d small{margin-top:6px!important;font:600 11px var(--ds-font)!important;color:var(--ds-text-3)!important}
+/* three facts that only grow: a strip at the foot of the hero, divided by hairlines (no tiles, no giant numbers) */
+#stats .pg-wk .pg-trophies{display:grid!important;grid-template-columns:repeat(3,1fr);gap:0!important;margin:0 -16px!important;padding:0!important;border-top:1px solid rgb(var(--ds-text-rgb) / .08);background:rgb(0 0 0 / .12)}
+#stats .pg-wk .pg-trophies>span{display:flex;flex-direction:column;align-items:center;gap:1px;padding:11px 4px 12px!important;background:none!important;box-shadow:none!important;border-radius:0!important;min-width:0}
+#stats .pg-wk .pg-trophies>span+span{border-left:1px solid rgb(var(--ds-text-rgb) / .08)}
+#stats .pg-wk .pg-trophies b{display:inline-flex;align-items:center;gap:4px;font:650 17px/1.2 var(--ds-num)!important;color:var(--ds-cream)!important}
+#stats .pg-wk .pg-trophies .tr-stars b{color:#EBD39C!important}
+#stats .pg-wk .pg-trophies b .ds-ic{width:15px;height:15px}
+#stats .pg-wk .pg-trophies small{font:500 11.5px var(--ds-font)!important;color:var(--ds-text-3)!important}
+/* the 5-week calendar, same scale */
+#stats .pg-heat i{border-radius:9px!important;font-weight:600!important;position:relative}
+#stats .pg-heat i.good{background:#86B586!important;color:#10240F!important;font-weight:750!important;box-shadow:none!important}
+#stats .pg-heat i.good::after{content:"";position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:#E9C77E;box-shadow:0 0 0 1px rgb(16 36 15 / .25)}
+#stats .pg-heat i.lv3{background:#4A6A51!important;color:#EAF2E6!important;font-weight:600!important}
+#stats .pg-heat i.lv2{background:#3B5444!important;color:#DCEAD6!important}
+#stats .pg-heat i.lv1{background:#2D3A32!important;color:#B9C8B4!important}
+#stats .pg-heat i.none{background:transparent!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-text-rgb) / .10)!important;color:var(--ds-text-3)!important}
+#stats .pg-heat i.fut{background:rgb(var(--ds-text-rgb) / .025)!important;box-shadow:none!important;color:rgb(var(--ds-text-rgb) / .22)!important}
+#stats .pg-heat i.now{box-shadow:inset 0 0 0 1.5px var(--ds-rose)!important}
+#stats .pg-key{gap:12px!important;flex-wrap:wrap}
+#stats .pg-key i{border-radius:3px!important}
+#stats .pg-key i.good{background:#86B586!important;box-shadow:none!important}
+#stats .pg-key i.lv2{background:#3B5444!important}
+#stats .pg-key i.none{background:transparent!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-text-rgb) / .22)!important}
+#stats .pg-key-note{margin-left:auto}
+/* the next milestone: satin gold, not yellow */
+#stats .pg-next .pg-bar.tone-gold i{background:linear-gradient(90deg,#B98E4A,#D4AE6A)!important;box-shadow:none!important}
+#stats .pg-next-medal{background:conic-gradient(#C9A35E calc(var(--p) * 1%),rgb(var(--ds-text-rgb) / .08) 0)!important}
+#stats .pg-next small{color:#D9BC86!important}
+/* Money's area tone was gold, which means "earned" everywhere else; areas now use a neutral sand */
+#stats .pg-area.t-gold{--tone:212 198 182!important}
+/* Arcade player card: tokens and the game level side by side (pass 66). The level is a small medal with a thin bar. */
+#boost .ar-player{display:flex;align-items:stretch;gap:0;border-radius:18px;background:var(--ds-surface);background-image:var(--ds-sheen);box-shadow:var(--ds-hi),var(--ds-card-shadow);margin-bottom:14px;overflow:hidden}
+#boost .ar-player .ar-wallet{flex:1;min-width:0;margin:0!important;background:none!important;box-shadow:none!important;border-radius:0!important}
+#boost .ar-level{flex:none;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 16px;border-left:1px solid rgb(var(--ds-text-rgb) / .08);min-width:96px}
+#boost .ar-player.solo .ar-level{border:0;flex:1;flex-direction:row;align-items:center;padding:12px 16px}
+#boost .ar-level-n{display:flex;align-items:baseline;gap:5px}
+#boost .ar-level-n small{font:600 12px var(--ds-font);color:var(--ds-text-3)}
+#boost .ar-level-n b{font:700 19px/1 var(--ds-num);color:#E4DAFA}
+#boost .ar-level-bar{display:block;height:4px;border-radius:2px;background:rgb(var(--ds-text-rgb) / .1);overflow:hidden}
+#boost .ar-player.solo .ar-level-bar{flex:1}
+#boost .ar-level-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#9C86D6,#C7B1F6)}
+
+/* ============ Pass 66: Home hierarchy ============
+   Up next leads; Daily quests (they earn stars) stand alone in their gilded card; the side quest and bonus habits are
+   optional, so they share one quiet group with no card, below the extras. "Just one thing" is a text button, not a
+   second pill competing with Up next. */
+#today .td-now-h .td-one{background:none!important;box-shadow:none!important;border:0!important;padding:6px 2px 6px 6px!important;min-height:36px;color:var(--ds-rose)!important;font:600 13.5px var(--ds-font)!important}
+#today .td-now-h .td-one .ds-ic{width:15px;height:15px}
+#today .td-sec-opt{margin-top:22px!important}
+#today .td-optional{display:flex;flex-direction:column;gap:10px}
+#today .td-optional .td-side{display:flex!important;align-items:center;gap:12px;margin:0!important;padding:10px 4px 10px 12px!important;border:0!important;border-radius:16px!important;background:rgb(var(--ds-text-rgb) / .03)!important;box-shadow:inset 0 0 0 1px rgb(var(--ds-text-rgb) / .06)!important}
+#today .td-optional .td-side-ic{flex:none;width:32px!important;height:32px!important;border-radius:10px!important;background:rgb(var(--ds-text-rgb) / .06)!important;color:var(--ds-text-2)!important;display:grid;place-items:center}
+#today .td-optional .td-side-ic .ds-ic{width:17px;height:17px}
+#today .td-optional .td-side-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+#today .td-optional .td-side-tx small{font:500 12px var(--ds-font)!important;color:var(--ds-text-3)!important}
+#today .td-optional .td-side-tx b{font:500 14px/1.3 var(--ds-font)!important;color:var(--ds-text-2)!important}
+#today .td-optional .td-side .ds-btn{flex:none;background:none!important;box-shadow:none!important;color:var(--ds-rose)!important;font:600 13.5px var(--ds-font)!important;padding:0 8px!important;min-height:44px}
+#today .td-optional .td-side-swap{flex:none;width:40px;height:40px;background:none!important;box-shadow:none!important}
+#today .td-optional .td-side-swap .ds-ic{color:var(--ds-text-3)!important;width:17px;height:17px}
+#today .td-optional .td-side.done{opacity:.7}
+#today .td-optional .td-bonus{margin:0!important;padding:0!important;flex-wrap:wrap!important;overflow:visible!important;gap:8px!important}
+#today .td-optional .td-bonus .lbl{display:none!important}
+/* routine strip: Up next owns the rose; the current part gets a quieter rose hairline. Weekly is sage, not gold. */
+#today#today#today .td-routines button.td-pill.is-now{box-shadow:inset 0 0 0 1px rgb(var(--ds-rose-rgb) / .55),var(--ds-card-shadow)!important}
+#today#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) .td-pill-ic.td-pill-ic{background:rgb(166 196 160 / .14)!important;color:#B9D3B2!important}
+#today#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) .td-pill-bar b{background:#9DBF97!important}
+#today#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) :is(.td-pill-tx b){color:var(--ds-text)!important}
+#today#today .td-routines button.td-pill:not(.td-part-morning):not(.td-part-anytime):not(.td-part-night) :is(.td-pill-tx small){color:var(--ds-text-3)!important}
+
+/* ============ Pass 67: Dexter's rig ============
+   His art and eyelids share one box (.cp-rig) so they can never drift apart; three nested layers each own one transform
+   (react > look > breathe) and the life controller (screens/dexlife.js) drives them. The old fixed CSS loops are retired. */
+#today .cp.has-art .cp-scene .cp-rig{position:absolute;z-index:2;left:calc(var(--dl) * var(--k));bottom:calc(var(--db) * var(--k));width:calc(var(--dw) * var(--k));height:calc(var(--dh) * var(--k));pointer-events:none}
+#today .cp-rig :is(.cp-react,.cp-look,.cp-breathe){position:absolute;inset:0;display:block}
+#today .cp-rig .cp-react,#today .cp-rig .cp-breathe{transform-origin:50% 100%}
+#today .cp-rig .cp-look{transform-origin:50% 100%}
+#today .cp[data-pic="relaxed"] .cp-rig .cp-look{transform-origin:86% 100%}
+#today .cp[data-pic="cozy"] .cp-rig .cp-look{transform-origin:82% 100%}
+#today .cp.has-art .cp-scene .cp-rig :is(.cp-art,.cp-blink){position:absolute!important;left:0!important;bottom:0!important;width:100%!important;height:100%!important;animation:none!important}
+#today .cp.has-art .cp-scene .cp-rig .cp-blink .lid{animation:none!important}
+/* the tail: the base image has its tail masked out; a copy clipped to the tail swings around its base */
+#today .cp-rig[style*="--tail-mask"] .cp-art{-webkit-mask:var(--tail-mask) center bottom / contain no-repeat;mask:var(--tail-mask) center bottom / contain no-repeat}
+#today .cp-rig .cp-tailbox{position:absolute;left:0;bottom:0;width:100%;height:auto;display:block;pointer-events:none}
+#today .cp-rig .cp-tail{position:absolute;inset:0;display:block}
+#today .cp-rig .cp-tail img{position:absolute;inset:0;width:100%;height:100%;display:block;filter:drop-shadow(0 2px 3px rgb(0 0 0 / .28))}
+#today .cp-rig .cp-art{z-index:1!important}#today .cp-rig .cp-tailbox{z-index:2}#today .cp.has-art .cp-scene .cp-rig .cp-blink{z-index:3!important}
+@media (prefers-reduced-motion:no-preference){.dx-room img{--br:1.03!important}}
+
+/* ============ Pass 68: the Daily Surprise moment ============
+   Before: a box over spinning rays with "+3 stars" as plain text underneath. Now the prize comes out of the object:
+   the stars rise from the opening as Starcade's own gold stars, and a message arrives on a cream note card. A soft
+   spotlight replaces the rays. Collect then sends the stars to the balance (the earn moment, pass 64). */
+.td-reveal .td-rays{display:none!important}
+.td-reveal::before{content:"";position:absolute;left:50%;top:44%;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;background:radial-gradient(circle,rgb(242 190 170 / .14),rgb(242 190 170 / .05) 45%,transparent 70%);pointer-events:none}
+.td-reveal-tx .eb{color:#E7C98F!important}
+.td-reveal-tx .sp-q{font:600 26px/1.2 var(--sc-display)!important;color:var(--ds-cream);letter-spacing:0!important}
+.td-reveal .sp-hint{display:block;margin-top:2px!important;color:var(--ds-text-3)!important}
+.td-reveal[data-state] .sp-q{display:none}
+/* the stars rise from the opening in a small arc, one after another */
+.td-reveal-obj .sp-prize{position:absolute;left:50%;top:34%;width:0;height:0;pointer-events:none;z-index:3}
+.td-reveal-obj .sp-prize-stars i{position:absolute;left:-19px;top:-19px;width:38px;height:38px;--x:calc((var(--i) - (var(--n) - 1) / 2) * 38px);--y:calc(-96px - (1 - (var(--i) - (var(--n) - 1) / 2) * (var(--i) - (var(--n) - 1) / 2) / 5) * 24px);transform:translate(var(--x),var(--y));filter:drop-shadow(0 6px 10px rgb(40 15 0 / .45)) drop-shadow(0 0 12px rgb(244 206 128 / .35))}
+.td-reveal-obj .sp-prize-stars .ds-ic{width:100%;height:100%;--st-glint:1}
+@media (prefers-reduced-motion:no-preference){
+  .td-reveal-obj .sp-prize-stars i{animation:spRise .74s cubic-bezier(.2,.85,.3,1) calc(var(--i) * 80ms) both}
+  .td-reveal .sp-note{animation:spNote .5s cubic-bezier(.2,.8,.3,1) .1s both}
+}
+@keyframes spRise{0%{transform:translate(0,22px) scale(.3) rotate(-40deg);opacity:0}55%{opacity:1}100%{transform:translate(var(--x),var(--y)) scale(1) rotate(0);opacity:1}}
+@keyframes spNote{0%{transform:translateY(26px) rotate(-1.5deg) scale(.94);opacity:0}100%{transform:translateY(0) rotate(-1.5deg);opacity:1}}
+.td-reveal-tx .sp-amt{font:600 32px/1.15 var(--sc-display)!important;color:var(--ds-cream)!important;letter-spacing:0!important}
+.td-reveal-tx small{color:var(--ds-text-2)!important}
+/* a message is a little note: cream paper, ink, a slight tilt */
+.td-reveal .sp-note{position:relative;margin-top:-10px;padding:18px 20px 20px;max-width:300px;border-radius:6px;background:linear-gradient(180deg,#FBF3E8,#F1E3D2);color:#3B2330;transform:rotate(-1.5deg);box-shadow:0 18px 34px -16px rgb(0 0 0 / .8),inset 0 0 0 1px rgb(90 50 40 / .08);text-align:center}
+.td-reveal .sp-note .eb{display:block;margin-bottom:8px;color:#8A3A5F!important;font:650 12.5px var(--ds-font)!important}
+.td-reveal .sp-note p{margin:0;font:500 20px/1.38 var(--sc-display);color:#3B2330;text-wrap:balance}
+.td-reveal .sp-note b{display:block;margin-bottom:4px;font:600 28px/1.15 var(--sc-display);color:#3B2330}
+.td-reveal .sp-note .sp-stars{margin-top:10px;color:#9A6A1E}
+.td-reveal .sp-collect{margin-top:18px!important;min-width:180px}
+/* Rewards: one art direction for every reward photo. They came from different shoots (a red popcorn shot, cool grey
+   skincare, bright flowers), so the grid read as a stock collage. One gentle grade (a little less saturation, a warm
+   shadow, the same low evening light) and the same frame make them one boutique's set. The Mystery box tag is dark
+   glass like every other price, so gold stays for the stars themselves. */
+#rewards .bq-ph,#tbSheet .bq-hero,#tbSheet .bq-pickone .bq-ph,#rewards .bq-goal-ph{position:relative;isolation:isolate}
+#rewards .bq-ph img,#rewards .bq-goal-ph img,#tbSheet .bq-hero img,#tbSheet .bq-pickone .bq-ph img{filter:saturate(.8) sepia(.1) contrast(1.05) brightness(.9)}
+#rewards .bq-tile:not(.add) .bq-ph::after,#rewards .bq-goal-ph::after,#tbSheet .bq-hero::after,#tbSheet .bq-pickone .bq-ph::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 90% at 30% 20%,rgb(255 220 200 / .07),transparent 55%),linear-gradient(180deg,rgb(60 22 44 / .14),rgb(24 8 20 / .38));box-shadow:inset 0 0 0 1px rgb(255 235 225 / .07)}
+#rewards .bq-tile .bq-pr,#rewards .bq-tile .bq-flag{z-index:2}
+#rewards .bq-mystery-pr{background:rgb(28 16 24 / .66)!important;background-image:none!important;color:#F3D896!important;box-shadow:inset 0 0 0 1px rgb(237 200 120 / .36)!important}
+#rewards .bq-mystery-pr .ds-ic{color:inherit!important}
+
+/* ============ Pass 69: the game room (Cup Pong, Pool, Tic-Tac-Toe) ============
+   Before, all three sat on muddy browns (brown plaster, brown wainscot, a brown board on brown wood), so they looked
+   like browser prototypes. Now they share Starcade's evening game room: aubergine under a warm pendant with a soft
+   vignette, and only the game object carries a material (lacquered walnut, emerald felt, a wine lacquer board).
+   Game HUD numbers are cream: gold is for stars. */
+.gm-frame[data-game="pool"],.gm-frame[data-game="pong"],.gm-frame[data-game="ttt"]{background:radial-gradient(ellipse 70% 45% at 50% 40%,rgb(255 206 170 / .13),transparent 72%),radial-gradient(ellipse 130% 90% at 50% 50%,transparent 50%,rgb(0 0 0 / .5)),linear-gradient(180deg,#2A1726,#150B13)!important}
+.gm-hud b{color:var(--ds-cream)!important}
+/* Tic-Tac-Toe: a lacquered wine board with inlaid cream lines; you are rose, the bot is lavender */
+.gm-frame[data-game="ttt"] .ttt-board::before{background:radial-gradient(ellipse 80% 60% at 36% 24%,rgb(255 226 236 / .12),transparent 60%),linear-gradient(160deg,#55243F,#3A172C 55%,#2A1020)!important;border-radius:26px!important;box-shadow:inset 0 1px 0 rgb(255 220 236 / .16),inset 0 0 0 1px rgb(255 214 230 / .08),inset 0 -10px 22px rgb(0 0 0 / .32),0 26px 44px -18px rgb(0 0 0 / .9),0 0 0 6px rgb(16 7 14 / .55)!important}
+.gm-frame[data-game="ttt"] .ttt-grid path{stroke:rgb(247 228 222 / .32)!important;stroke-width:5!important;filter:drop-shadow(0 1.5px 0 rgb(0 0 0 / .35))!important}
+.gm-frame[data-game="ttt"] .ttt-m.x path{stroke:#F0A7BC!important}
+.gm-frame[data-game="ttt"] .ttt-m.o circle{stroke:#C9B6F4!important}
+.gm-frame[data-game="ttt"] .ttt-m{filter:drop-shadow(0 4px 5px rgb(0 0 0 / .45)) drop-shadow(0 0 10px rgb(255 200 220 / .12))!important}
+.gm-frame[data-game="ttt"] .ttt-cell:not([disabled]):active{background:rgb(255 230 238 / .06)!important}
+.gm-frame[data-game="ttt"] .ttt-win{stroke:rgb(251 243 236 / .9)!important}
+
+/* ============ Pass 70: whole-app consistency ============ */
+/* Daily Play's ribbon said "Free today" in solid gold; gold is for stars and real achievements, so it's dark glass */
+#boost .ar-daily .ar-daily-rib{background:rgb(20 10 18 / .62)!important;color:#EADCF8!important;box-shadow:inset 0 0 0 1px rgb(199 177 246 / .3)!important}
+#boost .ar-daily .ar-daily-rib .ds-ic{color:#C9B6F4!important}
+/* completed things recede: the count is quiet text, not gold */
+#today .td-donebar span b{color:var(--ds-text-2)!important;font-weight:650!important}
 </style>
 <script id="starcade-screens">
 /* Starcade screens, pass 10: Today and Arcade (Play + Learn), built from the starcade-ds components.
@@ -8143,7 +8314,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
    for(let r=0;r<4;r++)for(let k=0;k<=r;k++){const x=62+r*8.2,y=50+(k-r/2)*9.4;balls+=`<circle cx="${x}" cy="${y}" r="4.6" fill="${cols[n++]}"/><circle cx="${x-1.4}" cy="${y-1.5}" r="1.2" fill="#fff" opacity=".7"/>`;}
    return `<svg viewBox="0 0 100 100"><defs><radialGradient id="fl${i}" cx=".5" cy=".45" r=".7"><stop offset="0" stop-color="#22906A"/><stop offset="1" stop-color="#0D4D39"/></radialGradient></defs><rect width="100" height="100" fill="#5E361F"/><rect x="9" y="14" width="82" height="72" rx="4" fill="url(#fl${i})"/>${[[10,15],[50,13],[90,15],[10,85],[50,87],[90,85]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5" fill="#120A08"/>`).join('')}${balls}<circle cx="28" cy="50" r="4.6" fill="#FFFDF6"/><path d="M4 70 L23 53" stroke="#E2C08A" stroke-width="3" stroke-linecap="round"/></svg>`;}
   function coverPong(){uid++;const i=uid;const cup=(x,y,k)=>`<path d="M${x-7*k} ${y} L${x-4.6*k} ${y+14*k} Q${x} ${y+15.6*k} ${x+4.6*k} ${y+14*k} L${x+7*k} ${y}Z" fill="url(#cp${i})"/><path d="M${x-6.2*k} ${y+5*k} H${x+6.2*k}" stroke="#fff" stroke-opacity=".25" stroke-width=".7"/><ellipse cx="${x}" cy="${y}" rx="${7*k}" ry="${2.3*k}" fill="#FBEDEF"/><ellipse cx="${x}" cy="${y+.3}" rx="${5.9*k}" ry="${1.7*k}" fill="#5E0F1E"/>`;
-   return `<svg viewBox="0 0 100 100"><defs><linearGradient id="cp${i}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E1B2E"/><stop offset=".4" stop-color="#F06A80"/><stop offset="1" stop-color="#9A1F33"/></linearGradient><linearGradient id="ct${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#203252"/><stop offset="1" stop-color="#3A5688"/></linearGradient></defs><rect width="100" height="100" fill="#120E16"/><path d="M30 26 H70 L98 100 H2Z" fill="url(#ct${i})" stroke="#F3EEF2" stroke-opacity=".85" stroke-width="1.2"/><path d="M50 26 V100" stroke="#fff" stroke-width=".8" opacity=".35"/>${[[35.5,17,.9],[45,17,.9],[55,17,.9],[64.5,17,.9],[40,22,.95],[50,22,.95],[60,22,.95],[45,27.5,1],[55,27.5,1],[50,33,1.05]].map(([x,y,k])=>cup(x,y,k)).join('')}<path d="M52 86 Q58 58 51 50" stroke="#fff" stroke-dasharray="2 3" fill="none" opacity=".55"/><ellipse cx="52" cy="92" rx="5" ry="1.6" fill="#000" opacity=".3"/><circle cx="52" cy="80" r="4.4" fill="#FFFDF6"/></svg>`;}
+   return `<svg viewBox="0 0 100 100"><defs><linearGradient id="cp${i}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E1B2E"/><stop offset=".4" stop-color="#F06A80"/><stop offset="1" stop-color="#9A1F33"/></linearGradient><linearGradient id="ct${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E2416"/><stop offset="1" stop-color="#7A4628"/></linearGradient><radialGradient id="cg${i}" cx=".5" cy=".1" r=".8"><stop offset="0" stop-color="#4A2A40"/><stop offset="1" stop-color="#1C0F1A"/></radialGradient></defs><rect width="100" height="100" fill="url(#cg${i})"/><path d="M30 26 H70 L98 100 H2Z" fill="url(#ct${i})" stroke="#F3EEF2" stroke-opacity=".85" stroke-width="1.2"/><path d="M50 26 V100" stroke="#fff" stroke-width=".8" opacity=".35"/>${[[35.5,17,.9],[45,17,.9],[55,17,.9],[64.5,17,.9],[40,22,.95],[50,22,.95],[60,22,.95],[45,27.5,1],[55,27.5,1],[50,33,1.05]].map(([x,y,k])=>cup(x,y,k)).join('')}<path d="M52 86 Q58 58 51 50" stroke="#fff" stroke-dasharray="2 3" fill="none" opacity=".55"/><ellipse cx="52" cy="92" rx="5" ry="1.6" fill="#000" opacity=".3"/><circle cx="52" cy="80" r="4.4" fill="#FFFDF6"/></svg>`;}
   function coverSol(){const c=(x,y,r,s,red,rot)=>`<g transform="translate(${x} ${y}) rotate(${rot})"><rect x="-13" y="-18" width="26" height="36" rx="3" fill="#FFFDF8" stroke="#D8CDC0" stroke-width=".8"/><text x="-10" y="-8" font-family="Georgia,serif" font-size="8" font-weight="700" fill="${red?'#C8364B':'#2A2230'}">${r}</text>${use({s:'ph-spade-fill',h:'ph-heart-fill',d:'ph-diamond-fill',c:'ph-club-fill'}[s],-6,-4,13,red?'#C8364B':'#2A2230')}</g>`;
    return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#13573F"/><rect width="100" height="100" fill="url(#vig)" opacity="0"/>${c(30,58,'K','h',1,-16)}${c(44,54,'Q','s',0,-5)}${c(58,54,'J','d',1,6)}${c(72,58,'A','c',0,16)}</svg>`;}
   function coverDarts(plain){let s='';const cx=50,cy=50;const order=[20,1,18,4,13,6,10,15,2,17,3,19,7,16,8,11,14,9,12,5];
@@ -8164,8 +8335,8 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
    <circle cx="49" cy="51" r="17" fill="none" stroke="#EDC878" stroke-opacity=".25" stroke-width=".8"/><polygon points="49.0,37.0 52.5,46.1 62.3,46.7 54.7,52.9 57.2,62.3 49.0,57.0 40.8,62.3 43.3,52.9 35.7,46.7 45.5,46.1" fill="#EDC878" fill-opacity=".08" stroke="#EDC878" stroke-opacity=".3" stroke-width=".7"/><circle cx="38" cy="46.8" r="7.6" fill="#1E1226"/><circle cx="38" cy="46" r="6.6" fill="url(#pk${i})"/><circle cx="38" cy="45.4" r="4.6" fill="#F4E8E1"/><polygon points="38.0,42.5 38.7,44.4 40.8,44.5 39.1,45.8 39.7,47.7 38.0,46.6 36.3,47.7 36.9,45.8 35.2,44.5 37.3,44.4" fill="#D9B25E"/><circle cx="60" cy="44.8" r="7.6" fill="#1E1226"/><circle cx="60" cy="44" r="6.6" fill="url(#pk${i})"/><circle cx="60" cy="43.4" r="4.6" fill="#F4E8E1"/><polygon points="60.0,40.5 60.7,42.4 62.8,42.5 61.1,43.8 61.7,45.7 60.0,44.6 58.3,45.7 58.9,43.8 57.2,42.5 59.3,42.4" fill="#D9B25E"/><circle cx="49" cy="60.8" r="7.6" fill="#1E1226"/><circle cx="49" cy="60" r="6.6" fill="url(#pk${i})"/><circle cx="49" cy="59.4" r="4.6" fill="#F4E8E1"/><polygon points="49.0,56.5 49.7,58.4 51.8,58.5 50.1,59.8 50.7,61.7 49.0,60.6 47.3,61.7 47.9,59.8 46.2,58.5 48.3,58.4" fill="#D9B25E"/>
    <path d="M22 72 V80 L30 85Z M70 72 V80 L62 85Z" fill="#E8A5B6" fill-opacity=".25" stroke="#E8A5B6" stroke-width="1.2" stroke-linejoin="round"/><path d="M14 84 L32 94 M78 84 L60 94" stroke="#BFA9C8" stroke-width="1.4"/>
    <path d="M32 94 L44 99" stroke="#F8EFE9" stroke-width="3.4" stroke-linecap="round"/><path d="M60 94 L48 99" stroke="#F8EFE9" stroke-width="3.4" stroke-linecap="round"/><circle cx="57" cy="72" r="3.2" fill="#E4E6EA"/><path d="M57 76 Q55 82 50 86" stroke="#fff" stroke-dasharray="1.5 2.5" fill="none" opacity=".5"/></svg>`;}
-  function coverTtt(){const X=(x,y)=>`<path d="M${x-7} ${y-7} L${x+7} ${y+7} M${x+7} ${y-7} L${x-7} ${y+7}" stroke="#E8A5B6" stroke-width="4.5" stroke-linecap="round"/>`,O=(x,y)=>`<circle cx="${x}" cy="${y}" r="7.5" fill="none" stroke="#F0C96E" stroke-width="4.5"/>`;
-   return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#221428"/><rect x="12" y="12" width="76" height="76" rx="10" fill="#2E1C36"/><path d="M38 20 V80 M62 20 V80 M20 38 H80 M20 62 H80" stroke="#5A3D66" stroke-width="3" stroke-linecap="round"/>${X(27,27)}${O(50,27)}${X(50,50)}${O(73,50)}${X(73,73)}<path d="M20 20 L80 80" stroke="#FFF1C2" stroke-width="2.4" stroke-linecap="round" opacity=".85"/></svg>`;}
+  function coverTtt(){const X=(x,y)=>`<path d="M${x-7} ${y-7} L${x+7} ${y+7} M${x+7} ${y-7} L${x-7} ${y+7}" stroke="#E8A5B6" stroke-width="4.5" stroke-linecap="round"/>`,O=(x,y)=>`<circle cx="${x}" cy="${y}" r="7.5" fill="none" stroke="#C9B6F4" stroke-width="4.5"/>`;
+   return `<svg viewBox="0 0 100 100"><defs><linearGradient id="tb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5A2742"/><stop offset="1" stop-color="#2A1020"/></linearGradient></defs><rect width="100" height="100" fill="#1C0F1A"/><rect x="12" y="12" width="76" height="76" rx="11" fill="url(#tb)"/><path d="M38 20 V80 M62 20 V80 M20 38 H80 M20 62 H80" stroke="#F7E4DE" stroke-opacity=".3" stroke-width="2.6" stroke-linecap="round"/>${X(27,27)}${O(50,27)}${X(50,50)}${O(73,50)}${X(73,73)}<path d="M20 20 L80 80" stroke="#FFF1C2" stroke-width="2.4" stroke-linecap="round" opacity=".85"/></svg>`;}
   /* Pass 58: the Starcade mystery box. Original art in the chest's style: a lacquered garnet box with a faint boutique dot
      print, a gold satin ribbon and bow, a separate lid (.gf-lid) that can lift, an inner glow (.gf-glow) and sparkles
      (.gf-spark). Replaces the UI gift icon wherever the Mystery box should feel special (DESIGN_PROFILE: never substitute
@@ -8382,10 +8553,15 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
       // pockets: dark holes cut into the cushion with a leather drop surround (drawn at the size balls actually drop)
       for (const p of T.pockets) {
         const px = x + p.x, py = y + p.y, r = p.r * .86;
-        g.fillStyle = '#24160D'; g.beginPath(); g.arc(px, py, r * 1.22, 0, 7); g.fill();
-        g.strokeStyle = 'rgba(255,214,160,.18)'; g.lineWidth = 1.2; g.beginPath(); g.arc(px, py, r * 1.22, 0, 7); g.stroke();
-        const hole = g.createRadialGradient(px - r * .2, py - r * .25, r * .1, px, py, r); hole.addColorStop(0, '#000'); hole.addColorStop(.75, '#060405'); hole.addColorStop(1, '#1A120E');
+        // pass 69: a stitched leather liner with a brass lip and a hole that has depth (lit far wall, shadowed near wall),
+        // instead of a flat black disc
+        const lin = g.createRadialGradient(px, py - r * .3, r * .3, px, py, r * 1.3); lin.addColorStop(0, '#3A2416'); lin.addColorStop(1, '#1C1009');
+        g.fillStyle = lin; g.beginPath(); g.arc(px, py, r * 1.26, 0, 7); g.fill();
+        g.strokeStyle = 'rgba(214,170,104,.55)'; g.lineWidth = 1.6; g.beginPath(); g.arc(px, py, r * 1.24, 0, 7); g.stroke();
+        g.strokeStyle = 'rgba(255,226,180,.22)'; g.lineWidth = .8; g.setLineDash([1.6, 2.4]); g.beginPath(); g.arc(px, py, r * 1.1, 0, 7); g.stroke(); g.setLineDash([]);
+        const hole = g.createRadialGradient(px, py - r * .45, r * .05, px, py + r * .1, r * 1.02); hole.addColorStop(0, '#0B0708'); hole.addColorStop(.55, '#140C0C'); hole.addColorStop(.85, '#2A1A14'); hole.addColorStop(1, '#3B271B');
         g.fillStyle = hole; g.beginPath(); g.arc(px, py, r, 0, 7); g.fill();
+        g.strokeStyle = 'rgba(0,0,0,.55)'; g.lineWidth = r * .22; g.beginPath(); g.arc(px, py, r * .9, Math.PI * 1.05, Math.PI * 1.95); g.stroke();
       }
       return o;
     }
@@ -8499,15 +8675,16 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     // Room: warm plaster wall with a chair rail and panelling, a wood floor beside the table, lamp light from above.
     const WALL_Z = 2.7;
     function room(g) {
-      // The camera sees the lower wall: lit plaster at the top, a chair rail, then panelled wainscot behind the table.
+      // The camera sees the lower wall: pass 69 makes it Starcade's evening lounge (aubergine plaster under a warm pendant,
+      // a brass chair rail, wine-dark panelled wainscot), so the table is the one wooden object in the room.
       const rail = P(0, .06, WALL_Z).y, base = S.h;
-      const wall = g.createLinearGradient(0, 0, 0, rail); wall.addColorStop(0, '#6E5449'); wall.addColorStop(1, '#5E463D');
+      const wall = g.createLinearGradient(0, 0, 0, rail); wall.addColorStop(0, '#3A2134'); wall.addColorStop(1, '#2A1726');
       g.fillStyle = wall; g.fillRect(0, 0, S.w, Math.max(0, rail));
-      const wain = g.createLinearGradient(0, rail, 0, rail + S.h * .4); wain.addColorStop(0, '#4A342C'); wain.addColorStop(1, '#2E201B');
+      const wain = g.createLinearGradient(0, rail, 0, rail + S.h * .4); wain.addColorStop(0, '#24121F'); wain.addColorStop(1, '#140A12');
       g.fillStyle = wain; g.fillRect(0, rail, S.w, base - rail);
-      for (let i = -7; i <= 7; i++) { const p0 = P(i * .42 - .17, -.62, WALL_Z), p1 = P(i * .42 + .17, -.04, WALL_Z); g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(p0.x, p1.y, p1.x - p0.x, p0.y - p1.y); g.strokeStyle = 'rgba(255,220,180,.12)'; g.lineWidth = 1; g.beginPath(); g.moveTo(p0.x, p0.y); g.lineTo(p0.x, p1.y); g.lineTo(p1.x, p1.y); g.stroke(); g.strokeStyle = 'rgba(0,0,0,.3)'; g.beginPath(); g.moveTo(p1.x, p1.y); g.lineTo(p1.x, p0.y); g.stroke(); }
-      g.fillStyle = '#7A5A49'; g.fillRect(0, rail - 4, S.w, 6); g.fillStyle = 'rgba(255,226,190,.3)'; g.fillRect(0, rail - 4, S.w, 1.2); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0, rail + 2, S.w, 2);
-      const glow = g.createRadialGradient(S.w / 2, rail * .2, 10, S.w / 2, rail * .2, S.w * .9); glow.addColorStop(0, 'rgba(255,214,160,.2)'); glow.addColorStop(1, 'rgba(255,214,160,0)');
+      for (let i = -7; i <= 7; i++) { const p0 = P(i * .42 - .17, -.62, WALL_Z), p1 = P(i * .42 + .17, -.04, WALL_Z); g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(p0.x, p1.y, p1.x - p0.x, p0.y - p1.y); g.strokeStyle = 'rgba(255,214,226,.08)'; g.lineWidth = 1; g.beginPath(); g.moveTo(p0.x, p0.y); g.lineTo(p0.x, p1.y); g.lineTo(p1.x, p1.y); g.stroke(); g.strokeStyle = 'rgba(0,0,0,.4)'; g.beginPath(); g.moveTo(p1.x, p1.y); g.lineTo(p1.x, p0.y); g.stroke(); }
+      g.fillStyle = '#7C5E3E'; g.fillRect(0, rail - 4, S.w, 6); g.fillStyle = 'rgba(255,226,170,.42)'; g.fillRect(0, rail - 4, S.w, 1.2); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0, rail + 2, S.w, 2);
+      const glow = g.createRadialGradient(S.w / 2, rail * .1, 10, S.w / 2, rail * .1, S.w * .95); glow.addColorStop(0, 'rgba(255,206,170,.24)'); glow.addColorStop(.5, 'rgba(240,170,170,.07)'); glow.addColorStop(1, 'rgba(255,214,160,0)');
       g.fillStyle = glow; g.fillRect(0, 0, S.w, S.h * .6);
     }
     function draw() {
@@ -8515,14 +8692,17 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
       const q = [P(-TABLE.half, 0, 0), P(TABLE.half, 0, 0), P(TABLE.half, 0, TABLE.len), P(-TABLE.half, 0, TABLE.len)];
       // table edge thickness and a soft shadow on the floor below the far edge
       const e0 = P(-TABLE.half, -.035, TABLE.len), e1 = P(TABLE.half, -.035, TABLE.len);
-      g.fillStyle = '#3B2416'; g.beginPath(); g.moveTo(q[3].x, q[3].y); g.lineTo(q[2].x, q[2].y); g.lineTo(e1.x, e1.y); g.lineTo(e0.x, e0.y); g.closePath(); g.fill();
+      g.fillStyle = '#21120B'; g.beginPath(); g.moveTo(q[3].x, q[3].y); g.lineTo(q[2].x, q[2].y); g.lineTo(e1.x, e1.y); g.lineTo(e0.x, e0.y); g.closePath(); g.fill();
       // walnut top with grain running toward the cups
-      const tg = g.createLinearGradient(0, q[2].y, 0, S.h); tg.addColorStop(0, '#6A4127'); tg.addColorStop(.5, '#8A5733'); tg.addColorStop(1, '#9C6539');
+      const tg = g.createLinearGradient(0, q[2].y, 0, S.h); tg.addColorStop(0, '#3E2416'); tg.addColorStop(.45, '#5E3620'); tg.addColorStop(1, '#7A4628');
       g.fillStyle = tg; g.beginPath(); q.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.closePath(); g.fill();
       g.save(); g.beginPath(); q.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.closePath(); g.clip();
-      for (let i = 0; i < 26; i++) { const x = -TABLE.half + (i + .5) * TABLE.half * 2 / 26 + Math.sin(i * 7.1) * .004, a = P(x, 0, 0), b = P(x, 0, TABLE.len); g.strokeStyle = i % 3 ? 'rgba(60,32,16,.18)' : 'rgba(255,220,170,.07)'; g.lineWidth = i % 5 ? .8 : 1.6; g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); }
-      const sheen = g.createRadialGradient(S.w / 2, q[2].y + (S.h - q[2].y) * .35, 10, S.w / 2, q[2].y + (S.h - q[2].y) * .35, S.w * .9); sheen.addColorStop(0, 'rgba(255,226,176,.14)'); sheen.addColorStop(1, 'rgba(255,226,176,0)');
-      g.fillStyle = sheen; g.fillRect(0, 0, S.w, S.h); g.restore();
+      for (let i = 0; i < 26; i++) { const x = -TABLE.half + (i + .5) * TABLE.half * 2 / 26 + Math.sin(i * 7.1) * .004, a = P(x, 0, 0), b = P(x, 0, TABLE.len); g.strokeStyle = i % 3 ? 'rgba(30,14,6,.22)' : 'rgba(255,214,170,.06)'; g.lineWidth = i % 5 ? .7 : 1.4; g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); }
+      const sheen = g.createRadialGradient(S.w / 2, q[2].y + (S.h - q[2].y) * .35, 10, S.w / 2, q[2].y + (S.h - q[2].y) * .35, S.w * .9); sheen.addColorStop(0, 'rgba(255,220,180,.16)'); sheen.addColorStop(1, 'rgba(255,226,176,0)');
+      g.fillStyle = sheen; g.fillRect(0, 0, S.w, S.h);
+      // lacquer: the pendant's reflection runs down the table as a soft stripe
+      const rf = P(0, 0, TABLE.len * .55), lac = g.createLinearGradient(rf.x - S.w * .18, 0, rf.x + S.w * .18, 0); lac.addColorStop(0, 'rgba(255,236,214,0)'); lac.addColorStop(.5, 'rgba(255,236,214,.09)'); lac.addColorStop(1, 'rgba(255,236,214,0)');
+      g.fillStyle = lac; g.fillRect(0, q[2].y, S.w, S.h - q[2].y); g.restore();
       // painted border and center line
       g.strokeStyle = 'rgba(248,240,230,.85)'; g.lineWidth = 2.5; g.beginPath(); q.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.closePath(); g.stroke();
       const m0 = P(0, 0, 0), m1 = P(0, 0, TABLE.len); g.strokeStyle = 'rgba(248,240,230,.35)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(m0.x, m0.y); g.lineTo(m1.x, m1.y); g.stroke();
@@ -9707,9 +9887,21 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     const E = EYES[pic]; if (!E) return '';
     return `<svg class="cp-blink" viewBox="0 0 ${E.w} ${E.h}" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="cpLid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93593A"/><stop offset=".75" stop-color="#6A3D27"/><stop offset="1" stop-color="#4A2A1C"/></linearGradient></defs>${E.e.map(([x, y]) => `<g class="lid"><path d="M${x - 15} ${y - 2}C${x - 14} ${y - 13} ${x + 14} ${y - 13} ${x + 15} ${y - 2}C${x + 13} ${y + 7} ${x - 13} ${y + 7} ${x - 15} ${y - 2}Z" fill="url(#cpLid)"/><path d="M${x - 14} ${y}C${x - 7} ${y + 7} ${x + 7} ${y + 7} ${x + 14} ${y}" fill="none" stroke="#1C0E0A" stroke-width="2.6" stroke-linecap="round"/></g>`).join('')}</svg>`;
   };
+  /* Pass 67: his tail, from his own art. In the standing poses the tail is a separate shape, so a copy of the same image
+     clipped to it can wag around its base while the base image has the tail masked out (no second tail, no new art).
+     Points are natural image pixels; the layer is sized to the image's own aspect so they line up exactly. */
+  const TAILS = {
+    awake: { w: 603, h: 561, pivot: [118, 214], pts: [[0, 86], [64, 86], [88, 140], [108, 168], [126, 184], [142, 194], [132, 212], [114, 228], [90, 233], [60, 225], [0, 202]] }, // traced from the art's alpha
+  };
+  const tailMask = T => `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${T.w} ${T.h}' preserveAspectRatio='none'><path fill-rule='evenodd' d='M0 0H${T.w}V${T.h}H0Z M${T.pts.map(p => p.join(' ')).join('L')}Z'/></svg>`)}")`;
+  const tailHTML = pic => {
+    const T = TAILS[pic]; if (!T) return '';
+    const clip = `polygon(${T.pts.map(([x, y]) => `${(x / T.w * 100).toFixed(2)}% ${(y / T.h * 100).toFixed(2)}%`).join(',')})`;
+    return `<span class="cp-tailbox" style="aspect-ratio:${T.w}/${T.h}" aria-hidden="true"><span class="cp-tail" style="transform-origin:${(T.pivot[0] / T.w * 100).toFixed(2)}% ${(T.pivot[1] / T.h * 100).toFixed(2)}%"><img src="${esc(COMPANION.base + COMPANION.file(pic))}" alt="" draggable="false" style="clip-path:${clip}"></span></span>`;
+  };
   function sceneHTML(pic, asleep) {
     return `<span class="cp-stage cp-scene"><span class="cp-bedwrap back">${bedBack()}${sceneLayers('back', pic)}</span>
-      <img class="cp-art" src="${esc(COMPANION.base + COMPANION.file(pic))}" alt="" draggable="false">${blinkHTML(pic)}
+      <span class="cp-rig"${TAILS[pic] ? ` style="--tail-mask:${tailMask(TAILS[pic]).replace(/"/g, '&quot;')}"` : ''}><span class="cp-react"><span class="cp-look"><span class="cp-breathe"><img class="cp-art" src="${esc(COMPANION.base + COMPANION.file(pic))}" alt="" draggable="false">${tailHTML(pic)}${blinkHTML(pic)}</span></span></span></span>
       <span class="cp-bedwrap front">${bedFront()}${sceneLayers('front', pic)}</span>${sceneLayers('floor', pic)}<span class="cp-floor" aria-hidden="true"></span></span>`;
   }
 
@@ -9844,7 +10036,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     const m = +date.slice(5, 7), d = +date.slice(8, 10);
     if (m === 10 && d >= 25) return 'pumpkin';              // seasonal window (extend this table for other seasons)
     if (d === 1) return 'capsule';                          // a special first-of-month capsule
-    const rot = ['gift', 'envelope', 'box', 'card', 'bag', 'gift', 'envelope', 'capsule'];
+    const rot = ['gift', 'envelope', 'gift', 'card', 'bag', 'gift', 'envelope', 'capsule']; // pass 68: the flat box left the rotation
     return rot[sHash('obj|' + date) % rot.length];
   }
   // Gentle content bank. No guilt, no chores, no sad lines. Keep each short.
@@ -9853,7 +10045,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     affirm: ['I can do hard things gently.', 'I am proud of how far I’ve come.', 'My pace is enough.', 'I make my days a little lovelier.', 'I trust myself to figure it out.'],
     fact: ['Basset Hounds have around 220 million scent receptors.', 'Sea otters hold hands while they sleep.', 'Honey never really spoils.', 'Octopuses have three hearts.', 'A group of flamingos is called a flamboyance.', 'Bananas are berries; strawberries aren’t.'],
     word: [['Petrichor', 'the earthy smell after rain'], ['Halcyon', 'calm, happy and peaceful'], ['Sonder', 'knowing every stranger has a whole life too'], ['Ebullient', 'bubbling over with joy'], ['Luminous', 'full of soft light']],
-    tiny: ['Send someone a sweet text today.', 'Put on a song you love, right now.', 'Step outside for one minute of sky.', 'Write down one thing that went well.', 'Treat yourself to something cozy tonight.'],
+    tiny: ['Send someone a sweet text today.', 'Put on a song you love, right now.', 'Step outside for one minute of sky.', 'Write down one thing that went well.', 'Do one cozy thing tonight.'],
     pet: ['Dexter thinks today deserves an extra-long nap.', 'Dexter would like you to know you’re his favorite.', 'Dexter is guarding your bed. Professionally.', 'Dexter sniffed the air and approves of today.'],
   };
   function surpriseFor(date) {
@@ -9865,7 +10057,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     if (roll < 64) return { kind: 'affirm', title: 'Today’s affirmation', text: pick(SURPRISE_BANK.affirm) };
     if (roll < 75) return { kind: 'fact', title: 'Fun fact', text: pick(SURPRISE_BANK.fact) };
     if (roll < 84) { const w = pick(SURPRISE_BANK.word); return { kind: 'word', title: w[0], text: w[1] }; }
-    if (roll < 93) return { kind: 'tiny', title: 'Tiny treat', text: pick(SURPRISE_BANK.tiny) };
+    if (roll < 93) return { kind: 'tiny', title: 'A small joy', text: pick(SURPRISE_BANK.tiny) };
     return { kind: 'pet', title: 'Dexter moment', text: pick(SURPRISE_BANK.pet) };
   }
   const surpriseRec = () => (SC().surprise || {})[today()];
@@ -9882,7 +10074,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     const el = document.createElement('div'); el.id = 'tdReveal'; el.className = 'td-reveal sp-' + o; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', 'Daily Surprise');
     el.innerHTML = `<button type="button" class="ds-iconbtn td-reveal-x" onclick="tdSurpriseClose()" aria-label="Close">${ic('x-bold')}</button><div class="td-rays" aria-hidden="true"></div>
       <button type="button" class="td-reveal-obj" onclick="tdSurpriseTap()" aria-label="Open">${SURPRISE_OBJECTS[o]()}</button>
-      <div class="td-reveal-tx" id="tdRevealTx"><span class="eb">Daily Surprise</span><small class="sp-hint">Tap to open</small></div>`;
+      <div class="td-reveal-tx" id="tdRevealTx"><span class="eb">Today’s surprise</span><b class="sp-q">Something’s waiting</b><small class="sp-hint">Tap the ${esc(SURPRISE_NAMES[o] || 'gift')} to open it</small></div>`;
     document.body.appendChild(el); document.documentElement.classList.add('ar-playing');
     requestAnimationFrame(() => el.classList.add('on'));
   };
@@ -9894,9 +10086,16 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
       const s = surpriseFor(today());
       setTimeout(() => {
         el.dataset.state = 'reward';
+        // pass 68: the prize comes out of the object. Stars rise as Starcade's own gold stars; a message arrives on a note card.
+        const nStars = s.kind === 'stars' || s.kind === 'rare' ? Math.min(5, s.stars) : 0;
+        const prize = nStars ? `<span class="sp-prize sp-prize-stars" aria-hidden="true">${Array.from({ length: nStars }, (_, i) => `<i style="--i:${i};--n:${nStars}">${ic('star-fill')}</i>`).join('')}</span>` : '';
+        el.querySelector('.td-reveal-obj')?.insertAdjacentHTML('beforeend', prize);
         // A stars surprise already says "+1 star" in its title; the chip only appears when stars come with something else.
         const stars = s.stars && s.kind !== 'stars' && s.kind !== 'rare' ? `<span class="sp-stars">${ic('star-fill')}+${s.stars}</span>` : '';
-        document.getElementById('tdRevealTx').innerHTML = `<span class="eb">${esc(s.kind === 'stars' || s.kind === 'rare' ? 'Daily Surprise' : s.title)}</span>${s.kind === 'stars' || s.kind === 'rare' ? `<b>${esc(s.title)}</b>` : `<p class="sp-msg ${s.kind === 'word' ? 'is-word' : ''}">${s.kind === 'word' ? `<b>${esc(s.title)}</b> ${esc(s.text)}` : esc(s.text)}</p>`}${stars}<button type="button" class="ds-btn ${s.stars ? 'ds-btn-earn' : 'ds-btn-secondary'}" onclick="tdSurpriseClaim()">${s.stars ? 'Collect' : 'Done'}</button>`;
+        const btn = `<button type="button" class="ds-btn ${s.stars ? 'ds-btn-primary' : 'ds-btn-secondary'} sp-collect" onclick="tdSurpriseClaim()">${s.stars ? 'Collect' : 'Keep it'}</button>`;
+        document.getElementById('tdRevealTx').innerHTML = nStars
+          ? `<span class="eb">${s.kind === 'rare' ? 'A rare find' : 'Today’s surprise'}</span><b class="sp-amt">${nStars} star${nStars === 1 ? '' : 's'}</b><small>${s.kind === 'rare' ? 'A little extra sparkle today.' : 'For your stars. They never expire.'}</small>${btn}`
+          : `<div class="sp-note"><span class="eb">${esc(s.kind === 'word' ? 'A word for today' : s.title)}</span>${s.kind === 'word' ? `<b>${esc(s.title)}</b><p>${esc(s.text)}</p>` : `<p>${esc(s.text)}</p>`}${stars}</div>${btn}`;
         if (s.kind === 'pet') dexCameo('#tdRevealTx', { pose: 'relaxed', key: 'surprise:' + today() });
       }, fast ? 0 : 560);
     }, fast ? 0 : 480);
@@ -9923,7 +10122,8 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
   // Legacy grouping fallback for habits without a stored part (custom habits).
   function partOf(name) { const n = (name || '').toLowerCase(); if (/breakfast|vitamin|make my bed|make bed|bed|morning|gua sha|guasha|de-puff|depuff|shark/.test(n)) return 'morning'; if (/brush|retainer|floss|night|evening|shower|moistur|stretch|prep for tomorrow/.test(n)) return 'night'; return 'anytime'; }
   const HABIT_ICONS = [[/vitamin|medication/, 'pill'], [/exercise|workout|gym/, 'sneaker-move'], [/study|series|exam|class/, 'graduation-cap'], [/bedding|sheets/, 'stack'], [/\bbed\b/, 'bed'], [/breakfast|coffee/, 'coffee'], [/step|walk/, 'sneaker-move'], [/spend|money|budget/, 'wallet'], [/retainer/, 'tooth'], [/floss/, 'sparkle'], [/gua sha|depuff|skin|face/, 'heart'], [/moistur/, 'drop'], [/shower/, 'bathtub'], [/stretch|yoga/, 'flower-lotus'], [/prep for tomorrow/, 'calendar-check'], [/read|book/, 'book-open-text'], [/brush/, 'moon-stars'], [/water|drink/, 'drop'], [/bathroom/, 'bathtub'], [/fridge|pantry/, 'basket'], [/laundry/, 'washing-machine'], [/\bcar\b/, 'car-profile'], [/5k/, 'flag-checkered'], [/run/, 'person-simple-run'], [/letter|write/, 'envelope-simple'], [/journal/, 'pencil-simple-line'], [/cook|meal/, 'cooking-pot'], [/prep/, 'calendar-check']];
-  const habitIcon = (name, part) => { const n = (name || '').toLowerCase(); if (part === 'morning' && /brush/.test(n)) return 'sun-horizon-fill'; const m = HABIT_ICONS.find(([re]) => re.test(n)); return (m ? m[1] : 'star') + (m && m[1].endsWith('-fill') ? '' : '-duotone'); };
+  const habitIcon = (name, part) => { const n = (name || '').toLowerCase(); if (part === 'morning' && /brush/.test(n)) return 'sun-horizon-fill'; const m = HABIT_ICONS.find(([re]) => re.test(n)); if (!m) return part === 'night' ? 'moon-stars-duotone' : part === 'morning' ? 'sun-horizon-fill' : 'sparkle-duotone'; // pass 70: a star means "earned", so an unknown habit shows its part of the day
+    return m[1] + (m[1].endsWith('-fill') ? '' : '-duotone'); };
   const habitSub = h => {
     if (h.id === 'd1') return 'Oura counts this automatically';
     if (h.id === 'oura-weekly-two-runs') { const n = fitnessWeek().length; return `${Math.min(n, 2)} of 2 runs, from Oura`; }
@@ -10154,7 +10354,11 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
   function playHTML() {
     const d = dailyPick(), claimed = dailyClaimed();
     // pass 29: the Arcade opens with what real life has earned (tokens), so it reads as a reward, not a time sink
-    const wallet = SC2.tokensOn() ? `<button type="button" class="ar-wallet" onclick="arTokens()"><span class="ar-wallet-ic">${ic('ticket-fill')}</span><span class="ar-wallet-tx"><b>${SC2.tokenBalance()} token${SC2.tokenBalance() === 1 ? '' : 's'}</b><small>${esc(SC2.nextTokenHint())}</small></span>${ic('caret-right-bold', 'tb-caret')}</button>` : '';
+    // pass 66: the Arcade is where game progression lives, so the player's level and XP sit beside the tokens
+    // (Progress keeps to real life). XP itself is unchanged and still comes from the same history.
+    const X = SC2.xp(), L = SC2.level(X.total), tokHint = SC2.nextTokenHint(), tokM = /^(\d+) more habit/.exec(tokHint);
+    const levelHTML = `<span class="ar-level" aria-label="Arcade level ${L.level}, ${X.total.toLocaleString()} XP, ${(L.need - L.into).toLocaleString()} to the next level"><span class="ar-level-n"><small>Level</small><b>${L.level}</b></span><span class="ar-level-bar"><i style="width:${Math.max(3, Math.round(L.pct * 100))}%"></i></span></span>`;
+    const wallet = SC2.tokensOn() ? `<div class="ar-player"><button type="button" class="ar-wallet" onclick="arTokens()"><span class="ar-wallet-ic">${ic('ticket-fill')}</span><span class="ar-wallet-tx"><b>${SC2.tokenBalance()} token${SC2.tokenBalance() === 1 ? '' : 's'}</b><small>${esc(tokM ? `Next in ${tokM[1]} habit${tokM[1] === '1' ? '' : 's'}` : 'A Good Day adds one')}</small></span></button>${levelHTML}</div>` : `<div class="ar-player solo">${levelHTML}</div>`;
     return `${wallet}<section class="ar-daily ${claimed ? 'is-played' : ''}" style="--tint:${d.tint}" aria-label="Daily Play"><span class="ar-daily-rib">${claimed ? ic('check-bold') + 'Played today' : ic('sparkle-fill') + 'Free today, +' + SC2.XP_RULES.dailyPlay + ' XP'}</span>
         <button type="button" class="ar-daily-art" onclick="arPlay('${d.id}',true)" aria-label="Play ${esc(d.name)}">${cover(d)}</button>
         <div class="tx"><span class="ar-eyebrow">Daily Play</span><b>${esc(d.name)}</b><small>${claimed ? 'Played today' : 'Today’s pick'}</small>
@@ -10656,8 +10860,8 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     const seg = `<div class="ds-seg pg-tabs" role="tablist">${[['overview', 'Overview'], ['goals', 'Goals'], ['recaps', 'Recaps']].map(([k, l]) => `<button type="button" role="tab" aria-pressed="${pgTab === k}" onclick="pgTabSet('${k}')">${l}</button>`).join('')}</div>`;
     /* Pass 24C: "This week" story header (replaces the 4-number snapshot). Facts only: this week's days from the
        Good Day rule (frozen history for finished days), habit checks, lifetime stars and today's live Good Day progress. */
-    const g0 = safe(() => window.__starcadeGoodDay.info(), null);
-    const wkDots = weekOf(0).map(d => { const k = PGK(d), fut = k > todayK, g = !fut && goodOn(d), n = per[k] || 0; return `<span class="d ${fut ? 'fut' : g ? 'good' : n ? 'some' : 'none'} ${k === todayK ? 'now' : ''}" title="${esc(d.toLocaleDateString(undefined, { weekday: 'long' }))}${fut ? '' : g ? ', Good Day' : n ? `, ${n} habit${n === 1 ? '' : 's'}` : ''}"><i${!g && !fut && n ? ` style="--f:${Math.min(1, n / 12).toFixed(2)}"` : ''}>${g ? ic('star-fill') : !fut && n ? n : ''}</i><small>${d.toLocaleDateString(undefined, { weekday: 'narrow' })}</small></span>`; }).join('');
+    const g0 = safe(() => window.__starcadeGoodDay.info(), null), need0 = (g0 && g0.need) || 8; // pass 66: shades measure a day against the Good Day bar
+    const wkDots = weekOf(0).map(d => { const k = PGK(d), fut = k > todayK, g = !fut && goodOn(d), n = per[k] || 0; return `<span class="d ${fut ? 'fut' : g ? 'good' : n ? 'some' : 'none'} ${k === todayK ? 'now' : ''}" title="${esc(d.toLocaleDateString(undefined, { weekday: 'long' }))}${fut ? '' : g ? ', Good Day' : n ? `, ${n} habit${n === 1 ? '' : 's'}` : ''}"><i${!g && !fut && n ? ` style="--f:${Math.min(1, n / need0).toFixed(2)}"` : ''}>${g ? ic('star-fill') : !fut && n ? n : ''}</i><small>${d.toLocaleDateString(undefined, { weekday: 'narrow' })}</small></span>`; }).join('');
     const head = gWeek ? `${gWeek} Good Day${gWeek === 1 ? '' : 's'} this week${gStreak >= 2 ? `, ${gStreak} in a row` : ''}` : hWeek ? `${hWeek} habit${hWeek === 1 ? '' : 's'} checked off this week` : wk.length <= 1 ? 'A fresh week' : 'A quiet week so far';
     const lwDays = weekOf(-1).slice(0, wk.length), hLast = lwDays.reduce((s, d) => s + (per[PGK(d)] || 0), 0), gLast = lwDays.filter(goodOn).length;
     const vsLine = wk.length < 2 ? '' : (gWeek || gLast) && gWeek !== gLast ? `${gWeek > gLast ? 'Up from' : 'Last week had'} ${gLast} Good Day${gLast === 1 ? '' : 's'} by this point` : gWeek === 0 && hLast && hWeek !== hLast ? `${hWeek > hLast ? 'Up from' : 'Last week had'} ${hLast} by this point` : '';
@@ -10705,13 +10909,13 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
         /* Pass 24C established-history Overview: story → next milestone → goals → what's noticed → activity → running → collection */
         const open = goalsList().map(g => ({ g, i: goalInfo(g) })).filter(x => x.i && !x.i.done);
         const heatStart = addDays(weekStart(new Date()), -28), heat = Array.from({ length: 35 }, (_, i) => addDays(heatStart, i));
-        const lv = n => n >= 8 ? 3 : n >= 4 ? 2 : 1;
+        const lv = n => n / need0 >= .75 ? 3 : n / need0 >= .4 ? 2 : 1;
         const heatHTML = heat.map(d => { const k = PGK(d), fut = k > todayK, n = per[k] || 0, g = !fut && goodOn(d); return `<i class="${fut ? 'fut' : g ? 'good' : n ? 'lv' + lv(n) : 'none'} ${k === todayK ? 'now' : ''}" title="${esc(d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }))}${fut ? '' : g ? ' · Good Day' : ` · ${n} habit${n === 1 ? '' : 's'}`}">${d.getDate() === 1 ? `<b>${esc(d.toLocaleDateString(undefined, { month: 'short' }))}</b>` : d.getDate()}</i>`; }).join('');
         const wkStars = weekOf(0).filter(d => PGK(d) <= todayK).reduce((s, d) => s + (per[PGK(d)] || 0) + ledgerOn(d), 0), moStars = past(monthOf(0)).reduce((s, d) => s + (per[PGK(d)] || 0) + ledgerOn(d), 0);
         const activity = pgView === 'stars' ? chartHTML : `<div class="pg-act ds-card"><div class="pg-head"><div><b class="pg-sum">${ic('star-fill')}${wkStars}</b><span>stars this week</span></div>
           <div class="ds-seg pg-seg" role="tablist"><button type="button" aria-pressed="true" onclick="pgAct('days')">Days</button><button type="button" aria-pressed="false" onclick="pgAct('stars')">Stars</button></div></div>
           <div class="pg-dow">${['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(x => `<span>${x}</span>`).join('')}</div><div class="pg-heat">${heatHTML}</div>
-          <div class="pg-key"><span><i class="good"></i>Good Day</span><span><i class="lv2"></i>Habits done</span><span class="pg-key-note">Last 5 weeks</span></div></div>`;
+          <div class="pg-key"><span><i class="good"></i>Good Day</span><span><i class="lv2"></i>Partly</span><span><i class="none"></i>Missed</span><span class="pg-key-note">Last 5 weeks</span></div></div>`;
         body = `${snap}
         ${nextCard}
         ${open.length ? `<div class="ds-section"><span>Goals</span><button type="button" class="pg-link" onclick="pgTabSet('goals')">${open.length > 2 ? `All ${open.length}` : 'See all'}</button></div><div class="ds-list">${open.slice(0, 2).map(x => goalRow(x.g)).join('')}</div>`
@@ -10765,12 +10969,12 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
      Everything shown is computed from stored history; nothing is estimated. */
   const _renderStatsP = renderStats;
   const pct = x => Math.round(x * 100);
-  // Pass 43: "look how I'm doing" first. The level medal and XP, then three trophies that only ever grow.
-  function heroHTML(life) {
-    const X = SC2.xp(), L = SC2.level(X.total), gd = Math.round((X.parts.goodDays || 0) / SC2.XP_RULES.goodDay);
+  // Pass 66 (the owner): Levels and XP felt disconnected from real-life progress, so Progress no longer shows them (they live in
+  // the Arcade). This week is the hero; three facts that only ever grow sit inside it as a quiet strip, not as tiles.
+  function trophiesHTML(life) {
+    const X = SC2.xp(), gd = Math.round((X.parts.goodDays || 0) / SC2.XP_RULES.goodDay);
     const best = state.habits.filter(h => h.frequency === 'daily' || h.frequency === 'weekly').reduce((m, h) => { const st = SC2.stats(h); return st.has ? Math.max(m, st.longest || 0) : m; }, 0);
-    return `<section class="pg-level pg-hero" aria-label="Your progress"><div class="pg-level-top"><span class="pg-level-n"><small>Level</small><b>${L.level}</b></span><span class="pg-level-tx"><b>${X.total.toLocaleString()} XP</b><small>${(L.need - L.into).toLocaleString()} to level ${L.level + 1}</small><span class="pg-level-bar"><i style="width:${Math.max(2, pct(L.pct))}%"></i></span></span></div>
-      <div class="pg-trophies"><span class="tr-gd"><b>${ic('sparkle-fill')}${gd.toLocaleString()}</b><small>Good Days</small></span><span class="tr-streak"><b>${ic('flame-fill')}${best}</b><small>Best streak</small></span><span class="tr-stars"><b>${ic('star-fill')}${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div></section>`;
+    return `<div class="pg-trophies"><span class="tr-gd"><b>${gd.toLocaleString()}</b><small>Good Days</small></span><span class="tr-streak"><b>${best}</b><small>Best streak</small></span><span class="tr-stars"><b>${ic('star-fill')}${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div>`;
   }
   function habitRows(list) {
     return list.map(({ h, s }) => `<button type="button" class="ds-row tb-row pg-hab" onclick="stHabit('${esc(h.id)}')"><span class="ds-row-main"><span class="ds-row-title">${esc(h.name)}</span><span class="pg-hab-bar"><i style="width:${pct(s.consistency)}%"></i></span></span><span class="pg-hab-n"><b>${pct(s.consistency)}%</b>${s.current >= 2 ? `<small>${ic('flame-fill')}${s.current}</small>` : ''}</span></button>`).join('');
@@ -10819,9 +11023,9 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
         tb.querySelectorAll('.pg-insights').forEach(n => { const h = n.previousElementSibling; if (h && h.classList.contains('ds-section')) h.remove(); n.remove(); });
         [...tb.querySelectorAll('.ds-section')].filter(s => /^Goals/.test(s.textContent.trim())).forEach(s => { const n = s.nextElementSibling; if (n && n.classList.contains('ds-list')) n.remove(); s.remove(); });
         tb.querySelectorAll('.pg-goal-invite').forEach(n => n.remove());
-        // new: level above the story; habits and life areas after the next milestone; then history
+        // the week is the hero (pass 66); habits and life areas after the next milestone; then history
         const wk = tb.querySelector('.pg-wk');
-        tb.querySelector('.pg-tabs').insertAdjacentHTML('afterend', heroHTML(wk.dataset.life));
+        wk.classList.add('pg-hero'); wk.insertAdjacentHTML('beforeend', trophiesHTML(wk.dataset.life));
         wk.querySelector('.pg-wk-life')?.remove(); // lifetime stars now sit in the hero's trophies
         // milestones move up: collecting them is the most rewarding thing here, so they follow the week, with the next one
         const mh = [...tb.querySelectorAll('.ds-section')].find(x => x.textContent.trim().startsWith('Milestones')), mrow = mh && mh.nextElementSibling, next = tb.querySelector('.pg-next');
@@ -11045,9 +11249,10 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
   function lnSummary(saved, qs, days) {
     const pl = (n, one, many) => `<b>${n}</b> ${n === 1 ? one : many}`, parts = [];
     if (saved.length) parts.push(pl(saved.length, 'word saved', 'words saved'));
-    if (qs.total >= 3) parts.push(`<b>${Math.round(qs.right / qs.total * 100)}%</b> right across ${qs.total} quizzes`); else if (qs.total) parts.push(pl(qs.total, 'quiz answered', 'quizzes answered'));
+    if (qs.total >= 3) parts.push(`<b>${Math.round(qs.right / qs.total * 100)}%</b> right across ${qs.total} quizzes`); // pass 70: a single quiz isn't a story yet
     if (days.size > 1) parts.push(pl(days.size, 'learning day', 'learning days'));
-    return `<p class="ar-sum t-lav" data-saved="${saved.length}" data-quizzes="${qs.total}" data-right="${qs.right}" data-days="${days.size}">${ic('sparkle-fill')}<span>${parts.length ? parts.join(' · ') : 'Today’s word is the first page of your shelf.'}</span></p>`;
+    if (!parts.length) return ''; // pass 70: no line rather than an orphaned one
+    return `<p class="ar-sum t-lav" data-saved="${saved.length}" data-quizzes="${qs.total}" data-right="${qs.right}" data-days="${days.size}">${ic('sparkle-fill')}<span>${parts.join(' · ')}</span></p>`;
   }
   /* AI Term of the Day (pass 24): one plain-English AI/tech term a day, deterministic by date; saves into Words to revisit. */
   function lnAiTerm(t) {
@@ -11615,7 +11820,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
        2. Now: only the open habits for this part of the day, as one-tap rows (the next one is first)
        3. Routines: a row of pills (other parts of the day, the weekly reset, custom routines) that open in place
        4. Life HQ: tasks due today or overdue, checkable here
-       5. Treats: a horizontal rail of what feels rewarding right now (surprise, free game, Bingo, tokens, reward)
+       5. Extras (pass 66; was Treats): a horizontal rail of what feels rewarding right now (surprise, free game, Bingo, tokens, reward)
        6. Bonus habits, then everything done or set aside in one quiet fold
      Same data and actions as before: tdTap/tdUndo/tdPart, goodDayInfo, forYouHTML, SC2. */
   const NOW_LABEL = { morning: 'This morning', anytime: 'This afternoon', night: 'Tonight' };
@@ -11671,7 +11876,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
       extra.push(`<button type="button" class="td-treat tr-tokens" onclick="starcadeNavigate('boost')" aria-label="${t} Arcade token${t === 1 ? '' : 's'}. ${esc(hint)}"><span class="tr-ic">${ic('ticket-fill')}</span><b>${t} token${t === 1 ? '' : 's'}</b><small>${esc(sub)}</small></button>`);
     }
     const inner = fy.replace(/<div class="ds-section td-sec">[\s\S]*?<\/div>/, ''); // the old header (title + Inbox link) is replaced by the rail's own
-    return `<div class="ds-section td-sec"><span>Treats</span></div><div class="td-rail">${inner}${extra.join('')}</div>`;
+    return `<div class="ds-section td-sec"><span>Extras</span></div><div class="td-rail">${inner}${extra.join('')}</div>`;
   }
   // Pass 41: "Up next". The next habit is featured (its own icon, what comes after, a round check); the rest of this part of the
   // day follows as quiet rows, two at most until "more" is tapped, so a long evening routine doesn't push everything down.
@@ -11699,17 +11904,20 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
     const nowHTML = now ? upNextHTML(now)
       : `<div class="td-alldone-hero td-alldone-line">${ic('sparkle-fill')}<span><b>${core.length ? 'Everything’s done for today' : 'Add your first habit'}</b><small>${core.length ? 'Enjoy the rest of your day.' : 'Settings → Add a habit.'}</small></span></div>`;
     // Pass 34/41: the next action leads under the progress hero, then the routine strip, then quests (side quest inside).
-    const side = (window.__starcadeSideQuestHTML || (() => ''))(), quests = questsHTML(side);
+    // Pass 66: Daily quests stand alone (they earn stars); the side quest is optional, so it joins the bonus habits in one
+    // quiet "Optional" group below the extras instead of sharing the quests card at the same weight.
+    const side = (window.__starcadeSideQuestHTML || (() => ''))(), quests = questsHTML(''), bonus = bonusHTML();
+    const optional = side || bonus ? `<div class="ds-section td-sec td-sec-opt"><span>Optional</span></div><div class="td-optional">${side}${bonus}</div>` : '';
     el.innerHTML = `<div class="td td2">
       <div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div>
       ${tdNotice()}
       <section class="td-hero ${g.good ? 'is-good' : ''}" aria-label="Today’s progress">${ring(doneCore, g.need)}<div class="td-head"><h2>${g.good ? ic('sparkle-fill', 'gd') : ''}${esc(cheer)}</h2><p class="td-sub">${esc(subline)}</p><div class="td-ctx">${goodDayChips(g)}</div></div></section>
       ${nowHTML}
       ${pillsHTML(now && (now.current || now.p === 'weekly') ? now.p : null)}
-      ${quests || side}
+      ${quests}
       ${tasksHTML()}
       ${treatsHTML()}
-      ${bonusHTML()}
+      ${optional}
       ${done.length || aside.length ? `<div class="ds-list td-list td-donewrap">${doneHTML(done, aside)}</div>` : ''}
     </div>`;
     if (lastGood === false && g.good) { feedback('celebrate'); (V7().dexReact || (() => {}))('celebrate'); try { celebrateWin('It’s a good day.'); } catch (e) {} }
@@ -11912,6 +12120,130 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
   };
   window.__starcadeDexter = { keeps: DEX_KEEPS, goodDays: dexGoodDays, kept: dexKept, next: dexNext, sync: dexSync, apply: dexApplyScene, unlockSheet: dexUnlockSheet };
 
+  /* ===================== Pass 67: Dexter's life (the Motion & Interaction skill's companion spec) =====================
+     the owner: animation that technically exists but nobody notices doesn't count. Before this pass his breathing was a 1–2%
+     fixed CSS loop (under 2px at his size) and his blinks ran on a fixed 6.8 s period, so he read as a still picture or a GIF.
+     Now one small controller drives him, one varied cycle at a time, on a rig of nested layers that each own one transform:
+       .cp-rig > .cp-react (reactions) > .cp-look (glances, head lifts) > .cp-breathe (breathing, from his feet)
+     - Breathing: 2.6–5% deep (about 3–4px), each cycle its own period and depth, a quicker inhale than exhale.
+     - Blinks: full closes of 170–230 ms at varied 2.6–7.5 s intervals, the odd double blink, slow blinks in the evening.
+     - Glances: every 7–15 s a small weight shift (standing) or head lift (lying), never the same way twice running.
+     - Tail: in the standing poses his own tail (from his art) wags now and then, and properly when something good happens.
+     - Inactivity only calms him (slower, rarer); it never puts him to sleep. Sleep follows the clock, as before.
+     - Reactions are for meaningful moments: a habit check (12 s cooldown, so a run of checks gets one), a happy moment, a
+       celebration. Taps get a blink. Reduce Motion: no movement through space; he keeps blinking, so he's still alive.
+     Nothing here touches saved data. */
+  (function dexLife() {
+    const rand = (a, b) => a + Math.random() * (b - a), jit = (v, p = .12) => v * (1 + rand(-p, p)), wait = ms => new Promise(r => setTimeout(r, ms));
+    const EASE = 'cubic-bezier(.45,0,.25,1)';
+    const RM = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+    let reduce = !!RM.matches; try { RM.addEventListener('change', e => { reduce = e.matches; }); } catch (e) {}
+    const POSE = {
+      awake: { depth: [.030, .038], per: [3.4, 4.2], look: 'stand', blink: [2.6, 6.5], rest: 0, tail: [9, 18] },
+      relaxed: { depth: [.030, .036], per: [3.6, 4.4], look: 'lie', blink: [2.8, 6.8], rest: 0 },
+      cozy: { depth: [.026, .032], per: [4.6, 5.4], look: 'lie', blink: [3.5, 7.5], rest: .18, slow: .3 },
+      sleeping: { depth: [.042, .05], per: [5.2, 6.4] },
+      celebrate: { depth: [.03, .036], per: [3.2, 3.8], tail: [3, 6] },
+    };
+    const cp = () => document.querySelector('#today .cp.has-art');
+    const part = s => { const c = cp(); return c && c.querySelector(s); };
+    const pic = () => { const c = cp(); return c ? c.dataset.pic : ''; };
+    const visible = () => { const c = cp(); return !!c && !document.hidden && c.offsetParent !== null && (document.documentElement.dataset.scTab || 'today') === 'today'; };
+    let lastInput = performance.now(), reacting = false, cool = {}, stats = { breaths: 0, blinks: 0, looks: 0, wags: 0, reactions: [] };
+    document.addEventListener('pointerdown', () => { lastInput = performance.now(); }, { passive: true, capture: true });
+    const calm = () => performance.now() - lastInput > 45000;
+    const done = a => a.finished.then(() => {}, () => {});
+
+    // breathing: one varied cycle at a time, from his feet, with a slight width counter so it reads as a breath, not a stretch
+    (async function breathe() {
+      for (;;) {
+        const P = POSE[pic()], b = part('.cp-breathe');
+        if (!visible() || reduce || !P || !b) { await wait(900); continue; }
+        const c = calm(), d = rand(...P.per) * (c ? 1.15 : 1) * 1000, k = jit(rand(...P.depth) * (c ? .82 : 1), .1), peak = rand(.42, .5);
+        stats.breaths++;
+        await done(b.animate([{ scale: '1 1', easing: EASE }, { scale: `${(1 - k / 3.5).toFixed(4)} ${(1 + k).toFixed(4)}`, offset: peak, easing: EASE }, { scale: '1 1' }], { duration: d }));
+      }
+    })();
+
+    // blinks: full closes, varied timing; they keep going under Reduce Motion (a blink isn't movement through space)
+    function restLids() { const P = POSE[pic()] || {}; (cp()?.querySelectorAll('.cp-blink .lid') || []).forEach(l => { l.style.transform = `scaleY(${P.rest || 0})`; }); }
+    async function blink(slow = false) {
+      const lids = [...(cp()?.querySelectorAll('.cp-blink .lid') || [])]; if (!lids.length) return;
+      const r = (POSE[pic()] || {}).rest || 0, c = rand(.3, .4), h = rand(.12, .2), dur = slow ? rand(320, 420) : rand(170, 230);
+      stats.blinks++;
+      await Promise.all(lids.map(l => done(l.animate([{ transform: `scaleY(${r})`, easing: 'ease-in' }, { transform: 'scaleY(1)', offset: c }, { transform: 'scaleY(1)', offset: c + h, easing: 'ease-out' }, { transform: `scaleY(${r})` }], { duration: dur }))));
+    }
+    (async function blinkLoop() {
+      await wait(rand(900, 2200));
+      for (;;) {
+        const P = POSE[pic()] || {}, [lo, hi] = P.blink || [3, 6];
+        await wait(rand(lo, hi) * 1000 * (calm() ? 1.2 : 1));
+        if (!visible() || !P.blink || reacting) continue;
+        await blink(Math.random() < (P.slow || (calm() ? .2 : .05)));
+        if (Math.random() < .14) { await wait(rand(120, 200)); await blink(); }
+      }
+    })();
+
+    // glances: standing, a small weight shift toward one side; lying, he lifts his head a little. Blink first ("thinking").
+    (async function lookLoop() {
+      let last = 0;
+      for (;;) {
+        await wait(rand(7, 15) * 1000 * (calm() ? 1.6 : 1));
+        const P = POSE[pic()], l = part('.cp-look');
+        if (!visible() || reduce || !P || !P.look || reacting || !l) continue;
+        let dir; do { dir = [-1, -.5, .5, 1][Math.floor(Math.random() * 4)]; } while (dir === last); last = dir;
+        await blink();
+        const stand = P.look === 'stand', deg = stand ? dir * rand(1.6, 2.4) : -rand(1.8, 2.8), tx = stand ? dir * rand(1.2, 2.2) : 0, ty = stand ? 0 : -rand(1.5, 2.8), hold = rand(800, 2200);
+        stats.looks++;
+        await done(l.animate([{ rotate: '0deg', translate: '0 0' }, { rotate: `${deg.toFixed(2)}deg`, translate: `${tx.toFixed(1)}px ${ty.toFixed(1)}px`, offset: .22 }, { rotate: `${deg.toFixed(2)}deg`, translate: `${tx.toFixed(1)}px ${ty.toFixed(1)}px`, offset: .78 }, { rotate: '0deg', translate: '0 0' }], { duration: hold + 600, easing: EASE }));
+      }
+    })();
+
+    // his tail: a few easy swings now and then while he stands; a real wag is reserved for good moments
+    async function wag(n = 2, amp = 7) {
+      const t = part('.cp-tail'); if (!t || reduce) return;
+      const kf = [{ rotate: '0deg' }]; for (let i = 0; i < n; i++) kf.push({ rotate: `${jit(amp, .2).toFixed(1)}deg` }, { rotate: `${(-jit(amp * .65, .2)).toFixed(1)}deg` });
+      kf.push({ rotate: '0deg' }); stats.wags++;
+      await done(t.animate(kf, { duration: n * jit(290, .1), easing: 'ease-in-out' }));
+    }
+    (async function tailLoop() {
+      for (;;) {
+        const P = POSE[pic()] || {};
+        await wait(rand(...(P.tail || [9, 18])) * 1000 * (calm() ? 1.5 : 1));
+        if (!visible() || reacting || !(POSE[pic()] || {}).tail) continue;
+        await wag(Math.random() < .3 ? 3 : 2, rand(8, 11));
+      }
+    })();
+
+    // reactions: say "I noticed" for meaningful moments; one at a time; habit checks have a cooldown and never escalate
+    const hop = (h, ms) => { const r = part('.cp-react'); return r && done(r.animate([{ translate: '0 0', scale: '1 1' }, { translate: '0 1.5px', scale: `${1 + h / 160} ${1 - h / 160}`, offset: .14 }, { translate: `0 ${-h}px`, scale: `${1 - h / 260} ${1 + h / 220}`, offset: .46 }, { translate: '0 0', scale: `${1 + h / 220} ${1 - h / 220}`, offset: .8 }, { translate: '0 0', scale: '1 1' }], { duration: ms, easing: 'ease-out' })); };
+    const lift = (deg, ms) => { const l = part('.cp-look'); return l && done(l.animate([{ rotate: '0deg', translate: '0 0' }, { rotate: `${-deg}deg`, translate: '0 -3px', offset: .35 }, { rotate: `${deg * .3}deg`, translate: '0 0', offset: .7 }, { rotate: '0deg', translate: '0 0' }], { duration: ms, easing: 'ease-in-out' })); };
+    const REACT = {
+      habit: { cooldown: 12000, run: st => st === 'awake' || st === 'celebrate' ? Promise.all([hop(jit(3.5), jit(520, .1)), wag(3, 13)]) : lift(jit(2.4), jit(640, .1)) },
+      happy: { cooldown: 0, run: st => st === 'awake' || st === 'celebrate' ? Promise.all([hop(jit(8), jit(800, .08)), wag(4, 15)]) : lift(jit(3.4), jit(900, .08)) },
+      celebrate: { cooldown: 0, run: () => Promise.all([hop(jit(10), jit(840, .08)), wag(4, 15)]) },
+    };
+    async function react(kind) {
+      const R = REACT[kind], st = pic(); if (!R || !cp() || st === 'sleeping') return false;
+      const now = performance.now(); if ((cool[kind] || 0) > now || reacting) return false;
+      cool[kind] = now + R.cooldown; reacting = true; stats.reactions.push(kind);
+      const c = cp(); if (c) c.dataset.react = kind;
+      try { await blink(); if (reduce) { await wait(280); await blink(); } else await R.run(st); }
+      finally { reacting = false; const c2 = cp(); if (c2 && c2.dataset.react === kind) delete c2.dataset.react; }
+      return true;
+    }
+    // hook up the moments companion.js already announces: the "happy" class and a celebrate pose; a tap gets a blink
+    let lastState = '';
+    new MutationObserver(() => {
+      const c = cp(); if (!c) return;
+      if (!c.dataset.lifeOn) { c.dataset.lifeOn = '1'; restLids(); if (c.dataset.state === 'celebrate' && lastState !== 'celebrate') react('celebrate'); lastState = c.dataset.state;
+        c.addEventListener('click', () => { if (!reacting) blink(); }); }
+      if (c.classList.contains('happy') && !c.dataset.happySeen) { c.dataset.happySeen = '1'; react('happy'); }
+      if (!c.classList.contains('happy')) delete c.dataset.happySeen;
+    }).observe(document.getElementById('today') || document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
+    window.__dexLife = { react, blink, wag, state: () => ({ pic: pic(), calm: calm(), reacting, reduce, stats: JSON.parse(JSON.stringify(stats)) }) };
+  })();
+
   /* Pass 64: the delight layer. Small, purposeful responses to the owner's own actions, kept in one place:
      - a star earned flies from where she tapped to the balance chip, which then counts up (never under Reduce Motion);
      - Dexter perks up when a habit is checked on Home, and says so when one more makes a Good Day;
@@ -11970,7 +12302,8 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
       const C = window.__starcadeCompanion, c = document.querySelector('#today .cp'); if (!C || !c || c.offsetParent === null) return;
       const st = C.state(); if (st === 'sleeping' || st === 'celebrate') return;
       setTimeout(() => {
-        if (Date.now() - perkAt > 2500) { perkAt = Date.now(); const cc = document.querySelector('#today .cp'); if (cc) { cc.classList.remove('perk'); void cc.offsetWidth; cc.classList.add('perk'); setTimeout(() => cc.classList.remove('perk'), 700); } }
+        // pass 67: his reaction lives in the life controller (one reaction at a time, a 12 s cooldown for habit checks)
+        if (window.__dexLife) window.__dexLife.react('habit');
         try {
           const g = goodDayInfo(), d = today();
           if (!g.good && g.left === 1 && oneMoreDay !== d) { oneMoreDay = d; C.say('One more and it’s a Good Day.'); }
@@ -12026,7 +12359,7 @@ html.ds-shell #nav .ds-tab span{transition:color .2s}
   window.tdSideSwap = function () { const S = SC(), r = (S.sideQuests || {})[today()]; if (!r || r.doneAt) return; const i = SIDE_QUESTS.findIndex(x => x[0] === r.id); r.id = SIDE_QUESTS[(i + 1) % SIDE_QUESTS.length][0]; save(); render(); };
   window.__starcadeSideQuestHTML = function () {
     const q = sideQuest(); if (!q) return '';
-    return `<div class="td-side ${q.done ? 'done' : ''}"><span class="td-side-ic">${ic(q.done ? 'check-bold' : q.icon)}</span><span class="td-side-tx"><small>Side quest${q.done ? `, +${SIDE_XP} XP` : ', optional'}</small><b>${esc(q.title)}</b></span>${q.done ? '' : `<button type="button" class="ds-btn ds-btn-secondary ds-btn-sm" onclick="tdSideDone()">Done</button><button type="button" class="ds-iconbtn td-side-swap" onclick="tdSideSwap()" aria-label="Swap for another side quest">${ic('shuffle-bold')}</button>`}</div>`;
+    return `<div class="td-side ${q.done ? 'done' : ''}"><span class="td-side-ic">${ic(q.done ? 'check-bold' : q.icon)}</span><span class="td-side-tx"><small>${q.done ? 'Side quest done' : 'Side quest'}</small><b>${esc(q.title)}</b></span>${q.done ? '' : `<button type="button" class="ds-btn ds-btn-secondary ds-btn-sm" onclick="tdSideDone()">Done</button><button type="button" class="ds-iconbtn td-side-swap" onclick="tdSideSwap()" aria-label="Swap for another side quest">${ic('shuffle-bold')}</button>`}</div>`;
   };
   // side quests add XP (never stars): extend the derived XP total
   (function () { const base = SC2.xp; SC2.xp = function () { const r = base(); const n = Object.values((SC().sideQuests) || {}).filter(x => x && x.doneAt).length; r.parts.sideQuests = n * SIDE_XP; r.total += n * SIDE_XP; return r; }; })();
