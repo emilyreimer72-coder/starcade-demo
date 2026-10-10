@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#191720">
+<title>Starcade · Six-tab navigation study</title>
+<style>
+:root{font:16px/1.5 -apple-system,BlinkMacSystemFont,Inter,system-ui,sans-serif;color:#f8f0f7;background:#191720;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;min-height:100dvh;background:radial-gradient(ellipse at 50% 0%,#382b3c,#191720 65%)}
+main{max-width:520px;margin:auto;padding:26px 20px calc(110px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:30px}
+header strong{font-size:27px;letter-spacing:-1px}header span{font-size:11px;letter-spacing:.08em;color:#dfb9d0;font-weight:700}
+h1{font-size:29px;letter-spacing:-.9px;margin:0 0 8px}p{margin:0 0 18px;color:#d7c5d5}
+.card{background:linear-gradient(145deg,#372b3b,#29232e);border:1px solid #665069;border-radius:22px;padding:23px;box-shadow:0 12px 36px #0003}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#e7c88a;font-weight:750}
+.stat{font-size:35px;font-weight:750;letter-spacing:-1px;margin:5px 0}.note{font-size:12px;color:#c5b3c2;margin-top:22px}
+[hidden]{display:none!important}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;padding:9px 7px calc(9px + env(safe-area-inset-bottom));background:#211d27f5;border-top:1px solid #58455a;backdrop-filter:blur(18px);z-index:5}
+nav button{border:0;background:transparent;color:#cdbdcb;border-radius:12px;min-height:52px;padding:7px 1px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;font:600 10px/1.1 inherit;cursor:pointer}
+nav button[aria-current="page"]{background:#4a394d;color:#fff}
+nav button:focus-visible{outline:2px solid #e8c989;outline-offset:-2px}
+nav svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:365px){main{padding-left:15px;padding-right:15px}nav{gap:0;padding-left:3px;padding-right:3px}nav button{font-size:9px}}
+</style></head><body>
+<main><header><strong>Starcade <span aria-hidden="true">✦</span></strong><span>DESIGN STUDY</span></header>
+<section id="home"><h1>Today</h1><p>One clear place to start.</p><div class="card"><span class="eyebrow">Next little win</span><div class="stat">Make your bed</div><p>Keep the day simple.</p></div></section>
+<section id="progress" hidden><h1>Progress</h1><p>Consistency, not clutter.</p><div class="card"><span class="eyebrow">Weekly view</span><div class="stat">Mon – Sun</div><p>Gold-star calendar belongs here.</p></div></section>
+<section id="rewards" hidden><h1>Rewards</h1><p>A boutique feel, one illustration style.</p><div class="card"><span class="eyebrow">Saving for</span><div class="stat">Spa day ✦</div><p>Stars and rewards remain linked in the full app.</p></div></section>
+<section id="arcade" hidden><h1>Arcade</h1><p>Games stay separate from learning.</p><div class="card"><span class="eyebrow">Play</span><div class="stat">Arcade</div><p>Existing games are not changed in this study.</p></div></section>
+<section id="learn" hidden><h1>Learn</h1><p>A small discovery every day.</p><div class="card"><span class="eyebrow">Word of the day</span><div class="stat">Serendipity</div><p>Finding something good without looking for it.</p></div></section>
+<section id="settings" hidden><h1>Settings</h1><p>Your preferences in one predictable place.</p><div class="card"><span class="eyebrow">Appearance</span><div class="stat">Dark plum</div><p>All settings remain unchanged in the full app.</p></div></section>
+<p class="note">Navigation-only prototype · sample text · no saved data, stars, or Oura connection.</p></main>
+<nav aria-label="Main navigation">
+<button type="button" data-page="home" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21h-7v-7h-4v7H3z"/></svg>Home</button>
+<button type="button" data-page="progress"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V12h4v8M10 20V7h4v13M16 20V4h4v16M2 20h20"/></svg>Progress</button>
+<button type="button" data-page="rewards"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13h18"/></svg>Rewards</button>
+<button type="button" data-page="arcade"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="6"/><path d="M8 10v6M5 13h6M16 11h.01M18 14h.01"/></svg>Arcade</button>
+<button type="button" data-page="learn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0zM20 5.5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0z"/></svg>Learn</button>
+<button type="button" data-page="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M19.1 4.9 17 7m-10 10-2.1 2.1"/></svg>Settings</button>
+</nav>
+<script>
+const tabs=[...document.querySelectorAll('nav button[data-page]')];
+const pages=[...document.querySelectorAll('main section')];
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  const page=tab.dataset.page;
+  pages.forEach(section=>section.hidden=section.id!==page);
+  tabs.forEach(button=>{if(button===tab)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')});
+  window.scrollTo(0,0);
+}));
+</script></body></html>
