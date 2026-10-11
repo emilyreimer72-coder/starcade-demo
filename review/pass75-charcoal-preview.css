@@ -1,0 +1,29 @@
+/* Pass 75 visual review proposal. Not loaded by preview.html; no application or data changes. */
+:root{color:#F4EBE9;background:#121012}
+body{background:radial-gradient(ellipse at 50% -5%,#2D202B 0%,#171517 36%,#121012 74%)}
+header small{color:#D8B5C6}
+p{color:#D0C3C5}
+.card{background:#1C1A1C;border-color:#383237;box-shadow:inset 0 1px 0 #ffffff0b,0 10px 28px #0005}
+.card.hero{background:linear-gradient(145deg,#30232E 0%,#201C20 80%);border-color:#604658}
+.eyebrow{color:#DBB6C8}
+.muted{color:#C5B8BD}
+.progress{background:#3A3338}
+.habit{border-bottom-color:#393338}
+.habit input{accent-color:#D9B1C4}
+.habit.done label{color:#B9ACB1}
+.day,.cal{background:#262326;color:#E2D7DA}
+.day b{color:#F4EBE9}
+.day[aria-current="date"],.cal[aria-current="date"]{background:#41333D;outline:2px solid #E8C989;outline-offset:1px;color:#fff}
+.stat{background:#262326;border-color:#40383E}
+.reward{border-bottom-color:#393238}
+.pill{background:#3D3429;color:#F5DEAD}
+.game{background:#1C1A1C;border-color:#3E363D}
+.tabs{background:#171517f5;border-top-color:#3F373E}
+.tabs button{color:#D0C3C8}
+.tabs button.active{background:#3D303B;color:#FFF7F9}
+.action{background:#E0B5C9;color:#211B20}
+.dexter{background:#262326;border-color:#56454F}
+.more{background:#262326;border-color:#51434D}
+.quote{color:#F4EBE9}
+.cal-head span{color:#D0C3C8}
+button:focus-visible,input:focus-visible{outline:2px solid #E8C989;outline-offset:3px}
