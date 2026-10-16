@@ -9209,6 +9209,15 @@ html.ds-shell :is(button,input,select,textarea){font-family:inherit}
 #stats .pg-trophies b{font:700 21px/1 var(--st-sans);letter-spacing:-.02em;color:var(--st-ink)}
 #stats .pg-trophies small{font:500 12px/1.25 var(--st-sans);letter-spacing:0;text-transform:none;color:var(--st-ink-3)}
 #stats .pg-trophies .ds-ic{display:none}
+/* trends: six quiet columns, the current week in rose */
+#stats .sys-trends-h{margin-top:22px}
+#stats .sys-trends{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:end;padding:14px 0 10px;border-bottom:1px solid var(--st-line)}
+#stats .sys-tw{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+#stats .sys-tw b{font:700 13px/1 var(--st-sans);color:var(--st-ink);min-height:13px}
+#stats .sys-tw i{display:block;width:100%;max-width:34px;height:64px;border-radius:6px;background:linear-gradient(0deg,var(--st-gold) 0 calc(var(--h,0) * 100%),var(--st-well) calc(var(--h,0) * 100%));box-shadow:none}
+#stats .sys-tw.now i{background:linear-gradient(0deg,var(--st-rose) 0 calc(var(--h,0) * 100%),var(--st-well) calc(var(--h,0) * 100%))}
+#stats .sys-tw small{font:500 10.5px/1.2 var(--st-sans);color:var(--st-ink-3);white-space:nowrap}
+#stats .sys-tw.now small{color:var(--st-ink)}
 /* the calendar (the owner's settled rule): a gold star on a dark tile for a Good Day, a thin sage measure for a partial day,
    a quiet outline for a missed day, nothing for a future one */
 #stats .pg-act.ds-card,#stats .v8-cal{background:none;border:0;border-radius:0;box-shadow:none;padding:6px 0 0}
@@ -9430,10 +9439,10 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
 .sys-cover[data-g="memory"]{background:radial-gradient(ellipse 80% 60% at 50% 35%,#3A3034,#231D1F 70%)}
 .sys-cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .sys-cover .sys-shadow{position:absolute;inset:0;display:block;pointer-events:none}
-.sys-cover .sys-dom{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none}
-.sys-cover .sys-dom *{pointer-events:none;animation:none}
-.sys-cover .sys-dom .ttt-m :is(path,circle){stroke-dashoffset:0;opacity:1}
-.sys-cover .sys-dom .ttt-win{display:none}
+.sys-dom{position:absolute;left:0;top:0;display:block;transform-origin:0 0;pointer-events:none}
+.sys-dom *{pointer-events:none;animation:none}
+.sys-dom .ttt-m :is(path,circle){stroke-dashoffset:0;opacity:1}
+.sys-dom .ttt-win{display:none}
 .sys-cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgb(0 0 0 / 0) 55%,rgb(0 0 0 / .22));box-shadow:inset 0 0 0 1px rgb(255 255 255 / .05)}
 /* the offscreen stage where a board is drawn before it is copied */
 .sys-stage{position:fixed;left:-20000px;top:0;visibility:hidden;pointer-events:none;overflow:hidden;contain:strict}
@@ -9624,8 +9633,19 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
 #settings .st-time{background:var(--st-well);border:0;box-shadow:none;color:var(--st-ink);border-radius:var(--st-r-sm)}
 #settings p,#settings .tb-note,#settings .st-note{font:500 13px/1.45 var(--st-sans);color:var(--st-ink-3)}
 
+/* ---------- iPad: the same pages, a little more room ---------- */
+@media (min-width:700px){
+  #today .td-top.v5-roomhead{height:220px}
+  #today .v5-roomhead .rh-scene{width:100cqw;left:calc(50cqw - var(--seat-x) * 100cqw);top:calc(206px - var(--seat-y) * 89.39cqw)}
+  #today .v5-roomhead .td-pet{left:50cqw}
+  #boost .ar-shelf{grid-template-columns:repeat(3,1fr);gap:22px 18px}
+  #boost .ar-daily .ar-daily-art{aspect-ratio:16/9}
+  #boost .br-games{grid-template-columns:repeat(4,1fr)}
+  #rewards .bq-tile .bq-ph{width:64px;height:64px}
+  #learn .ln-topics{grid-template-columns:repeat(3,1fr)}
+}
 /* ---------- motion ---------- */
-@media (prefers-reduced-motion:reduce){.sys-cover .sys-dom *{animation:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.sys-dom *{animation:none;transition:none}}
 /* both-themes:end */
 /* palette:on */
 /* palette:off */
@@ -14553,34 +14573,53 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
       if (sec && sec.querySelector('span:last-child') !== sec.querySelector('span:first-child')) sec.querySelector('span:last-child').textContent = `${earned} earned`;
     }
   }
+  /* ---------- Progress: six weeks of Good Days as quiet columns, under the week's numbers ---------- */
+  function sysTrends(tb) {
+    if (tb.querySelector('.sys-trends') || !tb.querySelector('.pg-trophies')) return;
+    const info = d => { try { return window.__starcadeGoodDay.info(d); } catch (e) { return null; } };
+    const tk = dateKey(new Date()), weeks = [];
+    const start = weekStart(new Date());
+    for (let w = 5; w >= 0; w--) {
+      const s = new Date(start); s.setDate(s.getDate() - w * 7); let good = 0, done = 0, need = 0, days = 0;
+      for (let i = 0; i < 7; i++) { const d = new Date(s); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + i); const k = dateKey(d); if (k > tk) break; const x = info(d); days++; if (x) { if (x.good) good++; done += Math.min(x.need || 0, x.done || 0); need += x.need || 0; } }
+      weeks.push({ s, good, days, share: need ? done / need : 0, now: w === 0 });
+    }
+    if (!weeks.some(x => x.days)) return;
+    const label = d => d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const cols = weeks.map(x => `<span class="sys-tw${x.now ? ' now' : ''}" role="listitem" aria-label="Week of ${label(x.s)}: ${x.good} Good Day${x.good === 1 ? '' : 's'}${x.days ? ', ' + Math.round(x.share * 100) + '% of daily habits' : ''}"><b>${x.days ? x.good : ''}</b><i style="--h:${(x.good / 7).toFixed(3)}"></i><small>${label(x.s)}</small></span>`).join('');
+    const sec = document.createElement('div'); sec.className = 'ds-section sys-trends-h'; sec.innerHTML = '<span>Trends</span><span>Good Days a week, last 6 weeks</span>';
+    const el = document.createElement('div'); el.className = 'sys-trends'; el.setAttribute('role', 'list'); el.innerHTML = cols;
+    const after = tb.querySelector('.pg-trophies'); after.insertAdjacentElement('afterend', el); after.insertAdjacentElement('afterend', sec);
+  }
   const sysRenderStats = renderStats;
   renderStats = function () {
     const r = sysRenderStats.apply(this, arguments);
-    try { sysProgress(); } catch (e) { console.warn('Starcade system Progress', e); }
+    try { sysProgress(); const tb = document.querySelector('#stats .tb'); if (tb && tb.querySelector('.pg-wk')) sysTrends(tb); } catch (e) { console.warn('Starcade system Progress', e); }
     return r;
   };
 
   /* ---------- Arcade: covers from the boards themselves ----------
      Each game is mounted once in an offscreen stage the size of a cover, given a moment to draw, then copied: the canvas
      games as an image, the DOM games as a static copy of their board. The copy is cached for the session. */
-  const SYS_PREVIEW = {}, SYS_PREVIEW_P = {}, SYS_STAGE = 320;
+  const SYS_PREVIEW = {}, SYS_PREVIEW_P = {}, SYS_STAGE = 320, SYS_WIDE = [480, 300]; // the shelf's covers are square; the Daily Play feature is 16:10
   const sysSeed = {
     ttt: inst => { try { inst._set(['X', '', 'O', '', 'X', 'O', '', '', '']); } catch (e) {} },
     c4: inst => { try { inst._set([[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0], [0, 0, 2, 1, 2, 0, 0], [0, 1, 1, 2, 1, 2, 0]], 1); } catch (e) {} },
     memory: inst => { try { inst._flip(5); } catch (e) {} },
   };
-  function sysPreview(id) {
-    if (SYS_PREVIEW[id]) return Promise.resolve(SYS_PREVIEW[id]);
-    if (SYS_PREVIEW_P[id]) return SYS_PREVIEW_P[id];
-    return SYS_PREVIEW_P[id] = new Promise(resolve => {
+  function sysPreview(id, wide) {
+    const key = wide ? id + ':wide' : id, [W, H] = wide ? SYS_WIDE : [SYS_STAGE, SYS_STAGE];
+    if (SYS_PREVIEW[key]) return Promise.resolve(SYS_PREVIEW[key]);
+    if (SYS_PREVIEW_P[key]) return SYS_PREVIEW_P[key];
+    return SYS_PREVIEW_P[key] = new Promise(resolve => {
       const stage = document.createElement('div'); stage.className = 'sys-stage gm-frame'; stage.dataset.game = id;
-      stage.style.width = SYS_STAGE + 'px'; stage.style.height = SYS_STAGE + 'px';
+      stage.style.width = W + 'px'; stage.style.height = H + 'px';
       const board = document.createElement('div'); board.className = 'gm-stage sys-board'; board.dataset.game = id;
-      board.style.cssText = `position:absolute;inset:0;width:${SYS_STAGE}px;height:${SYS_STAGE}px`;
+      board.style.cssText = `position:absolute;inset:0;width:${W}px;height:${H}px`;
       stage.appendChild(board); document.body.appendChild(stage);
       let inst = null;
       const api = { stage: board, hud() {}, toast() {}, best: () => null, record: () => ({ isNew: false }), end() {} };
-      const finish = out => { try { inst && inst.destroy && inst.destroy(); } catch (e) {} stage.remove(); SYS_PREVIEW[id] = out; delete SYS_PREVIEW_P[id]; resolve(out); };
+      const finish = out => { try { inst && inst.destroy && inst.destroy(); } catch (e) {} stage.remove(); SYS_PREVIEW[key] = out ? { ...out, w: W, h: H } : out; delete SYS_PREVIEW_P[key]; resolve(SYS_PREVIEW[key]); };
       try { inst = GM[id](api); } catch (e) { console.warn('Starcade cover', id, e); return finish(null); }
       try { sysSeed[id] && sysSeed[id](inst); } catch (e) {}
       requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => {
@@ -14597,20 +14636,22 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
   function sysFillCovers(root) {
     (root || document).querySelectorAll('.sys-cover[data-g]').forEach(el => {
       if (el.dataset.filled) return;
-      const id = el.dataset.g;
-      sysPreview(id).then(p => {
+      const id = el.dataset.g, wide = !!el.closest('.ar-daily-art');
+      sysPreview(id, wide).then(p => {
         if (!p || !el.isConnected) return;
         el.dataset.filled = '1';
         if (p.kind === 'img') { el.innerHTML = `<img src="${p.src}" alt="">`; return; }
         // the copy lives in a shadow root, so its board never answers a document query (tests, the games' own code) and
         // carries the same stylesheets (one constructed sheet, shared)
-        const w = el.clientWidth || SYS_STAGE, host = document.createElement('span'); host.className = 'sys-shadow';
+        const w = el.clientWidth || p.w, host = document.createElement('span'); host.className = 'sys-shadow';
         const sh = host.attachShadow({ mode: 'open' });
         try { sh.adoptedStyleSheets = [sysSheet()]; } catch (e) { const st = document.createElement('style'); st.textContent = sysSheetText(); sh.appendChild(st); }
         // the icon sprite lives in the document; a copy goes in with the board so its <use> references resolve
         const sprite = document.querySelector('svg>defs>symbol[id^="ds-i-"]'); const defs = sprite ? sprite.parentNode.parentNode.outerHTML : '';
-        sh.innerHTML = defs + `<span class="sys-dom gm-stage" data-game="${id}" style="width:${SYS_STAGE}px;height:${SYS_STAGE}px;transform:scale(${(w / SYS_STAGE).toFixed(4)})">${p.html}</span>`;
+        sh.innerHTML = defs + `<span class="sys-dom gm-stage" data-game="${id}" data-w="${p.w}" style="width:${p.w}px;height:${p.h}px;transform:scale(${(w / p.w).toFixed(4)})">${p.html}</span>`;
         el.innerHTML = ''; el.appendChild(host);
+        // the copy follows the cover's real width (the tab may be hidden when it is filled)
+        try { const d = sh.querySelector('.sys-dom'); new ResizeObserver(() => { const cw = el.clientWidth; if (cw) d.style.transform = `scale(${(cw / p.w).toFixed(4)})`; }).observe(el); } catch (e) {}
       });
     });
   }
@@ -14624,7 +14665,7 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
     try { sysBoardRows(document.getElementById('boost')); sysFillCovers(document.getElementById('boost')); } catch (e) { console.warn('Starcade system Arcade', e); }
     return r;
   };
-  window.addEventListener('resize', () => { try { document.querySelectorAll('#boost .sys-cover[data-filled] .sys-shadow').forEach(h => { const d = h.shadowRoot && h.shadowRoot.querySelector('.sys-dom'), w = h.parentNode.clientWidth || SYS_STAGE; if (d) d.style.transform = `scale(${(w / SYS_STAGE).toFixed(4)})`; }); } catch (e) {} });
+  window.addEventListener('resize', () => { try { document.querySelectorAll('#boost .sys-cover[data-filled] .sys-shadow').forEach(h => { const d = h.shadowRoot && h.shadowRoot.querySelector('.sys-dom'), w = h.parentNode.clientWidth || SYS_STAGE; if (d) d.style.transform = `scale(${(w / (+d.dataset.w || SYS_STAGE)).toFixed(4)})`; }); } catch (e) {} });
 
   /* ---------- Life HQ: the week as an agenda (today and the next six days, each with what is planned) ----------
      The planner tiles stay in the DOM for anything that reads them; the agenda is built from the same tasks. */
