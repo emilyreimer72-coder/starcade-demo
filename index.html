@@ -9468,9 +9468,12 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
 #boost .br-mix-tx span{font:500 13px/1.35 var(--st-sans);color:var(--st-ink-3)}
 #boost .br-mix-go{grid-column:2;grid-row:1;min-height:38px;padding:0 16px;border-radius:999px;background:var(--st-wine);color:var(--st-wine-ink);border:0;box-shadow:none;font:700 14px/1 var(--st-sans);display:inline-flex;align-items:center;gap:6px}
 #boost .br-mix-go .ds-ic{color:currentColor}
+#boost .br-mix-go::before,#boost .br-mix-go::after{display:none}
+#boost .br-mix:focus-visible .br-mix-go{outline:2px solid var(--st-ink);outline-offset:2px}
 #boost .br-games{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px;margin-top:14px}
 #boost .br-game{display:flex;flex-direction:column;align-items:stretch;gap:7px;padding:0;background:none;border:0;border-radius:0;box-shadow:none;text-align:left}
-#boost .br-game-art{display:grid;place-items:center;aspect-ratio:1/1;height:auto;border-radius:var(--st-r);background:var(--st-surface);border:1px solid var(--st-line);box-shadow:none;overflow:hidden}
+/* the Brain tiles keep the dark set in both themes, like the boards */
+#boost .br-game-art{display:grid;place-items:center;aspect-ratio:1/1;height:auto;border-radius:var(--st-r);background:#272224;border:0;box-shadow:none;overflow:hidden;--ds-text:#F3ECE4;--ds-text-rgb:243 236 228;--ds-surface:#2F292B;--ds-well:rgb(243 236 228 / .08);color:#F3ECE4}
 #boost .br-game-art svg{width:72%;height:72%}
 #boost .br-game-tx{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 #boost .br-game-tx b{font:600 14.5px/1.25 var(--st-sans);color:var(--st-ink)}
