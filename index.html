@@ -9986,7 +9986,7 @@ html.ds-shell body{background:var(--st-bg)}
 #rewards .v5-chances>:last-child{border-bottom:0}
 #rewards .bq-tier-h{flex-direction:column;align-items:flex-start;gap:3px}
 #rewards .bq-tier-h>span:first-child{font-style:italic}
-#rewards .bq-tier-h .bq-sec-note{font:500 12.5px/1.3 var(--st-sans);color:var(--st-ink-3)}
+#rewards .bq-tier-h .bq-sec-note{margin-left:0;text-align:left;font:500 12.5px/1.3 var(--st-sans);color:var(--st-ink-3)}
 /* compact boutique cards: a small 4:3 photograph, the name, the price; an odd last card lies across both columns */
 #rewards .bq-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 0}
 #rewards .bq-tile{padding:8px 8px 12px;background:var(--mo-card);border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
@@ -10050,6 +10050,204 @@ html.ds-shell body{background:var(--st-bg)}
 #boost .ar-game.is-spot i{font:650 11.5px/1 var(--st-sans);font-style:normal;color:rgb(255 246 238 / .65);margin-top:4px}
 #boost .ar-game:active .cv{transform:scale(.97);transition:transform .15s}
 #boost .ar-shelf-h,#boost .ar-week-h,#boost #arGames{margin-top:30px}
+
+/* ================== Em studio (2026-10-16, redesign/95-em-studio) ==================
+   Built on the major overhaul, in Em on the Web's palette: charcoal #272325, warm cream #F5EFE7, dusty rose #C19A9B,
+   deep rose #8E6366, antique gold #B5955F, muted sage #8E9A86. Layered warm surfaces instead of near-black; a cream
+   light theme with charcoal islands (not an inversion); a fine grain on the islands; no hot pink anywhere. */
+html.ds-shell{
+  --st-bg:#231E20; --st-bg-rgb:35 30 32; --st-surface:#2E2729; --st-surface-2:#382F32; --st-sunk:#1B1618;
+  --st-ink:#F5EFE7; --st-ink-rgb:245 239 231; --st-ink-2:#D8CDC4; --st-ink-3:#A79A93; --st-ink-4:#706662;
+  --st-line:rgb(245 239 231 / .09); --st-line-2:rgb(245 239 231 / .17);
+  --st-rose:#C19A9B; --st-rose-rgb:193 154 155; --st-rose-deep:#8E6366; --st-wine:#8E6366; --st-wine-ink:#FBF4EE;
+  --st-gold:#CBAA6C; --st-gold-rgb:203 170 108; --st-sage:#9CA894; --st-sage-rgb:156 168 148; --st-pink:#D39C9F; --st-pink-rgb:211 156 159;
+  --st-well:rgb(245 239 231 / .06); --st-bar:rgb(35 30 32 / .9);
+  --mo-island:#33292A; --mo-island-2:#3F3234; --mo-island-ink:#F7F0E8; --mo-island-ink-2:rgb(247 240 232 / .7); --mo-island-line:rgb(247 240 232 / .12);
+  --mo-card:#2E2729; --mo-card-line:rgb(245 239 231 / .07); --mo-peach:#D6A585; --mo-dusk:#A3A6CE;
+  --mo-grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .9  0 0 0 .07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  --em-rule:var(--st-rose);
+}
+html[data-theme="light"].ds-shell{
+  --st-bg:#F5EFE7; --st-bg-rgb:245 239 231; --st-surface:#FBF8F3; --st-surface-2:#EEE5DA; --st-sunk:#E8DED1;
+  --st-ink:#272325; --st-ink-rgb:39 35 37; --st-ink-2:#584D4F; --st-ink-3:#8A7D77; --st-ink-4:#B7AAA1;
+  --st-line:rgb(39 35 37 / .1); --st-line-2:rgb(39 35 37 / .18);
+  --st-rose:#A27779; --st-rose-rgb:162 119 121; --st-rose-deep:#8E6366; --st-wine:#8E6366; --st-wine-ink:#FBF4EE;
+  --st-gold:#9A7B43; --st-gold-rgb:154 123 67; --st-sage:#6E7A66; --st-sage-rgb:110 122 102; --st-pink:#A86F73; --st-pink-rgb:168 111 115;
+  --st-well:rgb(39 35 37 / .05); --st-bar:rgb(245 239 231 / .92);
+  --mo-island:#2F2729; --mo-island-2:#3B3133; --mo-card:#FBF8F3; --mo-card-line:rgb(39 35 37 / .08); --mo-peach:#B07C59; --mo-dusk:#5F6394;
+}
+html.ds-shell body{background:var(--st-bg)}
+html[data-theme="light"].ds-shell body{background:radial-gradient(120% 60% at 50% 0%,#FBF6EF 0,var(--st-bg) 60%) fixed,var(--st-bg)}
+.hm-hero,.hm-day,.hm-quests,.sys-dash,.bq-wallet,.hm-b-surprise,#boost .ar-objects .ar-board,.sys-reveal-card,.bq-done-card{background-image:var(--mo-grain)}
+
+/* ---------- type scale: titles 34 / section 22 / card title 17 / body 15 / meta 12.5; never smaller than 11 ---------- */
+#dsTopTitle{font-size:34px}
+:is(#today,#stats,#rewards,#boost,#learn,#clubhouse,#settings,#life) .ds-section>span:first-child,#today .hm-sh h2{font:500 22px/1.15 var(--st-display);font-variation-settings:"opsz" 48;letter-spacing:-.01em;color:var(--st-ink)}
+:is(#learn,#clubhouse,#settings,#life) .ds-section{border-bottom:0;padding-bottom:6px;margin-top:28px}
+
+/* ---------- navigation: the tab bar sits on a warm surface; the active tab is ink with a rose rule above its icon ---------- */
+.ds-tabbar{background:var(--st-bar);box-shadow:0 -1px 0 var(--st-line)}
+.ds-tabbar .ds-tab::after{left:50%;top:0;bottom:auto;width:22px;height:2px;margin-left:-11px;border-radius:0 0 2px 2px;background:var(--st-rose)}
+
+/* =================================== Home =================================== */
+#today .hm-hero{border-radius:26px}
+#today .hm-focus{background-color:var(--st-rose-deep);box-shadow:0 18px 36px -26px rgb(0 0 0 / .6);padding:16px 16px 16px 20px}
+#today .hm-focus::before{display:none}
+#today .hm-f-morning{background-color:#9A6A55}
+#today .hm-f-night{background-color:#4C4C6A}
+#today .hm-f-weekly{background-color:#6C5A60}
+#today .hm-focus .ds-row-title{font-size:23px}
+#today .hm-focus .td-star{width:56px;height:56px;background:rgb(255 244 238 / .14)}
+/* habits: open sections, not boxes; a coloured rule marks each part of the day; rows are a touch tighter */
+#today .hm-group{margin:18px 0 0;padding:0 0 0 14px;background:none;border-radius:0;box-shadow:none;position:relative}
+#today .hm-group::before{content:"";position:absolute;left:0;top:12px;bottom:6px;width:3px;border-radius:2px;background:var(--pc,var(--st-line-2));opacity:.85}
+#today .hm-group.hm-g-morning{--pc:var(--mo-peach)}#today .hm-group.hm-g-anytime{--pc:var(--st-sage)}#today .hm-group.hm-g-night{--pc:var(--mo-dusk)}#today .hm-group.hm-g-weekly{--pc:var(--st-rose)}#today .hm-group.hm-g-optional{--pc:var(--st-gold)}
+#today .hm-group.is-done{background:none;box-shadow:none;opacity:.8}
+#today .hm-gh{padding:8px 0 4px}
+#today .hm-gh b{font:650 15px/1.2 var(--st-sans)}
+#today .hm-rows .td-row{min-height:50px;padding:5px 0}
+#today .hm-rows .td-row .ds-row-title{font-size:15px}
+#today .hm-rows .td-row .td-star{width:32px;height:32px}
+#today .hm-rows .td-row .td-star .ds-ic{width:25px;height:25px}
+#today .hm-doneline{min-height:40px}
+/* shortcuts: the surprise and Bingo side by side, then her three corners */
+#today .hm-treats{margin-top:28px}
+#today .hm-duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#today .hm-duo .hm-b{min-height:150px;margin:0;width:auto}
+#today .hm-b-surprise{min-height:150px;justify-content:space-between;background-color:var(--mo-island)}
+#today .hm-b-surprise .hm-b-art{width:52px;height:52px;margin:0;border-radius:16px}
+#today .hm-b-surprise .hm-b-art .ds-ic{width:30px;height:30px}
+#today .hm-b-surprise .hm-b-tx b{font-size:19px}
+#today .hm-b-bingo{flex-direction:column;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px;background:var(--mo-card)}
+#today .hm-b-bingo .hm-b-board{grid-template-columns:repeat(5,11px);gap:3px}
+#today .hm-b-bingo .hm-b-board i{width:11px;height:11px}
+#today .hm-b-bingo .hm-b-tx b{font:650 15px/1.2 var(--st-sans)}
+#today .hm-b-bingo .hm-b-tx em{font-size:11.5px}
+#today .hm-bento{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto;gap:10px;margin-top:10px}
+#today .hm-bento .hm-b{min-height:112px;padding:12px;grid-row:auto}
+#today .hm-bento .hm-b-tx em{font:650 11px/1.2 var(--st-sans);letter-spacing:.03em;color:var(--st-ink-3)}
+#today .hm-b-rewards{background:rgb(var(--st-rose-rgb) / .16);box-shadow:none}
+#today .hm-b-rewards .hm-b-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:rgb(var(--st-rose-rgb) / .22);color:var(--st-ink)}
+#today .hm-b-rewards .hm-b-ic .ds-ic{width:18px;height:18px}
+#today .hm-b-rewards{justify-content:space-between}
+#today .hm-b-rewards .hm-b-tx b{display:flex;align-items:center;gap:4px;font:400 22px/1 var(--st-display)}
+#today .hm-b-rewards .hm-b-tx b .ds-ic{width:15px;height:15px}
+#today .hm-b-word{background:rgb(var(--st-sage-rgb) / .16);box-shadow:none}
+#today .hm-b-word .hm-b-wd{font-size:18px;line-height:1.1}
+#today .hm-b-play .hm-b-tx b{font-size:15px;overflow-wrap:anywhere}
+#today .hm-bento .hm-b-tx b{min-width:0;overflow-wrap:anywhere}
+#today .hm-b-play .hm-b-tx em{color:rgb(255 244 236 / .7)}
+#today .hm-quests{background-color:var(--mo-island)}
+#today .hm-quests .hm-qgo{background:var(--mo-island-ink);color:var(--mo-island)}
+
+/* ================================= Progress ================================= */
+#stats .sys-dash{background-color:var(--mo-island)}
+/* the three highlights are one band with dividers, numerals aligned with comfortable padding */
+#stats .pg-trophies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:12px;padding:16px 0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .pg-trophies>span{padding:2px 16px;border-radius:0;background:none;box-shadow:none;border-left:1px solid var(--mo-card-line);justify-content:flex-start}
+#stats .pg-trophies>span:first-child{border-left:0}
+#stats .pg-trophies .tr-gd,#stats .pg-trophies .tr-streak,#stats .pg-trophies .tr-stars{background:none}
+#stats .pg-trophies b{font-size:30px;line-height:1.05;min-height:32px;color:var(--st-ink)}
+#stats .pg-trophies .tr-gd b{color:var(--st-gold)}
+#stats .pg-trophies .tr-streak b{color:var(--st-rose)}
+#stats .pg-trophies small{margin-top:2px}
+/* the habit rate: its bar runs the full width of its card */
+#stats .pg-wk-rate{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 12px}
+#stats .pg-wk-rate-bar{grid-column:1/-1;width:100%;height:8px;margin-top:8px;border-radius:4px}
+#stats .pg-wk-rate-bar>*{border-radius:4px}
+/* trends: tall columns, the week's share of habits as a quiet sage layer behind the Good Days */
+#stats .sys-trends{gap:10px;padding:18px 16px 12px}
+#stats .sys-tw b{font:400 18px/1 var(--st-display);min-height:18px}
+#stats .sys-tw i{max-width:46px;height:132px;border-radius:10px;background:linear-gradient(0deg,var(--st-gold) 0 calc(var(--h,0) * 100%),rgb(var(--st-ink-rgb) / .06) calc(var(--h,0) * 100%))}
+#stats .sys-tw.now i{background:linear-gradient(0deg,var(--st-rose) 0 calc(var(--h,0) * 100%),rgb(var(--st-ink-rgb) / .06) calc(var(--h,0) * 100%))}
+#stats .sys-tw small{font-size:11px}
+/* the calendar: only a Good Day looks complete; a partial day is open with its measure; a missed day is just its date */
+#stats .v8-cal{margin-top:6px;padding:16px 12px 14px;background:var(--mo-card);border-radius:22px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .v8-cal .pg-heat i{height:46px;border-radius:12px;background:none}
+#stats .v8-cal .pg-heat i.good{background:rgb(var(--st-gold-rgb) / .2);box-shadow:inset 0 0 0 1px rgb(var(--st-gold-rgb) / .35)}
+#stats .v8-cal .pg-heat i.good .dn{color:var(--st-ink)}
+#stats .v8-cal .pg-heat i:is(.lv1,.lv2,.lv3){background:none;box-shadow:inset 0 0 0 1px var(--st-line)}
+#stats .v8-cal .pg-heat i:is(.lv1,.lv2,.lv3) .pb{height:4px;background:rgb(var(--st-ink-rgb) / .08)}
+#stats .v8-cal .pg-heat i.none{box-shadow:none}
+#stats .v8-cal .pg-heat i.none .dn{color:var(--st-ink-4)}
+#stats .v8-cal .pg-heat i.now{box-shadow:0 0 0 1.5px var(--st-rose)}
+#stats .v8-cal .pg-key i.good{background:rgb(var(--st-gold-rgb) / .2)}
+#stats .v8-cal .pg-key i.none{box-shadow:none;background:none;outline:1px dashed var(--st-line-2)}
+#stats .pg-actsw{display:none}
+/* milestones and the rest share one card language */
+#stats .pg-mile .medal{background:radial-gradient(circle at 35% 30%,rgb(var(--st-gold-rgb) / .28),rgb(var(--st-gold-rgb) / .06) 70%);border-color:rgb(var(--st-gold-rgb) / .6)}
+
+/* ================================= Rewards ================================= */
+#rewards .bq-wallet{background-color:var(--mo-island)}
+/* a curated collection: two across on a phone, four on wider screens; small 16:10 photographs; each shelf its own accent */
+#rewards .bq-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#rewards .bq-tile{padding:6px 6px 12px;border-radius:16px}
+#rewards .bq-tile .bq-ph{aspect-ratio:16/10;border-radius:11px;margin-bottom:9px}
+#rewards .bq-tile .bq-nm{font-size:13.5px}
+#rewards .bq-tier-h{position:relative;padding-left:14px}
+#rewards .bq-tier-h::before{content:"";position:absolute;left:0;top:4px;bottom:8px;width:3px;border-radius:2px;background:var(--tier,var(--st-rose))}
+#rewards .bq-tier-h.t-little{--tier:var(--st-sage)}#rewards .bq-tier-h.t-treat{--tier:var(--st-rose)}#rewards .bq-tier-h.t-big{--tier:var(--st-gold)}
+#rewards .bq-grid.t-little .bq-tile .bq-pr .ds-ic{color:var(--st-sage)}
+#rewards .bq-grid.t-big .bq-tile{box-shadow:inset 0 0 0 1px rgb(var(--st-gold-rgb) / .3)}
+#rewards .bq-grid>.bq-tile:last-child:nth-child(odd){grid-template-columns:44% minmax(0,1fr)}
+#rewards .v5-chances{background:var(--mo-card)}
+/* the redemption reveal: the reward rises in a ring that draws closed, then its name */
+.bq-done{background:rgb(20 15 17 / .7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.bq-done-card{position:relative;width:min(300px,86vw);padding:28px 22px 22px;border-radius:28px;background-color:#33292A;color:#F7F0E8;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 40px 80px -30px rgb(0 0 0 / .8);animation:sysRise .5s cubic-bezier(.2,1.3,.4,1) both}
+.bq-done-ring{position:absolute;left:50%;top:20px;width:148px;height:148px;margin-left:-74px;pointer-events:none}
+.bq-done-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.bq-done-ring circle{fill:none;stroke:#CBAA6C;stroke-width:3;stroke-linecap:round;stroke-dasharray:352;stroke-dashoffset:352;animation:sysDraw .9s .2s cubic-bezier(.4,0,.2,1) forwards}
+.bq-done-card .bq-done-ph{position:relative;width:128px;height:128px;margin:10px 0 14px;border-radius:50%;overflow:hidden;animation:sysPop .55s .55s cubic-bezier(.3,1.6,.5,1) both}
+.bq-done-card .bq-done-ph img,.bq-done-card .bq-done-ph .bq-photo{width:100%;height:100%;object-fit:cover}
+.bq-done-card small{font:650 12px/1 var(--st-sans);letter-spacing:.06em;color:#CBAA6C}
+.bq-done-card b{font:400 28px/1.1 var(--st-display);font-variation-settings:"opsz" 72;color:#F7F0E8}
+.bq-done-card>span:last-child{font:500 13px/1.4 var(--st-sans);color:rgb(247 240 232 / .7)}
+@media (prefers-reduced-motion:reduce){.bq-done-card,.bq-done-ring circle,.bq-done-card .bq-done-ph{animation:none}.bq-done-ring circle{stroke-dashoffset:0}}
+
+/* ================================== Arcade ================================== */
+/* three destinations: Play, Brain, Learn, each its own colour, icon and line */
+#boost .ar-dest,#learn .ar-dest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:6px 0 4px}
+.ar-dest .ar-mode{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:104px;padding:12px;border:0;border-radius:18px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line);text-align:left;color:var(--st-ink);transition:transform .15s}
+.ar-dest .ar-mode:active{transform:scale(.97)}
+.ar-dest .ar-dest-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;margin-bottom:auto;background:rgb(var(--dc) / .2);color:rgb(var(--dc) / 1)}
+.ar-dest .ar-dest-ic .ds-ic{width:20px;height:20px}
+.ar-dest .ar-mode b{font:400 20px/1.05 var(--st-display);font-variation-settings:"opsz" 48;color:var(--st-ink)}
+.ar-dest .ar-mode small{font:550 11px/1.25 var(--st-sans);color:var(--st-ink-3)}
+.ar-dest .m-play{--dc:203 170 108}.ar-dest .m-brain{--dc:156 168 148}.ar-dest .m-learn{--dc:193 154 155}
+html[data-theme="light"] .ar-dest .m-play{--dc:154 123 67}html[data-theme="light"] .ar-dest .m-brain{--dc:110 122 102}html[data-theme="light"] .ar-dest .m-learn{--dc:142 99 102}
+.ar-dest .ar-mode[aria-pressed="true"]{background-color:rgb(var(--dc) / .22);box-shadow:inset 0 0 0 1.5px rgb(var(--dc) / .75)}
+.ar-dest .ar-mode[aria-pressed="true"] .ar-dest-ic{background:rgb(var(--dc) / 1);color:#231E20}
+.ar-dest .ar-mode .dot{position:absolute;right:12px;top:12px;width:8px;height:8px;border-radius:50%;background:var(--st-rose)}
+#learn .ar-dest{margin-bottom:12px}
+/* the top: tokens and level as one quiet line */
+#boost .ar-player{margin-top:16px;padding:10px 14px;border-radius:16px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#boost .ar-daily{margin-top:12px;background:#231E20}
+#boost .ar-daily .tx b{font-size:32px}
+/* this week: Bingo in sage, the ticket in antique gold, no hot pink */
+#boost .ar-objects .ar-board{background-color:#3A3536}
+#boost .ar-objects .ar-board:not(.ar-lucky){background-color:#36392F}
+#boost .ar-objects .ar-board.ar-lucky{background-color:#40362A}
+#boost .ar-objects .ar-board .bd-tx>span{color:#D9BC82}
+#boost .ar-objects .ar-board:not(.ar-lucky) .bd-tx>span{color:#B9C4AE}
+#boost .ar-game.is-spot,#boost .ar-game .cv{background:#231E20}
+/* Brain and Learn feel like destinations of their own */
+#boost .br-mix,#boost .br-hero{border-radius:22px}
+
+/* ============================ Clubhouse, sheets, Settings ============================ */
+#clubhouse .cl-room{border-radius:24px;box-shadow:0 24px 50px -30px rgb(0 0 0 / .6)}
+#clubhouse .cl-treat{background:var(--st-rose-deep)}
+.tb-sheet,.ds-sheet,#tbSheet{background:var(--st-surface)}
+#settings .ds-list,#life .ds-list{background:var(--mo-card);border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line);padding:0 14px}
+#settings .ds-list>.ds-row:last-child,#life .ds-list>.ds-row:last-child{border-bottom:0}
+#learn .ln-topics>:last-child:nth-child(odd){grid-column:1/-1}
+
+/* ---------- wider screens: four rewards across, the dashboard breathes ---------- */
+@media (min-width:700px){
+  #rewards .bq-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #rewards .bq-grid>.bq-tile:last-child:nth-child(odd){grid-column:auto;display:flex;flex-direction:column}
+  #today .hm-duo{grid-template-columns:1fr 1fr}
+  .ar-dest .ar-mode{min-height:120px}
+}
 
 /* ---------- iPad: the same pages, a little more room ---------- */
 @media (min-width:700px){
@@ -12244,8 +12442,11 @@ html.ds-shell body{background:var(--st-bg)}
       <p class="ar-note">Learning is just for you. It never affects good days or streaks.</p>`;
   }
   // Unified (the owner, 2026-10-16): five tabs again, Learn is its own tab, so the Arcade switch is Play · Brain.
+  // 2026-10-16 (the owner: "I had trouble finding Brain and Learn"): three destinations, each a card with its own colour,
+  // icon and a line saying what is inside; the one she is in is filled
+  const AR_DEST = [['play', 'Play', 'game-controller', 'Games, Bingo, scratch-offs'], ['brain', 'Brain', 'brain', 'Memory, logic, focus'], ['learn', 'Learn', 'book-open-text', 'Words, ideas, quizzes']];
   function arModesHTML(cur, wordPending) {
-    return `<div class="ar-seg ar-modes" role="tablist" aria-label="Arcade">${[['play', 'Play', 'game-controller-fill'], ['brain', 'Brain', 'lightbulb-fill'], ['learn', 'Learn', 'book-open-fill']].map(([k, l, icn]) => `<button type="button" role="tab" class="ar-mode m-${k}" aria-pressed="${cur === k}" aria-selected="${cur === k}" onclick="arTabSet('${k}')"><span class="ar-mode-ic">${ic(icn)}</span>${l}${k === 'learn' && wordPending ? '<i class="dot" aria-label="new"></i>' : ''}</button>`).join('')}</div>`;
+    return `<nav class="ar-dest" aria-label="Arcade">${AR_DEST.map(([k, l, icn, sub]) => `<button type="button" class="ar-mode m-${k}" aria-pressed="${cur === k}" aria-current="${cur === k ? 'page' : 'false'}" onclick="arTabSet('${k}')"><span class="ar-dest-ic">${ic(icn)}</span><b>${l}</b><small>${sub}</small>${k === 'learn' && wordPending ? '<i class="dot" aria-label="new"></i>' : ''}</button>`).join('')}</nav>`;
   }
   window.__arModes = cur => arModesHTML(cur, !((SC().wordDone || {})[today()]));
   renderBoost = function () {
@@ -13074,11 +13275,11 @@ html.ds-shell body{background:var(--st-bg)}
       ${tgt ? (() => { const p = Math.min(100, Math.round(bal / tgt.cost * 100)), ok = tgt.cost <= bal; return `<button type="button" class="bq-goal ${ok ? 'is-ready' : ''}" onclick="bqOpen('${esc(tgt.id)}')"><span class="bq-goal-ph">${bqVisual(tgt)}</span><span class="bq-goal-tx"><small>${ok ? 'Ready for you' : 'Saving for'}</small><b>${esc(tgt.name)}</b><span class="bq-meter"><i style="width:${p}%"></i></span><em>${ok ? `${ic('sparkle-fill')}Tap to redeem` : `<strong>${p}%</strong> ${(tgt.cost - bal).toLocaleString()} ★ to go`}</em></span></button>`; })()
         : list.length ? `<button type="button" class="bq-pick" onclick="bqPickGoal()">${ic('flag-checkered-duotone')}<span><b>Pick something to save for</b><small>Watch it fill up as you earn stars</small></span>${ic('caret-right-bold', 'tb-caret')}</button>` : ''}</div>
       ${(() => { // 2026-10-16: the boutique in three shelves by price, each with its own voice; a tile still says plainly whether it's within her stars
-        const tiers = [['Little treats', 'Everyday lovely things', r => r.cost < 50], ['Treat yourself', 'For a good week', r => r.cost >= 50 && r.cost < 200], ['Worth saving for', 'The big ones', r => r.cost >= 200]];
-        const filled = tiers.map(([t, s, f]) => [t, s, list.filter(f)]).filter(x => x[2].length);
+        const tiers = [['Little treats', 'Everyday lovely things', r => r.cost < 50, 'little'], ['Treat yourself', 'For a good week', r => r.cost >= 50 && r.cost < 200, 'treat'], ['Worth saving for', 'The big ones', r => r.cost >= 200, 'big']];
+        const filled = tiers.map(([t, s, f, k]) => [t, s, list.filter(f), k]).filter(x => x[2].length);
         if (!filled.length) return `<div class="bq-grid">${addTile}</div>`;
-        return filled.map(([t, s, rs], i) => { const n = rs.filter(r => r.cost <= bal).length;
-          return `<div class="ds-section bq-tier-h"><span>${t}</span><span class="bq-sec-note">${n === rs.length ? `${s} · all within your stars` : n ? `${n} of ${rs.length} within your stars` : s}</span></div><div class="bq-grid">${rs.map(tile).join('')}${i === filled.length - 1 ? addTile : ''}</div>`; }).join('');
+        return filled.map(([t, s, rs, k], i) => { const n = rs.filter(r => r.cost <= bal).length;
+          return `<div class="ds-section bq-tier-h t-${k}"><span>${t}</span><span class="bq-sec-note">${n === rs.length ? `${s} · all within your stars` : n ? `${n} of ${rs.length} within your stars` : s}</span></div><div class="bq-grid t-${k}">${rs.map(tile).join('')}${i === filled.length - 1 ? addTile : ''}</div>`; }).join('');
       })()}
       ${state.rewards.some(r => r.retired && r.archivedAt) ? `<button type="button" class="lf-fold" onclick="bqArchivedOpen()">Archived <b>${state.rewards.filter(r => r.retired && r.archivedAt).length}</b>${ic('caret-right-bold')}</button>` : ''}
       <div class="ds-section"><span>Surprises and keepsakes</span></div>
@@ -13117,10 +13318,10 @@ html.ds-shell body{background:var(--st-bg)}
     if (SC().rewardTarget === id) { SC().rewardTarget = null; save(); render(); }
     document.getElementById('bqDone')?.remove();
     const o = document.createElement('div'); o.id = 'bqDone'; o.className = 'bq-done'; o.setAttribute('role', 'status');
-    o.innerHTML = `<div class="bq-done-card"><span class="bq-done-ph">${bqVisual(r)}</span>${reduced() ? '' : '<span class="bq-sparks" aria-hidden="true">' + '<i></i>'.repeat(10) + '</span>'}<small>Enjoy</small><b>${esc(r.name)}</b><span>−${r.cost.toLocaleString()} ★ · ${balance().toLocaleString()} left</span></div>`;
+    o.innerHTML = `<div class="bq-done-card"><span class="bq-done-ring" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="56"/></svg></span><span class="bq-done-ph">${bqVisual(r)}</span>${reduced() ? '' : '<span class="bq-sparks" aria-hidden="true">' + '<i></i>'.repeat(10) + '</span>'}<small>Enjoy</small><b>${esc(r.name)}</b><span>−${r.cost.toLocaleString()} ★ · ${balance().toLocaleString()} left</span></div>`;
     o.addEventListener('click', () => o.remove()); document.body.appendChild(o); haptic([10, 40, 14]);
     dexCameo(o.querySelector('.bq-done-card'), { pose: 'celebrate', ms: 2100 }); // Dexter cheers a redemption
-    setTimeout(() => o.classList.add('out'), 2200); setTimeout(() => o.remove(), 2600);
+    setTimeout(() => o.classList.add('out'), 3200); setTimeout(() => o.remove(), 3600);
   };
 
   /* ===================== LEARN (pass 17) =====================
@@ -13133,9 +13334,10 @@ html.ds-shell body{background:var(--st-bg)}
   const TOPICS = [
     { id: 'ai', name: 'AI & Tech', icon: 'lightbulb-fill' },
     { id: 'words', name: 'Vocabulary', icon: 'pencil-simple-line-duotone' },
-    { id: 'mind', name: 'Psychology', icon: 'brain' },
+    { id: 'mind', name: 'Wellness & mind', icon: 'brain' },
     { id: 'finance', name: 'Money', icon: 'wallet-duotone' },
-    { id: 'life', name: 'Life skills', icon: 'calendar-check-duotone' },
+    { id: 'life', name: 'Everyday know-how', icon: 'calendar-check-duotone' },
+    { id: 'creative', name: 'Creative', icon: 'camera' },
     { id: 'trivia', name: 'Curious facts', icon: 'sparkle-fill' },
     { id: 'history', name: 'History', icon: 'book-open-text-duotone', hidden: true },
     { id: 'science', name: 'Science', icon: 'sparkle-fill', hidden: true },
@@ -13171,9 +13373,14 @@ html.ds-shell body{background:var(--st-bg)}
     Q('life', 'For most fresh stains, the safest first step is to…', ['blot with cold water and avoid rubbing', 'rinse with very hot water', 'rub hard with soap', 'iron it flat'], 0, 'Heat can set protein stains like blood or egg, and rubbing pushes the stain deeper and wider. Blot from the outside in.'),
     Q('life', 'A quick way to work out a 20% tip on a $43 bill is…', ['move the decimal for 10% ($4.30) and double it', 'divide by 20', 'add $20', 'multiply by 2'], 0, '10% is $4.30, so 20% is about $8.60. The same trick gives 15%: 10% plus half of it.'),
     Q('life', 'A recipe says to “fold in” whipped egg whites. That means…', ['gently lift and turn the mixture so the air stays in', 'whisk until stiff', 'stir quickly in circles', 'add them a drop at a time'], 0, 'Folding keeps the bubbles you whipped in. Cut down through the middle, sweep along the bottom and turn the bowl.'),
+    Q('creative', 'In photography, the “rule of thirds” suggests placing your subject…', ['along lines that divide the frame into thirds', 'exactly in the center', 'in a bottom corner', 'slightly out of focus'], 0, 'Imagine the frame cut into a three-by-three grid. A subject on one of those lines often feels more balanced and alive than one dead center. It is a guideline, not a law.'),
+    Q('creative', 'Which pair of colors is complementary?', ['Blue and orange', 'Blue and green', 'Red and pink', 'Yellow and gold'], 0, 'Complementary colors sit opposite each other on the color wheel, so side by side each makes the other look more vivid.'),
+    Q('creative', 'In typography, a “serif” is…', ['the small stroke at the end of a letter’s main lines', 'a font weight', 'the space between lines', 'a kind of italic'], 0, 'Fonts like Fraunces have serifs. Fonts like Manrope are sans-serif, literally “without” them.'),
+    Q('creative', 'In music, “tempo” describes…', ['the speed of the beat', 'how loud it is', 'the key it is in', 'how many instruments play'], 0, 'Tempo is measured in beats per minute. Around 60 feels calm and unhurried; around 120 feels like a brisk walk.'),
     Q('words', 'A “disinterested” judge is one who is…', ['bored by the case', 'impartial', 'absent', 'unqualified'], 1, 'Disinterested means having no stake in the outcome. Uninterested means not caring.'),
   ];
   const MINI_READS = [
+    { id: 'goldenhour', topic: 'creative', title: 'Why “golden hour” photos look so good', mins: 1, body: ['Just after sunrise and before sunset, sunlight reaches you at a low angle, through much more of the atmosphere.', 'More of the blue light scatters away on the way, so what arrives is warmer and softer, and shadows grow long, which gives faces and objects depth.', 'Phone cameras love it too: the softer contrast is easier to expose well. Try one photo of the same view at noon and at golden hour.'] },
     { id: 'openloops', topic: 'mind', title: 'Why writing it down quiets your head', mins: 2, body: ['An unfinished task can keep tugging at your attention, popping up when you’re trying to rest or focus on something else.', 'In 2011, psychologists E. J. Masicampo and Roy Baumeister found that making a specific plan for an unfinished goal reduced those intrusive thoughts, even before the task was done.', 'So the next time something keeps nagging you, write down the very next step and when you’ll do it. Your mind can treat it as handled for now.'] },
     { id: 'nextaction', topic: 'life', title: 'Make any task smaller with one question', mins: 1, body: ['Big tasks stall because they are really projects. “Sort out the car” hides several different jobs.', 'Ask: what is the very next physical thing I would do? “Call the garage at 9” is something you can actually start.', 'Writing tasks as next actions makes a list feel lighter, and each one is easy to check off.'] },
     { id: 'compound', topic: 'finance', title: 'The quiet power of compounding', mins: 2, body: ['Compounding means your returns start earning returns of their own. It feels slow at first and surprising later.', 'A handy shortcut is the Rule of 72: divide 72 by a yearly growth rate to estimate how many years it takes to double. At 6% that is about 12 years; at 9%, about 8.', 'The same math works against you with debt. A balance at 24% APR doubles in about three years if nothing is paid, which is why high-interest debt is usually worth tackling first.', 'The biggest lever is time. Money invested ten years earlier has had a whole extra doubling or so to work, even if the amounts are the same.'] },
@@ -13186,6 +13393,8 @@ html.ds-shell body{background:var(--st-bg)}
     { id: 'emergency', topic: 'finance', title: 'What an emergency fund is really for', mins: 1, body: ['An emergency fund is money set aside for the unexpected: a car repair, a medical bill, a gap between jobs.', 'Its job is not to earn a high return. Its job is to be there, so a surprise doesn’t land on a credit card at a high interest rate.', 'A common guideline is three to six months of essential expenses, kept somewhere easy to reach. Starting smaller still helps; the first few hundred dollars cover a lot of everyday surprises.'] },
   ];
   const QUICK_FACTS = [
+    { id: 'pantone', topic: 'creative', head: 'A color company names a Color of the Year.', body: 'Pantone has announced one every year since 2000, when the first was Cerulean, a calm sky blue. The choice ripples into fashion, interiors and packaging.' },
+    { id: 'toned', topic: 'creative', head: 'Many painters color a canvas before they start.', body: 'A thin mid-tone layer, often a warm earth color, keeps a stark white canvas from throwing off how light or dark everything looks, and it ties the colors together.' },
     { id: 'cocktail', topic: 'mind', head: 'Your brain hears your name through a noisy room.', body: 'In the 1950s researchers found that people tuned out a conversation they were ignoring, except for important words like their own name. It is called the cocktail party effect.' },
     { id: 'coldwash', topic: 'life', head: 'Cold water is fine for most laundry.', body: 'Modern detergents are made to work in cold water for everyday loads, and cold is gentler on colors and fabrics. Warmer water still helps with heavily soiled whites, towels and bedding.' },
     { id: 'honey', topic: 'trivia', head: 'Honey almost never spoils.', body: 'It is low in water and naturally acidic, and bees add an enzyme that produces small amounts of hydrogen peroxide. Archaeologists have reported edible honey in ancient Egyptian tombs.' },
@@ -13205,7 +13414,7 @@ html.ds-shell body{background:var(--st-bg)}
   const quizBank = () => [...AI_QUIZ(), ...LEARN_QUIZ];
   const L = () => { const S = SC(); S.learn = S.learn || {}; S.learn.saved = S.learn.saved || []; S.learn.reads = S.learn.reads || {}; S.learn.facts = S.learn.facts || {}; return S.learn; };
   const lday = () => Math.floor(Date.parse(today() + 'T12:00:00Z') / 864e5);
-  const topicOrder = ['ai', 'words', 'mind', 'finance', 'life', 'trivia'];
+  const topicOrder = ['ai', 'mind', 'finance', 'creative', 'life', 'words', 'trivia'];
   function quizFor(offset = 0, topic = null) {
     const bank = quizBank(), n = lday() + offset, t = topic || topicOrder[((n % topicOrder.length) + topicOrder.length) % topicOrder.length], list = bank.filter(x => x.topic === t);
     if (!list.length) return null;
@@ -14026,25 +14235,29 @@ html.ds-shell body{background:var(--st-bg)}
     return `<section class="hm-habits" aria-label="Today’s habits"><div class="hm-sh"><h2>Today’s habits</h2><span>${left ? `${left} to go` : 'All done today'}</span>${left ? `<button type="button" class="td-one" onclick="tdJustOne()">Just one thing</button>` : ''}</div>${body}</section>`;
   }
   function hmTreatsHTML() {
-    const tiles = [];
-    try { // the daily surprise: tall, the one thing that can be opened
+    const tiles = [], duo = [];
+    try { // Rewards: the balance and what it can do
+      const bal = balance(), within = state.rewards.filter(r => !r.retired && r.cost > 0 && r.cost <= bal).length;
+      tiles.push(`<button type="button" class="hm-b hm-b-rewards" onclick="starcadeNavigate('rewards')" aria-label="Rewards: ${bal} stars, ${within} rewards within reach"><span class="hm-b-ic" aria-hidden="true">${ic('gift')}</span><span class="hm-b-tx"><small>Rewards</small><b>${ic('star-fill')}${bal.toLocaleString()}</b><em>${within} within reach</em></span></button>`);
+    } catch (e) {}
+    try { // the daily surprise: the one thing that can be opened
       const ready = surpriseReady();
-      tiles.push(`<button type="button" class="hm-b hm-b-surprise ${ready ? 'td-surprise is-ready' : 'is-done'}" onclick="${ready ? 'tdSurpriseOpen()' : "starcadeNavigate('rewards')"}" aria-label="Daily Surprise. ${ready ? 'Ready to open' : 'Opened today. Another one tomorrow'}"><span class="hm-b-art" aria-hidden="true">${ic('treasure-chest')}</span><span class="hm-b-tx"><small>Daily surprise</small><b>${ready ? 'Ready to open' : 'Opened today'}</b><em>${ready ? 'Free, once a day' : 'Another one tomorrow'}</em></span></button>`);
+      duo.push(`<button type="button" class="hm-b hm-b-surprise ${ready ? 'td-surprise is-ready' : 'is-done'}" onclick="${ready ? 'tdSurpriseOpen()' : "starcadeNavigate('rewards')"}" aria-label="Daily Surprise. ${ready ? 'Ready to open' : 'Opened today. Another one tomorrow'}"><span class="hm-b-art" aria-hidden="true">${ic('treasure-chest')}</span><span class="hm-b-tx"><small>Daily surprise</small><b>${ready ? 'Ready to open' : 'Opened today'}</b><em>${ready ? 'Free, once a day' : 'Another one tomorrow'}</em></span></button>`);
     } catch (e) {}
     try { // today's free game, its real board as the picture
       const d = dailyPick(), played = dailyClaimed();
-      tiles.push(`<button type="button" class="hm-b hm-b-play tr-play" onclick="arPlay('${d.id}',true)" aria-label="${esc(d.name)}. ${played ? 'Played today' : 'Free Daily Play'}"><span class="hm-b-cover">${cover(d)}</span><span class="hm-b-tx"><small>${played ? 'Played today' : 'Free today'}</small><b>${esc(d.name)}</b></span></button>`);
+      tiles.push(`<button type="button" class="hm-b hm-b-play tr-play" onclick="arPlay('${d.id}',true)" aria-label="${esc(d.name)}. ${played ? 'Played today' : 'Free Daily Play'}"><span class="hm-b-cover">${cover(d)}</span><span class="hm-b-tx"><small>${played ? 'Played today' : 'Free today'}</small><b>${esc(d.name)}</b><em>Arcade</em></span></button>`);
     } catch (e) {}
     try { // the word of the day, set in the display face
       const w = wordForToday(), done = !!((SC().wordDone || {})[today()]);
-      tiles.push(`<button type="button" class="hm-b hm-b-word tr-word" onclick="starcadeNavigate('learn')" aria-label="Today’s word: ${esc(w.w)}"><span class="hm-b-tx"><small>${done ? 'Word checked' : 'Today’s word'}</small><b class="hm-b-wd">${esc(w.w)}</b><em>${esc(w.pos || '')}</em></span></button>`);
+      tiles.push(`<button type="button" class="hm-b hm-b-word tr-word" onclick="starcadeNavigate('learn')" aria-label="Today’s word: ${esc(w.w)}"><span class="hm-b-tx"><small>${done ? 'Word checked' : 'Today’s word'}</small><b class="hm-b-wd">${esc(w.w)}</b><em>Learn</em></span></button>`);
     } catch (e) {}
     let bingo = '';
     try { // this week's Bingo, wide, with the real board
       const B = __starcadeV7.bingoTest.state(), rec = B.rec, n = B.lines.length, ends = (V7().endsPlain || (() => ''))();
       const mini = `<span class="tr-mini hm-b-board" aria-hidden="true">${B.marks.map((m, i) => `<i class="${i === 12 ? 'free' : m.done ? 'on' : ''}${i === rec.gold ? ' gold' : ''}"></i>`).join('')}</span>`;
       const tok = SC2.tokensOn() ? SC2.tokenBalance() : null;
-      bingo = `<button type="button" class="hm-b hm-b-bingo tr-bingo" onclick="v7OpenBingo()" aria-label="Weekly Bingo, ${B.count} of 25${n ? ', ' + n + ' lines' : ''}. ${esc(ends)}">${mini}<span class="hm-b-tx"><small>Weekly Bingo</small><b>${B.count} of 25${n ? ` · ${n} line${n === 1 ? '' : 's'}` : ''}</b><em>${esc(ends)}</em>${tok != null ? `<span class="hm-b-tok">${ic('ticket')}${tok} token${tok === 1 ? '' : 's'} for the Arcade</span>` : ''}</span></button>`;
+      duo.push(`<button type="button" class="hm-b hm-b-bingo tr-bingo" onclick="v7OpenBingo()" aria-label="Weekly Bingo, ${B.count} of 25${n ? ', ' + n + ' lines' : ''}. ${esc(ends)}">${mini}<span class="hm-b-tx"><small>Weekly Bingo</small><b>${B.count} of 25${n ? ` · ${n} line${n === 1 ? '' : 's'}` : ''}</b><em>${esc(ends)}</em>${tok != null ? `<span class="hm-b-tok">${ic('ticket')}${tok} token${tok === 1 ? '' : 's'}</span>` : ''}</span></button>`);
     } catch (e) {}
     let saving = '';
     try {
@@ -14052,8 +14265,8 @@ html.ds-shell body{background:var(--st-bg)}
       if (tgt) { const bal = balance(), p = Math.min(100, Math.round(bal / tgt.cost * 100)), ok = tgt.cost <= bal;
         saving = `<button type="button" class="hm-b hm-b-save tr-save" onclick="${ok ? `bqOpen('${esc(tgt.id)}')` : "starcadeNavigate('rewards')"}" aria-label="Saving for ${esc(tgt.name)}. ${ok ? 'Ready to redeem' : p + ' percent'}"><span class="hm-b-tx"><small>${ok ? 'Ready to redeem' : 'Saving for'}</small><b>${esc(tgt.name)}</b></span><span class="hm-b-meter" aria-hidden="true"><i style="width:${p}%"></i></span><span class="hm-b-pct">${ok ? ic('star-fill') : p + '%'}</span></button>`; }
     } catch (e) {}
-    if (!tiles.length && !bingo && !saving) return '';
-    return `<section class="hm-treats" aria-label="Treats"><div class="hm-sh"><h2>Treats</h2><span>Just for fun</span></div><div class="hm-bento n${tiles.length}">${tiles.join('')}</div>${bingo}${saving}</section>`;
+    if (!tiles.length && !duo.length && !saving) return '';
+    return `<section class="hm-treats" aria-label="Treats and shortcuts"><div class="hm-duo">${duo.join('')}</div><div class="hm-bento n${tiles.length}">${tiles.join('')}</div>${saving}</section>`;
   }
   renderToday = function () {
     const el = document.getElementById('today'); if (!el) return;
