@@ -9738,6 +9738,319 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
 #settings .st-time{background:var(--st-well);border:0;box-shadow:none;color:var(--st-ink);border-radius:var(--st-r-sm)}
 #settings p,#settings .tb-note,#settings .st-note{font:500 13px/1.45 var(--st-sans);color:var(--st-ink-3)}
 
+/* ================== The major visual overhaul (2026-10-16, redesign/94-major-overhaul) ==================
+   One visual language on top of the system: deeper charcoal with real contrast, warm cream, a brighter dusty rose, a
+   true gold for what's earned, and a few purposeful "moments": dark plum islands that hold the hero of each screen in
+   both themes, part-of-day colours on Home, each game's own colour in the Arcade. Display type is bigger and used
+   for numbers and names that matter; everything else stays Manrope. */
+html.ds-shell{
+  --st-bg:#151113; --st-bg-rgb:21 17 19; --st-surface:#221C1F; --st-surface-2:#2C2528; --st-sunk:#100D0F;
+  --st-ink:#F7F0E8; --st-ink-rgb:247 240 232; --st-ink-2:#D3C8BF; --st-ink-3:#9D918B; --st-ink-4:#665D5A;
+  --st-rose:#E2A2AE; --st-rose-rgb:226 162 174; --st-wine:#8E2C55; --st-wine-ink:#FFF4F2;
+  --st-gold:#E1B866; --st-gold-rgb:225 184 102; --st-sage:#A6BA9D; --st-sage-rgb:166 186 157; --st-pink:#F06D9F; --st-pink-rgb:240 109 159;
+  --st-bar:rgb(21 17 19 / .86);
+  --mo-island:#2A1B26; --mo-island-2:#3A2433; --mo-island-ink:#FBF2EC; --mo-island-ink-2:rgb(251 242 236 / .7); --mo-island-line:rgb(251 242 236 / .12);
+  --mo-peach:#EDB28A; --mo-dusk:#A3ABEB; --mo-card:#221C1F; --mo-card-line:rgb(247 240 232 / .07);
+  --mo-r:22px;
+}
+html[data-theme="light"].ds-shell{
+  --st-bg:#F5EFE8; --st-bg-rgb:245 239 232; --st-surface:#FFFFFF; --st-surface-2:#F0E9E1; --st-sunk:#EAE2D9;
+  --st-ink:#241D20; --st-ink-rgb:36 29 32; --st-ink-2:#564C50; --st-ink-3:#8A7F7B; --st-ink-4:#B8AEA8;
+  --st-rose:#B66E7D; --st-rose-rgb:182 110 125; --st-wine:#8A2A50; --st-wine-ink:#FFF6F3;
+  --st-gold:#B28A35; --st-gold-rgb:178 138 53; --st-sage:#6D8466; --st-sage-rgb:109 132 102; --st-pink:#D8407C; --st-pink-rgb:216 64 124;
+  --st-bar:rgb(245 239 232 / .88);
+  --mo-island:#2E1E2A; --mo-island-2:#432B3C; --mo-island-ink:#FBF2EC; --mo-island-ink-2:rgb(251 242 236 / .72); --mo-island-line:rgb(251 242 236 / .14);
+  --mo-peach:#C9865A; --mo-dusk:#6E78C4; --mo-card:#FFFFFF; --mo-card-line:rgb(36 29 32 / .07);
+}
+html.ds-shell body{background:var(--st-bg)}
+
+/* ---------- navigation: four equal tabs, one treatment for every active tab (ink, its outline icon, a small rose dot) ---------- */
+.ds-tabbar{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ds-tabbar .ds-tab .ds-on{display:none}
+.ds-tabbar .ds-tab .ds-off{display:block}
+.ds-tabbar .ds-tab .ds-ic{width:24px;height:24px;transition:transform .2s}
+.ds-tabbar .ds-tab span{font:600 10.5px/1 var(--st-sans)}
+.ds-tabbar .ds-tab.active span{font-weight:750}
+.ds-tabbar .ds-tab::after{content:"";position:absolute;left:50%;bottom:3px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--st-pink);opacity:0;transform:scale(.4);transition:opacity .2s,transform .2s}
+.ds-tabbar .ds-tab.active::after{opacity:1;transform:none}
+.ds-tabbar .ds-tab:active .ds-ic{transform:scale(.9)}
+
+/* ---------- type: the screen title larger, section heads with presence ---------- */
+#dsTopTitle{font-size:34px;letter-spacing:-.02em}
+:is(#today,#stats,#rewards,#boost) .ds-section>span:first-child,#today .hm-sh h2{font:500 22px/1.15 var(--st-display);font-variation-settings:"opsz" 48;letter-spacing:-.01em;color:var(--st-ink)}
+:is(#today,#stats,#rewards,#boost) .ds-section{border-bottom:0;padding-bottom:6px;margin-top:30px}
+
+/* =================================== Home =================================== */
+/* the hero: his room and the day are one object */
+#today .hm-hero{margin:4px 0 0;border-radius:var(--mo-r);overflow:hidden;background:var(--mo-island);box-shadow:0 24px 50px -30px rgb(0 0 0 / .7)}
+#today .hm-hero .td-top.v5-roomhead{height:212px;margin:0;border-radius:0;box-shadow:none}
+#today .hm-hero .v5-roomhead .rh-scene{top:calc(198px - var(--seat-y) * 94.75cqw)}
+#today .hm-hero .v5-roomhead .rh-scrim{background:linear-gradient(200deg,rgb(26 18 17 / .55) 0,transparent 42%),linear-gradient(0deg,rgb(42 27 38 / .95) 0,rgb(42 27 38 / 0) 32%)}
+#today .hm-day{margin:0;padding:4px 18px 4px;background:var(--mo-island);border:0;border-radius:0;color:var(--mo-island-ink)}
+#today .hm-day-top{display:flex;align-items:center;gap:14px}
+#today .hm-count{display:flex;align-items:baseline;gap:5px;flex:none}
+#today .hm-count b{font:400 54px/1 var(--st-display);font-variation-settings:"opsz" 96;letter-spacing:-.03em;color:var(--mo-island-ink)}
+#today .hm-count span{font:600 14px/1 var(--st-sans);color:var(--mo-island-ink-2)}
+#today .hm-day.is-good .hm-count b{color:var(--st-gold)}
+#today .hm-day .hm-day-h b{font:650 15px/1.25 var(--st-sans);color:var(--mo-island-ink)}
+#today .hm-day .hm-day-h small{font:500 13px/1.35 var(--st-sans);color:var(--mo-island-ink-2)}
+#today .hm-day .hm-stars{margin:14px 0 4px}
+#today .hm-day .hm-stars .ds-ic{--st-flat:rgb(251 242 236 / .08);--st-rim:rgb(251 242 236 / .3)}
+#today .hm-day .hm-stars i.on .ds-ic{--st-flat:initial;--st-rim:#7A4A14;filter:drop-shadow(0 3px 8px rgb(225 184 102 / .45))}
+#today .hm-day .td-week{margin:14px -18px 0;width:calc(100% + 36px);padding:12px 18px 14px;border-top:1px solid var(--mo-island-line)}
+#today .hm-day .td-week .wd::before{background:var(--mo-island)}
+#today .hm-day .td-week .wd small{color:var(--mo-island-ink-2)}
+#today .hm-day .td-week .wd.now{box-shadow:0 0 0 2px var(--mo-island),0 0 0 3.5px var(--st-pink)}
+#today .hm-day .td-week .wd.now small{color:var(--mo-island-ink)}
+#today .hm-day .td-week .wd.none{box-shadow:inset 0 0 0 1px rgb(251 242 236 / .2)}
+#today .hm-day .td-week .wd.fut{box-shadow:inset 0 0 0 1px rgb(251 242 236 / .1)}
+#today .hm-day .td-week .wd.good{background:rgb(225 184 102 / .16)}
+#today .hm-day .td-week>svg{color:var(--mo-island-ink-2)}
+
+/* the focus: the next habit, big, with a large star */
+#today .hm-focus{display:flex;align-items:center;gap:16px;width:100%;margin:18px 0 0;padding:18px 18px 18px 20px;min-height:0;border:0;border-radius:var(--mo-r);background:var(--st-wine);color:var(--st-wine-ink);text-align:left;box-shadow:0 18px 36px -24px rgb(142 44 85 / .8);position:relative;overflow:hidden}
+#today .hm-focus::before{content:"";position:absolute;right:-40px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(closest-side,rgb(255 255 255 / .1),transparent);pointer-events:none}
+#today .hm-focus-tx{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px}
+#today .hm-focus-tx small{font:650 12px/1.2 var(--st-sans);letter-spacing:.02em;color:rgb(255 244 242 / .72)}
+#today .hm-focus .ds-row-title{font:400 25px/1.12 var(--st-display);font-variation-settings:"opsz" 48;letter-spacing:-.01em;color:var(--st-wine-ink)}
+#today .hm-focus .ds-row-sub{font:500 13px/1.3 var(--st-sans);color:rgb(255 244 242 / .72)}
+#today .hm-focus .td-star{flex:none;width:60px;height:60px;border-radius:50%;background:rgb(255 244 242 / .12);box-shadow:inset 0 0 0 1.5px rgb(255 244 242 / .4);display:grid;place-items:center;margin:0}
+#today .hm-focus .td-star .ds-ic{grid-area:1/1;width:30px;height:30px}
+#today .hm-focus .td-star .off{color:var(--st-wine-ink)}
+#today .hm-focus.is-done .td-star{background:rgb(255 244 242 / .2)}
+#today .hm-focus .td-spark{left:auto;right:48px}
+#today .hm-f-morning{background:#9A4A3B}
+#today .hm-f-night{background:#3E3A72}
+#today .hm-f-weekly{background:#5E4560}
+
+/* habits: each part of the day is a card with its own colour and a small ring */
+#today .hm-habits{margin-top:30px}
+#today .hm-sh{align-items:baseline}
+#today .hm-group{margin:12px 0 0;padding:4px 16px 2px;background:var(--mo-card);border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#today .hm-gh{border-bottom:0;padding:12px 0 6px;--pc:var(--st-ink-3)}
+#today .hm-g-morning .hm-gh{--pc:var(--mo-peach)}
+#today .hm-g-anytime .hm-gh{--pc:var(--st-sage)}
+#today .hm-g-night .hm-gh{--pc:var(--mo-dusk)}
+#today .hm-g-weekly .hm-gh{--pc:var(--st-rose)}
+#today .hm-g-optional .hm-gh{--pc:var(--st-gold)}
+#today .hm-gh .hm-gi,#today .hm-gh.is-now .hm-gi{color:var(--pc)}
+#today .hm-gh b{color:var(--st-ink)}
+#today .hm-gring{flex:none;width:16px;height:16px;border-radius:50%;margin-left:2px;background:conic-gradient(var(--pc) calc(var(--p,0) * 1%),rgb(var(--st-ink-rgb) / .12) 0);-webkit-mask:radial-gradient(circle,transparent 4.5px,#000 5px);mask:radial-gradient(circle,transparent 4.5px,#000 5px)}
+#today .hm-gh em{background:var(--pc);color:#1A1416}
+#today .hm-rows .td-row{border-bottom:1px solid var(--mo-card-line)}
+#today .hm-rows>:last-child{border-bottom:0}
+#today .hm-rows .td-row .td-star .off{color:var(--st-ink-4)}
+#today .hm-group:has(.hm-rows:empty){padding-bottom:6px}
+#today .hm-group.is-done{background:transparent;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#today .hm-doneline{border-bottom:0}
+
+/* treats: a bento, not a list */
+#today .hm-treats{margin-top:30px}
+#today .hm-bento{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:10px;margin-top:10px}
+#today .hm-b{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-height:118px;padding:14px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line);text-align:left;overflow:hidden;color:var(--st-ink)}
+#today .hm-b-tx{position:relative;z-index:1;display:flex;flex-direction:column;gap:2px}
+#today .hm-b-tx small{font:650 11.5px/1.2 var(--st-sans);letter-spacing:.02em;color:var(--st-ink-3)}
+#today .hm-b-tx b{font:650 15px/1.2 var(--st-sans);color:var(--st-ink)}
+#today .hm-b-tx em{font:500 12px/1.3 var(--st-sans);font-style:normal;color:var(--st-ink-3)}
+#today .hm-bento.n3 .hm-b-surprise{grid-row:1/3}
+#today .hm-b-surprise{background:var(--mo-island);color:var(--mo-island-ink);box-shadow:none;justify-content:space-between;min-height:248px}
+#today .hm-b-surprise .hm-b-art{display:grid;place-items:center;width:84px;height:84px;margin:6px 0 0;border-radius:24px;background:rgb(225 184 102 / .14);color:var(--st-gold)}
+#today .hm-b-surprise .hm-b-art .ds-ic{width:48px;height:48px}
+#today .hm-b-surprise.is-ready .hm-b-art{animation:hmChest 3.6s ease-in-out infinite}
+@keyframes hmChest{0%,86%,100%{transform:none}90%{transform:rotate(-5deg)}94%{transform:rotate(4deg)}}
+#today .hm-b-surprise .hm-b-tx small,#today .hm-b-surprise .hm-b-tx em{color:var(--mo-island-ink-2)}
+#today .hm-b-surprise .hm-b-tx b{font:400 22px/1.12 var(--st-display);color:var(--mo-island-ink)}
+#today .hm-b-surprise::before,#today .hm-b-surprise::after{display:none}
+#today .hm-b-surprise .sp-dot{position:absolute;right:14px;top:14px;left:auto;width:10px;height:10px;box-shadow:0 0 0 3px var(--mo-island)}
+#today .hm-b-surprise.is-done .hm-b-art{background:rgb(251 242 236 / .06);color:var(--mo-island-ink-2)}
+#today .hm-b-play{padding:0;min-height:118px}
+#today .hm-b-play .hm-b-cover{position:absolute;inset:0}
+#today .hm-b-play .hm-b-cover .sys-cover{position:absolute;inset:0;width:100%;height:100%}
+#today .hm-b-play::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgb(12 8 10 / .78));pointer-events:none}
+#today .hm-b-play .hm-b-tx{padding:12px 14px}
+#today .hm-b-play .hm-b-tx small{color:rgb(255 244 236 / .8)}
+#today .hm-b-play .hm-b-tx b{color:#FFF6EE;font:400 20px/1.1 var(--st-display)}
+#today .hm-b-word{background:var(--st-surface-2)}
+#today .hm-b-word .hm-b-wd{font:400 24px/1.05 var(--st-display);font-variation-settings:"opsz" 72;letter-spacing:-.01em;word-break:break-word}
+#today .hm-b-bingo{flex-direction:row;align-items:center;gap:16px;width:100%;min-height:0;margin-top:10px;padding:14px 16px;background:var(--mo-card)}
+#today .hm-b-board{flex:none;display:grid;grid-template-columns:repeat(5,12px);gap:3px}
+#today .hm-b-board i{width:12px;height:12px;border-radius:3px;background:rgb(var(--st-ink-rgb) / .1)}
+#today .hm-b-board i.on{background:var(--st-gold)}
+#today .hm-b-board i.free{background:var(--st-rose)}
+#today .hm-b-board i.gold{box-shadow:0 0 0 1.5px var(--st-gold)}
+#today .hm-b-tok{display:inline-flex;align-items:center;gap:5px;margin-top:4px;font:600 12px/1 var(--st-sans);color:var(--st-ink-2)}
+#today .hm-b-tok .ds-ic{width:14px;height:14px}
+#today .hm-b:active{transform:scale(.985)}
+#today .hm-b-save{flex-direction:row;align-items:center;gap:14px;width:100%;min-height:0;margin-top:10px;padding:14px 16px}
+#today .hm-b-save .hm-b-tx{flex:0 1 auto;min-width:0}
+#today .hm-b-meter{flex:1 1 auto;height:6px;border-radius:3px;background:rgb(var(--st-ink-rgb) / .1);overflow:hidden}
+#today .hm-b-meter i{display:block;height:100%;border-radius:3px;background:var(--st-gold)}
+#today .hm-b-pct{flex:none;font:700 13px/1 var(--st-sans);color:var(--st-gold)}
+#today .hm-b-pct .ds-ic{width:16px;height:16px}
+
+/* quests: their own island */
+#today .hm-quests{margin-top:30px;padding:18px 18px 8px;background:var(--mo-island);border:0;color:var(--mo-island-ink);border-radius:var(--mo-r)}
+#today .hm-quests .td-quests-h>b{font:400 22px/1.15 var(--st-display);color:var(--mo-island-ink)}
+#today .hm-quests .hm-qnote{color:var(--mo-island-ink-2)}
+#today .hm-quests .td-quest{border-top-color:var(--mo-island-line)}
+#today .hm-quests .q-tx b{color:var(--mo-island-ink)}
+#today .hm-quests .q-tx small{color:var(--mo-island-ink-2)}
+#today .hm-quests .hm-qic{background:rgb(251 242 236 / .08);color:var(--mo-island-ink)}
+#today .hm-quests .hm-qgo{background:var(--mo-island-ink);border-color:var(--mo-island-ink);color:var(--mo-island)}
+#today .hm-quests .hm-qswap{color:var(--mo-island-ink-2)}
+#today .hm-quests .q-pips i{background:rgb(251 242 236 / .18)}
+#today .hm-quests.is-done{box-shadow:inset 0 0 0 1px rgb(225 184 102 / .5)}
+#today .td-lifeline{margin-top:22px;padding:14px 16px;background:var(--mo-card);border:0;border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+
+/* ================================= Progress ================================= */
+#stats .sys-dash{margin-top:14px;padding:20px 16px;background:var(--mo-island);border-radius:var(--mo-r);color:var(--mo-island-ink);grid-template-columns:136px minmax(0,1fr);column-gap:16px}
+#stats .sys-rings{width:136px;height:136px}
+#stats .sys-rings circle{stroke-width:12}
+#stats .sys-rings .trk{stroke:rgb(251 242 236 / .08)}
+#stats .sys-dash-tx h2{font:400 26px/1.1 var(--st-display);font-variation-settings:"opsz" 60;color:var(--mo-island-ink)}
+#stats .sys-dash-tx .pg-wk-vs{color:var(--mo-island-ink-2)}
+#stats .sys-legend li{color:var(--mo-island-ink-2)}
+#stats .sys-legend b{color:var(--mo-island-ink);font-size:13.5px}
+#stats .sys-legend small{color:rgb(251 242 236 / .45)}
+#stats .sys-dash.is-early{border-bottom:0}
+#stats .pg-wk-dots.sys-bars{margin:12px 0 0;padding:28px 14px 14px;background:var(--mo-card);border:0;border-radius:var(--mo-r);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .sys-bars .d i{width:24px;height:84px;border-radius:8px}
+#stats .pg-wk-rate{margin-top:12px;padding:14px 16px;background:var(--mo-card);border:0;border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .pg-wk-rate-bar{height:6px;border-radius:3px}
+#stats .pg-trophies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px;border:0;background:none;padding:0}
+#stats .pg-trophies>span{display:flex;flex-direction:column;gap:4px;padding:14px;border:0;border-radius:18px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .pg-trophies b{display:flex;align-items:center;gap:4px;font:400 30px/1 var(--st-display);font-variation-settings:"opsz" 60;letter-spacing:-.02em;color:var(--st-ink)}
+#stats .pg-trophies b .ds-ic{width:18px;height:18px}
+#stats .pg-trophies small{font:600 11.5px/1.2 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-trophies .tr-gd{background:rgb(var(--st-gold-rgb) / .12);box-shadow:none}
+#stats .pg-trophies .tr-gd b{color:var(--st-gold)}
+#stats .pg-trophies .tr-streak{background:rgb(var(--st-rose-rgb) / .12);box-shadow:none}
+#stats .pg-trophies .tr-stars{background:rgb(var(--st-sage-rgb) / .12);box-shadow:none}
+#stats .sys-trends,#stats .pg-act,#stats .pg-habs,#stats .pg-run,#stats .pg-miles.row,#stats details.ed-ahead,#stats .pg-next,#stats .pg-bingohist{background:var(--mo-card);border:0;border-radius:var(--mo-r);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .sys-trends{padding:16px 14px 12px}
+#stats .pg-act{padding:16px 12px}
+#stats .pg-habs{padding:4px 16px}
+#stats .pg-habs .pg-hab:last-child{border-bottom:0}
+#stats .pg-hab-bar{height:6px;border-radius:3px}
+#stats .pg-hab-bar>*{background:var(--st-rose)}
+#stats .pg-next{padding:16px;margin-top:10px;border-bottom:0}
+#stats .pg-miles.row{padding:18px 12px 16px;margin-top:10px}
+#stats details.ed-ahead{margin-top:10px;padding:0 16px}
+#stats .pg-run{padding:6px 16px 4px}
+#stats .pg-bingohist{padding:0 16px;margin-top:12px}
+#stats .sys-runstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 0 10px;border-bottom:1px solid var(--mo-card-line)}
+#stats .sys-runstats span{display:flex;flex-direction:column;gap:3px}
+#stats .sys-runstats b{display:flex;align-items:center;font:400 30px/1 var(--st-display);font-variation-settings:"opsz" 60;color:var(--st-ink)}
+#stats .sys-runstats b .ds-ic{width:22px;height:22px;color:var(--st-sage)}
+#stats .sys-runstats span.on b{color:var(--st-sage)}
+#stats .sys-runstats small{font:600 11.5px/1.2 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-run>.ds-row:not(.tb-row){display:none}
+
+/* the milestone reveal */
+.sys-reveal{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;padding:24px;background:rgb(12 8 10 / .72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:sysFade .3s ease both}
+.sys-reveal.out{animation:sysFade .26s ease reverse both}
+@keyframes sysFade{from{opacity:0}to{opacity:1}}
+.sys-reveal-card{width:min(320px,100%);padding:30px 22px 20px;border-radius:28px;background:#2A1B26;color:#FBF2EC;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 40px 80px -30px rgb(0 0 0 / .8);animation:sysRise .5s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes sysRise{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+.sys-medal{position:relative;width:128px;height:128px;display:grid;place-items:center;margin-bottom:10px}
+.sys-medal svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.sys-medal circle{fill:none;stroke-width:6}
+.sys-medal .trk{stroke:rgb(225 184 102 / .16)}
+.sys-medal .arc{stroke:#E1B866;stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340;animation:sysDraw 1s .25s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes sysDraw{to{stroke-dashoffset:0}}
+.sys-medal i{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,rgb(225 184 102 / .35),rgb(225 184 102 / .08) 70%);animation:sysPop .6s 1s cubic-bezier(.3,1.6,.5,1) both}
+.sys-medal i .ds-ic{width:46px;height:46px;--st-glint:1}
+@keyframes sysPop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+.sys-medal s{position:absolute;left:50%;top:50%;width:3px;height:14px;margin:-7px 0 0 -1.5px;border-radius:2px;background:#E1B866;opacity:0;animation:sysRay .8s 1.15s ease-out forwards}
+.sys-medal s:nth-of-type(1){--r:0deg}.sys-medal s:nth-of-type(2){--r:60deg}.sys-medal s:nth-of-type(3){--r:120deg}.sys-medal s:nth-of-type(4){--r:180deg}.sys-medal s:nth-of-type(5){--r:240deg}.sys-medal s:nth-of-type(6){--r:300deg}
+@keyframes sysRay{0%{opacity:0;transform:rotate(var(--r)) translateY(-40px)}30%{opacity:1}100%{opacity:0;transform:rotate(var(--r)) translateY(-78px)}}
+.sys-reveal-card small{font:650 12px/1 var(--st-sans);letter-spacing:.04em;color:#E1B866}
+.sys-reveal-card b{font:400 30px/1.1 var(--st-display);font-variation-settings:"opsz" 72}
+.sys-reveal-card p{margin:2px 0 16px;font:500 13.5px/1.4 var(--st-sans);color:rgb(251 242 236 / .7)}
+@media (prefers-reduced-motion:reduce){.sys-reveal,.sys-reveal-card,.sys-medal i,.sys-medal .arc,.sys-medal s,#today .hm-b-surprise.is-ready .hm-b-art{animation:none}.sys-medal .arc{stroke-dashoffset:0}.sys-medal s{display:none}}
+
+/* ================================= Rewards ================================= */
+#rewards .bq-wallet{margin-top:10px;padding:22px 20px 16px;background:var(--mo-island);border:0;border-radius:var(--mo-r);color:var(--mo-island-ink);box-shadow:0 24px 50px -30px rgb(0 0 0 / .7)}
+#rewards .bq-wallet .bq-wtop{display:flex;flex-wrap:wrap;align-items:flex-end;gap:4px 12px}
+#rewards .bq-wallet .bq-bal{display:flex;align-items:center;gap:8px}
+#rewards .bq-wallet .bq-bal b{font:400 64px/.95 var(--st-display);font-variation-settings:"opsz" 120;letter-spacing:-.03em;color:var(--mo-island-ink)}
+#rewards .bq-wallet .bq-bal .ds-ic{width:34px;height:34px;--st-glint:1}
+#rewards .bq-wallet .bq-wl b{color:var(--mo-island-ink)}
+#rewards .bq-wallet .bq-wl small{color:var(--mo-island-ink-2)}
+#rewards .bq-wnote{flex-basis:100%;margin-top:8px;font:600 13px/1.35 var(--st-sans);color:var(--st-gold)}
+#rewards .bq-wallet :is(.bq-pick,.bq-goal){margin-top:16px;padding:12px 14px;border:0;border-radius:16px;background:rgb(251 242 236 / .07);color:var(--mo-island-ink)}
+#rewards .bq-wallet :is(.bq-pick,.bq-goal) :is(b,.bq-goal-tx b){color:var(--mo-island-ink)}
+#rewards .bq-wallet :is(.bq-pick,.bq-goal) :is(small,em){color:var(--mo-island-ink-2)}
+#rewards .bq-wallet .bq-pick .ds-ic{color:var(--mo-island-ink-2)}
+#rewards .v5-chances{background:var(--mo-card);border-radius:var(--mo-r);padding:2px 16px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#rewards .v5-chances>:last-child{border-bottom:0}
+#rewards .bq-tier-h{flex-direction:column;align-items:flex-start;gap:3px}
+#rewards .bq-tier-h>span:first-child{font-style:italic}
+#rewards .bq-tier-h .bq-sec-note{font:500 12.5px/1.3 var(--st-sans);color:var(--st-ink-3)}
+/* compact boutique cards: a small 4:3 photograph, the name, the price; an odd last card lies across both columns */
+#rewards .bq-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 0}
+#rewards .bq-tile{padding:8px 8px 12px;background:var(--mo-card);border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#rewards .bq-tile .bq-ph{aspect-ratio:4/3;border-radius:12px;margin:0 0 10px;box-shadow:none}
+#rewards .bq-tile .bq-nm{padding:0 4px;font:650 14px/1.25 var(--st-sans)}
+#rewards .bq-tile .bq-pr{padding:0 4px;font:700 13px/1 var(--st-sans)}
+#rewards .bq-tile.ok .bq-pr::after{content:"Ready";margin-left:auto;padding:4px 8px;border-radius:999px;background:rgb(var(--st-sage-rgb) / .16);color:var(--st-sage);font:700 10.5px/1 var(--st-sans)}
+#rewards .bq-tile.ok .bq-pr{display:flex;width:100%}
+#rewards .bq-tile .bq-meter{margin:9px 4px 0;width:auto;height:4px;border-radius:2px}
+#rewards .bq-tile .bq-left{padding:0 4px}
+#rewards .bq-tile.add{justify-content:center;background:transparent;box-shadow:inset 0 0 0 1.5px var(--st-line-2)}
+#rewards .bq-tile.add .bq-ph{aspect-ratio:4/3;border:0;background:var(--st-well)}
+#rewards .bq-grid>.bq-tile:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:42% minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:14px;align-items:start}
+#rewards .bq-grid>.bq-tile:last-child:nth-child(odd) .bq-ph{grid-row:1/4;margin:0}
+#rewards .bq-grid>.bq-tile:last-child:nth-child(odd) .bq-nm{padding-top:6px}
+#rewards .bq-tile:active{transform:scale(.98)}
+#rewards .bq-mystery{background:var(--mo-island);color:var(--mo-island-ink);border-radius:var(--mo-r)}
+#rewards .bq-mystery :is(b,.bq-mystery-pr){color:var(--mo-island-ink)}
+#rewards .bq-mystery small{color:var(--mo-island-ink-2)}
+
+/* ================================== Arcade ================================== */
+#boost .ar-player{margin-top:6px}
+/* the feature: the board fills a tall card; the words sit on it */
+#boost .ar-daily{position:relative;margin-top:14px;border-radius:26px;overflow:hidden;background:#1A1416;box-shadow:0 30px 60px -34px rgb(0 0 0 / .8)}
+#boost .ar-daily .ar-daily-art{aspect-ratio:4/3.3;border-radius:0;box-shadow:none}
+#boost .ar-daily .ar-daily-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(10 7 9 / 0) 30%,rgb(10 7 9 / .55) 62%,rgb(10 7 9 / .92));pointer-events:none}
+#boost .ar-daily .tx{position:absolute;left:0;right:0;bottom:0;padding:18px 18px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:2px 12px;pointer-events:none}
+#boost .ar-daily .tx>*{pointer-events:auto}
+#boost .ar-daily .tx .ar-eyebrow{font:700 11.5px/1.2 var(--st-sans);letter-spacing:.06em;color:rgb(255 246 238 / .8)}
+#boost .ar-daily .tx b{font:400 36px/1.02 var(--st-display);font-variation-settings:"opsz" 96;letter-spacing:-.02em;color:#FFF6EE}
+#boost .ar-daily .tx small{display:block;grid-column:1;font:500 13.5px/1.35 var(--st-sans);color:rgb(255 246 238 / .78)}
+#boost .ar-daily .tx .acts{grid-column:2;grid-row:1/4;flex-direction:column;align-items:stretch;gap:6px}
+#boost .ar-daily .tx .acts .ds-btn-primary{background:#FFF6EE;color:#1A1416;border:0;min-height:44px;padding:0 22px;font:750 15px/1 var(--st-sans)}
+#boost .ar-daily .tx .acts .ds-btn-primary .ds-ic{color:#1A1416}
+#boost .ar-daily .tx .acts .ds-btn-ghost{background:rgb(255 246 238 / .14);border:0;color:#FFF6EE;min-height:34px;font:650 12.5px/1 var(--st-sans);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#boost .ar-daily .ar-daily-rib{top:14px;left:14px;background:rgb(10 7 9 / .55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+/* this week: two bright tiles side by side */
+#boost .ar-objects{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+#boost .ar-objects .ar-board{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:132px;padding:16px;border:0;border-radius:20px;background:var(--mo-island);color:var(--mo-island-ink);text-align:left}
+#boost .ar-objects .ar-board.ar-lucky{background:var(--st-wine)}
+#boost .ar-objects .ar-board .st-icwell{background:rgb(251 242 236 / .1)}
+#boost .ar-objects .ar-board .st-icwell .ds-ic{color:var(--st-gold)}
+#boost .ar-objects .ar-board :is(b,strong){font:400 19px/1.15 var(--st-display);color:var(--mo-island-ink)}
+#boost .ar-objects .ar-board :is(span,small){color:var(--mo-island-ink-2)}
+#boost .ar-objects .ar-board .bd-tx{display:flex;flex-direction:column;gap:3px}
+#boost .ar-objects .ar-board .bd-tx>span{color:var(--st-gold);font-weight:650}
+#boost .ar-objects .ar-board>.ds-ic:last-child,#boost .ar-objects .ar-board .tb-caret{display:none}
+/* the shelves: one game in the spotlight, three beneath; every card carries its game's colour */
+#boost .ar-shelf{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 10px;margin-top:10px}
+#boost .ar-game{gap:8px}
+#boost .ar-game .cv{border-radius:18px;box-shadow:0 14px 26px -20px rgb(0 0 0 / .8),inset 0 0 0 1px rgb(255 255 255 / .06)}
+#boost .ar-game .ar-game-tx{display:flex;flex-direction:column;gap:2px}
+#boost .ar-game:not(.is-spot) :is(b){font:650 13.5px/1.2 var(--st-sans)}
+#boost .ar-game:not(.is-spot) small{font:500 11.5px/1.25 var(--st-sans)}
+#boost .ar-game.is-spot{grid-column:1/-1;position:relative;border-radius:22px;overflow:hidden;background:#1A1416}
+#boost .ar-game.is-spot .cv{aspect-ratio:16/10;border-radius:0;box-shadow:none}
+#boost .ar-game.is-spot .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgb(10 7 9 / .85));pointer-events:none}
+#boost .ar-game.is-spot .ar-game-tx{position:absolute;left:0;right:0;bottom:0;padding:16px 18px}
+#boost .ar-game.is-spot b{font:400 28px/1.05 var(--st-display);font-variation-settings:"opsz" 72;color:#FFF6EE}
+#boost .ar-game.is-spot small{font:500 13px/1.3 var(--st-sans);color:rgb(255 246 238 / .8)}
+#boost .ar-game.is-spot i{font:650 11.5px/1 var(--st-sans);font-style:normal;color:rgb(255 246 238 / .65);margin-top:4px}
+#boost .ar-game:active .cv{transform:scale(.97);transition:transform .15s}
+#boost .ar-shelf-h,#boost .ar-week-h,#boost #arGames{margin-top:30px}
+
 /* ---------- iPad: the same pages, a little more room ---------- */
 @media (min-width:700px){
   #today .td-top.v5-roomhead{height:220px}
@@ -11903,13 +12216,17 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
     const wallet = SC2.tokensOn() ? `<div class="ar-player"><button type="button" class="ar-wallet" onclick="arTokens()"><span class="ar-wallet-ic">${ic('ticket-fill')}</span><span class="ar-wallet-tx"><b>${SC2.tokenBalance()} token${SC2.tokenBalance() === 1 ? '' : 's'}</b><small>${esc(tokM ? `Next in ${tokM[1]} habit${tokM[1] === '1' ? '' : 's'}` : 'A Good Day adds one')}</small></span></button>${levelHTML}</div>` : `<div class="ar-player solo">${levelHTML}</div>`;
     return `${wallet}<section class="ar-daily ${claimed ? 'is-played' : ''}" style="--tint:${d.tint}" aria-label="Daily Play"><span class="ar-daily-rib">${claimed ? ic('check-bold') + 'Played today' : ic('sparkle-fill') + 'Free today, +' + SC2.XP_RULES.dailyPlay + ' XP'}</span>
         <button type="button" class="ar-daily-art" onclick="arPlay('${d.id}',true)" aria-label="Play ${esc(d.name)}">${cover(d)}</button>
-        <div class="tx"><span class="ar-eyebrow">Daily Play</span><b>${esc(d.name)}</b><small>${claimed ? 'Played today' : 'Today’s pick'}</small>
+        <div class="tx"><span class="ar-eyebrow">Today’s free play</span><b>${esc(d.name)}</b><small>${claimed ? 'Played today' : esc(GAME_TAG[d.id] || 'Today’s pick')}</small>
           <div class="acts"><button type="button" class="ds-btn ds-btn-primary ds-btn-sm" onclick="arPlay('${d.id}',true)">${ic('play-fill')}Play</button><button type="button" class="ds-btn ds-btn-ghost ds-btn-sm" onclick="arPickOther()">Choose another</button></div></div>
       </section>
-      <div class="ds-section"><span>This week</span></div>
+      <div class="ds-section ar-week-h"><span>This week</span></div>
       <div class="ar-objects">${bingoTile()}${luckyTile()}</div>
       <div class="ds-section" id="arGames"><span>Table games</span>${SC2.tokensOn() ? `<button type="button" class="ar-tokens" onclick="arTokens()" aria-label="${SC2.tokenBalance()} Arcade tokens. How tokens work">${ic('ticket-fill')}<b>${SC2.tokenBalance()}</b> token${SC2.tokenBalance() === 1 ? '' : 's'}</button>` : ''}</div>
-      ${SHELVES.map(([title, ids], si) => `${si ? `<div class="ds-section ar-shelf-h"><span>${title}</span></div>` : ''}<div class="ar-grid ar-shelf" aria-label="${title}">${ids.map(id => GAME[id]).filter(Boolean).concat(si ? [] : GAMES.filter(g => !SHELVES.some(s => s[1].includes(g.id)))).map(g => { const free = g.id === d.id && !claimed, locked = SC2.tokensOn() && !free && SC2.tokenBalance() < 1; return `<button type="button" class="ar-game ${g.id === d.id ? 'is-daily' : ''} ${locked ? 'is-locked' : ''}" onclick="arPlay('${g.id}')" aria-label="${esc(g.name)}${free ? ', free today' : SC2.tokensOn() ? ', 1 token' : ''}"><span class="cv">${cover(g)}${free ? '<em class="ar-free">Free today</em>' : SC2.tokensOn() ? `<em class="ar-cost">${ic('ticket-fill')}1</em>` : ''}</span><b>${esc(g.name)}</b><small>${esc(gameMeta(g))}</small></button>`; }).join('')}</div>`).join('')}`;
+      ${SHELVES.map(([title, ids], si) => { const games = ids.map(id => GAME[id]).filter(Boolean).concat(si ? [] : GAMES.filter(g => !SHELVES.some(s => s[1].includes(g.id))));
+        const wk = Math.floor(Date.parse(today() + 'T12:00:00Z') / 6048e5), order = games.filter(g => g.id !== d.id && ['pong', 'pool', 'darts', 'pinball', 'solitaire', 'ttt'].includes(g.id)), spot = order[(wk + si) % Math.max(1, order.length)] || games[0];
+        const rest = games.filter(g => g !== spot);
+        const card = (g, big) => { const free = g.id === d.id && !claimed, locked = SC2.tokensOn() && !free && SC2.tokenBalance() < 1; return `<button type="button" class="ar-game ${big ? 'is-spot' : ''} ${g.id === d.id ? 'is-daily' : ''} ${locked ? 'is-locked' : ''}" style="--tint:${g.tint}" onclick="arPlay('${g.id}')" aria-label="${esc(g.name)}${free ? ', free today' : SC2.tokensOn() ? ', 1 token' : ''}"><span class="cv">${cover(g)}${free ? '<em class="ar-free">Free today</em>' : SC2.tokensOn() ? `<em class="ar-cost">${ic('ticket-fill')}1</em>` : ''}</span><span class="ar-game-tx"><b>${esc(g.name)}</b><small>${esc(big ? (GAME_TAG[g.id] || gameMeta(g)) : gameMeta(g))}</small>${big && bestOf(g.id) != null ? `<i>${esc(gameMeta(g))}</i>` : ''}</span></button>`; };
+        return `${si ? `<div class="ds-section ar-shelf-h"><span>${title}</span></div>` : ''}<div class="ar-grid ar-shelf" aria-label="${title}">${card(spot, true)}${rest.map(g => card(g, false)).join('')}</div>`; }).join('')}`;
   }
   function learnHTML() {
     const w = wordForToday(), rec = (SC().wordDone || {})[today()];
@@ -12756,9 +13073,13 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
       <div class="bq-wallet sc-starlit"><div class="bq-wtop"><span class="bq-bal">${ic('star-fill')}<b>${bal.toLocaleString()}</b></span><span class="bq-wl"><b>stars to spend</b><small>They never expire</small></span></div>
       ${tgt ? (() => { const p = Math.min(100, Math.round(bal / tgt.cost * 100)), ok = tgt.cost <= bal; return `<button type="button" class="bq-goal ${ok ? 'is-ready' : ''}" onclick="bqOpen('${esc(tgt.id)}')"><span class="bq-goal-ph">${bqVisual(tgt)}</span><span class="bq-goal-tx"><small>${ok ? 'Ready for you' : 'Saving for'}</small><b>${esc(tgt.name)}</b><span class="bq-meter"><i style="width:${p}%"></i></span><em>${ok ? `${ic('sparkle-fill')}Tap to redeem` : `<strong>${p}%</strong> ${(tgt.cost - bal).toLocaleString()} ★ to go`}</em></span></button>`; })()
         : list.length ? `<button type="button" class="bq-pick" onclick="bqPickGoal()">${ic('flag-checkered-duotone')}<span><b>Pick something to save for</b><small>Watch it fill up as you earn stars</small></span>${ic('caret-right-bold', 'tb-caret')}</button>` : ''}</div>
-      ${ready.length ? `<div class="ds-section"><span>Ready for you</span><span class="bq-sec-note">${saving.length ? `${ready.length} within your stars` : `All ${ready.length} within your stars`}</span></div><div class="bq-grid">${ready.map(tile).join('')}${saving.length ? '' : addTile}</div>` : ''}
-      ${saving.length ? `<div class="ds-section"><span>Saving toward</span></div><div class="bq-grid">${saving.map(tile).join('')}${addTile}</div>` : ''}
-      ${!ready.length && !saving.length ? `<div class="bq-grid">${addTile}</div>` : ''}
+      ${(() => { // 2026-10-16: the boutique in three shelves by price, each with its own voice; a tile still says plainly whether it's within her stars
+        const tiers = [['Little treats', 'Everyday lovely things', r => r.cost < 50], ['Treat yourself', 'For a good week', r => r.cost >= 50 && r.cost < 200], ['Worth saving for', 'The big ones', r => r.cost >= 200]];
+        const filled = tiers.map(([t, s, f]) => [t, s, list.filter(f)]).filter(x => x[2].length);
+        if (!filled.length) return `<div class="bq-grid">${addTile}</div>`;
+        return filled.map(([t, s, rs], i) => { const n = rs.filter(r => r.cost <= bal).length;
+          return `<div class="ds-section bq-tier-h"><span>${t}</span><span class="bq-sec-note">${n === rs.length ? `${s} · all within your stars` : n ? `${n} of ${rs.length} within your stars` : s}</span></div><div class="bq-grid">${rs.map(tile).join('')}${i === filled.length - 1 ? addTile : ''}</div>`; }).join('');
+      })()}
       ${state.rewards.some(r => r.retired && r.archivedAt) ? `<button type="button" class="lf-fold" onclick="bqArchivedOpen()">Archived <b>${state.rewards.filter(r => r.retired && r.archivedAt).length}</b>${ic('caret-right-bold')}</button>` : ''}
       <div class="ds-section"><span>Surprises and keepsakes</span></div>
       <button type="button" class="bq-mystery ${bal >= 45 ? '' : 'off'}" onclick="${bal >= 45 ? 'redeemMystery()' : ''}" ${bal >= 45 ? '' : 'aria-disabled="true"'} aria-label="Mystery box, 45 stars. A surprise from your own rewards"><span class="bq-mystery-art" aria-hidden="true">${window.__starcadeGiftArt ? window.__starcadeGiftArt() : ic('gift-fill')}</span><span class="bq-mystery-tx"><b>Mystery box</b><small>A surprise from your own rewards</small></span><span class="bq-mystery-pr">${ic('star-fill')}45</span></button>
@@ -13658,19 +13979,37 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
     const left = Math.max(0, g.need - doneCore);
     const line = g.good ? 'It’s a Good Day' : `${doneCore} of ${g.need} toward a Good Day`;
     const sub = g.good ? `${dailyCount(new Date())} habits done today` : g.done >= g.need ? (g.needNight ? 'One habit tonight makes it a Good Day' : 'One Morning or Anytime habit makes it a Good Day') : `${left} more habit${left === 1 ? '' : 's'}${g.needNight && left > 1 ? ', one of them tonight' : ''}`;
-    return `<section class="td-hero hm-day ${g.good ? 'is-good' : ''}" aria-label="Today: ${esc(line)}. ${esc(sub)}"><div class="hm-day-h"><b>${esc(line)}</b><small>${esc(sub)}</small></div>${hmStars(Math.min(g.need, doneCore), g.need, g.good)}${weekStrip()}</section>`;
+    const n = Math.min(g.need, doneCore);
+    return `<section class="td-hero hm-day ${g.good ? 'is-good' : ''}" aria-label="Today: ${esc(line)}. ${esc(sub)}"><div class="hm-day-top"><div class="hm-count" aria-hidden="true"><b>${n}</b><span>of ${g.need}</span></div><div class="hm-day-h"><b>${g.good ? 'It’s a Good Day' : 'Toward a Good Day'}</b><small>${esc(sub)}</small></div></div>${hmStars(n, g.need, g.good)}${weekStrip()}</section>`;
   }
   function hmGroupHTML(key, label, icon, list, opts = {}) {
     if (!list.length) return '';
     const open = list.filter(h => !completed(h)), done = list.filter(h => completed(h));
     const isOpen = hmDoneOpen.has(key), all = !open.length;
-    const head = `<div class="hm-gh ${opts.now ? 'is-now' : ''} ${all ? 'is-done' : ''}"><span class="hm-gi" aria-hidden="true">${ic(icon)}</span><b>${esc(label)}</b>${opts.now ? '<em>Now</em>' : ''}<span class="hm-gc">${all ? `${ic('check-bold')}All done` : opts.optional ? `${open.length} to try` : `${done.length} of ${list.length}`}</span></div>`;
+    const ring = list.length ? `<span class="hm-gring" style="--p:${Math.round(done.length / list.length * 100)}" aria-hidden="true"></span>` : '';
+    const head = `<div class="hm-gh ${opts.now ? 'is-now' : ''} ${all ? 'is-done' : ''}"><span class="hm-gi" aria-hidden="true">${ic(icon)}</span><b>${esc(label)}</b>${ring}${opts.now ? '<em>Now</em>' : ''}<span class="hm-gc">${all ? `${ic('check-bold')}All done` : opts.optional ? `${open.length} to try` : `${done.length} of ${list.length}`}</span></div>`;
     // this week's habits aren't due today: three show, the rest are one tap away
     const cap = opts.cap && !hmWeekAll && open.length > opts.cap + 1 ? opts.cap : open.length;
-    const rows = open.slice(0, cap).map((h, i) => { let r = rowHTML(h); if (opts.lead && i === 0) r = r.replace('class="ds-row td-row"', 'class="ds-row td-row td-row-next"'); return r; }).join('')
-      + (opts.cap && open.length > opts.cap + 1 ? `<button type="button" class="hm-more" onclick="tdWeekAll()" aria-expanded="${hmWeekAll}">${hmWeekAll ? 'Show fewer' : `${open.length - cap} more this week`}${ic('caret-down-bold')}</button>` : '');
+    const shown = open.filter(h => h.id !== hmFocusId);
+    const rows = shown.slice(0, cap).map(h => rowHTML(h)).join('')
+      + (opts.cap && shown.length > opts.cap + 1 ? `<button type="button" class="hm-more" onclick="tdWeekAll()" aria-expanded="${hmWeekAll}">${hmWeekAll ? 'Show fewer' : `${open.length - cap} more this week`}${ic('caret-down-bold')}</button>` : '');
     const doneLine = done.length ? `<button type="button" class="hm-doneline ${isOpen ? 'open' : ''}" onclick="tdGroupDone('${key}')" aria-expanded="${isOpen}"><span class="hm-dstars" aria-hidden="true">${done.slice(0, 5).map(() => ic('star-fill')).join('')}</span><span class="hm-dtx">${isOpen ? 'Hide' : esc(done.map(h => h.name).join(', '))}</span>${ic('caret-down-bold', 'hm-dc')}</button>${isOpen ? done.map(h => `<button type="button" class="td-donerow" onclick="tdUndo('${esc(h.id)}')" aria-label="${esc(h.name)}, done. Tap to undo.">${ic('star-fill')}<span>${esc(h.name)}</span><small>Undo</small></button>`).join('') : ''}` : '';
     return `<div class="hm-group hm-g-${key} ${all ? 'is-done' : ''}" role="group" aria-label="${esc(label)}">${head}<div class="ds-list td-list hm-rows">${rows}${doneLine}</div></div>`;
+  }
+  const HM_WHEN = { morning: 'This morning', anytime: 'This afternoon', night: 'Tonight', weekly: 'This week' };
+  let hmFocusId = null;
+  function hmFocusHTML() {
+    hmFocusId = null;
+    const ph = phaseNow(), order = [ph, ...PARTS.filter(p => p !== ph)];
+    let p = null, list = [];
+    for (const k of order) { const o = openIn(k); if (o.length) { p = k; list = o; break; } }
+    if (!p) { const wk = weekly().filter(h => !completed(h) && !SC2.meta(h.id).paused && SC2.dayStatus(h, new Date()) !== 'paused'); if (wk.length) { p = 'weekly'; list = wk; } }
+    if (!p) return '';
+    const h = list[0]; hmFocusId = h.id;
+    const sub = habitSub(h) || (list.length > 1 ? `Then ${list.length - 1} more ${p === 'weekly' ? 'this week' : HM_WHEN[p].replace(/^This /, 'this ').toLowerCase()}` : 'The last one for now');
+    return `<button type="button" class="ds-row td-row td-row-next hm-focus hm-f-${p}" data-id="${esc(h.id)}" onclick="tdTap('${esc(h.id)}')" aria-label="${esc(h.name)}, next ${esc(HM_WHEN[p].toLowerCase())}. Tap to complete.">
+      <span class="hm-focus-tx"><small>${esc(HM_WHEN[p])}${p === ph || p === 'weekly' ? '' : ' · still open'}</small><b class="ds-row-title">${esc(h.name)}</b><span class="ds-row-sub">${esc(sub)}</span></span>
+      <span class="td-star hm-focus-star">${ic('star', 'off')}${ic('star-fill', 'on')}</span></button>`;
   }
   function hmHabitsHTML() {
     const ph = phaseNow(), groups = [];
@@ -13686,6 +14025,36 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
     const body = groups.join('') || `<div class="td-alldone-hero td-alldone-line">${ic('sparkle-fill')}<span><b>Add your first habit</b><small>Settings → Add a habit.</small></span></div>`;
     return `<section class="hm-habits" aria-label="Today’s habits"><div class="hm-sh"><h2>Today’s habits</h2><span>${left ? `${left} to go` : 'All done today'}</span>${left ? `<button type="button" class="td-one" onclick="tdJustOne()">Just one thing</button>` : ''}</div>${body}</section>`;
   }
+  function hmTreatsHTML() {
+    const tiles = [];
+    try { // the daily surprise: tall, the one thing that can be opened
+      const ready = surpriseReady();
+      tiles.push(`<button type="button" class="hm-b hm-b-surprise ${ready ? 'td-surprise is-ready' : 'is-done'}" onclick="${ready ? 'tdSurpriseOpen()' : "starcadeNavigate('rewards')"}" aria-label="Daily Surprise. ${ready ? 'Ready to open' : 'Opened today. Another one tomorrow'}"><span class="hm-b-art" aria-hidden="true">${ic('treasure-chest')}</span><span class="hm-b-tx"><small>Daily surprise</small><b>${ready ? 'Ready to open' : 'Opened today'}</b><em>${ready ? 'Free, once a day' : 'Another one tomorrow'}</em></span></button>`);
+    } catch (e) {}
+    try { // today's free game, its real board as the picture
+      const d = dailyPick(), played = dailyClaimed();
+      tiles.push(`<button type="button" class="hm-b hm-b-play tr-play" onclick="arPlay('${d.id}',true)" aria-label="${esc(d.name)}. ${played ? 'Played today' : 'Free Daily Play'}"><span class="hm-b-cover">${cover(d)}</span><span class="hm-b-tx"><small>${played ? 'Played today' : 'Free today'}</small><b>${esc(d.name)}</b></span></button>`);
+    } catch (e) {}
+    try { // the word of the day, set in the display face
+      const w = wordForToday(), done = !!((SC().wordDone || {})[today()]);
+      tiles.push(`<button type="button" class="hm-b hm-b-word tr-word" onclick="starcadeNavigate('learn')" aria-label="Today’s word: ${esc(w.w)}"><span class="hm-b-tx"><small>${done ? 'Word checked' : 'Today’s word'}</small><b class="hm-b-wd">${esc(w.w)}</b><em>${esc(w.pos || '')}</em></span></button>`);
+    } catch (e) {}
+    let bingo = '';
+    try { // this week's Bingo, wide, with the real board
+      const B = __starcadeV7.bingoTest.state(), rec = B.rec, n = B.lines.length, ends = (V7().endsPlain || (() => ''))();
+      const mini = `<span class="tr-mini hm-b-board" aria-hidden="true">${B.marks.map((m, i) => `<i class="${i === 12 ? 'free' : m.done ? 'on' : ''}${i === rec.gold ? ' gold' : ''}"></i>`).join('')}</span>`;
+      const tok = SC2.tokensOn() ? SC2.tokenBalance() : null;
+      bingo = `<button type="button" class="hm-b hm-b-bingo tr-bingo" onclick="v7OpenBingo()" aria-label="Weekly Bingo, ${B.count} of 25${n ? ', ' + n + ' lines' : ''}. ${esc(ends)}">${mini}<span class="hm-b-tx"><small>Weekly Bingo</small><b>${B.count} of 25${n ? ` · ${n} line${n === 1 ? '' : 's'}` : ''}</b><em>${esc(ends)}</em>${tok != null ? `<span class="hm-b-tok">${ic('ticket')}${tok} token${tok === 1 ? '' : 's'} for the Arcade</span>` : ''}</span></button>`;
+    } catch (e) {}
+    let saving = '';
+    try {
+      const tgt = window.__starcadeRewardTarget ? window.__starcadeRewardTarget() : null;
+      if (tgt) { const bal = balance(), p = Math.min(100, Math.round(bal / tgt.cost * 100)), ok = tgt.cost <= bal;
+        saving = `<button type="button" class="hm-b hm-b-save tr-save" onclick="${ok ? `bqOpen('${esc(tgt.id)}')` : "starcadeNavigate('rewards')"}" aria-label="Saving for ${esc(tgt.name)}. ${ok ? 'Ready to redeem' : p + ' percent'}"><span class="hm-b-tx"><small>${ok ? 'Ready to redeem' : 'Saving for'}</small><b>${esc(tgt.name)}</b></span><span class="hm-b-meter" aria-hidden="true"><i style="width:${p}%"></i></span><span class="hm-b-pct">${ok ? ic('star-fill') : p + '%'}</span></button>`; }
+    } catch (e) {}
+    if (!tiles.length && !bingo && !saving) return '';
+    return `<section class="hm-treats" aria-label="Treats"><div class="hm-sh"><h2>Treats</h2><span>Just for fun</span></div><div class="hm-bento n${tiles.length}">${tiles.join('')}</div>${bingo}${saving}</section>`;
+  }
   renderToday = function () {
     const el = document.getElementById('today'); if (!el) return;
     const g = goodDayInfo(), core = daily(), doneCore = Math.min(g.need, g.done);
@@ -13693,13 +14062,14 @@ html[data-theme="light"] :is(#rewards,.bq-sheet,.bq-done,.bq-pickgrid) :is(.bq-p
     const aside = core.filter(h => !completed(h) && ['skip', 'rest', 'paused'].includes(SC2.dayStatus(h, new Date())));
     if (lastGood === null) hmLastStars = Math.min(g.need, g.done);
     el.innerHTML = `<div class="td td2 hm">
-      <div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div>
+      <section class="hm-hero"><div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div>
+      ${hmDayHTML(g, doneCore)}</section>
       ${tdNotice()}
-      ${hmDayHTML(g, doneCore)}
+      ${hmFocusHTML()}
       ${hmHabitsHTML()}
+      ${hmTreatsHTML()}
       ${questsHTML()}
       ${tasksHTML()}
-      ${treatsHTML()}
       ${aside.length ? hmAsideHTML(aside) : ''}
     </div>`;
     if (lastGood === false && g.good) { feedback('celebrate'); (V7().dexReact || (() => {}))('celebrate'); try { celebrateWin('It’s a good day.'); } catch (e) {} }
@@ -14722,6 +15092,7 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
       hero.setAttribute('aria-label', `Today: ${line}${subText ? ', ' + subText : ''}`);
     }
     sysOcclusion();
+    try { sysFillCovers(root); } catch (e) {}
     // the Extras index: one line icon per row
     root.querySelectorAll('.td-rail button').forEach(b => {
       if (b.querySelector(':scope > .st-icwell')) return;
@@ -14775,6 +15146,11 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
     const html = `<div class="ds-section v5-chances-h"><span>Today’s chances</span><span class="bq-sec-note">Free to play</span></div><div class="v5-chances">${chest}${lucky}${bingo}</div>`;
     const wallet = host.querySelector('.bq-wallet');
     if (wallet) wallet.insertAdjacentHTML('afterend', html); else host.insertAdjacentHTML('afterbegin', html);
+    try {
+      const bal = balance(), rs = state.rewards.filter(r => !r.retired && r.cost > 0), within = rs.filter(r => r.cost <= bal).length, next = rs.filter(r => r.cost > bal).sort((a, b) => a.cost - b.cost)[0];
+      const top = wallet && wallet.querySelector('.bq-wtop');
+      if (top && !top.querySelector('.bq-wnote')) top.insertAdjacentHTML('beforeend', `<span class="bq-wnote">${within ? `${within} reward${within === 1 ? '' : 's'} within your stars` : 'Every habit adds a star'}${next ? ` · ${(next.cost - bal).toLocaleString()} more for ${esc(next.name)}` : ''}</span>`);
+    } catch (e) {}
     sysBoardRows(host.querySelector('.v5-chances'));
     // the price sits at the row's end, not on the photograph
     host.querySelectorAll('.bq-tile .bq-ph > .bq-pr').forEach(pr => pr.parentNode.parentNode.appendChild(pr));
@@ -14828,7 +15204,7 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
     const wGood = wDays.filter(gd).length, mGood = mDays.filter(gd).length;
     const hab = (() => { try { const xs = state.habits.filter(h => h.frequency === 'daily' && !h.retired && !SC2.meta(h.id).paused).map(h => SC2.stats(h)).filter(s => s.has && s.consistency != null); return xs.length ? xs.reduce((t, s) => t + s.consistency, 0) / xs.length : null; } catch (e) { return null; } })();
     const month = now.toLocaleDateString(undefined, { month: 'long' });
-    const rows = [['gold', 'This week', `${wGood} of ${wDays.length} day${wDays.length === 1 ? '' : 's'}`, 'Good Days'], ['rose', month, `${mGood} of ${mDays.length} day${mDays.length === 1 ? '' : 's'}`, 'Good Days'], hab == null ? null : ['sage', 'Habits kept', `${Math.round(hab * 100)}%`, 'last 30 days']].filter(Boolean);
+    const rows = [['gold', 'This week', `${wGood} of ${wDays.length}`, 'Good Days so far'], ['rose', month, `${mGood} of ${mDays.length}`, 'Good Days so far'], hab == null ? null : ['sage', 'Habits kept', `${Math.round(hab * 100)}%`, 'last 30 days']].filter(Boolean);
     const svg = `<svg class="sys-rings" viewBox="0 0 140 140" role="img" aria-label="${esc(rows.map(r => `${r[1]}: ${r[2]} ${r[3]}`).join('. '))}">${sysRing(62, wGood / Math.max(1, wDays.length), 'gold')}${sysRing(47, mGood / Math.max(1, mDays.length), 'rose')}${hab == null ? '' : sysRing(32, hab, 'sage')}</svg>`;
     const legend = rows.map(r => `<li class="t-${r[0]}"><i></i><span>${esc(r[1])}</span><b>${esc(r[2])}</b><small>${esc(r[3])}</small></li>`).join('');
     const dash = document.createElement('div'); dash.className = 'sys-dash';
@@ -14867,10 +15243,36 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
     const el = document.createElement('div'); el.className = 'sys-trends'; el.setAttribute('role', 'list'); el.innerHTML = cols;
     const after = tb.querySelector('.pg-trophies'); after.insertAdjacentElement('afterend', el); after.insertAdjacentElement('afterend', sec);
   }
+  /* ---------- Progress: running reads as three numbers for the week (from the same run history) ---------- */
+  function sysRun(tb) {
+    const run = tb.querySelector('.pg-run'); if (!run || run.querySelector('.sys-runstats')) return;
+    let runs = [], all = [];
+    try { runs = runsIn(weekOf(0)); all = v8RunHistory(); } catch (e) { return; }
+    if (!all.length) return;
+    const km = runs.reduce((s, r) => s + Number(r.distanceKm || 0), 0), five = runs.some(r => Number(r.distanceKm) >= 5);
+    run.insertAdjacentHTML('afterbegin', `<div class="sys-runstats" role="group" aria-label="Running this week"><span><b>${runs.length}</b><small>run${runs.length === 1 ? '' : 's'} this week</small></span><span><b>${km.toFixed(1)}</b><small>km</small></span><span class="${five ? 'on' : ''}"><b>${five ? ic('check-bold') : '5K'}</b><small>${five ? '5K done' : 'not yet'}</small></span></div>`);
+  }
+  /* ---------- a milestone earned is revealed once: the medal, its ring drawing closed, its name ----------
+     Tracked additively in starcade.milestonesRevealed; the first visit only remembers what's already earned. */
+  function sysReveal(name) {
+    document.getElementById('sysReveal')?.remove();
+    const w = document.createElement('div'); w.id = 'sysReveal'; w.className = 'sys-reveal'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', 'Milestone earned: ' + name);
+    w.innerHTML = `<div class="sys-reveal-card"><span class="sys-medal" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="trk"/><circle cx="60" cy="60" r="54" class="arc"/></svg><i>${ic('star-fill')}</i><s></s><s></s><s></s><s></s><s></s><s></s></span><small>Milestone earned</small><b>${esc(name)}</b><p>Kept forever on your Progress page.</p><button type="button" class="ds-btn ds-btn-primary ds-btn-block" onclick="document.getElementById('sysReveal')?.classList.add('out');setTimeout(()=>document.getElementById('sysReveal')?.remove(),260)">Lovely</button></div>`;
+    document.body.appendChild(w); try { feedback('celebrate'); } catch (e) {}
+  }
+  window.__sysReveal = sysReveal;
+  function sysMilestones(tb) {
+    const earned = [...tb.querySelectorAll('.pg-mile.on b')].map(x => x.textContent); if (!earned.length) return;
+    const S = SC();
+    if (!Array.isArray(S.milestonesRevealed)) { S.milestonesRevealed = earned; save(); return; }
+    const fresh = earned.filter(n => !S.milestonesRevealed.includes(n)); if (!fresh.length) return;
+    S.milestonesRevealed = [...S.milestonesRevealed, ...fresh]; save();
+    setTimeout(() => sysReveal(fresh[fresh.length - 1]), 400);
+  }
   const sysRenderStats = renderStats;
   renderStats = function () {
     const r = sysRenderStats.apply(this, arguments);
-    try { sysProgress(); const tb = document.querySelector('#stats .tb'); if (tb && tb.querySelector('.pg-wk')) sysTrends(tb); if (tb && (tb.querySelector('.pg-wk') || tb.querySelector('.pg-story'))) sysDash(tb); if (tb) sysGoalStarts(tb); } catch (e) { console.warn('Starcade system Progress', e); }
+    try { sysProgress(); const tb = document.querySelector('#stats .tb'); if (tb && tb.querySelector('.pg-wk')) sysTrends(tb); if (tb && (tb.querySelector('.pg-wk') || tb.querySelector('.pg-story'))) sysDash(tb); if (tb) { sysGoalStarts(tb); sysRun(tb); sysMilestones(tb); } } catch (e) { console.warn('Starcade system Progress', e); }
     return r;
   };
 
@@ -14912,7 +15314,7 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
   function sysFillCovers(root) {
     (root || document).querySelectorAll('.sys-cover[data-g]').forEach(el => {
       if (el.dataset.filled) return;
-      const id = el.dataset.g, wide = !!el.closest('.ar-daily-art');
+      const id = el.dataset.g, wide = !!el.closest('.ar-daily-art, .is-spot');
       sysPreview(id, wide).then(p => {
         if (!p || !el.isConnected) return;
         el.dataset.filled = '1';
