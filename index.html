@@ -9123,19 +9123,7 @@ html.ds-shell :is(button,input,select,textarea){font-family:inherit}
 #today .td-notice{background:var(--st-surface);border:1px solid var(--st-line);border-radius:var(--st-r);box-shadow:none}
 
 /* ================================= Progress ================================= */
-#stats .pg-wk{background:none;border:0;border-radius:0;box-shadow:none;padding:14px 0 0;margin:0}
-#stats .pg-wk::before,#stats .pg-wk::after{display:none}
-#stats .pg-wk-top span{font:500 12.5px/1.2 var(--st-sans);letter-spacing:0;text-transform:none;color:var(--st-ink-3)}
-#stats .pg-wk h2{font:600 24px/1.15 var(--st-sans);letter-spacing:-.02em;color:var(--st-ink);margin:4px 0 2px}
-#stats .pg-wk-vs,#stats .pg-wk>p{font:500 13px/1.4 var(--st-sans);color:var(--st-ink-3)}
-#stats .pg-wk-dots .d:is(.none,.fut) i::before{display:none}
-#stats .pg-wk-rate{background:none;border:0;border-radius:0;box-shadow:none;padding:12px 0;margin:0;border-bottom:1px solid var(--st-line)}
-#stats .pg-wk-rate-l{font:500 13.5px/1.3 var(--st-sans);color:var(--st-ink-2)}
-#stats .pg-wk-rate-n{font:700 15px/1 var(--st-sans);color:var(--st-ink)}
-#stats .pg-wk-rate-bar{height:3px}
-#stats .pg-wk-rate-bar>*{background:var(--st-sage)}
 /* the dashboard: three rings (this week's Good Days, this month's, habits kept) beside the headline and a legend */
-#stats .pg-wk-top{display:none}
 /* the week as columns: each day's share of its Good Day; a Good Day is a gold column with its star */
 @media (max-width:370px){#stats .sys-dash{grid-template-columns:112px minmax(0,1fr);column-gap:14px}#stats .sys-rings{width:112px;height:112px}}
 /* Goals with none yet: starting points */
@@ -9146,30 +9134,9 @@ html.ds-shell :is(button,input,select,textarea){font-family:inherit}
 /* trends: six quiet columns, the current week in rose */
 /* the calendar (the owner's settled rule): a gold star on a dark tile for a Good Day, a thin sage measure for a partial day,
    a quiet outline for a missed day, nothing for a future one */
-#stats .pg-act.ds-card,#stats .v8-cal{background:none;border:0;border-radius:0;box-shadow:none;padding:6px 0 0}
-#stats .pg-head .pg-sum{font:700 20px/1 var(--st-sans);color:var(--st-ink)}
-#stats .pg-head .pg-sum .ds-ic{color:var(--st-gold)}
-#stats .pg-head span{font:500 12.5px/1.3 var(--st-sans);color:var(--st-ink-3)}
-#stats .pg-actsw button{background:none;border:0;box-shadow:none;color:var(--st-ink-3);font:600 13px/1 var(--st-sans)}
 /* milestones */
-#stats .pg-next{display:flex;align-items:center;gap:14px;background:none;border:0;border-bottom:1px solid var(--st-line);border-radius:0;box-shadow:none;padding:12px 0 14px;margin:0}
-#stats .pg-next::before,#stats .pg-next::after{display:none}
-#stats .pg-next-medal{flex:none;position:relative;width:56px;height:56px;border-radius:50%;border:0;box-shadow:none;display:grid;place-items:center;color:var(--st-gold);background:conic-gradient(var(--st-gold) calc(var(--p,0) * 1%),var(--st-line) 0)}
-#stats .pg-next-medal::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--st-sunk)}
-#stats .pg-next-medal i{position:relative;z-index:1;display:grid;place-items:center}
-#stats .pg-next-medal .ds-ic{width:24px;height:24px}
-#stats .pg-next-medal *{filter:none}
-#stats .pg-next-main small{font:500 12.5px/1.2 var(--st-sans);letter-spacing:0;text-transform:none;color:var(--st-ink-3)}
-#stats .pg-next-main b{font:600 16px/1.25 var(--st-sans);color:var(--st-ink)}
-#stats .pg-next-main em{font:500 12.5px/1.3 var(--st-sans);font-style:normal;color:var(--st-ink-3)}
-#stats .pg-next .pg-bar{height:3px}
 #stats details.ed-ahead{border-bottom:1px solid var(--st-line);background:none}
 #stats details.ed-ahead summary{font:600 13px/1 var(--st-sans);color:var(--st-ink-2);padding:14px 0}
-#stats .pg-hab{padding-left:0;padding-right:0}
-#stats .pg-hab-n b{font:700 14px/1 var(--st-sans);color:var(--st-ink)}
-#stats .pg-hab-n small{color:var(--st-ink-3)}
-#stats .pg-hab-bar{height:3px;margin-top:6px}
-#stats .pg-habs+p,#stats .pg-improve{font:500 13px/1.4 var(--st-sans);color:var(--st-ink-3)}
 #stats .pg-run,#stats .pg-link{background:none;border:0;border-bottom:1px solid var(--st-line);border-radius:0;box-shadow:none;padding-left:0;padding-right:0}
 
 /* ================================= Rewards ================================= */
@@ -9539,25 +9506,13 @@ html.ds-shell body{background:var(--st-bg)}
 #today .hm-quests.is-done{box-shadow:inset 0 0 0 1px rgb(225 184 102 / .5)}
 
 /* ================================= Progress ================================= */
-#stats .pg-wk-rate{margin-top:12px;padding:14px 16px;background:var(--mo-card);border:0;border-radius:18px;box-shadow:inset 0 0 0 1px var(--mo-card-line)}
-#stats .pg-wk-rate-bar{height:6px;border-radius:3px}
-#stats .sys-trends,#stats .pg-act,#stats .pg-habs,#stats .pg-run,#stats .pg-miles.row,#stats details.ed-ahead,#stats .pg-next,#stats .pg-bingohist{background:var(--mo-card);border:0;border-radius:var(--mo-r);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
-#stats .pg-act{padding:16px 12px}
-#stats .pg-habs{padding:4px 16px}
-#stats .pg-habs .pg-hab:last-child{border-bottom:0}
-#stats .pg-hab-bar{height:6px;border-radius:3px}
-#stats .pg-hab-bar>*{background:var(--st-rose)}
-#stats .pg-next{padding:16px;margin-top:10px;border-bottom:0}
 #stats details.ed-ahead{margin-top:10px;padding:0 16px}
-#stats .pg-run{padding:6px 16px 4px}
-#stats .pg-bingohist{padding:0 16px;margin-top:12px}
 #stats .sys-runstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 0 10px;border-bottom:1px solid var(--mo-card-line)}
 #stats .sys-runstats span{display:flex;flex-direction:column;gap:3px}
 #stats .sys-runstats b{display:flex;align-items:center;font:400 30px/1 var(--st-display);font-variation-settings:"opsz" 60;color:var(--st-ink)}
 #stats .sys-runstats b .ds-ic{width:22px;height:22px;color:var(--st-sage)}
 #stats .sys-runstats span.on b{color:var(--st-sage)}
 #stats .sys-runstats small{font:600 11.5px/1.2 var(--st-sans);color:var(--st-ink-3)}
-#stats .pg-run>.ds-row:not(.tb-row){display:none}
 
 /* the milestone reveal */
 .sys-reveal{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;padding:24px;background:rgb(12 8 10 / .72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:sysFade .3s ease both}
@@ -9652,14 +9607,8 @@ html[data-theme="light"].ds-shell body{background:radial-gradient(120% 60% at 50
 /* ================================= Progress ================================= */
 /* the three highlights are one band with dividers, numerals aligned with comfortable padding */
 /* the habit rate: its bar runs the full width of its card */
-#stats .pg-wk-rate{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 12px}
-#stats .pg-wk-rate-bar{grid-column:1/-1;width:100%;height:8px;margin-top:8px;border-radius:4px}
-#stats .pg-wk-rate-bar>*{border-radius:4px}
 /* trends: tall columns, the week's share of habits as a quiet sage layer behind the Good Days */
 /* the calendar: only a Good Day looks complete; a partial day is open with its measure; a missed day is just its date */
-#stats .v8-cal .pg-heat i:is(.lv1,.lv2,.lv3){background:none;box-shadow:inset 0 0 0 1px var(--st-line)}
-#stats .v8-cal .pg-heat i:is(.lv1,.lv2,.lv3) .pb{height:4px;background:rgb(var(--st-ink-rgb) / .08)}
-#stats .pg-actsw{display:none}
 /* milestones and the rest share one card language */
 
 /* ================================= Rewards ================================= */
@@ -9789,7 +9738,8 @@ html[data-theme="light"] .ar-dest .m-play{--dc:154 123 67}html[data-theme="light
 #today .hy-today .td-week .wd.now small{color:var(--mo-island-ink)}
 #today .hy-today .td-week>svg{width:14px;height:14px;color:var(--mo-island-ink-2)}
 /* today's habits: the main section; one card per part of the day, uniform rows */
-#today .hy-habits{margin-top:28px}
+#today .hy-habits{display:grid;grid-template-columns:minmax(0,1fr);column-gap:20px;align-items:start;margin-top:28px}
+#today .hy-habits>.hy-sh,#today .hy-habits>.hy-focus{grid-column:1/-1}
 #today .hy-sh{display:flex;align-items:baseline;gap:10px}
 #today .hy-sh h2{margin:0 auto 0 0;font:500 24px/1.15 var(--st-display);font-variation-settings:"opsz" 48;color:var(--st-ink)}
 #today .hy-sh>span{font:500 13px/1 var(--st-sans);color:var(--st-ink-3)}
@@ -9849,8 +9799,8 @@ html[data-theme="light"] .ar-dest .m-play{--dc:154 123 67}html[data-theme="light
 #today .hy-t-ic .ds-ic{width:18px;height:18px}
 #today .hy-tile b{font:400 24px/1 var(--st-display);font-variation-settings:"opsz" 60;color:var(--st-ink)}
 #today .hy-tile small{margin-top:-6px;font:550 11.5px/1.25 var(--st-sans);color:var(--st-ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-#today .hy-t-stars{--tc:203 170 108}#today .hy-t-surprise{--tc:193 154 155}#today .hy-t-bingo{--tc:156 168 148}
-html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="light"] #today .hy-t-surprise{--tc:142 99 102}html[data-theme="light"] #today .hy-t-bingo{--tc:110 122 102}
+#today .hy-t-stars{--tc:203 170 108}#today .hy-t-surprise{--tc:193 154 155}#today .hy-t-bingo,#today .hy-t-life{--tc:156 168 148}
+html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="light"] #today .hy-t-surprise{--tc:142 99 102}html[data-theme="light"] #today .hy-t-bingo,html[data-theme="light"] #today .hy-t-life{--tc:110 122 102}
 #today .hy-t-stars .hy-t-ic .ds-ic{--st-glint:1}
 #today .hy-t-surprise.is-ready .hy-t-ic{animation:hyWiggle 3.6s ease-in-out infinite}
 #today .hy-t-surprise.is-ready::after{content:"";position:absolute;top:12px;right:12px;width:9px;height:9px;border-radius:50%;background:var(--st-rose)}
@@ -9863,30 +9813,42 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #today .hy-save-bar i{display:block;height:100%;border-radius:3px;background:var(--st-gold)}
 #today .hy-save-p{flex:none;font:700 13px/1 var(--st-sans);color:var(--st-gold)}
 #today .hy-save-p .ds-ic{width:16px;height:16px}
-#today>.hy>.td-lifeline,#today .hy .td-lifeline{margin-top:12px;padding:12px 16px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
-#today .hy .td-lifeline .ds-row-title{font:650 15px/1.25 var(--st-sans)}
-#today .hy .td-lifeline .ds-row-sub{font:500 12px/1.3 var(--st-sans);color:var(--st-ink-3)}
-#today .hy .td-lifeline .ds-glyph{width:36px;height:36px;border-radius:12px;background:rgb(var(--st-rose-rgb) / .16)}
-#today .hy .td-sec-tasks{margin-top:24px}
+#today .hy-tasks{margin-top:24px}
+#today .hy-tasks .ds-section{margin-top:0}
+#today .hy-optional{margin-top:14px}
+#today .hy-tasks .td-tasks{margin:0;padding:4px 14px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#today .hy-tasks .td-tasks .ds-row{padding-left:0;padding-right:0;border-bottom:1px solid var(--mo-card-line);background:none;box-shadow:none}
+#today .hy-tasks .td-tasks .ds-row:last-child{border-bottom:0}
+/* the notice (vacation, a rest day, welcome back) is one line inside the Today card */
+#today .hy-note{margin:12px 0 0}
+#today .hy-note .td-notice{display:flex;align-items:center;gap:10px;width:100%;margin:0;padding:10px 12px;border:0;border-radius:14px;background:rgb(247 240 232 / .08);box-shadow:none;color:var(--mo-island-ink);text-align:left}
+#today .hy-note .td-notice>.ds-ic{flex:none;width:18px;height:18px;color:#D9BC82}
+#today .hy-note .td-notice span{display:flex;flex-direction:column;gap:1px;min-width:0}
+#today .hy-note .td-notice b{font:650 13px/1.2 var(--st-sans);color:var(--mo-island-ink)}
+#today .hy-note .td-notice small{font:500 12px/1.3 var(--st-sans);color:var(--mo-island-ink-2)}
 
 /* ================================= Progress ================================= */
-/* the section switch is a real control: Overview · Goals · Recaps as three equal segments */
+/* Progress is regions (studio.css lays them out per width): the hero, then a grid of the calendar, the milestones,
+   your habits, running and past boards. Overview · Goals · Recaps as three equal segments. */
 #stats .pg-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:6px 0 0;padding:4px;border:0;border-radius:16px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
 #stats .pg-tabs button{min-height:40px;padding:0;border:0;border-radius:12px;background:none;box-shadow:none;font:650 14px/1 var(--st-sans);color:var(--st-ink-3)}
 #stats .pg-tabs button::after{display:none}
 #stats .pg-tabs button[aria-pressed="true"]{background:var(--st-rose-deep);color:#FBF4EE}
-/* the one primary picture: two weeks side by side, the habit rate under them */
-#stats .px-hero{display:block;margin-top:14px;padding:20px 18px 16px;border-radius:24px;background-color:var(--mo-island);background-image:var(--mo-grain);color:var(--mo-island-ink)}
-#stats .px-hero .sys-dash-tx h2{margin:0;font:400 28px/1.1 var(--st-display);font-variation-settings:"opsz" 72;letter-spacing:-.01em;color:var(--mo-island-ink)}
-#stats .px-hero .pg-wk-vs{margin:4px 0 0;font:500 13px/1.35 var(--st-sans);color:var(--mo-island-ink-2)}
-#stats .px-weeks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
-#stats .px-wk-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+/* the hero: this week beside last week as columns, the habit rate under them, the three facts that only grow */
+#stats .px-hero{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "weeks" "rate" "facts";margin-top:14px;padding:20px 18px 0;border-radius:24px;background-color:var(--mo-island);background-image:var(--mo-grain);color:var(--mo-island-ink);overflow:hidden}
+#stats .px-head{grid-area:head;display:flex;flex-direction:column;gap:4px}
+#stats .px-eyebrow{font:650 11.5px/1 var(--st-sans);letter-spacing:.04em;color:var(--mo-island-ink-2)}
+#stats .px-hero h2{margin:0;font:400 28px/1.1 var(--st-display);font-variation-settings:"opsz" 72;letter-spacing:-.01em;color:var(--mo-island-ink)}
+#stats .px-hero .pg-wk-vs,#stats .px-hero .px-today{margin:0;font:500 13px/1.35 var(--st-sans);color:var(--mo-island-ink-2)}
+#stats .px-weeks{grid-area:weeks;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+#stats .px-wk{min-width:0}
+#stats .px-wk-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
 #stats .px-wk-h b{font:650 12.5px/1 var(--st-sans);color:var(--mo-island-ink)}
-#stats .px-wk-h span{font:500 11.5px/1 var(--st-sans);color:var(--mo-island-ink-2)}
+#stats .px-wk-h span{font:500 11.5px/1 var(--st-sans);color:var(--mo-island-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #stats .px-last{opacity:.62}
-#stats .px-cols{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:0;padding:22px 0 0;background:none;border:0;border-radius:0;box-shadow:none}
+#stats .px-cols{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:0;padding:22px 0 0;background:none;border:0;border-radius:0;box-shadow:none;--colh:92px}
 #stats .px-cols .d{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;box-shadow:none;min-width:0}
-#stats .px-cols .d i{position:relative;display:block;width:100%;max-width:18px;height:86px;border-radius:6px;background:rgb(247 240 232 / .08);box-shadow:none;-webkit-mask:none;mask:none;overflow:visible}
+#stats .px-cols .d i{position:relative;display:block;width:100%;max-width:20px;height:var(--colh);border-radius:6px;background:rgb(247 240 232 / .08);box-shadow:none;-webkit-mask:none;mask:none;overflow:visible}
 #stats .px-cols .d i::before{content:"";position:absolute;inset:auto 0 0 0;display:block;height:calc(var(--f,0) * 100%);border-radius:6px;background:var(--st-sage)}
 #stats .px-cols .d i::after{display:none}
 #stats .px-cols .d.good i::before{height:100%;background:linear-gradient(180deg,#D9BC82,#B5955F)}
@@ -9896,52 +9858,69 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #stats .px-cols .d.now i{outline:1.5px solid var(--st-rose);outline-offset:2px}
 #stats .px-cols .d small{font:700 10px/1 var(--st-sans);color:var(--mo-island-ink-2)}
 #stats .px-cols .d.now small{color:var(--st-rose)}
-#stats .px-rate{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:6px 12px;margin:16px 0 0;padding:14px 0 0;border:0;border-top:1px solid var(--mo-island-line);border-radius:0;background:none;box-shadow:none}
+#stats .px-rate{grid-area:rate;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:6px 12px;margin:16px 0 0;padding:14px 0 16px;border:0;border-top:1px solid var(--mo-island-line);border-radius:0;background:none;box-shadow:none}
 #stats .px-rate .pg-wk-rate-l{font:550 13px/1.3 var(--st-sans);color:var(--mo-island-ink)}
 #stats .px-rate .pg-wk-rate-l small{color:var(--mo-island-ink-2)}
 #stats .px-rate .pg-wk-rate-n b{font:400 22px/1 var(--st-display);color:var(--mo-island-ink)}
-#stats .px-rate .pg-wk-rate-n small{font:500 11.5px/1 var(--st-sans);color:var(--mo-island-ink-2)}
-#stats .px-rate .pg-wk-rate-bar{grid-column:1/-1;width:100%;height:8px;border-radius:4px;background:rgb(247 240 232 / .1);overflow:hidden}
+#stats .px-rate .pg-wk-rate-n small{font:500 11.5px/1 var(--st-sans);color:var(--mo-island-ink-2);margin-left:4px}
+#stats .px-rate .pg-wk-rate-bar{grid-column:1/-1;width:100%;height:8px;margin:0;border-radius:4px;background:rgb(247 240 232 / .1);overflow:hidden}
 #stats .px-rate .pg-wk-rate-bar>*{display:block;height:100%;border-radius:4px;background:var(--st-sage)}
-#stats .px-hero.is-early{padding-bottom:20px}
-/* three supporting numbers, each saying what it is */
-#stats .pg-trophies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:10px;padding:16px 4px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
-#stats .pg-trophies>span{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;padding:0 12px;border:0;border-left:1px solid var(--mo-card-line);background:none;box-shadow:none;border-radius:0}
-#stats .pg-trophies>span:first-child{border-left:0}
-#stats .pg-trophies b{display:flex;align-items:center;gap:4px;font:400 26px/1 var(--st-display);font-variation-settings:"opsz" 60;letter-spacing:-.02em;color:var(--st-ink)}
-#stats .pg-trophies b .ds-ic{width:18px;height:18px}
-#stats .pg-trophies .tr-gd b{color:var(--st-gold)}#stats .pg-trophies .tr-streak b{color:var(--st-rose)}
-#stats .pg-trophies small{font:550 11.5px/1.25 var(--st-sans);color:var(--st-ink-3)}
+/* the facts: Good Days in all, the longest streak, stars earned; a strip under the chart, a column beside it on desktop */
+#stats .px-hero .pg-trophies{grid-area:facts;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 -18px;padding:14px 10px 16px;border:0;border-top:1px solid var(--mo-island-line);border-radius:0;background:rgb(0 0 0 / .14);box-shadow:none}
+#stats .px-hero .pg-trophies>span{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;padding:0 8px;border:0;border-left:1px solid var(--mo-island-line);background:none;box-shadow:none;border-radius:0}
+#stats .px-hero .pg-trophies>span:first-child{border-left:0}
+#stats .px-hero .pg-trophies b{display:flex;align-items:center;gap:4px;font:400 26px/1 var(--st-display);font-variation-settings:"opsz" 60;letter-spacing:-.02em;color:var(--mo-island-ink)}
+#stats .px-hero .pg-trophies b .ds-ic{width:18px;height:18px}
+#stats .px-hero .pg-trophies .tr-gd b{color:#D9BC82}
+#stats .px-hero .pg-trophies small{font:550 11.5px/1.25 var(--st-sans);color:var(--mo-island-ink-2)}
+#stats .px-hero.is-early{grid-template-areas:"head" "facts"}
+#stats .px-hero.is-early .pg-story{grid-area:head;margin:0 0 18px;padding:0;background:none;border:0;box-shadow:none}
+#stats .px-hero.is-early .pg-story h2{color:var(--mo-island-ink)}
+#stats .px-hero.is-early .pg-story p{color:var(--mo-island-ink-2)}
+/* the grid of the rest: one column on a phone */
+#stats .pg-regions{display:grid;grid-template-columns:minmax(0,1fr);gap:0 24px;align-items:start}
+#stats .pg-regions>section{min-width:0}
+#stats .pg-regions .pg-soon{grid-column:1/-1}
 /* the calendar: a Good Day is a gold disc with its star; a partial day is a ring drawn as far as it got; a missed day
-   is only its date; today wears a rose ring */
-#stats .v8-cal{margin-top:6px;padding:16px 10px 14px;border-radius:22px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
-#stats .v8-cal .pg-heat{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px 0;justify-items:center}
-#stats .v8-cal .pg-heat i{grid-template-columns:1fr;grid-template-rows:1fr;position:relative;display:grid;place-items:center;width:38px;height:38px;padding:0;border-radius:50%;background:none;box-shadow:none;font-style:normal}
-#stats .v8-cal .pg-heat i::before,#stats .v8-cal .pg-heat i::after{display:none}
-#stats .v8-cal .pg-heat i .dn{grid-area:1/1;position:relative;z-index:1;margin:0;transform:none;font:650 13px/1 var(--st-sans);color:var(--st-ink-2);font-variant-numeric:tabular-nums}
-#stats .v8-cal .pg-heat i .pb,#stats .v8-cal .pg-heat i .gd{display:none}
-#stats .v8-cal .pg-heat i em{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:2;font:700 8.5px/1 var(--st-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--st-rose);background:none;padding:0;font-style:normal}
-#stats .v8-cal .pg-heat i:is(.lv1,.lv2,.lv3)::before{content:"";display:block;position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--st-sage) calc(var(--f,0) * 360deg),rgb(var(--st-ink-rgb) / .08) 0);-webkit-mask:radial-gradient(circle,transparent 15.5px,#000 16px);mask:radial-gradient(circle,transparent 15.5px,#000 16px)}
-#stats .v8-cal .pg-heat i.good{background:rgb(var(--st-gold-rgb) / .24)}
-#stats .v8-cal .pg-heat i.good .dn{color:var(--st-ink);transform:translateY(-5px)}
-#stats .v8-cal .pg-heat i.good .gd{display:block;position:absolute;left:50%;bottom:5px;width:11px;height:11px;margin-left:-5.5px;padding:0;background:none}
-#stats .v8-cal .pg-heat i.good .gd .ds-ic{width:11px;height:11px}
-#stats .v8-cal .pg-heat i.none .dn{color:var(--st-ink-4)}
-#stats .v8-cal .pg-heat i.fut .dn{color:var(--st-ink-4);opacity:.6}
-#stats .v8-cal .pg-heat i.now{box-shadow:0 0 0 1.5px var(--st-rose)}
-#stats .v8-cal .pg-dow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));justify-items:center;margin-bottom:8px}
-#stats .v8-cal .pg-key{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:14px;padding-top:12px;border-top:1px solid var(--mo-card-line);font:500 12px/1 var(--st-sans);color:var(--st-ink-3)}
-#stats .v8-cal .pg-key span{display:inline-flex;align-items:center;gap:6px}
-#stats .v8-cal .pg-key i{width:14px;height:14px;border-radius:50%;display:inline-grid;place-items:center;background:none}
-#stats .v8-cal .pg-key i.good{background:rgb(var(--st-gold-rgb) / .3)}
-#stats .v8-cal .pg-key i.good .ds-ic{width:9px;height:9px}
-#stats .v8-cal .pg-key i.lv2{background:conic-gradient(var(--st-sage) 180deg,rgb(var(--st-ink-rgb) / .1) 0);-webkit-mask:radial-gradient(circle,transparent 4.5px,#000 5px);mask:radial-gradient(circle,transparent 4.5px,#000 5px)}
-#stats .v8-cal .pg-key i.lv2 .pb{display:none}
-#stats .v8-cal .pg-key i.none{box-shadow:inset 0 0 0 1px var(--st-line-2)}
-#stats .v8-cal .pg-key .pg-key-note{margin-left:auto}
-#stats .pg-head .ds-seg,#stats .pg-actsw{display:none}
-/* milestones: every medal in one grid, earned first, the next one featured above */
-#stats .pg-miles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px 4px;margin:10px 0 0;padding:16px 8px 14px;border:0;border-radius:22px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+   is only its date; today wears a rose ring. The tiles scale with the column they sit in. */
+#stats .pg-cal{margin-top:0;padding:16px 10px 14px;border-radius:22px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line);--tile:40px}
+#stats .pg-cal .pg-dow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));justify-items:center;margin-bottom:14px}
+#stats .pg-cal .pg-heat{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px 0;justify-items:center}
+#stats .pg-cal .pg-heat i{grid-template-columns:1fr;grid-template-rows:1fr;position:relative;display:grid;place-items:center;width:var(--tile);height:var(--tile);padding:0;border-radius:50%;background:none;box-shadow:none;font-style:normal}
+#stats .pg-cal .pg-heat i::before,#stats .pg-cal .pg-heat i::after{display:none}
+#stats .pg-cal .pg-heat i .dn{grid-area:1/1;position:relative;z-index:1;margin:0;transform:none;font:650 13px/1 var(--st-sans);color:var(--st-ink-2);font-variant-numeric:tabular-nums}
+#stats .pg-cal .pg-heat i .pb,#stats .pg-cal .pg-heat i .gd{display:none}
+#stats .pg-cal .pg-heat i em{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:2;font:700 8.5px/1 var(--st-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--st-rose);background:none;padding:0;font-style:normal}
+#stats .pg-cal .pg-heat i:is(.lv1,.lv2,.lv3)::before{content:"";display:block;position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--st-sage) calc(var(--f,0) * 360deg),rgb(var(--st-ink-rgb) / .08) 0);-webkit-mask:radial-gradient(circle,transparent calc(var(--tile) / 2 - 3.5px),#000 calc(var(--tile) / 2 - 3px));mask:radial-gradient(circle,transparent calc(var(--tile) / 2 - 3.5px),#000 calc(var(--tile) / 2 - 3px))}
+#stats .pg-cal .pg-heat i.good{background:rgb(var(--st-gold-rgb) / .24)}
+#stats .pg-cal .pg-heat i.good .dn{color:var(--st-ink);transform:translateY(-5px)}
+#stats .pg-cal .pg-heat i.good .gd{display:block;position:absolute;left:50%;bottom:5px;width:11px;height:11px;margin-left:-5.5px;padding:0;background:none}
+#stats .pg-cal .pg-heat i.good .gd .ds-ic{width:11px;height:11px}
+#stats .pg-cal .pg-heat i.none .dn{color:var(--st-ink-4)}
+#stats .pg-cal .pg-heat i.fut .dn{color:var(--st-ink-4);opacity:.6}
+#stats .pg-cal .pg-heat i.now{box-shadow:0 0 0 1.5px var(--st-rose)}
+#stats .pg-cal .pg-key{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:14px;padding-top:12px;border-top:1px solid var(--mo-card-line);font:500 12px/1 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-cal .pg-key span{display:inline-flex;align-items:center;gap:6px}
+#stats .pg-cal .pg-key i{width:14px;height:14px;border-radius:50%;display:inline-grid;place-items:center;background:none}
+#stats .pg-cal .pg-key i.good{background:rgb(var(--st-gold-rgb) / .3)}
+#stats .pg-cal .pg-key i.good .ds-ic{width:9px;height:9px}
+#stats .pg-cal .pg-key i.lv2{background:conic-gradient(var(--st-sage) 180deg,rgb(var(--st-ink-rgb) / .1) 0);-webkit-mask:radial-gradient(circle,transparent 4.5px,#000 5px);mask:radial-gradient(circle,transparent 4.5px,#000 5px)}
+#stats .pg-cal .pg-key i.lv2 .pb{display:none}
+#stats .pg-cal .pg-key i.none{box-shadow:inset 0 0 0 1px var(--st-line-2)}
+#stats .pg-cal .pg-key .pg-key-note{margin-left:auto}
+/* milestones: the next one featured, then every medal in one grid, earned first */
+#stats .pg-next{display:flex;align-items:center;gap:14px;margin:0 0 10px;padding:14px 16px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .pg-next::before,#stats .pg-next::after{display:none}
+#stats .pg-next-medal{flex:none;position:relative;width:52px;height:52px;border-radius:50%;border:0;box-shadow:none;display:grid;place-items:center;background:conic-gradient(var(--st-gold) calc(var(--p,0) * 1%),rgb(var(--st-ink-rgb) / .08) 0)}
+#stats .pg-next-medal::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--mo-card)}
+#stats .pg-next-medal i{position:relative;z-index:1;display:grid;place-items:center;color:var(--st-gold)}
+#stats .pg-next-medal .ds-ic{width:22px;height:22px;filter:none}
+#stats .pg-next-main{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 auto}
+#stats .pg-next-main small{font:600 11.5px/1.2 var(--st-sans);letter-spacing:.02em;text-transform:none;color:var(--st-ink-3)}
+#stats .pg-next-main b{font:650 15.5px/1.25 var(--st-sans);color:var(--st-ink)}
+#stats .pg-next-main em{font:500 12.5px/1.3 var(--st-sans);font-style:normal;color:var(--st-ink-3)}
+#stats .pg-next .pg-bar{height:5px;border-radius:3px;margin:3px 0}
+#stats .pg-miles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px 4px;margin:0;padding:16px 8px 14px;border:0;border-radius:22px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
 #stats .pg-miles::before,#stats .pg-miles::after{display:none}
 #stats .pg-mile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;min-height:0;border:0;background:none;box-shadow:none;text-align:center}
 #stats .pg-mile .medal{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgb(var(--st-gold-rgb) / .3),rgb(var(--st-gold-rgb) / .07) 70%);border:1.5px solid rgb(var(--st-gold-rgb) / .6);box-shadow:inset 0 0 0 3px var(--mo-card);color:var(--st-gold);overflow:hidden}
@@ -9950,8 +9929,35 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #stats .pg-mile b{font:600 10.5px/1.25 var(--st-sans);color:var(--st-ink-2)}
 #stats .pg-mile:not(.on) b{color:var(--st-ink-4)}
 #stats .pg-mile small{display:none}
-/* Goals: each goal is a card: a ring with its icon, the goal, the count, the next step */
-#stats .gx-card,#stats .pg-lgoal{display:grid;grid-template-columns:60px minmax(0,1fr) auto auto;align-items:center;gap:4px 14px;margin:0 0 10px;padding:16px;border:0;border-radius:22px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line);text-align:left}
+/* your habits: the strongest four with their consistency, in one card */
+#stats .pg-habs{margin:0;padding:4px 16px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .pg-habs .pg-hab{padding:10px 0;border-bottom:1px solid var(--mo-card-line);background:none;box-shadow:none}
+#stats .pg-habs .pg-hab:last-child{border-bottom:0}
+#stats .pg-hab .ds-row-title{font:600 14px/1.3 var(--st-sans);color:var(--st-ink)}
+#stats .pg-hab-bar{height:5px;margin-top:6px;border-radius:3px;background:rgb(var(--st-ink-rgb) / .08)}
+#stats .pg-hab-bar>*{background:var(--st-rose);border-radius:3px}
+#stats .pg-hab-n b{font:400 20px/1 var(--st-display);color:var(--st-ink)}
+#stats .pg-hab-n small{display:inline-flex;align-items:center;gap:2px;font:600 11.5px/1 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-improving{display:flex;align-items:center;gap:8px;margin:10px 2px 0;font:500 13px/1.4 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-improving .ds-ic{width:16px;height:16px;color:var(--st-sage)}
+/* running and past boards: one card each */
+#stats .pg-run,#stats .pg-bingohist{margin:0;padding:4px 16px;border:0;border-radius:20px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line)}
+#stats .pg-bingohist{margin-top:10px}
+#stats .pg-run .ds-row,#stats .pg-bingohist .ds-row{padding-left:0;padding-right:0;border-bottom:1px solid var(--mo-card-line);background:none;box-shadow:none}
+#stats .pg-run .ds-row:last-child,#stats .pg-bingohist .ds-row:last-child{border-bottom:0}
+#stats .pg-run>.ds-row:not(.tb-row){display:none}
+#stats .sys-runstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:12px 0;border-bottom:1px solid var(--mo-card-line)}
+#stats .sys-runstats>span{display:flex;flex-direction:column;gap:4px;padding:0 10px;border-left:1px solid var(--mo-card-line)}
+#stats .sys-runstats>span:first-child{border-left:0;padding-left:0}
+#stats .sys-runstats b{font:400 22px/1 var(--st-display);color:var(--st-ink)}
+#stats .sys-runstats b .ds-ic{width:18px;height:18px;color:var(--st-sage)}
+#stats .sys-runstats small{font:550 11.5px/1.2 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-soon{margin:22px 0 0;font:500 12.5px/1.4 var(--st-sans);color:var(--st-ink-3)}
+/* Goals: each goal is a card: a ring with its icon, the goal, the count, the next step; two across when there's room */
+#stats .pg-goals{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:0;padding:0;background:none;border:0;box-shadow:none}
+#stats .pg-goals+.pg-goals,#stats .pg-lgoals{margin-top:10px}
+#stats .pg-lgoals{display:grid;gap:10px;padding:0;background:none;border:0;box-shadow:none}
+#stats .gx-card,#stats .pg-lgoal{display:grid;grid-template-columns:60px minmax(0,1fr) auto auto;align-items:center;gap:4px 14px;margin:0;padding:16px;border:0;border-radius:22px;background:var(--mo-card);box-shadow:inset 0 0 0 1px var(--mo-card-line);text-align:left}
 #stats .gx-card .ds-row-main{display:flex;flex-direction:column;gap:5px;min-width:0}
 #stats .gx-card .ds-row-title,#stats .pg-lgoal .ds-row-title{font:400 19px/1.2 var(--st-display);font-variation-settings:"opsz" 48;color:var(--st-ink)}
 #stats .gx-card .ds-row-sub{font:600 12.5px/1.2 var(--st-sans);color:var(--st-ink-2)}
@@ -9962,7 +9968,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #stats .gx-ring circle{fill:none;stroke-width:5}
 #stats .gx-ring .trk{stroke:rgb(var(--st-ink-rgb) / .08)}
 #stats .gx-ring .arc{stroke:var(--gc,var(--st-rose));stroke-linecap:round}
-#stats .gx-ring i{position:absolute;inset:0;display:grid;place-items:center;color:var(--gc,var(--st-rose))}
+#stats .gx-card .gx-ring>i,#stats .gx-ring i{position:absolute;inset:0;width:auto;height:auto;margin:0;padding:0;display:grid;place-items:center;transform:none;font-style:normal;color:var(--gc,var(--st-rose))}
 #stats .gx-ring i .ds-ic{width:22px;height:22px}
 #stats .gx-card.t-sage{--gc:var(--st-sage)}#stats .gx-card.t-gold{--gc:var(--st-gold)}#stats .gx-card.t-rose{--gc:var(--st-rose)}#stats .gx-card.t-peach{--gc:var(--mo-peach)}
 #stats .gx-next{display:inline-flex;align-items:center;gap:5px;margin-top:2px;font:600 12.5px/1.3 var(--st-sans);font-style:normal;color:var(--gc,var(--st-rose))}
@@ -9971,8 +9977,9 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #stats .gx-card .lf-x{align-self:start;width:32px;height:32px;border:0;background:none;color:var(--st-ink-4)}
 #stats .gx-card .pg-plus{width:44px;height:44px;border-radius:14px;background:var(--gc,var(--st-rose));color:#231E20;border:0}
 #stats .pg-lgoal .ds-glyph{width:56px;height:56px;border-radius:50%}
-#stats .pg-addgoal{min-height:56px;border-radius:18px}
-/* Recaps: this period beside the one before it */
+#stats .pg-addgoal{min-height:56px;margin-top:12px;border-radius:18px}
+#stats .pg-goalsec .lf-fold{margin-top:14px}
+/* Recaps: this period beside the one before it; moments alongside when there's room */
 #stats .pg-recap{padding:20px 18px;border-radius:24px;background-color:var(--mo-island);background-image:var(--mo-grain);color:var(--mo-island-ink);border:0;box-shadow:none}
 #stats .pg-recap :is(.pg-recap-head span,.pg-recap-lede,.pg-recap-list li){color:var(--mo-island-ink)}
 #stats .pg-recap .pg-recap-lede{font:400 26px/1.15 var(--st-display)}
@@ -9985,6 +9992,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #stats .px-vs-row b{font:400 22px/1 var(--st-display);color:var(--mo-island-ink)}
 #stats .px-vs-row em{font:700 12px/1 var(--st-sans);font-style:normal;text-align:right;color:var(--mo-island-ink-2)}
 #stats .px-vs-row em.up{color:#B9C4AE}#stats .px-vs-row em.down{color:#D9A9A9}
+#stats .pg-head .ds-seg,#stats .pg-actsw{display:none}
 
 /* ============================ One component system (redesign/98) ============================
    Section heads are Manrope; the display serif stays for screen titles, one headline per screen, Dexter's name and the
@@ -10000,10 +10008,11 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 .sys-reveal-card,.bq-done-card{border-radius:24px}
 
 /* ---------- Home: the stage is the way in; two secondary tiles ---------- */
-#today .hy-club{position:absolute;z-index:6;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px 0 10px;border:0;border-radius:12px;background:rgb(251 244 238 / .92);color:#231E20;font:700 12.5px/1 var(--st-sans);box-shadow:0 8px 20px -10px rgb(0 0 0 / .6)}
-#today .hy-club .ds-ic{width:15px;height:15px}
+#today .hy-club{position:absolute;z-index:6;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 10px 0 12px;border:0;border-radius:14px;background:rgb(251 244 238 / .94);color:#231E20;font:700 13px/1 var(--st-sans);box-shadow:0 10px 24px -10px rgb(0 0 0 / .7)}
+#today .hy-club .ds-ic{width:16px;height:16px}
+#today .hy-club .hy-club-go{width:12px;height:12px;color:#8E6366}
 #today .hy-stage .v5-roomhead .rh-tag span .ds-ic{display:none}
-#today .hy-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+#today .hy-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
 #today .hy-tile{height:auto;min-height:104px;gap:8px}
 #today .hy-tile .ic-well{background:rgb(var(--tc) / .16);color:rgb(var(--tc) / 1)}
 #today .hy-tile b{display:inline-flex;align-items:center;gap:5px;font-size:22px}
@@ -10201,28 +10210,58 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #clubhouse .cl-keeps{grid-template-columns:repeat(4,minmax(0,1fr))}
 #clubhouse .cl-items,#clubhouse .cl-wears{gap:12px 10px}
 
-/* ============================ Desktop: designed for the width ============================ */
-@media (min-width:900px){
-  html.ds-shell main{padding-left:max(var(--ds-s4),calc((100vw - 1040px) / 2));padding-right:max(var(--ds-s4),calc((100vw - 1040px) / 2))}
-  #today .hy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-rows:max-content max-content max-content 1fr auto auto;grid-template-areas:"stage habits" "today habits" "second habits" "quests habits" "life life" "aside aside";column-gap:24px;row-gap:0;align-items:start}
-  #today .hy-today{margin-top:12px}#today .hy-second{margin-top:12px}#today .hm-quests{margin-top:12px}
-  #today .hy-stage{grid-area:stage}#today .hy-today{grid-area:today}#today .hy-habits{grid-area:habits;margin-top:0}#today .hy-second{grid-area:second}#today .hm-quests{grid-area:quests}#today .hy .td-lifeline{grid-area:life;margin-top:30px}#today .td-donewrap{grid-area:aside}
-  #today .hy-stage .td-top.v5-roomhead{height:300px}
-  #stats .tb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px;align-items:start}
-  #stats .tb>.pg-tabs{grid-column:1/-1}
-  #stats .tb>:not(.pg-tabs){grid-column:auto}
-  #stats .tb>.px-hero,#stats .tb>.pg-trophies,#stats .tb>.pg-histhead,#stats .tb>.v8-cal{grid-column:1}
-  #stats .tb>.px-hero{grid-row:2}
-  #rewards .bq-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px 12px}
+/* ============================ Layout: phone, tablet, desktop (redesign/99) ============================
+   One app, three deliberate compositions. The baseline sheet capped the page at 650 px, so every "desktop" layout
+   before this was squeezed into a phone column; the shell now sets the width per breakpoint and each screen's regions
+   (the renderers emit them) are placed on a grid designed for that width. */
+@media (prefers-reduced-motion:reduce){#today .hy-t-surprise.is-ready .ic-well,#today .hy-today .hm-stars i.new .ds-ic{animation:none}}
+/* ---------- tablet, 700 px and up ---------- */
+@media (min-width:700px){
+  html.ds-shell main{max-width:none;padding-left:28px;padding-right:28px}
+  .ds-tabbar{padding-left:max(6px,calc((100vw - 720px) / 2));padding-right:max(6px,calc((100vw - 720px) / 2))}
+  /* reading pages keep a measure */
+  #learn .ar.v5-learn,#settings>.tb,#settings>.st,#life>.tb,#life>.lf{max-width:760px;margin-left:auto;margin-right:auto}
+  /* Home: the stage beside the day; the habits across in two columns; the tiles; quests beside the tasks */
+  #today .hy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"stage today" "habits habits" "tasks tasks" "second second" "quests optional" "aside aside";column-gap:20px;align-items:start}
+  #today .hy-stage{grid-area:stage;align-self:stretch;margin-top:2px}
+  #today .hy-stage .td-top.v5-roomhead{height:100%;min-height:320px}
+  #today .hy-stage .v5-roomhead .rh-scene{top:calc(100% - 16px - var(--seat-y) * 105.5cqw)}
+  #today .hy-stage .v5-roomhead .td-pet{transform:translateX(-50%) scale(1)}
+  #today .hy-today{grid-area:today;margin-top:2px;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-start}
+  #today .hy-today .hm-stars{margin:auto 0}
+  #today .hy-today .hm-stars .ds-ic{width:30px;height:30px}
+  #today .hy-today .td-week{margin-top:auto}
+  #today .hy-habits{grid-area:habits;grid-template-columns:repeat(2,minmax(0,1fr))}
+  #today .hy-second{grid-area:second}
+  #today .hm-quests{grid-area:quests}
+  #today .hy-tasks{grid-area:tasks}
+  #today .hy-optional{grid-area:optional;margin-top:24px}
+  #today .hy-optional .hy-group{margin-top:0}
+  #today .td-donewrap{grid-area:aside}
+  /* Progress: the chart columns grow; the calendar beside the milestones, the habits beside running */
+  #stats .px-cols{--colh:112px}
+  #stats .px-cols .d i{max-width:24px}
+  #stats .pg-regions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #stats .pg-cal{--tile:44px}
+  #stats .pg-goals,#stats .pg-lgoals{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* Rewards: four across, shelves become rows */
+  #rewards .bq-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 12px}
   #rewards .bq-grid.rx-shelf{display:grid;margin:10px 0 0;padding:0;overflow:visible}
   #rewards .bq-grid.rx-shelf .rx-card{flex:none}
   #rewards .rx-feature{grid-template-columns:120px minmax(0,1fr) auto}
   #rewards .rx-feature-ph{width:120px;height:120px}
   #rewards .rx-ideas,#rewards .rx-more{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* with room for a row of four or six, "All" is one continuous grid in group order (the filter still shows one group) */
+  #rewards .rx-shelves.is-all{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 12px;margin-top:16px}
+  #rewards .rx-shelves.is-all .bq-tier-h{display:none}
+  #rewards .rx-shelves.is-all .bq-grid{display:contents}
+  #rewards .rx-shelves.is-all .bq-grid>.rx-card:only-child{display:flex;grid-column:auto;grid-template-columns:none;padding:0;border-radius:0;background:none;box-shadow:none}
+  #rewards .rx-shelves.is-all .bq-grid>.rx-card:only-child .bq-ph{width:100%;aspect-ratio:1/1;margin:0 0 7px;border-radius:14px;box-shadow:0 10px 18px -16px rgb(0 0 0 / .7)}
+  #rewards .rx-shelves.is-all .bq-grid>.rx-card:only-child .bq-nm{font-size:12.5px}
+  #rewards .rx-shelves.is-all .rx-add{grid-column:1/-1}
+  /* Arcade: the feature beside the daily rows, Brain and Learn as a row, the library across */
   #boost .ar{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);column-gap:24px;align-items:start}
   #boost .ar>.ar-dest,#boost .ar>.ds-section#arGames,#boost .ar>.ax-library,#boost .ar>.ar-player,#boost .ar>.br-home{grid-column:1/-1}
-  #boost .ax-library{grid-template-columns:repeat(8,minmax(0,1fr))}
-  #boost .ax-icon small{display:block;font:500 11px/1.2 var(--st-sans);color:var(--st-ink-3)}
   #boost .ar>.ar-week-h{grid-column:2;grid-row:1;margin-top:4px}
   #boost .ar>.ax-chances{grid-column:2;grid-row:2}
   #boost .ar>.ax-play{grid-column:1;grid-row:1/3}
@@ -10230,15 +10269,59 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
   #boost .ar>.ax-dests .ax-dest{flex-direction:row;align-items:center;gap:14px;min-height:0;padding:14px 16px}
   #boost .ar>.ax-dests .ax-dest-go{position:static;margin-left:auto}
   #boost .ar>.ax-dests .ax-dest .dot{top:50%;margin-top:-4px;right:44px}
-  #clubhouse .cl-items,#clubhouse .cl-wears{grid-template-columns:repeat(5,minmax(0,1fr))}
+  #boost .ax-icon small{display:block;font:500 11px/1.2 var(--st-sans);color:var(--st-ink-3)}
+  #boost .br-games{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* the Clubhouse: his room stays in view on the left while she decorates on the right */
+  #clubhouse .cl-stage{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);column-gap:24px;align-items:start}
+  #clubhouse .cl-stage .cl-room{grid-column:1;grid-row:1/3;position:sticky;top:76px}
+  #clubhouse .cl-stage .cl-seg{grid-column:2;grid-row:1;margin-top:0}
+  #clubhouse .cl-stage .cl-panel{grid-column:2;grid-row:2}
+  #clubhouse .cl-items,#clubhouse .cl-wears{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
-
-@media (prefers-reduced-motion:reduce){#today .hy-t-surprise.is-ready .hy-t-ic,#today .hy-today .hm-stars i.new .ds-ic{animation:none}}
-@media (min-width:700px){
-  #today .hy-stage .td-top.v5-roomhead{height:320px}
+/* ---------- desktop, 1024 px and up ---------- */
+@media (min-width:1024px){
+  html.ds-shell main{padding-left:max(32px,calc((100vw - 1180px) / 2));padding-right:max(32px,calc((100vw - 1180px) / 2))}
+  /* Home: the stage, the day, the tiles and the quests on the left; the habits as a column on the right */
+  #today .hy{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:auto auto auto auto auto auto 1fr;grid-template-areas:"stage habits" "today habits" "tasks habits" "second habits" "quests habits" "optional habits" "aside habits";column-gap:28px}
+  #today .hy-stage{align-self:start}
+  #today .hy-stage .td-top.v5-roomhead{height:380px;min-height:0}
+  #today .hy-stage .v5-roomhead .td-pet{transform:translateX(-50%) scale(1.5)}
+  #today .hy-today{margin-top:14px;align-self:start;display:block}
+  #today .hy-habits{grid-template-columns:minmax(0,1fr);margin-top:2px}
+  #today .hy-second{margin-top:14px}
+  #today .hm-quests{margin-top:14px}
+  #today .hy-tasks{margin-top:14px}
+  #today .hy-optional{margin-top:14px}
+  /* Progress: the facts beside the chart; the calendar wide beside the milestones */
+  #stats .px-hero{grid-template-columns:minmax(0,1fr) 236px;grid-template-areas:"head facts" "weeks facts" "rate facts";column-gap:28px;padding-bottom:0}
+  #stats .px-hero.is-early{grid-template-areas:"head facts"}
+  #stats .px-hero .pg-trophies{grid-template-columns:minmax(0,1fr);margin:-20px -18px 0 0;padding:6px 22px;border-top:0;border-left:1px solid var(--mo-island-line);align-self:stretch;align-content:center}
+  #stats .px-hero .pg-trophies>span{padding:16px 0;border-left:0;border-top:1px solid var(--mo-island-line)}
+  #stats .px-hero .pg-trophies>span:first-child{border-top:0}
+  #stats .px-hero .pg-trophies b{font-size:30px}
+  #stats .px-cols{--colh:128px}
+  #stats .px-cols .d i{max-width:28px}
+  #stats .pg-regions{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);column-gap:28px}
+  #stats .pg-cal{--tile:50px;padding:18px 14px 16px}
+  #stats .pg-cal .pg-heat{gap:10px 0}
+  #stats .pg-cal .pg-heat i .dn{font-size:14.5px}
+  #stats .pg-miles{gap:18px 6px;padding:20px 10px 18px}
+  #stats .pg-mile .medal{width:54px;height:54px}
+  #stats .pg-mile .medal :is(svg,.ds-ic){width:24px;height:24px}
+  #stats .pg-mile b{font-size:12px}
+  #stats .pg-mile small{display:block;font:500 11px/1.2 var(--st-sans);color:var(--st-ink-3)}
+  #stats .pg-recapgrid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  /* Rewards: the balance beside the feature; six across */
+  #rewards .bq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);column-gap:24px;align-items:stretch}
+  #rewards .bq>:not(.rx-bar):not(.rx-feature){grid-column:1/-1}
+  #rewards .bq>.rx-bar{margin-top:10px;flex-wrap:wrap;align-content:center}
+  #rewards .bq-grid,#rewards .rx-shelves.is-all{grid-template-columns:repeat(6,minmax(0,1fr))}
+  #rewards .rx-ideas{grid-template-columns:repeat(4,minmax(0,1fr))}
+  /* Arcade: the library across in one row */
   #boost .ax-library{grid-template-columns:repeat(8,minmax(0,1fr))}
-  #boost .ax-icon small{display:block}
-  #boost .ax-dest{min-height:150px}
+  #boost .br-games{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* the Clubhouse: five decor tiles across */
+  #clubhouse .cl-items,#clubhouse .cl-wears{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
 /* both-themes:end */
 /* palette:on */
@@ -12916,108 +12999,100 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
   window.pgSet = r => { pgRange = r; pgView = 'stars'; renderStats(); };
   window.pgAct = v => { pgView = v === 'stars' ? 'stars' : 'days'; renderStats(); };
   window.pgGoalsFold = () => { pgGoalsDone = !pgGoalsDone; renderStats(); };
+  /* ===================== Progress, composed in one place (redesign/99, 2026-10-17) =====================
+     The page is regions, not a column of equal cards, so each width lays them out on purpose (studio.css):
+       hero   this week beside last week as columns, the habit rate, three facts that only grow;
+       grid   the calendar, the milestones, your habits, running and past boards.
+     The parts that progress2.js and system.js used to move around after the fact are built here directly. */
   renderStats = function () {
     const el = document.getElementById('stats'); if (!el) return;
-    const per = habitDays(), todayK = today(), life = earned(), wk = past(weekOf(0));
+    const per = habitDays(), todayK = today(), life = earned(), wk = past(weekOf(0)), P = window.__pgParts || {};
     const gWeek = wk.filter(goodOn).length, hWeek = wk.reduce((s, d) => s + (per[PGK(d)] || 0), 0), gStreak = goodStreak();
     const seg = `<div class="ds-seg pg-tabs" role="tablist">${[['overview', 'Overview'], ['goals', 'Goals'], ['recaps', 'Recaps']].map(([k, l]) => `<button type="button" role="tab" aria-pressed="${pgTab === k}" onclick="pgTabSet('${k}')">${l}</button>`).join('')}</div>`;
-    /* Pass 24C: "This week" story header (replaces the 4-number snapshot). Facts only: this week's days from the
-       Good Day rule (frozen history for finished days), habit checks, lifetime stars and today's live Good Day progress. */
-    const g0 = safe(() => window.__starcadeGoodDay.info(), null), need0 = (g0 && g0.need) || 8; // pass 66: shades measure a day against the Good Day bar
-    /* Pass 73 (the owner rejected the green-heavy week and the raw habit count): the week reads in Good Days. A Good Day is a
-       gold star on a dark disc; any other past day is a quiet sage ring that fills by how much of its Good Day got done;
-       a missed day is an outline and days to come stay empty. The rate below counts core daily habits on finished days. */
+    const g0 = safe(() => window.__starcadeGoodDay.info(), null), need0 = (g0 && g0.need) || 8;
     const gdi = d => safe(() => window.__starcadeGoodDay.info(d), null), coreN = x => x ? x.parts.reduce((t, p) => t + p.total, 0) : 0;
-    const wkDots = weekOf(0).map(d => { const k = PGK(d), fut = k > todayK, g = !fut && goodOn(d), n = per[k] || 0, x = fut ? null : gdi(d), f = g ? 1 : x && x.need ? Math.min(.95, x.done / x.need) : 0, day = d.toLocaleDateString(undefined, { weekday: 'long' }), said = fut ? `${day}, still to come` : g ? `${day}, a Good Day` : x && x.done ? `${day}, ${x.done} of ${x.need} toward a Good Day` : `${day}, nothing checked`; return `<span class="d ${fut ? 'fut' : g ? 'good' : n ? 'some' : 'none'} ${k === todayK ? 'now' : ''}" role="img" aria-label="${esc(said)}${k === todayK ? ', today' : ''}"><i style="--f:${f.toFixed(2)}">${g ? ic('star-fill') : ''}</i><small>${d.toLocaleDateString(undefined, { weekday: 'narrow' })}</small></span>`; }).join('');
+    /* a week as seven columns: each day's share of its Good Day (core daily habits done out of the eight), a gold column
+       with its star on a Good Day, an outline for a missed day, nothing yet for a day to come */
+    const col = (d, when) => { const k = PGK(d), fut = k > todayK, g = !fut && goodOn(d), n = per[k] || 0, x = fut ? null : gdi(d), f = g ? 1 : x && x.need ? Math.min(.95, x.done / x.need) : 0, day = d.toLocaleDateString(undefined, { weekday: 'long' }), said = fut ? `${day}, still to come` : g ? `${day}${when}, a Good Day` : x && x.done ? `${day}${when}, ${x.done} of ${x.need} toward a Good Day` : `${day}${when}, nothing checked`; return `<span class="d ${fut ? 'fut' : g ? 'good' : n ? 'some' : 'none'} ${k === todayK ? 'now' : ''}" role="img" aria-label="${esc(said)}${k === todayK ? ', today' : ''}"><i style="--f:${f.toFixed(2)}">${g ? ic('star-fill') : ''}</i><small>${d.toLocaleDateString(undefined, { weekday: 'narrow' })}</small></span>`; };
+    const wkDots = weekOf(0).map(d => col(d, '')).join(''), lastCols = weekOf(-1).map(d => col(d, ' last week')).join(''), lwGood = weekOf(-1).filter(goodOn).length;
     const head = gWeek ? `${gWeek} Good Day${gWeek === 1 ? '' : 's'} this week${gStreak >= 2 ? `, ${gStreak} in a row` : ''}` : wk.length <= 1 ? 'A fresh week' : 'No Good Days yet this week';
-    const lwDays = weekOf(-1).slice(0, wk.length), hLast = lwDays.reduce((s, d) => s + (per[PGK(d)] || 0), 0), gLast = lwDays.filter(goodOn).length;
+    const lwDays = weekOf(-1).slice(0, wk.length), gLast = lwDays.filter(goodOn).length;
     const vsLine = wk.length < 2 ? '' : (gWeek || gLast) && gWeek !== gLast ? `${gWeek > gLast ? 'Up from' : 'Last week had'} ${gLast} Good Day${gLast === 1 ? '' : 's'} by this point` : '';
     const todayLine = g0 ? (g0.good ? 'Today is a Good Day.' : `Today: ${g0.done} of ${g0.need} toward a Good Day.`) : '';
     const rateDays = wk.filter(d => PGK(d) < todayK).length ? wk.filter(d => PGK(d) < todayK) : wk, rateInfo = rateDays.map(gdi).filter(Boolean);
     const rDone = rateInfo.reduce((t, x) => t + x.done, 0), rTotal = rateInfo.reduce((t, x) => t + coreN(x), 0), rSpan = rateDays.length === 1 ? rateDays[0].toLocaleDateString(undefined, { weekday: 'short' }) : `${rateDays[0].toLocaleDateString(undefined, { weekday: 'short' })}–${rateDays[rateDays.length - 1].toLocaleDateString(undefined, { weekday: 'short' })}`;
-    const rateHTML = rTotal ? `<div class="pg-wk-rate" data-done="${rDone}" data-total="${rTotal}"><span class="pg-wk-rate-l">Daily habits done <small>${esc(rSpan)}</small></span><span class="pg-wk-rate-n"><b>${Math.round(rDone / rTotal * 100)}%</b><small>${rDone} of ${rTotal}</small></span><span class="pg-wk-rate-bar"><i style="width:${Math.round(rDone / rTotal * 100)}%"></i></span></div>` : '';
-    const snap = `<section class="pg-wk" aria-label="This week" data-good="${gWeek}" data-habits="${hWeek}" data-life="${life}"><div class="pg-wk-top"><span>This week</span><span class="pg-wk-life">${ic('star-fill')}${life.toLocaleString()} lifetime</span></div>
-      <h2>${esc(head)}</h2>${vsLine ? `<p class="pg-wk-vs">${esc(vsLine)}</p>` : ''}<div class="pg-wk-dots">${wkDots}</div>${todayLine ? `<p>${esc(todayLine)}</p>` : ''}${rateHTML}</section>`;
+    const rateHTML = rTotal ? `<div class="pg-wk-rate px-rate" data-done="${rDone}" data-total="${rTotal}"><span class="pg-wk-rate-l">Daily habits done <small>${esc(rSpan)}</small></span><span class="pg-wk-rate-n"><b>${Math.round(rDone / rTotal * 100)}%</b><small>${rDone} of ${rTotal}</small></span><span class="pg-wk-rate-bar"><i style="width:${Math.round(rDone / rTotal * 100)}%"></i></span></div>` : '';
+    const facts = P.trophiesHTML ? P.trophiesHTML(life) : '';
+    const hero = `<section class="pg-wk pg-hero px-hero" aria-label="This week" data-good="${gWeek}" data-habits="${hWeek}" data-life="${life}">
+      <div class="px-head"><span class="px-eyebrow">This week</span><h2>${esc(head)}</h2>${vsLine ? `<p class="pg-wk-vs">${esc(vsLine)}</p>` : ''}${todayLine ? `<p class="px-today">${esc(todayLine)}</p>` : ''}</div>
+      <div class="px-weeks"><div class="px-wk px-last"><div class="px-wk-h"><b>Last week</b><span>${lwGood} Good Day${lwGood === 1 ? '' : 's'}</span></div><div class="px-cols">${lastCols}</div></div><div class="px-wk px-this"><div class="px-wk-h"><b>This week</b><span>so far</span></div><div class="pg-wk-dots px-cols">${wkDots}</div></div></div>
+      ${rateHTML}${facts}</section>`;
     let body = '';
     if (pgTab === 'overview') {
-      const ins = insights(per);
-      const days = pgRange === 'week' ? weekOf(0) : monthOf(0), vals = days.map(d => PGK(d) > todayK ? null : (per[PGK(d)] || 0) + ledgerOn(d)), max = Math.max(1, ...vals.filter(v => v != null)), sum = vals.reduce((s, v) => s + (v || 0), 0);
-      const now = new Date(), y = now.getFullYear(), mo = now.getMonth(), lead = (new Date(y, mo, 1).getDay() + 6) % 7, cal = [];
-      for (let i = 0; i < lead; i++) cal.push('<i></i>');
-      monthOf(0).forEach(d => { const k = PGK(d), fut = k > todayK, n = per[k] || 0, g = !fut && goodOn(d); cal.push(`<i class="${fut ? 'fut' : g ? 'good' : n ? 'some' : ''} ${k === todayK ? 'now' : ''}" title="${n} habits">${d.getDate()}</i>`); });
       const gh = goodHistory();
       const activeDays = Object.keys(per).filter(k => k <= todayK && per[k] > 0).length, early = activeDays < 7;
       // milestones as data; the next one is the closest unearned milestone by real progress
       const ms = [['First star', life, 1, '★'], ['100 stars', life, 100, '★'], ['500 stars', life, 500, '★'], ['1,000 stars', life, 1000, '★'], ['2,500 stars', life, 2500, '★'], ['First Good Day', gh.total, 1, 'Good Day'], ['10 Good Days', gh.total, 10, 'Good Days'], ['50 Good Days', gh.total, 50, 'Good Days'], ['3 in a row', gh.best, 3, 'in a row'], ['7 in a row', gh.best, 7, 'in a row']].map(([n, have, target, unit]) => ({ n, have, target, unit, on: have >= target }));
-      const next = ms.filter(m => !m.on).sort((a, b) => b.have / b.target - a.have / a.target)[0];
-      const medal = m => `<div class="pg-mile ${m.on ? 'on' : ''} ${m === next ? 'next' : ''} ${m.unit === '★' ? 'is-star' : ''}"><span class="medal">${ic(m.on ? (m.unit === '★' ? 'star-fill' : 'trophy-fill') : 'star')}</span><b>${m.n}</b><small>${m.on ? 'Earned' : m.target > 1 && m.have ? `${m.have.toLocaleString()}/${m.target.toLocaleString()}` : m.unit === '★' ? m.target.toLocaleString() + ' ★' : m.unit === 'in a row' ? 'Good Days' : m.target + ' ' + m.unit}</small></div>`;
+      const next = ms.filter(m => !m.on).sort((a, b) => b.have / b.target - a.have / a.target)[0], got = ms.filter(m => m.on);
+      const medal = m => `<div class="pg-mile ${m.on ? 'on' : ''} ${m === next ? 'next' : ''} ${m.unit === '★' ? 'is-star' : ''}" role="listitem"><span class="medal">${ic(m.on ? (m.unit === '★' ? 'star-fill' : 'trophy-fill') : 'star')}</span><b>${m.n}</b><small>${m.on ? 'Earned' : m.target > 1 && m.have ? `${m.have.toLocaleString()}/${m.target.toLocaleString()}` : m.unit === '★' ? m.target.toLocaleString() + ' ★' : m.unit === 'in a row' ? 'Good Days' : m.target + ' ' + m.unit}</small></div>`;
       const left = next ? next.target - next.have : 0, nextUnit = next && (next.unit === '★' ? (left === 1 ? 'star' : 'stars') : next.unit === 'in a row' ? 'more in a row' : left === 1 ? 'Good Day' : 'Good Days');
       const nextCard = next ? `<div class="pg-next ${next.have / next.target >= .8 ? 'sc-starlit' : ''}"><span class="pg-next-medal" style="--p:${Math.round(next.have / next.target * 100)}"><i>${ic(next.unit === '★' ? 'star-fill' : 'trophy-fill')}</i></span><span class="pg-next-main"><small>Next milestone</small><b>${esc(next.n)}</b><span class="pg-bar tone-gold"><i style="width:${Math.min(100, Math.round(next.have / next.target * 100))}%"></i></span><em>${left.toLocaleString()} ${nextUnit} to go</em></span></div>` : '';
+      const milesHTML = `<section class="pg-milesec" aria-label="Milestones"><div class="ds-section"><span>Milestones</span><span>${got.length} of ${ms.length} earned</span></div>${nextCard}<div class="pg-miles row" role="list">${[...got.slice().reverse(), ...ms.filter(m => !m.on)].map(medal).join('')}</div></section>`;
       const runs = runsIn(weekOf(0)), all = safe(() => v8RunHistory(), []), five = runs.filter(x => Number(x.distanceKm) >= 5).length, km = runs.reduce((s, r) => s + Number(r.distanceKm || 0), 0);
       const runHTML = `<div class="ds-section"><span>Running</span></div>
         <div class="ds-list pg-run">${all.length ? `<div class="ds-row"><span class="ds-glyph ds-glyph-sage">${ic('person-simple-run-fill')}</span><span class="ds-row-main"><span class="ds-row-title">${runs.length ? `${runs.length} run${runs.length === 1 ? '' : 's'} this week, ${km.toFixed(1)} km` : 'No runs yet this week'}</span><span class="ds-row-sub">${runs.length >= 2 ? 'Weekly goal met' : `${2 - runs.length} more for the weekly goal`}${five ? ', 5K done' : ''}. Last run ${fmtDay(all[0].date + 'T12:00:00')}</span></span></div>`
           : `<div class="ds-row pg-run-empty"><span class="ds-glyph ds-glyph-sage">${ic('sneaker-move-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Your first run will land here</span><span class="ds-row-sub">Runs sync from Oura, or log one yourself.</span></span></div>`}
           <button type="button" class="ds-row tb-row" onclick="pgRuns()"><span class="ds-row-main"><span class="ds-row-title">Run journal</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`;
-      const chartHTML = `<div class="pg-chart ds-card">${early ? '' : `<div class="pg-actsw"><button type="button" onclick="pgAct('days')">${ic('caret-right-bold', 'flip')}Days</button></div>`}<div class="pg-head"><div><b class="pg-sum">${ic('star-fill')}${sum}</b><span>${pgRange === 'week' ? 'stars this week' : 'stars in ' + now.toLocaleDateString(undefined, { month: 'long' })}</span></div>
-          <div class="ds-seg pg-seg" role="tablist"><button type="button" aria-pressed="${pgRange === 'week'}" onclick="pgSet('week')">Week</button><button type="button" aria-pressed="${pgRange === 'month'}" onclick="pgSet('month')">Month</button></div></div>
-          <div class="pg-bars ${pgRange}"><b class="pg-grid" aria-hidden="true"><i></i><i></i><i></i></b>${days.map((d, i) => `<span class="${PGK(d) === todayK ? 'now' : ''}" title="${vals[i] ?? ''} stars"><i style="height:${vals[i] == null ? 0 : Math.max(3, vals[i] / max * 100)}%"></i>${pgRange === 'week' ? `<small>${d.toLocaleDateString(undefined, { weekday: 'narrow' })}</small>` : ''}</span>`).join('')}</div></div>`;
-      /* Progressive disclosure (pass 22): the Overview grows with real history. activeDays = days with at least one habit check.
-         Under 3 days: story, next milestone, goals, running.  3 to 6 days: the stars chart joins.
-         7+ days: the full overview (snapshot, insights when supported, chart, calendar, running, milestone collection). */
+      const bingoHTML = `<div class="ds-list pg-bingohist"><button type="button" class="ds-row tb-row" onclick="v7BingoHistory()"><span class="ds-glyph ds-glyph-gold">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Past Bingo boards</span><span class="ds-row-sub">One board a week, as each one ended</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`;
+      const moreHTML = `<section class="pg-moresec" aria-label="Running and past boards">${runHTML}${bingoHTML}</section>`;
       if (early) {
-        const gs = goalsList().map(g => ({ g, i: goalInfo(g) })).filter(x => x.i && !x.i.done), got = ms.filter(m => m.on);
-        const facts = [activeDays ? `${activeDays} day${activeDays === 1 ? '' : 's'} of check-ins` : '', life ? `${life.toLocaleString()} star${life === 1 ? '' : 's'} so far` : ''].filter(Boolean).join(', ');
-        body = `<div class="pg-story"><span class="pg-story-art">${ic('sparkle-fill')}</span><div><h2>${activeDays ? 'Every little win adds up here.' : 'Your story starts here.'}</h2><p>${facts || 'Check off a habit on Home and it starts counting.'}</p></div></div>
-        ${nextCard}
-        ${got.length ? `<div class="ds-section"><span>Collected</span><span>${got.length} of ${ms.length}</span></div><div class="pg-miles compact">${got.map(medal).join('')}</div>` : ''}
-        <div class="ds-section"><span>Goals</span>${gs.length ? `<button type="button" class="pg-link" onclick="pgTabSet('goals')">See all</button>` : ''}</div>
-        ${gs.length ? `<div class="ds-list">${gs.slice(0, 3).map(x => goalRow(x.g)).join('')}</div>` : `<button type="button" class="pg-goal-invite" onclick="pgGoalNew()"><span class="ds-glyph ds-glyph-rose">${ic('flag-checkered-duotone')}</span><span class="ds-row-main"><b>Set a goal</b><small>Runs, Good Days, reading or your own.</small></span>${ic('plus-bold', 'pg-goal-plus')}</button>`}
-        ${runHTML}
-        ${activeDays >= 3 ? chartHTML : ''}
-        <p class="pg-soon">${ic('sparkle-fill')}Insights and your calendar appear after about a week of check-ins.</p>`;
+        /* Under a week of check-ins: the story instead of the charts, the next milestone, goals to aim for, running.
+           Everything shown is real (days of check-ins, stars so far); nothing is estimated. */
+        const gs = goalsList().map(g => ({ g, i: goalInfo(g) })).filter(x => x.i && !x.i.done);
+        const facts0 = [activeDays ? `${activeDays} day${activeDays === 1 ? '' : 's'} of check-ins` : '', life ? `${life.toLocaleString()} star${life === 1 ? '' : 's'} so far` : ''].filter(Boolean).join(', ');
+        body = `<section class="pg-wk pg-hero px-hero is-early" aria-label="Your story"><div class="pg-story"><span class="pg-story-art">${ic('sparkle-fill')}</span><div><h2>${activeDays ? 'Every little win adds up here.' : 'Your story starts here.'}</h2><p>${facts0 || 'Check off a habit on Home and it starts counting.'}</p></div></div>${facts}</section>
+        <div class="pg-regions">
+          <section class="pg-milesec" aria-label="Milestones"><div class="ds-section"><span>Milestones</span><span>${got.length} of ${ms.length} earned</span></div>${nextCard}${got.length ? `<div class="pg-miles compact" role="list">${got.map(medal).join('')}</div>` : ''}</section>
+          <section class="pg-habsec" aria-label="Goals"><div class="ds-section"><span>Goals</span>${gs.length ? `<button type="button" class="pg-link" onclick="pgTabSet('goals')">See all</button>` : ''}</div>
+          ${gs.length ? `<div class="ds-list pg-goals">${gs.slice(0, 3).map(x => goalRow(x.g)).join('')}</div>` : `<button type="button" class="pg-goal-invite" onclick="pgGoalNew()"><span class="ds-glyph ds-glyph-rose">${ic('flag-checkered-duotone')}</span><span class="ds-row-main"><b>Set a goal</b><small>Runs, Good Days, reading or your own.</small></span>${ic('plus-bold', 'pg-goal-plus')}</button>`}</section>
+          ${moreHTML}
+          <p class="pg-soon">${ic('sparkle-fill')}Your calendar appears after about a week of check-ins.</p>
+        </div>`;
       } else {
-        /* Pass 24C established-history Overview: story → next milestone → goals → what's noticed → activity → running → collection */
-        const open = goalsList().map(g => ({ g, i: goalInfo(g) })).filter(x => x.i && !x.i.done);
+        /* The calendar: five weeks of quiet tiles with a clean numeral. A Good Day earns a gold star; a partial day shows a
+           ring drawn as far as it got (never full); a missed day is only its date; days to come have no tile. The first of a
+           month carries its month above the numeral. */
         const heatStart = addDays(weekStart(new Date()), -28), heat = Array.from({ length: 35 }, (_, i) => addDays(heatStart, i));
         const lv = n => n / need0 >= .75 ? 3 : n / need0 >= .4 ? 2 : 1;
-        /* Pass 73: each day is a quiet tile with a clean numeral. A Good Day earns a gold star; a partial day shows a thin
-           sage bar sized by how much of its Good Day got done (never full); a missed day is an outline; days to come have no
-           tile. The first of a month carries its month above the numeral, so month breaks read without replacing the date. */
         const heatHTML = heat.map(d => { const k = PGK(d), fut = k > todayK, n = per[k] || 0, g = !fut && goodOn(d), x = fut || g || !n ? null : gdi(d);
           const f = g ? 1 : Math.min(.8, x && x.need ? x.done / x.need : n / need0), day = d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }), said = fut ? `${day}, still to come` : g ? `${day}, a Good Day` : n ? `${day}, ${n} habit${n === 1 ? '' : 's'}, partly` : `${day}, missed`;
           return `<i role="img" aria-label="${esc(said)}${k === todayK ? ', today' : ''}" style="--f:${f.toFixed(2)}" class="${fut ? 'fut' : g ? 'good' : n ? 'lv' + lv(n) : 'none'} ${k === todayK ? 'now' : ''} ${d.getDate() === 1 ? 'm1' : ''}">${d.getDate() === 1 ? `<em>${esc(d.toLocaleDateString(undefined, { month: 'short' }))}</em>` : ''}<span class="dn">${d.getDate()}</span>${g ? ic('star-fill', 'gd') : !fut && n ? '<s class="pb"></s>' : ''}</i>`; }).join('');
-        const wkStars = weekOf(0).filter(d => PGK(d) <= todayK).reduce((s, d) => s + (per[PGK(d)] || 0) + ledgerOn(d), 0), moStars = past(monthOf(0)).reduce((s, d) => s + (per[PGK(d)] || 0) + ledgerOn(d), 0);
-        const activity = pgView === 'stars' ? chartHTML : `<div class="pg-act ds-card"><div class="pg-head"><div><b class="pg-sum">${ic('star-fill')}${wkStars}</b><span>stars this week</span></div>
-          <div class="ds-seg pg-seg" role="tablist"><button type="button" aria-pressed="true" onclick="pgAct('days')">Days</button><button type="button" aria-pressed="false" onclick="pgAct('stars')">Stars</button></div></div>
-          <div class="pg-dow">${['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(x => `<span>${x}</span>`).join('')}</div><div class="pg-heat">${heatHTML}</div>
-          <div class="pg-key"><span><i class="good">${ic('star-fill')}</i>Good Day</span><span><i class="lv2" style="--f:.5"><s class="pb"></s></i>Partly</span><span><i class="none"></i>Missed</span><span class="pg-key-note">Last 5 weeks</span></div></div>`;
-        body = `${snap}
-        ${nextCard}
-        ${open.length ? `<div class="ds-section"><span>Goals</span><button type="button" class="pg-link" onclick="pgTabSet('goals')">${open.length > 2 ? `All ${open.length}` : 'See all'}</button></div><div class="ds-list">${open.slice(0, 2).map(x => goalRow(x.g)).join('')}</div>`
-          : `<button type="button" class="pg-goal-invite slim" onclick="pgGoalNew()"><span class="ds-glyph ds-glyph-rose">${ic('flag-checkered-duotone')}</span><span class="ds-row-main"><b>Set a goal</b><small>Runs, Good Days, reading or your own.</small></span>${ic('plus-bold', 'pg-goal-plus')}</button>`}
-        ${ins.length ? `<div class="ds-section"><span>Noticed lately</span></div><div class="pg-insights grouped">${ins.map(x => `<p class="t-${x.tone}"><span class="ds-glyph ds-glyph-${x.tone}">${ic(x.icon)}</span>${esc(x.text)}</p>`).join('')}</div>` : ''}
-        <div class="ds-section"><span>Activity</span></div>
-        ${activity}
-        ${runHTML}
-        <div class="ds-section"><span>Milestones</span><span>${ms.filter(m => m.on).length} of ${ms.length}</span></div>
-        <div class="pg-miles row" role="list">${[...ms.filter(m => m.on).reverse(), ...ms.filter(m => !m.on)].map(medal).join('')}</div>`;
+        const heatGood = heat.filter(d => PGK(d) <= todayK && goodOn(d)).length;
+        const calHTML = `<section class="pg-calsec" aria-label="Calendar"><div class="ds-section pg-histhead"><span>Calendar</span><span>${heatGood} Good Day${heatGood === 1 ? '' : 's'} in 5 weeks</span></div>
+          <div class="pg-act ds-card v8-cal pg-cal"><div class="pg-dow">${['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(x => `<span>${x}</span>`).join('')}</div><div class="pg-heat">${heatHTML}</div>
+          <div class="pg-key"><span><i class="good">${ic('star-fill')}</i>Good Day</span><span><i class="lv2" style="--f:.5"><s class="pb"></s></i>Partly</span><span><i class="none"></i>Missed</span><span class="pg-key-note">Last 5 weeks</span></div></div></section>`;
+        const habs = P.habitsHTML ? P.habitsHTML() : '';
+        body = `${hero}<div class="pg-regions">${calHTML}${milesHTML}${habs ? `<section class="pg-habsec" aria-label="Your habits">${habs}</section>` : ''}${moreHTML}</div>`;
       }
     } else if (pgTab === 'goals') {
+      /* Goals: her own milestone goals first, then the tracked ones, as cards with real visual weight; one New goal. */
       const gs = goalsList().map(g => ({ g, i: goalInfo(g) })).filter(x => x.i), open = gs.filter(x => !x.i.done), done = gs.filter(x => x.i.done);
-      body = `<div class="ds-section"><span>Goals</span><span>${open.length ? open.length + ' in progress' : ''}</span></div>
-        ${open.length ? `<div class="ds-list">${open.map(x => goalRow(x.g)).join('')}</div>` : (gs.length ? `<div class="pg-empty t-gold"><span class="pg-empty-art">${ic('trophy-fill')}</span><b>Every goal is done</b><small>Lovely. Add another whenever you like.</small></div>` : `<div class="pg-empty t-rose"><span class="pg-empty-art">${ic('flag-checkered-duotone')}</span><b>Pick something to aim for</b><small>Starcade keeps track from what it already knows.</small></div>`)}
-        <button type="button" class="add-row pg-addgoal" onclick="pgGoalNew()"><span class="add-plus">${ic('plus-bold')}</span><span>Add a goal</span></button>
-        ${done.length ? `<button type="button" class="lf-fold" onclick="pgGoalsFold()" aria-expanded="${pgGoalsDone}">Completed <b>${done.length}</b>${ic('caret-down-bold')}</button>${pgGoalsDone ? `<div class="ds-list">${done.map(x => goalRow(x.g)).join('')}</div>` : ''}` : ''}
-        ${pgSomeday()}`;
+      const mine = P.lifeGoalsHTML ? P.lifeGoalsHTML() : '', nMine = safe(() => SC2.goals().filter(g => !g.doneAt).length, 0), n = nMine + open.length;
+      body = `<section class="pg-goalsec"><div class="ds-section"><span>Goals</span><span>${n ? n + ' active' : ''}</span></div>
+        ${mine}${open.length ? `<div class="ds-list pg-goals">${open.map(x => goalRow(x.g)).join('')}</div>` : ''}
+        ${!mine && !open.length ? (gs.length ? `<div class="pg-empty t-gold"><span class="pg-empty-art">${ic('trophy-fill')}</span><b>Every goal is done</b><small>Lovely. Add another whenever you like.</small></div>` : `<div class="pg-empty t-rose"><span class="pg-empty-art">${ic('flag-checkered-duotone')}</span><b>Pick something to aim for</b><small>Starcade keeps track from what it already knows.</small></div>`) : ''}
+        <button type="button" class="add-row pg-addgoal" onclick="pgGoalChoose()"><span class="add-plus">${ic('plus-bold')}</span><span>New goal</span></button>
+        ${done.length ? `<button type="button" class="lf-fold" onclick="pgGoalsFold()" aria-expanded="${pgGoalsDone}">Completed <b>${done.length}</b>${ic('caret-down-bold')}</button>${pgGoalsDone ? `<div class="ds-list pg-goals">${done.map(x => goalRow(x.g)).join('')}</div>` : ''}` : ''}</section>
+        <section class="pg-somesec">${pgSomeday()}</section>`;
     } else {
       const r = recapData(pgRecap.kind, pgRecap.off, per);
-      body = `<div class="pg-recapbar"><div class="ds-seg pg-seg"><button type="button" aria-pressed="${pgRecap.kind === 'week'}" onclick="pgRecapNav('week',${pgRecap.kind === 'week' ? pgRecap.off : -1})">Week</button><button type="button" aria-pressed="${pgRecap.kind === 'month'}" onclick="pgRecapNav('month',${pgRecap.kind === 'month' ? pgRecap.off : -1})">Month</button></div>
+      body = `<div class="pg-regions pg-recapgrid"><section class="pg-recapsec" aria-label="Recap"><div class="pg-recapbar"><div class="ds-seg pg-seg"><button type="button" aria-pressed="${pgRecap.kind === 'week'}" onclick="pgRecapNav('week',${pgRecap.kind === 'week' ? pgRecap.off : -1})">Week</button><button type="button" aria-pressed="${pgRecap.kind === 'month'}" onclick="pgRecapNav('month',${pgRecap.kind === 'month' ? pgRecap.off : -1})">Month</button></div>
           <div class="pg-recapnav"><button type="button" class="ds-iconbtn" onclick="pgRecapNav('${pgRecap.kind}',${pgRecap.off - 1})" aria-label="Earlier">${ic('caret-right-bold', 'flip')}</button><button type="button" class="ds-iconbtn" ${pgRecap.off >= 0 ? 'disabled' : ''} onclick="pgRecapNav('${pgRecap.kind}',${pgRecap.off + 1})" aria-label="Later">${ic('caret-right-bold')}</button></div></div>
         <div class="ds-section"><span>${esc(r.label)}</span></div>
-        ${recapHTML(r, pgRecap.kind)}
-        ${pgMoments()}`;
+        ${recapHTML(r, pgRecap.kind)}</section>
+        <section class="pg-momsec" aria-label="Moments">${pgMoments()}</section></div>`;
     }
-    el.innerHTML = `<div class="tb">${seg}${body}</div>`;
+    el.innerHTML = `<div class="tb pg-page">${seg}${body}</div>`;
     pgCameos(per);
   };
   /* Dexter cameos on Progress: a newly earned milestone, or a strong recap. Each shows once. */
@@ -13042,14 +13117,13 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
      Goals gains your own goals with milestones above the automatic ones. The existing renderer still draws the story,
      calendar, running, milestones and recaps (so their logic and cameos are unchanged); this layer recomposes the page.
      Everything shown is computed from stored history; nothing is estimated. */
-  const _renderStatsP = renderStats;
   const pct = x => Math.round(x * 100);
   // Pass 66 (the owner): Levels and XP felt disconnected from real-life progress, so Progress no longer shows them (they live in
   // the Arcade). This week is the hero; three facts that only ever grow sit inside it as a quiet strip, not as tiles.
   function trophiesHTML(life) {
     const X = SC2.xp(), gd = Math.round((X.parts.goodDays || 0) / SC2.XP_RULES.goodDay);
     const best = state.habits.filter(h => h.frequency === 'daily' || h.frequency === 'weekly').reduce((m, h) => { const st = SC2.stats(h); return st.has ? Math.max(m, st.longest || 0) : m; }, 0);
-    return `<div class="pg-trophies"><span class="tr-gd"><b>${gd.toLocaleString()}</b><small>Good Days</small></span><span class="tr-streak"><b>${best}</b><small>Best streak</small></span><span class="tr-stars"><b>${ic('star-fill')}${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div>`;
+    return `<div class="pg-trophies"><span class="tr-gd"><b>${gd.toLocaleString()}</b><small>Good Days in all</small></span><span class="tr-streak"><b>${best}</b><small>Longest streak</small></span><span class="tr-stars"><b>${ic('star-fill')}${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div>`;
   }
   function habitRows(list) {
     return list.map(({ h, s }) => `<button type="button" class="ds-row tb-row pg-hab" onclick="stHabit('${esc(h.id)}')"><span class="ds-row-main"><span class="ds-row-title">${esc(h.name)}</span><span class="pg-hab-bar"><i style="width:${pct(s.consistency)}%"></i></span></span><span class="pg-hab-n"><b>${pct(s.consistency)}%</b>${s.current >= 2 ? `<small>${ic('flame-fill')}${s.current}</small>` : ''}</span></button>`).join('');
@@ -13078,44 +13152,8 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     const opt = (tone, icon, t, sub, js) => `<button type="button" class="ds-row tb-row pg-choose" onclick="tbClose();setTimeout(()=>${js},220)"><span class="ds-glyph ds-glyph-${tone}">${ic(icon)}</span><span class="ds-row-main"><span class="ds-row-title">${t}</span><span class="ds-row-sub lf-wrap">${sub}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>`;
     tbSheet(`<div class="ds-list">${opt('sage', 'chart-line-up', 'Something Starcade tracks', 'Runs, Good Days or saving for a reward. It fills in by itself.', 'pgGoalNew()')}${opt('peach', 'flag-checkered-duotone', 'My own goal', 'Break it into milestones and tick them off as you go.', 'pgLifeGoalNew()')}</div>`, 'New goal');
   };
-  renderStats = function () {
-    _renderStatsP();
-    const el = document.getElementById('stats'); if (!el) return;
-    const tb = el.querySelector('.tb'); if (!tb) return;
-    try {
-      if (pgTab === 'overview' && tb.querySelector('.pg-wk')) {
-        // retire the parts the new hierarchy replaces: the insight list, the goals preview and its heading
-        tb.querySelectorAll('.pg-insights').forEach(n => { const h = n.previousElementSibling; if (h && h.classList.contains('ds-section')) h.remove(); n.remove(); });
-        [...tb.querySelectorAll('.ds-section')].filter(s => /^Goals/.test(s.textContent.trim())).forEach(s => { const n = s.nextElementSibling; if (n && n.classList.contains('ds-list')) n.remove(); s.remove(); });
-        tb.querySelectorAll('.pg-goal-invite').forEach(n => n.remove());
-        // the week is the hero (pass 66); habits and life areas after the next milestone; then history
-        const wk = tb.querySelector('.pg-wk');
-        wk.classList.add('pg-hero'); wk.insertAdjacentHTML('beforeend', trophiesHTML(wk.dataset.life));
-        wk.querySelector('.pg-wk-life')?.remove(); // lifetime stars now sit in the hero's trophies
-        // milestones move up: collecting them is the most rewarding thing here, so they follow the week, with the next one
-        const mh = [...tb.querySelectorAll('.ds-section')].find(x => x.textContent.trim().startsWith('Milestones')), mrow = mh && mh.nextElementSibling, next = tb.querySelector('.pg-next');
-        let tail = wk;
-        if (mh && mrow && mrow.classList.contains('pg-miles')) { wk.after(mh); mh.after(mrow); tail = mrow; }
-        if (next) { tail.after(next); tail = next; }
-        const anchor = tail;
-        // pass 73 (the owner): Life areas left the overview. Bare percentages per area didn't say anything useful; the areas stay
-        // in Settings (rename, reorder, hide) and keep tagging habits and tasks.
-        anchor.insertAdjacentHTML('afterend', habitsHTML() + '<div class="ds-section pg-histhead"><span>History</span></div>');
-        const run = [...tb.querySelectorAll('.ds-section')].find(s => s.textContent.trim().startsWith('Running'));
-        if (run) run.insertAdjacentHTML('beforebegin', `<div class="ds-list pg-bingohist"><button type="button" class="ds-row tb-row" onclick="v7BingoHistory()"><span class="ds-glyph ds-glyph-gold">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Past Bingo boards</span><span class="ds-row-sub">One board a week, as each one ended</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`);
-        const act = [...tb.querySelectorAll('.ds-section')].find(s => s.textContent.trim() === 'Activity'); if (act) act.remove();
-      } else if (pgTab === 'goals') {
-        // one Goals list: her milestone goals first, then the tracked ones, then a single "New goal" (the empty card only when there are none)
-        const sec = [...tb.querySelectorAll('.ds-section')].find(x => x.textContent.trim().startsWith('Goals'));
-        if (sec) {
-          const mine = lifeGoalsHTML(), n = SC2.goals().filter(g => !g.doneAt).length + tb.querySelectorAll('.pg-goal:not(.done)').length;
-          sec.innerHTML = `<span>Goals</span><span>${n ? n + ' active' : ''}</span>`;
-          if (mine) { sec.insertAdjacentHTML('afterend', mine); tb.querySelector('.pg-empty')?.remove(); }
-          const add = tb.querySelector('.pg-addgoal'); if (add) { add.setAttribute('onclick', 'pgGoalChoose()'); add.querySelector('span:last-child').textContent = 'New goal'; }
-        }
-      }
-    } catch (e) { console.warn('Progress layout', e); }
-  };
+  // redesign/99: progress.js composes the page and builds these parts in place
+  window.__pgParts = { trophiesHTML, habitsHTML, lifeGoalsHTML };
 
   /* Reward art (pass 74): one illustrated boutique collection instead of the stock photos the owner found out of place.
      Every reward is the same scene: a recognizable object on a small velvet pedestal under a warm spotlight, lit from
@@ -13286,7 +13324,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
         ${tgt ? '' : list.length ? `<button type="button" class="bq-pick" onclick="bqPickGoal()">${ic('target')}<span><b>Save for something</b></span></button>` : ''}</div>
       ${feature}
       ${filter}
-      <div class="rx-shelves">${shelves}</div>
+      <div class="rx-shelves ${bqShelf === 'all' ? 'is-all' : ''}">${shelves}</div>
       ${state.rewards.some(r => r.retired && r.archivedAt) ? `<button type="button" class="lf-fold" onclick="bqArchivedOpen()">Archived <b>${state.rewards.filter(r => r.retired && r.archivedAt).length}</b>${ic('caret-right-bold')}</button>` : ''}
       ${ideasHTML}
       <div class="ds-section"><span>More</span></div>
@@ -14121,8 +14159,8 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     const t0 = today(), all = safe(() => SC2.tasks(), []), open = all.filter(t => !t.done), due = open.filter(t => t.due && t.due <= t0).sort((a, b) => a.due.localeCompare(b.due)).slice(0, 3);
     const link = `<button type="button" class="td-inbox" onclick="starcadeNavigate('life')" aria-label="Life HQ${open.length ? ', ' + open.length + ' open' : ''}">Life HQ${open.length ? `<b class="td-badge">${open.length}</b>` : ''}</button>`;
     // v5: Life HQ is no longer a tab, so Home always keeps one way in. Nothing due: one quiet line, not a section.
-    if (!due.length) return `<button type="button" class="ds-row td-lifeline" onclick="starcadeNavigate('life')" aria-label="Life HQ${open.length ? ', ' + open.length + ' open' : ''}. Plan the week"><span class="ds-glyph ds-glyph-rose">${ic('list-checks')}</span><span class="ds-row-main"><span class="ds-row-title">Life HQ</span><span class="ds-row-sub">${open.length ? `${open.length} open · plan the week` : 'Nothing due · plan the week'}</span></span>${ic('caret-right-bold', 'tb-caret')}</button>`;
-    return `<div class="ds-section td-sec td-sec-tasks"><span>Tasks for today</span>${link}</div><div class="ds-list td-tasks">${due.map(t => `<div class="ds-row lf-task ${t.due < t0 ? 'overdue' : ''}"><button type="button" class="lf-check" onclick="lfToggle('${esc(t.id)}')" aria-label="Done: ${esc(t.name)}"></button><button type="button" class="ds-row-main lf-open" onclick="lfTask('${esc(t.id)}')"><span class="ds-row-title">${t.priority === 'high' ? '<span class="lf-prio"></span>' : ''}${esc(t.name)}</span>${t.due < t0 ? '<span class="ds-row-sub">Overdue, no pressure</span>' : ''}</button></div>`).join('')}</div>`;
+    if (!due.length) return ''; // redesign/99: the Life HQ tile (hySecondaryHTML) is Home's way in; a list appears only when something is due
+    return `<section class="hy-tasks" aria-label="Tasks for today"><div class="ds-section td-sec td-sec-tasks"><span>Tasks for today</span>${link}</div><div class="ds-list td-tasks">${due.map(t => `<div class="ds-row lf-task ${t.due < t0 ? 'overdue' : ''}"><button type="button" class="lf-check" onclick="lfToggle('${esc(t.id)}')" aria-label="Done: ${esc(t.name)}"></button><button type="button" class="ds-row-main lf-open" onclick="lfTask('${esc(t.id)}')"><span class="ds-row-title">${t.priority === 'high' ? '<span class="lf-prio"></span>' : ''}${esc(t.name)}</span>${t.due < t0 ? '<span class="ds-row-sub">Overdue, no pressure</span>' : ''}</button></div>`).join('')}</div></section>`;
   }
   function treatsHTML() {
     const fy = forYouHTML(); // the same up-to-three suggestions as before (Surprise, free game, reward, goal, word, runs)
@@ -14195,7 +14233,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
   }
   function hyStageHTML() {
     let name = 'Dexter'; try { name = window.__starcadeClub.name(); } catch (e) {}
-    return `<section class="hy-stage" aria-label="${esc(name)}"><div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div><button type="button" class="hy-club" onclick="starcadeNavigate('clubhouse')">${ic('house')}<span>Visit his Clubhouse</span></button></section>`;
+    return `<section class="hy-stage" aria-label="${esc(name)}"><div class="td-top"><p class="td-quote">${esc(quoteForToday())}</p>${companionSpot()}</div><button type="button" class="hy-club" onclick="starcadeNavigate('clubhouse')" aria-label="Visit ${esc(name)}’s Clubhouse">${ic('house')}<span>His Clubhouse</span>${ic('caret-right-bold', 'hy-club-go')}</button></section>`;
   }
   function hyTodayHTML(g, doneCore) {
     const left = Math.max(0, g.need - doneCore), n = Math.min(g.need, doneCore);
@@ -14205,7 +14243,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     return `<section class="td-hero hy-today ${g.good ? 'is-good' : ''}" aria-label="Today: ${n} of ${g.need} toward a Good Day. ${esc(head)}">
       <div class="hy-today-top"><div class="hy-ring" aria-hidden="true"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="${r}" class="trk"/><circle cx="48" cy="48" r="${r}" class="arc" stroke-dasharray="${(c * p).toFixed(1)} ${c.toFixed(1)}"/></svg><span><b>${n}</b><small>of ${g.need}</small></span></div>
         <div class="hy-today-tx"><small>Today</small><b>${esc(head)}</b><span>${esc(sub)}</span></div></div>
-      ${hmStars(n, g.need, g.good)}${weekStrip()}</section>`;
+      ${(() => { const x = safe(() => tdNotice(), ''); return x ? `<div class="hy-note">${x}</div>` : ''; })()}${hmStars(n, g.need, g.good)}${weekStrip()}</section>`;
   }
   function hmGroupHTML(key, label, icon, list, opts = {}) {
     if (!list.length) return '';
@@ -14241,12 +14279,13 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     const wk = weekly().filter(h => !SC2.meta(h.id).paused && SC2.dayStatus(h, new Date()) !== 'paused');
     groups.push(hmGroupHTML('weekly', 'This week', 'calendar-check', wk, { cap: 3 }));
     safe(() => SC2.routines(), []).filter(r => !/^rt-(morning|night|reset)$/.test(r.id)).forEach(r => { const pr = SC2.routineProgress(r); if (pr.total) groups.push(hmGroupHTML(r.id, r.name, r.icon || 'stack-duotone', pr.habits || [])); });
-    groups.push(hmGroupHTML('optional', 'Optional', 'plus-circle', bonusHabits(), { optional: true }));
     const left = daily().filter(h => !completed(h) && SC2.showToday(h)).length;
     const body = groups.join('') || `<div class="td-alldone-hero td-alldone-line">${ic('sparkle-fill')}<span><b>Add your first habit</b><small>Settings → Add a habit.</small></span></div>`;
     return `<section class="hy-habits hm-habits" aria-label="Today’s habits"><div class="hy-sh"><h2>Today’s habits</h2><span>${left ? `${left} to go` : 'All done today'}</span>${left ? `<button type="button" class="td-one" onclick="tdJustOne()">Just one thing</button>` : ''}</div>${hmFocusHTML()}${body}</section>`;
   }
-  // secondary: three equal tiles (stars, the surprise, Bingo), then what she's saving for
+  // Optional habits: a bonus zone with the quests, not part of the day's list
+  function hyOptionalHTML() { const g = hmGroupHTML('optional', 'Optional', 'plus-circle', bonusHabits(), { optional: true }); return g ? `<section class="hy-optional" aria-label="Optional habits">${g}</section>` : ''; }
+  // secondary: three equal tiles (stars, the surprise, Life HQ)
   function hySecondaryHTML() {
     const t = [];
     try { // Rewards: the balance, and what she's saving for when she has picked something
@@ -14257,6 +14296,10 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     try {
       const ready = surpriseReady();
       t.push(`<button type="button" class="hy-tile hy-t-surprise ${ready ? 'td-surprise is-ready' : 'is-done'}" onclick="${ready ? 'tdSurpriseOpen()' : "starcadeNavigate('rewards')"}" aria-label="Daily Surprise. ${ready ? 'Ready to open' : 'Opened today'}"><span class="ic-well">${ic('treasure-chest')}</span><b>${ready ? 'Surprise' : 'Opened'}</b><small>${ready ? 'Ready to open' : 'Back tomorrow'}</small></button>`);
+    } catch (e) {}
+    try {
+      const t0 = today(), all = safe(() => SC2.tasks(), []), open = all.filter(x => !x.done), due = open.filter(x => x.due && x.due <= t0);
+      t.push(`<button type="button" class="hy-tile hy-t-life" onclick="starcadeNavigate('life')" aria-label="Life HQ. ${open.length ? `${open.length} open${due.length ? `, ${due.length} due` : ''}` : 'Nothing waiting'}"><span class="ic-well">${ic('list-checks')}</span><b>${open.length ? open.length : ic('calendar-check')}</b><small>${due.length ? `${due.length} due · Life HQ` : open.length ? 'open · Life HQ' : 'Life HQ · plan the week'}</small></button>`);
     } catch (e) {}
     if (false) try {
       const B = __starcadeV7.bingoTest.state(), n = B.lines.length;
@@ -14279,11 +14322,11 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     el.innerHTML = `<div class="td td2 hy">
       ${hyStageHTML()}
       ${hyTodayHTML(g, doneCore)}
-      ${tdNotice()}
       ${hmHabitsHTML()}
+      ${tasksHTML()}
       ${hySecondaryHTML()}
       ${questsHTML()}
-      ${tasksHTML()}
+      ${hyOptionalHTML()}
       ${aside.length ? hmAsideHTML(aside) : ''}
     </div>`;
     if (lastGood === false && g.good) { feedback('celebrate'); (V7().dexReact || (() => {}))('celebrate'); try { celebrateWin('It’s a good day.'); } catch (e) {} }
@@ -15379,57 +15422,6 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
   };
 
   /* ---------- Progress: the calendar follows the week; locked milestones fold away ---------- */
-  function sysProgress() {
-    const host = document.getElementById('stats'), tb = host && host.querySelector('.tb'); if (!tb) return;
-    if (!tb.dataset.sys) {
-      const hero = tb.querySelector('.pg-wk'), head = tb.querySelector('.pg-histhead'), cal = head && head.nextElementSibling;
-      if (hero && head && cal && cal.classList.contains('pg-act')) {
-        tb.dataset.sys = '1';
-        const t = head.querySelector('span'); if (t) t.textContent = 'Calendar';
-        cal.classList.add('v8-cal'); hero.insertAdjacentElement('afterend', head); head.insertAdjacentElement('afterend', cal);
-      }
-    }
-    const miles = tb.querySelector('.pg-miles');
-    if (miles && !miles.dataset.sys) {
-      miles.dataset.sys = '1';
-      const next = tb.querySelector('.pg-next'); if (next) miles.parentNode.insertBefore(next, miles);
-      const earned = miles.querySelectorAll('.pg-mile.on').length;
-      const sec = [...tb.querySelectorAll('.ds-section')].find(x => x.textContent.trim().startsWith('Milestones'));
-      if (sec && sec.querySelector('span:last-child') !== sec.querySelector('span:first-child')) sec.querySelector('span:last-child').textContent = `${earned} earned`;
-    }
-  }
-  /* ---------- Progress: a dashboard at the top (2026-10-16) ----------
-     Three rings, all from stored history, never estimated: Good Days this week (of the days so far), Good Days this month
-     (of the days so far) and the habits kept over the last 30 days (the same consistency the habit sheet shows). The week
-     below reads as columns: each day's share of its Good Day, a gold star on a Good Day. */
-  /* ---------- Progress: one primary picture (redesign/97) ----------
-     Two weeks side by side, last week quiet and this week bright: each day's column is how much of its Good Day got done
-     (core daily habits done out of the Good Day's eight), a Good Day is a gold column with its star. The headline says
-     this week's Good Days, the line under it how much of the daily habits got done so far and how that compares with
-     last week at this point. Everything comes from the same Good Day log; nothing is estimated. */
-  function sysDash(tb) {
-    const story = tb.querySelector('.pg-story'), wk = tb.querySelector('.pg-wk') || story; if (!wk || tb.querySelector('.sys-dash')) return;
-    const dash = document.createElement('div'); dash.className = 'sys-dash px-hero';
-    dash.innerHTML = '<div class="sys-dash-tx"></div>';
-    const tx = dash.querySelector('.sys-dash-tx'), h2 = wk.querySelector('h2'), vs = wk.querySelector('.pg-wk-vs') || (story && story.querySelector('p'));
-    if (h2) tx.appendChild(h2); if (vs) { vs.classList.add('pg-wk-vs'); tx.appendChild(vs); }
-    if (story) { dash.classList.add('is-early'); story.replaceWith(dash); return; }
-    const info = d => { try { return window.__starcadeGoodDay.info(d); } catch (e) { return null; } };
-    const tk = dateKey(new Date()), lw = new Date(weekStart(new Date())); lw.setDate(lw.getDate() - 7);
-    const last = Array.from({ length: 7 }, (_, i) => { const d = new Date(lw); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + i); const x = info(d); return { d, good: !!(x && x.good), f: x && x.need ? Math.min(1, x.done / x.need) : 0 }; });
-    const lwGood = last.filter(x => x.good).length;
-    const lwCols = last.map(x => `<span class="d ${x.good ? 'good' : x.f ? 'some' : 'none'}" role="img" aria-label="${esc(x.d.toLocaleDateString(undefined, { weekday: 'long' }))} last week: ${x.good ? 'a Good Day' : Math.round(x.f * 100) + '% of its Good Day'}"><i style="--f:${x.f.toFixed(2)}">${x.good ? ic('star-fill') : ''}</i><small>${esc(x.d.toLocaleDateString(undefined, { weekday: 'narrow' }))}</small></span>`).join('');
-    const chart = document.createElement('div'); chart.className = 'px-weeks';
-    chart.innerHTML = `<div class="px-wk px-last"><div class="px-wk-h"><b>Last week</b><span>${lwGood} Good Day${lwGood === 1 ? '' : 's'}</span></div><div class="px-cols">${lwCols}</div></div><div class="px-wk px-this"><div class="px-wk-h"><b>This week</b><span>so far</span></div></div>`;
-    const dots = wk.querySelector('.pg-wk-dots'); if (dots) { dots.classList.add('px-cols'); chart.querySelector('.px-this').appendChild(dots); }
-    dash.appendChild(chart);
-    const rate = wk.querySelector('.pg-wk-rate'); if (rate) { rate.classList.add('px-rate'); dash.appendChild(rate); }
-    const top = wk.querySelector('.pg-wk-top'); if (top) top.after(dash); else wk.prepend(dash);
-    [...wk.querySelectorAll(':scope > p')].forEach(p => { if (/^Today/.test(p.textContent)) p.remove(); });
-    // the three supporting numbers, each saying what it is
-    const say = { 'tr-gd': 'Good Days in all', 'tr-streak': 'Longest streak', 'tr-stars': 'Stars earned' };
-    Object.entries(say).forEach(([c, t]) => { const s = tb.querySelector(`.pg-trophies .${c} small`); if (s) s.textContent = t; });
-  }
   /* ---------- Progress → Goals with none yet: three starting points with where she already is, one tap each ---------- */
   function sysGoalStarts(tb) {
     const empty = tb.querySelector('.pg-empty.t-rose'); if (!empty || tb.querySelector('.sys-starts')) return;
@@ -15475,7 +15467,7 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
   const sysRenderStats = renderStats;
   renderStats = function () {
     const r = sysRenderStats.apply(this, arguments);
-    try { sysProgress(); const tb = document.querySelector('#stats .tb'); if (tb && (tb.querySelector('.pg-wk') || tb.querySelector('.pg-story'))) sysDash(tb); if (tb) { sysGoalStarts(tb); sysRun(tb); sysMilestones(tb); sysRecap(tb); } } catch (e) { console.warn('Starcade system Progress', e); }
+    try { const tb = document.querySelector('#stats .tb'); if (tb) { sysGoalStarts(tb); sysRun(tb); sysMilestones(tb); sysRecap(tb); } } catch (e) { console.warn('Starcade system Progress', e); }
     return r;
   };
 
