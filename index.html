@@ -9745,7 +9745,7 @@ html[data-theme="light"] .ar-dest .m-play{--dc:154 123 67}html[data-theme="light
 #today .hy-sh>span{font:500 13px/1 var(--st-sans);color:var(--st-ink-3)}
 #today .hy-sh .td-one{background:none;border:0;box-shadow:none;padding:0;min-height:28px;font:650 13px/1 var(--st-sans);color:var(--st-rose)}
 #today .hy-focus{display:flex;align-items:center;gap:14px;width:100%;margin:12px 0 0;padding:14px 14px 14px 16px;min-height:0;border:0;border-radius:20px;background-color:var(--st-rose-deep);color:var(--st-wine-ink);text-align:left;box-shadow:0 18px 34px -24px rgb(0 0 0 / .6);position:relative;overflow:visible}
-#today .hy-focus.hm-f-morning{background-color:#9A6A55}#today .hy-focus.hm-f-night{background-color:#535A66}#today .hy-focus.hm-f-weekly{background-color:#6C5A60}
+#today .hy-focus.hm-f-morning{background-color:#9A6A55}#today .hy-focus.hm-f-night{background-color:#6B5361}#today .hy-focus.hm-f-weekly{background-color:#7A5F66}
 #today .hy-focus-ic{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:rgb(255 244 238 / .14)}
 #today .hy-focus-ic .ds-ic{width:22px;height:22px;color:var(--st-wine-ink)}
 #today .hy-focus .hm-focus-tx{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
@@ -10273,6 +10273,78 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
 #stats .pg-rstrip.mo{gap:4px}
 #stats .pg-rstrip.mo i{height:16px;border-radius:5px}
 #stats .pg-rstrip.mo i.good .ds-ic{width:10px;height:10px}
+
+
+/* ============================ Progress identity (redesign/99, 2026-10-19) ============================
+   Progress is consistency, milestones and growth, told in one language: a gold mark on its lane. The facts carry their
+   marks, each habit is a ring, running shows its days. Gold is for what's earned. */
+/* the facts: a mark, the number, the word, with room */
+#stats .px-hero .pg-trophies{padding:18px 10px 20px}
+#stats .px-hero .pg-trophies>span{gap:6px;padding:0 10px}
+#stats .px-hero .pg-trophies .tr-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgb(247 240 232 / .08);color:#D9BC82;margin-bottom:2px}
+#stats .px-hero .pg-trophies .tr-ic .ds-ic{width:15px;height:15px}
+#stats .px-hero .pg-trophies .tr-streak .tr-ic{color:#E7A58C}
+#stats .px-hero .pg-trophies .tr-gd .tr-ic{background:rgb(217 188 130 / .18)}
+#stats .px-hero .pg-trophies b{font-size:28px}
+#stats .px-hero .pg-trophies b .ds-ic{display:none}
+#stats .px-hero .pg-trophies small{font-size:12px;margin-top:2px}
+/* the next milestone: gold ring, the mark inside, breathing room */
+#stats .pg-next{gap:16px;padding:16px 18px;background:linear-gradient(135deg,rgb(var(--st-gold-rgb) / .14),rgb(var(--st-gold-rgb) / .04)),var(--mo-card);box-shadow:inset 0 0 0 1px rgb(var(--st-gold-rgb) / .28)}
+#stats .pg-next-medal{width:58px;height:58px}
+#stats .pg-next-main{gap:5px}
+#stats .pg-next-main small{color:var(--st-gold)}
+#stats .pg-next-main b{font:400 19px/1.2 var(--st-display)}
+#stats .pg-next .pg-bar{height:6px;margin:4px 0 2px}
+/* the lanes: an evenly spaced track per kind, filled as far as she is; the earned marks gold, the next one ringed */
+#stats .pg-miles.lanes{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:6px 16px 10px}
+#stats .pg-lane{padding:12px 0 10px;border-top:1px solid var(--mo-card-line)}
+#stats .pg-lane:first-child{border-top:0}
+#stats .pg-lane-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+#stats .pg-lane-h b{font:650 13.5px/1.2 var(--st-sans);color:var(--st-ink)}
+#stats .pg-lane-h span{font:500 12px/1.2 var(--st-sans);color:var(--st-ink-3)}
+#stats .pg-lane-track{position:relative;display:flex;justify-content:space-between;align-items:flex-start;padding:0 2px}
+#stats .pg-lane-line,#stats .pg-lane-fill{position:absolute;left:22px;right:22px;top:21px;height:4px;border-radius:2px;background:rgb(var(--st-ink-rgb) / .1)}
+#stats .pg-lane-fill{right:auto;width:calc((100% - 44px) * var(--fill, 0) / 100%);background:linear-gradient(90deg,#B5955F,#D9BC82);min-width:0}
+#stats .pg-lane .pg-mile{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:7px;width:48px;min-height:0;padding:0;border:0;background:none;box-shadow:none;text-align:center}
+#stats .pg-lane .pg-mile .medal{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--mo-card);border:1.5px solid rgb(var(--st-ink-rgb) / .16);box-shadow:0 0 0 4px var(--mo-card);color:var(--st-ink-3);overflow:visible}
+#stats .pg-lane .pg-mile .medal em{font:650 12px/1 var(--st-sans);font-style:normal;color:var(--st-ink-3);font-variant-numeric:tabular-nums}
+#stats .pg-lane .pg-mile.on .medal{background:radial-gradient(circle at 35% 30%,#E6CC94,#B5955F 70%);border-color:#8E6F3A;color:#5A4620;box-shadow:0 0 0 4px var(--mo-card),0 6px 14px -6px rgb(181 149 95 / .7)}
+#stats .pg-lane .pg-mile.on .medal .ds-ic{width:22px;height:22px;--st-rim:#7A4A14;--st-rim-o:.5}
+#stats .pg-lane .pg-mile.next .medal{border:1.5px solid var(--st-gold);color:var(--st-gold)}
+#stats .pg-lane .pg-mile.next .medal em{color:var(--st-gold)}
+#stats .pg-lane .pg-mile b{font:600 11px/1.2 var(--st-sans);color:var(--st-ink-3);white-space:nowrap}
+#stats .pg-lane .pg-mile.on b{color:var(--st-ink)}
+#stats .pg-lane .pg-mile small{display:none}
+/* your habits: a ring each, the name, the streak */
+#stats .pg-habs{padding:6px 16px}
+#stats .pg-habs .pg-hab{display:flex;align-items:center;gap:14px;padding:11px 0}
+#stats .pg-hab-ring{position:relative;flex:none;width:44px;height:44px;display:grid;place-items:center}
+#stats .pg-hab-ring svg{position:absolute;inset:0;width:44px;height:44px;transform:rotate(-90deg)}
+#stats .pg-hab-ring circle{fill:none;stroke-width:4}
+#stats .pg-hab-ring .trk{stroke:rgb(var(--st-ink-rgb) / .09)}
+#stats .pg-hab-ring .arc{stroke:var(--st-rose);stroke-linecap:round}
+#stats .pg-hab-ring.gold .arc{stroke:var(--st-gold)}
+#stats .pg-hab-ring b{position:relative;font:700 11.5px/1 var(--st-sans);color:var(--st-ink);font-variant-numeric:tabular-nums}
+#stats .pg-hab .ds-row-main{display:flex;flex-direction:column;gap:4px;min-width:0}
+#stats .pg-hab .ds-row-title{font:600 14.5px/1.3 var(--st-sans)}
+#stats .pg-hab-streak{display:inline-flex;align-items:center;gap:3px;font:600 11.5px/1 var(--st-sans);color:#E7A58C}
+#stats .pg-hab-streak .ds-ic{width:11px;height:11px}
+#stats .pg-hab-n{display:none}
+#stats .pg-improving{margin-top:12px}
+/* running: the week's days, then the numbers */
+#stats .sys-rundays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;padding:14px 0 4px}
+#stats .sys-rundays i{display:grid;place-items:center;height:28px;border-radius:8px;background:rgb(var(--st-ink-rgb) / .06);font:700 11px/1 var(--st-sans);font-style:normal;color:var(--st-ink-4)}
+#stats .sys-rundays i.on{background:rgb(var(--st-sage-rgb) / .28);color:var(--st-ink)}
+#stats .sys-runstats{padding:12px 0 14px;border-bottom:1px solid var(--mo-card-line)}
+#stats .sys-runstats b{font-size:24px}
+#stats .sys-runstats small{margin-top:3px}
+/* Recaps: the Good Days as stars */
+#stats .pg-recap-gd{display:flex;gap:3px;margin-bottom:8px}
+#stats .pg-recap-gd .ds-ic{width:18px;height:18px}
+/* spacing: cards breathe */
+#stats .pg-cal{padding:18px 12px 16px}
+#stats .pg-cal .pg-key{margin-top:16px;padding-top:14px}
+#stats .ds-section{margin-top:28px;padding-bottom:10px}
 
 /* ============================ Layout: phone, tablet, desktop (redesign/99) ============================
    One app, three deliberate compositions. The baseline sheet capped the page at 650 px, so every "desktop" layout
@@ -12984,7 +13056,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     runs_week: n => `${n} more run${n === 1 ? '' : 's'} this week`, run5k_week: () => 'One run of 5 km or more this week',
     active_week: n => `Exercise or 7,500 steps on ${n} more day${n === 1 ? '' : 's'}`, gooddays_week: n => `${n} more Good Day${n === 1 ? '' : 's'} this week`,
     gooddays_month: n => `${n} more Good Day${n === 1 ? '' : 's'} this month`, read_week: n => `Read on ${n} more day${n === 1 ? '' : 's'}`,
-    stars_save: n => `${n.toLocaleString()} more stars to keep`, reward: n => `${n.toLocaleString()} more stars`, custom: () => 'Tap + each time you do it',
+    stars_save: n => `${n.toLocaleString()} more stars to keep`, reward: n => `${n.toLocaleString()} more stars`, custom: () => 'Tap + to log one',
   };
   function goalRow(g) {
     const i = goalInfo(g); if (!i) return '';
@@ -13066,7 +13138,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     const line = (n, l, tone, icon) => n ? `<li><span class="ds-glyph ds-glyph-${tone}">${ic(icon)}</span><span><b>${n.toLocaleString()}</b> ${l}</span></li>` : '';
     const m = r.moments[0];
     const best = r.best ? `Best day: ${r.best.d.toLocaleDateString(undefined, { weekday: 'long' })}, ${r.best.n} habits` : '';
-    return `<div class="pg-recap ${r.good ? 'sc-starlit' : ''}">${head}<p class="pg-recap-lede">${r.good ? `<b class="gold">${r.good}</b> Good Day${r.good === 1 ? '' : 's'}${best ? '<br><small>' + best + '</small>' : ''}` : best || 'A quieter stretch'}</p>
+    return `<div class="pg-recap ${r.good ? 'sc-starlit' : ''}">${head}<p class="pg-recap-lede">${r.good ? `<span class="pg-recap-gd" aria-hidden="true">${Array.from({ length: Math.min(7, r.good) }, () => ic('star-fill')).join('')}</span><b class="gold">${r.good}</b> Good Day${r.good === 1 ? '' : 's'}${best ? '<br><small>' + best + '</small>' : ''}` : best || 'A quieter stretch'}</p>
       ${recapStrip(r)}
       <ul class="pg-recap-list">${line(r.habits, r.habits === 1 ? 'habit checked off' : 'habits checked off', 'rose', 'check-bold')}${line(r.stars, 'stars earned', 'gold', 'star-fill')}${r.runs.length ? line(r.runs.length, `run${r.runs.length === 1 ? '' : 's'}, ${r.km.toFixed(1)} km`, 'sage', 'person-simple-run-fill') : ''}${line(r.arcade, r.arcade === 1 ? 'day in the Arcade' : 'days in the Arcade', 'rose', 'game-controller-fill')}${line(r.tickets, r.tickets === 1 ? 'Lucky Stars ticket' : 'Lucky Stars tickets', 'gold', 'ticket-fill')}${r.extra.map(x => line(x.n, x.label, x.tone || 'lav', 'lightbulb-fill')).join('')}</ul>
       ${m ? `<p class="pg-moment">${esc(m.text)}<span>${fmtDay(m.when)}${r.moments.length > 1 ? `, ${r.moments.length} moments` : ''}</span></p>` : ''}</div>`;
@@ -13113,16 +13185,21 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
       // milestones as data; the next one is the closest unearned milestone by real progress
       const ms = [['First star', life, 1, '★'], ['100 stars', life, 100, '★'], ['500 stars', life, 500, '★'], ['1,000 stars', life, 1000, '★'], ['2,500 stars', life, 2500, '★'], ['First Good Day', gh.total, 1, 'Good Day'], ['10 Good Days', gh.total, 10, 'Good Days'], ['50 Good Days', gh.total, 50, 'Good Days'], ['3 in a row', gh.best, 3, 'in a row'], ['7 in a row', gh.best, 7, 'in a row']].map(([n, have, target, unit]) => ({ n, have, target, unit, on: have >= target }));
       const next = ms.filter(m => !m.on).sort((a, b) => b.have / b.target - a.have / a.target)[0], got = ms.filter(m => m.on);
-      const medal = m => `<div class="pg-mile ${m.on ? 'on' : ''} ${m === next ? 'next' : ''} ${m.unit === '★' ? 'is-star' : ''}" role="listitem"><span class="medal">${ic(m.on ? (m.unit === '★' ? 'star-fill' : 'trophy-fill') : 'star')}</span><b>${m.n}</b><small>${m.on ? 'Earned' : m.target > 1 && m.have ? `${m.have.toLocaleString()}/${m.target.toLocaleString()}` : m.unit === '★' ? m.target.toLocaleString() + ' ★' : m.unit === 'in a row' ? 'Good Days' : m.target + ' ' + m.unit}</small></div>`;
+      /* one language for every milestone: a gold mark on its lane (stars earned, Good Days, in a row), evenly spaced,
+         the track filled as far as she is, the next one ringed. No trophies, no mixed units. */
+      const short = n => n >= 1000 ? (n / 1000).toString().replace(/\.0$/, '') + 'k' : String(n);
+      const medal = m => `<div class="pg-mile ${m.on ? 'on' : ''} ${m === next ? 'next' : ''} ${m.unit === '★' ? 'is-star' : ''}" role="listitem" data-name="${esc(m.n)}" aria-label="${esc(m.n)}${m.on ? ', earned' : m === next ? ', next' : ''}"><span class="medal">${m.on ? ic('star-fill') : `<em>${short(m.target)}</em>`}</span><b>${esc(m.n.replace(/ stars?$/, '').replace(/ Good Days?$/, '').replace(/ in a row$/, '').replace(/^First star$/, 'First').replace(/^First Good Day$/, 'First'))}</b></div>`;
+      const lane = (label, have, list) => { const n = list.length, k = list.filter(m => m.on).length; let fill = 0; if (k >= n) fill = 1; else if (k >= 1) { const prev = list[k - 1].target, tgt = list[k].target; fill = ((k - 1) + Math.max(0, Math.min(1, (have - prev) / Math.max(1, tgt - prev)))) / (n - 1); } else fill = 0; return `<div class="pg-lane"><div class="pg-lane-h"><b>${label}</b><span>${have.toLocaleString()} so far</span></div><div class="pg-lane-track" style="--fill:${(fill * 100).toFixed(1)}%"><i class="pg-lane-line" aria-hidden="true"></i><i class="pg-lane-fill" aria-hidden="true"></i>${list.map(medal).join('')}</div></div>`; };
+      const lanesHTML = `<div class="pg-miles row lanes" role="list">${lane('Stars earned', life, ms.filter(m => m.unit === '★'))}${lane('Good Days', gh.total, ms.filter(m => /Good Day/.test(m.unit)))}${lane('Good Days in a row', gh.best, ms.filter(m => m.unit === 'in a row'))}</div>`;
       const left = next ? next.target - next.have : 0, nextUnit = next && (next.unit === '★' ? (left === 1 ? 'star' : 'stars') : next.unit === 'in a row' ? 'more in a row' : left === 1 ? 'Good Day' : 'Good Days');
-      const nextCard = next ? `<div class="pg-next ${next.have / next.target >= .8 ? 'sc-starlit' : ''}"><span class="pg-next-medal" style="--p:${Math.round(next.have / next.target * 100)}"><i>${ic(next.unit === '★' ? 'star-fill' : 'trophy-fill')}</i></span><span class="pg-next-main"><small>Next milestone</small><b>${esc(next.n)}</b><span class="pg-bar tone-gold"><i style="width:${Math.min(100, Math.round(next.have / next.target * 100))}%"></i></span><em>${left.toLocaleString()} ${nextUnit} to go</em></span></div>` : '';
-      const milesHTML = `<section class="pg-milesec" aria-label="Milestones"><div class="ds-section"><span>Milestones</span><span>${got.length} of ${ms.length} earned</span></div>${nextCard}<div class="pg-miles row" role="list">${[...got.slice().reverse(), ...ms.filter(m => !m.on)].map(medal).join('')}</div></section>`;
+      const nextCard = next ? `<div class="pg-next ${next.have / next.target >= .8 ? 'sc-starlit' : ''}"><span class="pg-next-medal" style="--p:${Math.round(next.have / next.target * 100)}"><i>${ic('star-fill')}</i></span><span class="pg-next-main"><small>Next</small><b>${esc(next.n)}</b><span class="pg-bar tone-gold"><i style="width:${Math.min(100, Math.round(next.have / next.target * 100))}%"></i></span><em>${left.toLocaleString()} ${nextUnit} to go</em></span></div>` : '';
+      const milesHTML = `<section class="pg-milesec" aria-label="Milestones"><div class="ds-section"><span>Milestones</span><span>${got.length} of ${ms.length}</span></div>${nextCard}${lanesHTML}</section>`;
       const runs = runsIn(weekOf(0)), all = safe(() => v8RunHistory(), []), five = runs.filter(x => Number(x.distanceKm) >= 5).length, km = runs.reduce((s, r) => s + Number(r.distanceKm || 0), 0);
       const runHTML = `<div class="ds-section"><span>Running</span></div>
         <div class="ds-list pg-run">${all.length ? `<div class="ds-row"><span class="ds-glyph ds-glyph-sage">${ic('person-simple-run-fill')}</span><span class="ds-row-main"><span class="ds-row-title">${runs.length ? `${runs.length} run${runs.length === 1 ? '' : 's'} this week, ${km.toFixed(1)} km` : 'No runs yet this week'}</span><span class="ds-row-sub">${runs.length >= 2 ? 'Weekly goal met' : `${2 - runs.length} more for the weekly goal`}${five ? ', 5K done' : ''}. Last run ${fmtDay(all[0].date + 'T12:00:00')}</span></span></div>`
-          : `<div class="ds-row pg-run-empty"><span class="ds-glyph ds-glyph-sage">${ic('sneaker-move-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Your first run will land here</span><span class="ds-row-sub">Runs sync from Oura, or log one yourself.</span></span></div>`}
+          : `<div class="ds-row pg-run-empty"><span class="ds-glyph ds-glyph-sage">${ic('sneaker-move-duotone')}</span><span class="ds-row-main"><span class="ds-row-title">Your first run will land here</span><span class="ds-row-sub">From Oura, or logged by hand.</span></span></div>`}
           <button type="button" class="ds-row tb-row" onclick="pgRuns()"><span class="ds-row-main"><span class="ds-row-title">Run journal</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`;
-      const bingoHTML = `<div class="ds-list pg-bingohist"><button type="button" class="ds-row tb-row" onclick="v7BingoHistory()"><span class="ds-glyph ds-glyph-gold">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Past Bingo boards</span><span class="ds-row-sub">One board a week, as each one ended</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`;
+      const bingoHTML = `<div class="ds-list pg-bingohist"><button type="button" class="ds-row tb-row" onclick="v7BingoHistory()"><span class="ds-glyph ds-glyph-gold">${ic('grid-nine-fill')}</span><span class="ds-row-main"><span class="ds-row-title">Past Bingo boards</span><span class="ds-row-sub">Each week as it ended</span></span>${ic('caret-right-bold', 'tb-caret')}</button></div>`;
       const moreHTML = `<section class="pg-moresec" aria-label="Running and past boards">${runHTML}${bingoHTML}</section>`;
       if (early) {
         /* Under a week of check-ins: the story instead of the charts, the next milestone, goals to aim for, running.
@@ -13131,7 +13208,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
         const facts0 = [activeDays ? `${activeDays} day${activeDays === 1 ? '' : 's'} of check-ins` : '', life ? `${life.toLocaleString()} star${life === 1 ? '' : 's'} so far` : ''].filter(Boolean).join(', ');
         body = `<section class="pg-wk pg-hero px-hero is-early" aria-label="Your story"><div class="pg-story"><span class="pg-story-art">${ic('sparkle-fill')}</span><div><h2>${activeDays ? 'Every little win adds up here.' : 'Your story starts here.'}</h2><p>${facts0 || 'Check off a habit on Home and it starts counting.'}</p></div></div>${facts}</section>
         <div class="pg-regions">
-          <section class="pg-milesec" aria-label="Milestones"><div class="ds-section"><span>Milestones</span><span>${got.length} of ${ms.length} earned</span></div>${nextCard}${got.length ? `<div class="pg-miles compact" role="list">${got.map(medal).join('')}</div>` : ''}</section>
+          <section class="pg-milesec" aria-label="Milestones"><div class="ds-section"><span>Milestones</span><span>${got.length} of ${ms.length} earned</span></div>${nextCard}${lanesHTML}</section>
           <section class="pg-habsec" aria-label="Goals"><div class="ds-section"><span>Goals</span>${gs.length ? `<button type="button" class="pg-link" onclick="pgTabSet('goals')">See all</button>` : ''}</div>
           ${gs.length ? `<div class="ds-list pg-goals">${gs.slice(0, 3).map(x => goalRow(x.g)).join('')}</div>` : `<button type="button" class="pg-goal-invite" onclick="pgGoalNew()"><span class="ds-glyph ds-glyph-rose">${ic('flag-checkered-duotone')}</span><span class="ds-row-main"><b>Set a goal</b><small>Runs, Good Days, reading or your own.</small></span>${ic('plus-bold', 'pg-goal-plus')}</button>`}</section>
           ${moreHTML}
@@ -13178,7 +13255,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
   function pgCameos(per) {
     try {
       if (pgTab === 'overview') {
-        const earnedNow = [...document.querySelectorAll('#stats .pg-mile.on b')].map(x => x.textContent), S = SC();
+        const earnedNow = [...document.querySelectorAll('#stats .pg-mile.on')].map(x => x.dataset.name || x.querySelector('b').textContent), S = SC(); // the full name: two lanes both start with 'First'
         if (!Array.isArray(S.milestonesSeen)) { S.milestonesSeen = earnedNow; save(); return; } // first visit: remember, no cameo
         const fresh = earnedNow.filter(n => !S.milestonesSeen.includes(n));
         if (fresh.length) { S.milestonesSeen = [...S.milestonesSeen, ...fresh]; save(); dexCameo('#stats .pg-miles', { pose: 'celebrate', key: 'mile:' + fresh[0] }); feedback('success'); }
@@ -13202,10 +13279,12 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
   function trophiesHTML(life) {
     const X = SC2.xp(), gd = Math.round((X.parts.goodDays || 0) / SC2.XP_RULES.goodDay);
     const best = state.habits.filter(h => h.frequency === 'daily' || h.frequency === 'weekly').reduce((m, h) => { const st = SC2.stats(h); return st.has ? Math.max(m, st.longest || 0) : m; }, 0);
-    return `<div class="pg-trophies"><span class="tr-gd"><b>${gd.toLocaleString()}</b><small>Good Days in all</small></span><span class="tr-streak"><b>${best}</b><small>Longest streak</small></span><span class="tr-stars"><b>${ic('star-fill')}${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div>`;
+    return `<div class="pg-trophies"><span class="tr-gd"><i class="tr-ic" aria-hidden="true">${ic('star-fill')}</i><b>${gd.toLocaleString()}</b><small>Good Days</small></span><span class="tr-streak"><i class="tr-ic" aria-hidden="true">${ic('flame-fill')}</i><b>${best}</b><small>Best habit streak</small></span><span class="tr-stars"><i class="tr-ic" aria-hidden="true">${ic('star-fill')}</i><b>${Number(life || 0).toLocaleString()}</b><small>Stars earned</small></span></div>`;
   }
   function habitRows(list) {
-    return list.map(({ h, s }) => `<button type="button" class="ds-row tb-row pg-hab" onclick="stHabit('${esc(h.id)}')"><span class="ds-row-main"><span class="ds-row-title">${esc(h.name)}</span><span class="pg-hab-bar"><i style="width:${pct(s.consistency)}%"></i></span></span><span class="pg-hab-n"><b>${pct(s.consistency)}%</b>${s.current >= 2 ? `<small>${ic('flame-fill')}${s.current}</small>` : ''}</span></button>`).join('');
+    // each habit is a ring drawn as far as its consistency, its name, and its streak when it has one
+    const r = 17, c = 2 * Math.PI * r;
+    return list.map(({ h, s }) => { const p = pct(s.consistency); return `<button type="button" class="ds-row tb-row pg-hab" onclick="stHabit('${esc(h.id)}')" aria-label="${esc(h.name)}, ${p} percent${s.current >= 2 ? `, ${s.current} day streak` : ''}"><span class="pg-hab-ring ${p >= 90 ? 'gold' : ''}" aria-hidden="true"><svg viewBox="0 0 40 40"><circle class="trk" cx="20" cy="20" r="${r}"/><circle class="arc" cx="20" cy="20" r="${r}" stroke-dasharray="${(c * p / 100).toFixed(1)} ${c.toFixed(1)}"/></svg><b>${p}</b></span><span class="ds-row-main"><span class="ds-row-title">${esc(h.name)}</span>${s.current >= 2 ? `<span class="pg-hab-streak">${ic('flame-fill')}${s.current} days</span>` : ''}</span><span class="pg-hab-bar" hidden><i style="width:${p}%"></i></span></button>`; }).join('');
   }
   function habitsHTML() {
     const act = state.habits.filter(h => (h.frequency === 'daily' || h.frequency === 'weekly') && !SC2.meta(h.id).paused).map(h => ({ h, s: SC2.stats(h) })).filter(x => x.s.has && x.s.consistency != null);
@@ -13214,7 +13293,7 @@ html[data-theme="light"] #today .hy-t-stars{--tc:154 123 67}html[data-theme="lig
     const improving = act.filter(x => x.s.trend && x.s.trend.delta >= .1 && !strong.includes(x)).sort((a, b) => b.s.trend.delta - a.s.trend.delta).slice(0, 2);
     return `<div class="ds-section"><span>Your habits</span><button type="button" class="pg-link" onclick="pgAllHabits()">See all</button></div>
       <div class="ds-list pg-habs">${habitRows(strong)}</div>
-      ${improving.length ? `<p class="pg-improving">${ic('chart-line-up')}<span>Improving: ${improving.map(x => esc(x.h.name)).join(' and ')}</span></p>` : ''}`;
+      ${improving.length ? `<p class="pg-improving">${ic('chart-line-up')}<span>On the rise: ${improving.map(x => esc(x.h.name)).join(' and ')}</span></p>` : ''}`;
   }
   window.pgAllHabits = function () {
     const act = state.habits.filter(h => h.frequency === 'daily' || h.frequency === 'weekly' || h.frequency === 'bonus').map(h => ({ h, s: SC2.stats(h) }));
@@ -15532,7 +15611,8 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
     try { runs = runsIn(weekOf(0)); all = v8RunHistory(); } catch (e) { return; }
     if (!all.length) return;
     const km = runs.reduce((s, r) => s + Number(r.distanceKm || 0), 0), five = runs.some(r => Number(r.distanceKm) >= 5);
-    run.insertAdjacentHTML('afterbegin', `<div class="sys-runstats" role="group" aria-label="Running this week"><span><b>${runs.length}</b><small>run${runs.length === 1 ? '' : 's'} this week</small></span><span><b>${km.toFixed(1)}</b><small>km</small></span><span class="${five ? 'on' : ''}"><b>${five ? ic('check-bold') : '5K'}</b><small>${five ? '5K done' : 'not yet'}</small></span></div>`);
+    let days = ''; try { const ks = new Set(runs.map(r => String(r.date).slice(0, 10))); days = `<span class="sys-rundays" aria-hidden="true">${weekOf(0).map(d => `<i class="${ks.has(dateKey(d)) ? 'on' : ''}">${d.toLocaleDateString(undefined, { weekday: 'narrow' })}</i>`).join('')}</span>`; } catch (e) {}
+    run.insertAdjacentHTML('afterbegin', `${days}<div class="sys-runstats" role="group" aria-label="Running this week"><span><b>${runs.length}</b><small>run${runs.length === 1 ? '' : 's'} this week</small></span><span><b>${km.toFixed(1)}</b><small>km</small></span><span class="${five ? 'on' : ''}"><b>${five ? ic('check-bold') : '5K'}</b><small>${five ? '5K done' : 'not yet'}</small></span></div>`);
   }
   /* ---------- a milestone earned is revealed once: the medal, its ring drawing closed, its name ----------
      Tracked additively in starcade.milestonesRevealed; the first visit only remembers what's already earned. */
@@ -15544,7 +15624,7 @@ const CLUB_LAYERS = {"w":358,"h":320,"bulb":{"floor":[320.7,80.7],"star":[318.8,
   }
   window.__sysReveal = sysReveal;
   function sysMilestones(tb) {
-    const earned = [...tb.querySelectorAll('.pg-mile.on b')].map(x => x.textContent); if (!earned.length) return;
+    const earned = [...tb.querySelectorAll('.pg-mile.on')].map(x => x.dataset.name || x.querySelector('b').textContent); if (!earned.length) return;
     const S = SC();
     if (!Array.isArray(S.milestonesRevealed)) { S.milestonesRevealed = earned; save(); return; }
     const fresh = earned.filter(n => !S.milestonesRevealed.includes(n)); if (!fresh.length) return;
